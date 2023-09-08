@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:ui_test/src/fristpage.dart';
 
 import 'package:ui_test/src/models/Thaifood.dart';
 import 'package:ui_test/src/models/foodmodel.dart';
-import 'dart:convert';
+import 'widget/appbar/action_flag_icon.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({super.key});
@@ -24,14 +23,20 @@ class _OrderPageState extends State<OrderPage> {
     loadJsonAsset();
   }
 
-  mapdata() {}
+  loadJsonAsset() {
+    final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+    final foodcat =
+        ListFoodata.foodCategory.map((e) => Foodmodel.fromMap(e)).toList();
+    final foodset =
+        ListFoodata.foodSet.map((e) => Foodmodel.fromMap(e)).toList();
 
-  Future<void> loadJsonAsset() async {
-    final String jsonString =
-        await rootBundle.loadString('assets/json/data_test.json');
-    //final List<dynamic> data = jsonDecode(jsonString);
+    //print(myfood[100].foodName);
+  }
 
-    // print(data);
+  Textnullcheck(String value_) {
+    if (value_ == null) {
+      return value_ = '';
+    }
   }
 
   @override
@@ -88,95 +93,168 @@ class SelectedMenu extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 14),
             child: Row(
               children: [
                 ButtonCatFood(
                   name_: 'Thaifood',
-                  height_: 120,
-                  width_: 40,
+                  height_: context.widthsize / 10,
+                  width_: context.widthsize / 28,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 ButtonCatFood(
                   name_: 'Japanese Menu',
-                  height_: 120,
-                  width_: 40,
+                  height_: context.widthsize / 10,
+                  width_: context.widthsize / 28,
                 ),
               ],
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          // const Row(
-          //   // scrollDirection: Axis.vertical,
-          //   // shrinkWrap: true,
-          //   children: [
-          //     ButtonCatFood(
-          //       name_: 'Appetizers',
-          //       height_: 30,
-          //       width_: 30,
-          //     ),
-          //     ButtonCatFood(
-          //       name_: 'Soup',
-          //       height_: 10,
-          //       width_: 20,
-          //     ),
-          //     ButtonCatFood(
-          //       name_: 'Salads',
-          //       height_: 10,
-          //       width_: 20,
-          //     ),
-          //     ButtonCatFood(
-          //       name_: 'Noodles',
-          //       height_: 10,
-          //       width_: 20,
-          //     ),
-          //     ButtonCatFood(
-          //       name_: 'Entrees',
-          //       height_: 10,
-          //       width_: 20,
-          //     ),
-          //     ButtonCatFood(
-          //       name_: 'Rice Dishes',
-          //       height_: 10,
-          //       width_: 20,
-          //     ),
-          //     ButtonCatFood(
-          //       name_: 'Side Orders',
-          //       height_: 10,
-          //       width_: 20,
-          //     ),
-          //     ButtonCatFood(
-          //       name_: 'Drinks',
-          //       height_: 10,
-          //       width_: 20,
-          //     ),
-          //   ],
-          // ),
-
-          ListView(
-            shrinkWrap: true,
-            children: [
-              //show menu
-              Column(
-                  children: List.generate(
-                5,
-                (index) {
-                  return Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.blue,
-                    margin: const EdgeInsets.all(10),
-                    child: Text(ListFoodata.food[0]["foodName"].toString()),
-                  );
-                },
-              )),
-            ],
-          ),
+          Expanded(
+            child: Wrap(
+              direction: Axis.horizontal,
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'APPETIZERS',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black45),
+                    ),
+                  ),
+                ),
+                // SizedBox(
+                //   height: 400,
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(2),
+                //     child: GridView.builder(
+                //         gridDelegate:
+                //             const SliverGridDelegateWithFixedCrossAxisCount(
+                //                 crossAxisCount: 6),
+                //         shrinkWrap: true,
+                //         itemCount: 8,
+                //         itemBuilder: (context, indextto) {
+                //           if (ListFoodata.food[indextto]['foodCatId'] ==
+                //               'TUYmgy/w29M=') {
+                //             return Padding(
+                //               padding: const EdgeInsets.all(2.0),
+                //               child: Container(
+                //                 width: context.widthsize / 2,
+                //                 decoration: BoxDecoration(
+                //                     color: Colors.white,
+                //                     borderRadius: BorderRadius.circular(6),
+                //                     border: Border.all(
+                //                       color: Colors.black,
+                //                     )),
+                //                 child: Column(children: [
+                //                   Container(
+                //                     height: context.widthsize / 16,
+                //                     decoration: BoxDecoration(
+                //                         color: Colors.red,
+                //                         image: DecorationImage(
+                //                             image: NetworkImage(ListFoodata
+                //                                 .food[indextto]['imageName']),
+                //                             fit: BoxFit.fill)),
+                //                   ),
+                //                   Column(
+                //                     children: [
+                //                       Align(
+                //                         alignment: Alignment.topLeft,
+                //                         child: Text(
+                //                           ListFoodata.food[indextto]
+                //                               ['foodName'],
+                //                           style: TextStyle(fontSize: 12),
+                //                         ),
+                //                       ),
+                //                       Text(
+                //                         (ListFoodata.food[indextto]
+                //                                     ['fooddesc'] ==
+                //                                 null)
+                //                             ? ''
+                //                             : ListFoodata.food[indextto]
+                //                                 ['fooddesc'],
+                //                         style: TextStyle(fontSize: 2),
+                //                       ),
+                //                       Align(
+                //                         alignment: Alignment.bottomLeft,
+                //                         child: Padding(
+                //                           padding: const EdgeInsets.all(8.0),
+                //                           child: Text(
+                //                             '\$${ListFoodata.food[indextto]['foodPrice']}',
+                //                             style: const TextStyle(
+                //                                 fontSize: 16,
+                //                                 fontFamily: AutofillHints
+                //                                     .streetAddressLine1),
+                //                           ),
+                //                         ),
+                //                       ),
+                //                     ],
+                //                   )
+                //                 ]),
+                //               ),
+                //             );
+                //           }
+                //         }),
+                //   ),
+                // ),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Soups',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black45),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 300,
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 7),
+                      shrinkWrap: true,
+                      itemCount: 100,
+                      itemBuilder: ((context, index) {
+                        if (ListFoodata.food[index]['foodCatId'] ==
+                            "la+hd3+WLj4=") {
+                          return Text('${ListFoodata.food[index]['foodName']}');
+                          // return Padding(
+                          //   padding: const EdgeInsets.all(2.0),
+                          //   child: Column(children: [
+                          //     Container(
+                          //       width: double.infinity,
+                          //       height: 50,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.red,
+                          //       ),
+                          //     ),
+                          //     Expanded(
+                          //       child: Text(
+                          //         ListFoodata.food[index]['foodName'],
+                          //         style: TextStyle(fontSize: 10),
+                          //       ),
+                          //     )
+                          //   ]),
+                          // );
+                        }
+                      })),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -208,7 +286,8 @@ class ButtonCatFood extends StatelessWidget {
         child: Center(
             child: Text(
           name_, //'ThaiMenu'
-          style: TextStyle(color: Colors.white),
+          style:
+              TextStyle(color: Colors.white, fontSize: context.widthsize / 90),
         )),
       ),
     );
@@ -224,34 +303,8 @@ class CheckBin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false, actions: [
-        Padding(
-          padding: const EdgeInsets.only(top: 2, right: 8),
-          child: Container(
-            height: context.heightsize / 10,
-            width: context.widthsize / 10,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: AssetImage('assets/images/bg/unitedflag.png'),
-                    fit: BoxFit.fitWidth)),
-            child: PopupMenuButton(
-                iconSize: 0,
-                offset: Offset(0, 45),
-                itemBuilder: (BuildContext context) {
-                  return const [
-                    PopupMenuItem(value: 1, child: Text('English')),
-                    PopupMenuItem(value: 2, child: Text('Setting')),
-                    PopupMenuItem(value: 3, child: Text('Store Manager')),
-                    PopupMenuItem(
-                        value: 4,
-                        child: Row(
-                          children: [Icon(Icons.exit_to_app), Text('Exit')],
-                        )),
-                  ];
-                }),
-          ),
-        ),
+      appBar: AppBar(automaticallyImplyLeading: false, actions: const [
+        ActionsFlagIcon(),
       ]),
       body: Column(
         children: [
@@ -351,50 +404,3 @@ class CheckBin extends StatelessWidget {
     );
   }
 }
-
-// product: ShirtPoPData.shirtPoPProducts
-//               .map((e) => ProductDataModel(
-//                   id: e['id'],
-//                   name: e['name'], //e['']
-//                   description: e['description'],
-//                   price: e['price'],
-//                   imageUrl: e['imageUrl']))
-//               .toList()));
-// Scaffold(
-//         appBar: AppBar(
-//           actions: [
-//             IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-//           ],
-//         ),
-//         body: Row(
-//           children: [
-//             Expanded(
-//               child: Container(),
-//             ),
-//             VerticalDivider(),
-//             Flexible(
-//               flex: 1,
-//               child: Column(
-//                 children: [
-//                   Row(
-//                     children: [
-//                       const Text(
-//                         'My Order',
-//                         style: TextStyle(fontWeight: FontWeight.w500),
-//                       ),
-//                       Padding(
-//                         padding: const EdgeInsets.only(left: 5),
-//                         child: FaIcon(
-//                           FontAwesomeIcons.edit,
-//                           size: context.widthsize / 40,
-//                         ),
-//                       )
-//                     ],
-//                   ),
-//                   Divider(),
-//                   Text(''),
-//                 ],
-//               ),
-//             )
-//           ],
-//         ));

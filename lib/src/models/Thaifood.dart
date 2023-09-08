@@ -1,9 +1,8 @@
-import 'package:flutter/services.dart';
 import 'package:ui_test/src/models/foodmodel.dart';
+//import 'package:ui_test/src/models/foodmodel.dart';
 
-final Future<String> resopne =
-    rootBundle.loadString('lib/src/models/data_test.json');
-List<Foodmodel> foodthai_ = [];
+// final Future<String> resopne =
+//     rootBundle.loadString('lib/src/models/data_test.json');
 
 class ListFoodata {
   static List<Map<String, dynamic>> food = [
@@ -10873,5 +10872,9 @@ class ListFoodata {
       "active": true
     }
   ];
+}
+
+class Foodgetdata {
+  var myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
 }
 // Srd8o2evE8g=  This food set ID is thaiMenu

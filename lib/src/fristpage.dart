@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ui_test/src/widget/TextLage.dart';
 import 'package:ui_test/src/widget/bottom_wiget.dart';
 
+import 'widget/appbar/action_flag_icon.dart';
+
 class FristPage extends StatefulWidget {
   const FristPage({super.key});
 
@@ -47,30 +49,8 @@ class _FristPageState extends State<FristPage> {
               ),
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(top: 2, right: 8),
-              child: Container(
-                height: context.heightsize / 10,
-                width: context.widthsize / 10,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/bg/unitedflag.png'),
-                        fit: BoxFit.fitWidth)),
-                child: PopupMenuButton(
-                    iconSize: 0,
-                    offset: Offset(0, 45),
-                    itemBuilder: (BuildContext context) {
-                      return const [
-                        PopupMenuItem(child: Text('English'), value: 1),
-                        PopupMenuItem(child: Text('Setting'), value: 2),
-                        PopupMenuItem(child: Text('Store Manager'), value: 3),
-                        PopupMenuItem(child: Text('exit'), value: 4),
-                      ];
-                    }),
-              ),
-            ),
+          actions: const [
+            ActionsFlagIcon(),
           ],
         ),
         /////body
