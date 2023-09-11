@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:ui_test/src/fristpage.dart';
 
 import 'package:ui_test/src/models/Thaifood.dart';
@@ -21,25 +22,6 @@ class _OrderPageState extends State<OrderPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-<<<<<<< Updated upstream
-
-    loadJsonAsset();
-  }
-
-  loadJsonAsset() {
-    final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-    final foodcat =
-        ListFoodata.foodCategory.map((e) => Foodmodel.fromMap(e)).toList();
-    final foodset =
-        ListFoodata.foodSet.map((e) => Foodmodel.fromMap(e)).toList();
-
-    //print(myfood[100].foodName);
-  }
-
-  Textnullcheck(String value_) {
-    if (value_ == null) {
-      return value_ = '';
-=======
     loopfood();
   }
 
@@ -48,7 +30,6 @@ class _OrderPageState extends State<OrderPage> {
       if (v['foodCatId'] == '9YIvS9YpFPQ=') {
         starter.add(v);
       }
->>>>>>> Stashed changes
     }
   }
 
@@ -110,7 +91,7 @@ class SelectedMenu extends StatelessWidget {
               height: 60,
               width: 60,
               decoration: BoxDecoration(
-                color: Color.fromARGB(117, 233, 230, 230),
+                color: const Color.fromARGB(117, 233, 230, 230),
                 borderRadius: BorderRadius.circular(8),
 
                 //border: Border.all(color: Colors.black)),
@@ -127,134 +108,6 @@ class SelectedMenu extends StatelessWidget {
               ))
         ],
       ),
-<<<<<<< Updated upstream
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 14),
-            child: Row(
-              children: [
-                ButtonCatFood(
-                  name_: 'Thaifood',
-                  height_: context.widthsize / 10,
-                  width_: context.widthsize / 28,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ButtonCatFood(
-                  name_: 'Japanese Menu',
-                  height_: context.widthsize / 10,
-                  width_: context.widthsize / 28,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Wrap(
-              direction: Axis.horizontal,
-              spacing: 8,
-              runSpacing: 4,
-              children: [
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'APPETIZERS',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black45),
-                    ),
-                  ),
-                ),
-                // SizedBox(
-                //   height: 400,
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(2),
-                //     child: GridView.builder(
-                //         gridDelegate:
-                //             const SliverGridDelegateWithFixedCrossAxisCount(
-                //                 crossAxisCount: 6),
-                //         shrinkWrap: true,
-                //         itemCount: 8,
-                //         itemBuilder: (context, indextto) {
-                //           if (ListFoodata.food[indextto]['foodCatId'] ==
-                //               'TUYmgy/w29M=') {
-                //             return Padding(
-                //               padding: const EdgeInsets.all(2.0),
-                //               child: Container(
-                //                 width: context.widthsize / 2,
-                //                 decoration: BoxDecoration(
-                //                     color: Colors.white,
-                //                     borderRadius: BorderRadius.circular(6),
-                //                     border: Border.all(
-                //                       color: Colors.black,
-                //                     )),
-                //                 child: Column(children: [
-                //                   Container(
-                //                     height: context.widthsize / 16,
-                //                     decoration: BoxDecoration(
-                //                         color: Colors.red,
-                //                         image: DecorationImage(
-                //                             image: NetworkImage(ListFoodata
-                //                                 .food[indextto]['imageName']),
-                //                             fit: BoxFit.fill)),
-                //                   ),
-                //                   Column(
-                //                     children: [
-                //                       Align(
-                //                         alignment: Alignment.topLeft,
-                //                         child: Text(
-                //                           ListFoodata.food[indextto]
-                //                               ['foodName'],
-                //                           style: TextStyle(fontSize: 12),
-                //                         ),
-                //                       ),
-                //                       Text(
-                //                         (ListFoodata.food[indextto]
-                //                                     ['fooddesc'] ==
-                //                                 null)
-                //                             ? ''
-                //                             : ListFoodata.food[indextto]
-                //                                 ['fooddesc'],
-                //                         style: TextStyle(fontSize: 2),
-                //                       ),
-                //                       Align(
-                //                         alignment: Alignment.bottomLeft,
-                //                         child: Padding(
-                //                           padding: const EdgeInsets.all(8.0),
-                //                           child: Text(
-                //                             '\$${ListFoodata.food[indextto]['foodPrice']}',
-                //                             style: const TextStyle(
-                //                                 fontSize: 16,
-                //                                 fontFamily: AutofillHints
-                //                                     .streetAddressLine1),
-                //                           ),
-                //                         ),
-                //                       ),
-                //                     ],
-                //                   )
-                //                 ]),
-                //               ),
-                //             );
-                //           }
-                //         }),
-                //   ),
-                // ),
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Soups',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black45),
-                    ),
-=======
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -264,7 +117,7 @@ class SelectedMenu extends StatelessWidget {
             bottom: PreferredSize(
                 preferredSize: Size.fromHeight(80), //bottom sliver appbar
                 child: Column(
-                  //menu Foodset
+                  //menu
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 14),
@@ -433,47 +286,11 @@ class SelectedMenu extends StatelessWidget {
                         },
                       ),
                     ],
->>>>>>> Stashed changes
                   ),
-                ),
-                SizedBox(
-                  height: 300,
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 7),
-                      shrinkWrap: true,
-                      itemCount: 100,
-                      itemBuilder: ((context, index) {
-                        if (ListFoodata.food[index]['foodCatId'] ==
-                            "la+hd3+WLj4=") {
-                          return Text('${ListFoodata.food[index]['foodName']}');
-                          // return Padding(
-                          //   padding: const EdgeInsets.all(2.0),
-                          //   child: Column(children: [
-                          //     Container(
-                          //       width: double.infinity,
-                          //       height: 50,
-                          //       decoration: BoxDecoration(
-                          //         color: Colors.red,
-                          //       ),
-                          //     ),
-                          //     Expanded(
-                          //       child: Text(
-                          //         ListFoodata.food[index]['foodName'],
-                          //         style: TextStyle(fontSize: 10),
-                          //       ),
-                          //     )
-                          //   ]),
-                          // );
-                        }
-                      })),
-                ),
-              ],
+                );
+              },
+              childCount: 1, // Set the number of sections you have
             ),
-<<<<<<< Updated upstream
-          )
-=======
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
@@ -573,7 +390,6 @@ class SelectedMenu extends StatelessWidget {
               childCount: 1, // Set the number of sections you have
             ),
           ),
->>>>>>> Stashed changes
         ],
       ),
     );
@@ -685,18 +501,18 @@ class CheckBin extends StatelessWidget {
               'No order selected',
               style: TextStyle(
                   fontSize: context.widthsize / 50,
-                  color: Color.fromARGB(221, 110, 109, 109),
+                  color: const Color.fromARGB(221, 110, 109, 109),
                   fontWeight: FontWeight.bold),
             ),
           ),
-          Spacer(
+          const Spacer(
             flex: 2,
           ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Divider(),
+                const Divider(),
                 Padding(
                   padding: EdgeInsets.all(context.widthsize / 40),
                   child: Row(
