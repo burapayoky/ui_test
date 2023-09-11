@@ -8,8 +8,12 @@ import 'package:ui_test/src/orderpage.dart';
 
 void main() {
   //final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+<<<<<<< Updated upstream
   print(ListFoodata.food[0]['imageName']);
 
+=======
+  // print(ListFoodata.food[0]['imageName']);
+>>>>>>> Stashed changes
   runApp(const MyApp());
 }
 

@@ -1,4 +1,4 @@
-import 'package:ui_test/src/models/foodmodel.dart';
+// import 'package:ui_test/src/models/foodmodel.dart';
 //import 'package:ui_test/src/models/foodmodel.dart';
 
 // final Future<String> resopne =
@@ -10875,6 +10875,6 @@ class ListFoodata {
 }
 
 class Foodgetdata {
-  var myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  List<Map<String, dynamic>> starter = [];
 }
 // Srd8o2evE8g=  This food set ID is thaiMenu
