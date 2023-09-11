@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:ui_test/src/fristpage.dart';
 import 'package:ui_test/src/homepage.dart';
 import 'package:ui_test/src/models/Thaifood.dart';
-//import 'package:ui_test/src/models/foodmodel.dart';
+import 'package:ui_test/src/models/foodmodel.dart';
 import 'package:ui_test/src/orderpage.dart';
 
 void main() {
-  //final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
 
-  print(ListFoodata.food[0]['imageName']);
-
+  print(myfood[0].foodCatId);
   // print(ListFoodata.food[0]['imageName']);
 
   runApp(const MyApp());
