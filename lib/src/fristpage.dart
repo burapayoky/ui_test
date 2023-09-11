@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_test/main.dart';
 import 'package:ui_test/src/widget/TextLage.dart';
 import 'package:ui_test/src/widget/bottom_wiget.dart';
 
@@ -100,7 +101,7 @@ class _FristPageState extends State<FristPage> {
                   padding: const EdgeInsets.only(top: 16),
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/order');
+                        Navigator.pushNamed(context, AppRoute.order);
                       },
                       style: ButtonStyle(
                           shape:

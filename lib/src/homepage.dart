@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ui_test/main.dart';
 import 'package:ui_test/src/fristpage.dart';
 import 'package:ui_test/src/widget/bottom_wiget.dart';
 import 'package:ui_test/src/widget/textLage.dart';
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                     image_: 'assets/images/gif/gif2.gif',
                     color_: Colors.blue,
                     text_: 'To Stay',
-                    route_: '/fristpage',
+                    route_: AppRoute.fristpage,
                   ),
                   SizedBox(
                     width: 20,
@@ -128,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                     image_: 'assets/images/gif/gif1.gif',
                     color_: Color(0xFFFFB300),
                     text_: 'Togo Wlak-in',
-                    route_: '/order',
+                    route_: AppRoute.order,
                   ),
                 ],
               ),
