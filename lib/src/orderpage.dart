@@ -230,7 +230,9 @@ class CheckBin extends StatelessWidget {
   const CheckBin({
     super.key,
   });
-
+  // isScreenWidth() {
+  //   MediaQuery.of()
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -240,37 +242,40 @@ class CheckBin extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
             child: Row(
               children: [
-                Text(
+                const Text(
                   'My Order',
                   style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: context.widthsize / 38),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 34,
+                    fontStyle: FontStyle.normal,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: FaIcon(
                     FontAwesomeIcons.edit,
-                    size: context.widthsize / 40,
+                    size: context.widthsize / 80,
                   ),
                 )
               ],
             ),
           ),
           const Divider(),
-          Center(
+          const Center(
             child: Text(
               'No order selected',
               style: TextStyle(
-                  fontSize: context.widthsize / 50,
-                  color: const Color.fromARGB(221, 110, 109, 109),
-                  fontWeight: FontWeight.bold),
+                  fontSize: 24,
+                  color: Color.fromARGB(79, 79, 79, 74),
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w400),
             ),
           ),
           const Spacer(
-            flex: 2,
+            flex: 5,
           ),
           Expanded(
             child: Column(

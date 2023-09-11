@@ -13,6 +13,14 @@ class SliverListFoodOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    isScreenwidht() {
+      if (context.widthsize > context.heightsize) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
@@ -26,18 +34,18 @@ class SliverListFoodOrder extends StatelessWidget {
                   child: Text(
                     foodcatname,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 38,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black45,
+                      color: Colors.black,
                     ),
                   ),
                 ),
                 GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: isScreenwidht() ? 4 : 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 12,
-                      childAspectRatio: 1.25),
+                      childAspectRatio: isScreenwidht() ? 1 : 1.25),
                   shrinkWrap: true,
                   itemCount: foodListitem.length,
                   itemBuilder: (context, index) {
@@ -55,7 +63,9 @@ class SliverListFoodOrder extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Container(
-                                height: context.widthsize / 9,
+                                height: isScreenwidht()
+                                    ? context.widthsize / 12
+                                    : context.widthsize / 9,
                                 decoration: BoxDecoration(
                                     color: Colors.red,
                                     image: DecorationImage(
@@ -81,7 +91,10 @@ class SliverListFoodOrder extends StatelessWidget {
                                     (foodListitem[index].foodDesc == null)
                                         ? ''
                                         : foodListitem[index].foodDesc!,
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                   Align(
                                     alignment: Alignment.bottomLeft,

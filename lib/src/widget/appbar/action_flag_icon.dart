@@ -9,10 +9,10 @@ class ActionsFlagIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 2, right: 8),
+      padding: const EdgeInsets.only(top: 2, right: 4),
       child: Container(
         height: context.heightsize / 10,
-        width: context.widthsize / 10,
+        width: 100,
         decoration: const BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
