@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:ui_test/src/fristpage.dart';
 import 'package:ui_test/src/homepage.dart';
 import 'package:ui_test/src/models/Thaifood.dart';
-import 'package:ui_test/src/models/foodmodel.dart';
+//import 'package:ui_test/src/models/foodmodel.dart';
 import 'package:ui_test/src/orderpage.dart';
 
 void main() {
-  final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-
-  print(myfood[0].foodCatId);
+  //final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
   // print(ListFoodata.food[0]['imageName']);
-
+  //print(ListFoodata.food.length);
   runApp(const MyApp());
 }
 
@@ -27,14 +25,28 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/',
-      routes: {
-        '/fristpage': (context) => FristPage(),
-        '/order': (context) => OrderPage(),
-        '/': (context) => HomePage()
-      },
-      //home: FristPage(),
+      // initialRoute: '/',
+      // routes: {
+      //   '/fristpage': (context) => FristPage(),
+      //   '/order': (context) => OrderPage(),
+      //   '/': (context) => HomePage()
+      // },
+      routes: AppRoute().getAll,
+      home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
+}
+
+class AppRoute {
+  static const home = 'home';
+  static const order = 'order';
+  static const fristpage = 'fristpage';
+  static const men = 'men';
+  final _route = <String, WidgetBuilder>{
+    home: (context) => const HomePage(),
+    order: (context) => const OrderPage(),
+    fristpage: (context) => const FristPage(),
+  };
+  get getAll => _route;
 }

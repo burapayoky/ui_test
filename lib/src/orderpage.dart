@@ -99,6 +99,14 @@ class SelectedMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    isScreenwidht() {
+      if (context.widthsize > context.heightsize) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -138,76 +146,92 @@ class SelectedMenu extends StatelessWidget {
             pinned: true,
             automaticallyImplyLeading: false,
             bottom: PreferredSize(
-                preferredSize: Size.fromHeight(60), //bottom sliver appbar
+                preferredSize: isScreenwidht()
+                    ? Size.fromHeight(100)
+                    : Size.fromHeight(80), //bottom sliver appbar
                 child: Column(
                   //menu
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 14),
+                      padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Row(
                         children: [
-                          ButtonCatFood(
+                          ButtonSetFood(
                             name_: 'Thaifood',
-                            height_: context.widthsize / 10,
-                            width_: context.widthsize / 40,
+                            height_: isScreenwidht()
+                                ? context.widthsize / 10
+                                : context.widthsize / 6,
+                            width_: isScreenwidht()
+                                ? context.widthsize / 28
+                                : context.widthsize / 20,
                           ),
                           const SizedBox(
                             width: 10,
                           ),
-                          ButtonCatFood(
+                          ButtonSetFood(
                             name_: 'Japanese Menu',
-                            height_: context.widthsize / 10,
-                            width_: context.widthsize / 40,
+                            height_: isScreenwidht()
+                                ? context.widthsize / 10
+                                : context.widthsize / 6,
+                            width_: isScreenwidht()
+                                ? context.widthsize / 28
+                                : context.widthsize / 20,
                           ),
                         ],
                       ),
                     ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                      child: Row(
-                        children: [
-                          ButtonCatFood(
-                            name_: 'Appetizers',
-                            height_: 100,
-                            width_: 30,
+                    const SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: SizedBox(
+                        height: 80,
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                          child: Row(
+                            children: [
+                              ButtonCatFood(
+                                name_: 'Appetizers',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                              ButtonCatFood(
+                                name_: 'Soup',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                              ButtonCatFood(
+                                name_: 'Salad',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                              ButtonCatFood(
+                                name_: 'Noodles',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                              ButtonCatFood(
+                                name_: 'Entrees',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                              ButtonCatFood(
+                                name_: 'Rice Dishes',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                              ButtonCatFood(
+                                name_: 'Side Orders',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                              ButtonCatFood(
+                                name_: 'Drinks',
+                                height_: 120,
+                                width_: 100,
+                              ),
+                            ],
                           ),
-                          ButtonCatFood(
-                            name_: 'Soup',
-                            height_: 100,
-                            width_: 30,
-                          ),
-                          ButtonCatFood(
-                            name_: 'Salads',
-                            height_: 100,
-                            width_: 30,
-                          ),
-                          ButtonCatFood(
-                            name_: 'Noodles',
-                            height_: 100,
-                            width_: 30,
-                          ),
-                          ButtonCatFood(
-                            name_: 'Entrees',
-                            height_: 100,
-                            width_: 30,
-                          ),
-                          ButtonCatFood(
-                            name_: 'Rice Dishes',
-                            height_: 100,
-                            width_: 30,
-                          ),
-                          ButtonCatFood(
-                            name_: 'Side Orders',
-                            height_: 100,
-                            width_: 30,
-                          ),
-                          ButtonCatFood(
-                            name_: 'Drinks',
-                            height_: 100,
-                            width_: 30,
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ],
