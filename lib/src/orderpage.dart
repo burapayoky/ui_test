@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -6,7 +7,7 @@ import 'package:ui_test/src/fristpage.dart';
 
 import 'package:ui_test/src/models/Thaifood.dart';
 import 'package:ui_test/src/models/foodmodel.dart';
-import 'package:ui_test/src/order/orderwidget/bottom_catfood.dart';
+
 import 'package:ui_test/src/order/orderwidget/sliverlist_foodorder.dart';
 import 'widget/appbar/action_flag_icon.dart';
 
@@ -18,13 +19,12 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
-  final myfood =
-      ListFoodata.foodCategory.map((e) => Foodmodel.fromMap(e)).toList();
+  final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
   final List<Foodmodel> Starter = [];
   final List<Foodmodel> Appetizer = [];
-  final List<Foodmodel> SoupandSalad = [];
+  final List<Foodmodel> Soup = [];
   final List<Foodmodel> Salads = [];
-  final List<Foodmodel> Nodles = [];
+  final List<Foodmodel> Noodles = [];
   final List<Foodmodel> Entrees = [];
   final List<Foodmodel> Side = [];
   final List<Foodmodel> Drinks = [];
@@ -36,25 +36,22 @@ class _OrderPageState extends State<OrderPage> {
     loopfood();
   }
 
-  loadfoodset() {
-    for (var init in myfood) {
-      if (init.foodSorting! < 6) {
-        Starter.add(init);
-      }
-    }
-  }
-
+  loadfoodset() {}
   loopfood() {
     for (var v in myfood) {
       if (v.foodCatId == '9YIvS9YpFPQ=') {
         Starter.add(v);
       } else if (v.foodCatId == 'SwvX07JTXHU=' //v.foodSetId == 'Srd8o2evE8g='
           ) {
-        SoupandSalad.add(v);
+        Soup.add(v);
       } else if (v.foodCatId == 'TUYmgy/w29M=') {
         Appetizer.add(v);
       } else if (v.foodCatId == 'kHAhIe2AFPI=') {
         Salads.add(v);
+      } else if (v.foodSetId == 'EWbC6SALR+c=') {
+        Noodles.add(v);
+      } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
+        Entrees.add(v);
       }
     }
   }
@@ -67,20 +64,20 @@ class _OrderPageState extends State<OrderPage> {
             flex: 3,
             child: SelectedMenu(
               Drinks: Drinks,
-              SoupandSalad: SoupandSalad,
+              Soup: Soup,
               Appetizer: Appetizer,
-              Nodles: Nodles,
+              Noodles: Noodles,
               Salads: Salads,
               Entrees: Entrees,
               Starter: Starter,
               Side: Side,
             )),
-        VerticalDivider(
+        const VerticalDivider(
           width: 1,
           thickness: 20,
           color: Colors.white54,
         ),
-        Flexible(flex: 1, child: CheckBin())
+        const Flexible(flex: 1, child: CheckBin())
       ],
     );
   }
@@ -89,9 +86,9 @@ class _OrderPageState extends State<OrderPage> {
 class SelectedMenu extends StatelessWidget {
   final List<Foodmodel> Starter;
   final List<Foodmodel> Appetizer;
-  final List<Foodmodel> SoupandSalad;
+  final List<Foodmodel> Soup;
   final List<Foodmodel> Salads;
-  final List<Foodmodel> Nodles;
+  final List<Foodmodel> Noodles;
   final List<Foodmodel> Entrees;
   final List<Foodmodel> Side;
   final List<Foodmodel> Drinks;
@@ -100,9 +97,9 @@ class SelectedMenu extends StatelessWidget {
       {super.key,
       required this.Starter,
       required this.Appetizer,
-      required this.SoupandSalad,
+      required this.Soup,
       required this.Salads,
-      required this.Nodles,
+      required this.Noodles,
       required this.Entrees,
       required this.Side,
       required this.Drinks});
@@ -156,100 +153,69 @@ class SelectedMenu extends StatelessWidget {
             pinned: true,
             automaticallyImplyLeading: false,
             bottom: PreferredSize(
-                preferredSize: Size.fromHeight(80), //bottom sliver appbar
+                preferredSize: isScreenwidht()
+                    ? Size.fromHeight(60)
+                    : Size.fromHeight(80), //bottom sliver appbar
                 child: Column(
-                  //menu
+                  //menu Set
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: [
-                          ButtonSetFood(
-                            name_: 'Thaifood',
-                            height_: isScreenwidht()
-                                ? context.widthsize / 10
-                                : context.widthsize / 6,
-                            width_: isScreenwidht()
-                                ? context.widthsize / 28
-                                : context.widthsize / 20,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          ButtonSetFood(
-                            name_: 'Japanese Menu',
-                            height_: isScreenwidht()
-                                ? context.widthsize / 10
-                                : context.widthsize / 6,
-                            width_: isScreenwidht()
-                                ? context.widthsize / 28
-                                : context.widthsize / 20,
-                          ),
-                        ],
+                    SizedBox(
+                      height: 60,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.all(10),
+                        itemCount: ListFoodata.foodSet.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Text(
+                                  ListFoodata.foodSet[index]['foodSetName']),
+                            ),
+                          );
+                        },
+                        //ListFoodata.foodSet[index]['foodSetName']
                       ),
                     ),
-                    const SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: SizedBox(
-                        height: 80,
-                        child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                          child: Row(
-                            children: [
-                              ButtonCatFood(
-                                name_: 'Appetizers',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                              ButtonCatFood(
-                                name_: 'Soup',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                              ButtonCatFood(
-                                name_: 'Salad',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                              ButtonCatFood(
-                                name_: 'Noodles',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                              ButtonCatFood(
-                                name_: 'Entrees',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                              ButtonCatFood(
-                                name_: 'Rice Dishes',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                              ButtonCatFood(
-                                name_: 'Side Orders',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                              ButtonCatFood(
-                                name_: 'Drinks',
-                                height_: 120,
-                                width_: 100,
-                              ),
-                            ],
-                          ),
-                        ),
+                    SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        itemCount: ListFoodata.foodCategory.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return TextButton(
+                              onPressed: () {},
+                              child: Text(ListFoodata.foodCategory[index]
+                                  ['foodCatName']));
+                        },
                       ),
-                    ),
+                    )
                   ],
                 )),
           ),
           SliverListFoodOrder(
               foodListitem: Appetizer, foodcatname: 'Appetizer'),
           SliverListFoodOrder(
-            foodListitem: SoupandSalad,
+            foodListitem: Soup,
             foodcatname: 'Soup',
+          ),
+          SliverListFoodOrder(
+            foodListitem: Salads,
+            foodcatname: 'Salad',
+          ),
+          SliverListFoodOrder(
+            foodListitem: Noodles,
+            foodcatname: 'Noodles',
+          ),
+          SliverListFoodOrder(
+            foodListitem: Entrees,
+            foodcatname: 'Entrees',
           ),
         ],
       ),
@@ -372,6 +338,6 @@ class CheckBin extends StatelessWidget {
     );
   }
 }
-            // flexibleSpace: FlexibleSpaceBar(
-            //   background:
-            // )
+// flexibleSpace: FlexibleSpaceBar(
+//   background:
+// )
