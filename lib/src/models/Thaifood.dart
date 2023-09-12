@@ -4,7 +4,10 @@
 // final Future<String> resopne =
 //     rootBundle.loadString('lib/src/models/data_test.json');
 
+import 'package:ui_test/src/models/foodmodel.dart';
+
 class ListFoodata {
+// food.where((e) => e.foodSetId == foodSetId).where((e)=> e.foodCatId == foodCatId)
   static List<Map<String, dynamic>> food = [
     {
       "foodId": "j8CZNxgCebY=",
@@ -10876,5 +10879,14 @@ class ListFoodata {
 
 class Foodgetdata {
   List<Map<String, dynamic>> starter = [];
+  List<Foodmodel> Starter = [];
+  List<Foodmodel> Appetizer = [];
+  List<Foodmodel> Soup = [];
+  List<Foodmodel> Salads = [];
+  List<Foodmodel> Noodles = [];
+  List<Foodmodel> Entrees = [];
+  List<Foodmodel> Side = [];
+  List<Foodmodel> Drinks = [];
+  List<Foodmodel> foodcat = [];
 }
 // Srd8o2evE8g=  This food set ID is thaiMenu

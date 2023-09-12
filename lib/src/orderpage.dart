@@ -20,6 +20,13 @@ class OrderPage extends StatefulWidget {
 
 class _OrderPageState extends State<OrderPage> {
   final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  final thaiFoodModel = [
+    [],
+    [],
+    [],
+  ];
+  // final foodthai = ListFoodata.where
+  final List<Foodmodel> thaifood = [];
   final List<Foodmodel> Starter = [];
   final List<Foodmodel> Appetizer = [];
   final List<Foodmodel> Soup = [];
@@ -34,16 +41,23 @@ class _OrderPageState extends State<OrderPage> {
     // TODO: implement initState
     super.initState();
     loopfood();
+    print(Foodgetdata().Appetizer);
   }
 
-  loadfoodset() {}
+  loadfoodset() {
+    var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+    filterfood = filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+    //appetizer
+    thaiFoodModel[0].add(filterfood);
+  }
+
   loopfood() {
     for (var v in myfood) {
       if (v.foodCatId == '9YIvS9YpFPQ=') {
         Starter.add(v);
-      } else if (v.foodCatId == 'SwvX07JTXHU=' //v.foodSetId == 'Srd8o2evE8g='
-          ) {
+      } else if (v.foodCatId == 'SwvX07JTXHU=') {
         Soup.add(v);
+        //v.foodSetId == 'Srd8o2evE8g='
       } else if (v.foodCatId == 'TUYmgy/w29M=') {
         Appetizer.add(v);
       } else if (v.foodCatId == 'kHAhIe2AFPI=') {

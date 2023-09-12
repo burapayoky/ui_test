@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'package:ui_test/src/fristpage.dart';
 import 'package:ui_test/src/homepage.dart';
-//import 'package:ui_test/src/models/Thaifood.dart';
+import 'package:ui_test/src/models/Thaifood.dart';
 //import 'package:ui_test/src/models/foodmodel.dart';
 import 'package:ui_test/src/orderpage.dart';
 
 void main() {
-  //final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-  // print(ListFoodata.food[0]['imageName']);
-  //print(ListFoodata.food.length);
+  var filterfood =
+      ListFoodata.food.where((e) => e['foodSetId'] == 'Srd8o2evE8g=');
+  filterfood = filterfood.where((e) => e['foodCatId'] == '8wPZYsr8A+A=');
+  //List<Map<String, dynamic>> thaiAzz = [];
+  print(filterfood.length);
   runApp(const MyApp());
 }
 
@@ -27,12 +29,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       scrollBehavior: AppScrollBehavior(),
-      // initialRoute: '/',
-      // routes: {
-      //   '/fristpage': (context) => FristPage(),
-      //   '/order': (context) => OrderPage(),
-      //   '/': (context) => HomePage()
-      // },
       routes: AppRoute().getAll,
       home: const HomePage(),
       debugShowCheckedModeBanner: false,
@@ -61,3 +57,30 @@ class AppScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.trackpad,
       };
 }
+
+
+// initialRoute: '/',
+      // routes: {
+      //   '/fristpage': (context) => FristPage(),
+      //   '/order': (context) => OrderPage(),
+      //   '/': (context) => HomePage()
+      // },
+
+
+      //final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  // print(ListFoodata.food[0]['imageName']);
+  //print(ListFoodata.food.length);
+  // final filterFoodSet =
+  //     ListFoodata.food.where((e) => e['foodSetId'] == '7+nsa1QoqPY=');
+
+  // final filterFoodCat =
+  //     ListFoodata.food.where((e) => e['foodCatId'] == 'TUYmgy/w29M=');
+  // final thaiFoodModel = [
+  //   [],
+  //   [],
+  // ];
+
+  // var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+  // filterfood = filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  // thaiFoodModel[0].add(filterfood);
+  // print(thaiFoodModel[0]);
