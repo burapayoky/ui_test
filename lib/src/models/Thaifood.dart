@@ -10878,15 +10878,15 @@ class ListFoodata {
 }
 
 class Foodgetdata {
-  List<Map<String, dynamic>> starter = [];
-  List<Foodmodel> Starter = [];
-  List<Foodmodel> Appetizer = [];
-  List<Foodmodel> Soup = [];
-  List<Foodmodel> Salads = [];
-  List<Foodmodel> Noodles = [];
-  List<Foodmodel> Entrees = [];
-  List<Foodmodel> Side = [];
-  List<Foodmodel> Drinks = [];
-  List<Foodmodel> foodcat = [];
+  static List<Map<String, dynamic>> starter = [];
+  static List<Foodmodel> Starter = [];
+  static List<Foodmodel> Appetizer = [];
+  static List<Foodmodel> Soup = [];
+  static List<Foodmodel> Salads = [];
+  static List<Foodmodel> Noodles = [];
+  static List<Foodmodel> Entrees = [];
+  static List<Foodmodel> Side = [];
+  static List<Foodmodel> Drinks = [];
+  static List<Foodmodel> foodcat = [];
 }
 // Srd8o2evE8g=  This food set ID is thaiMenu

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ui_test/src/fristpage.dart';
@@ -7,15 +8,12 @@ import 'package:ui_test/src/models/foodmodel.dart';
 import 'package:ui_test/src/orderpage.dart';
 
 void main() {
-  final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  var filterfood =
+      ListFoodata.food.where((e) => e['foodSetId'] == 'Srd8o2evE8g=');
+  //filterfood = filterfood.where((e) => e['foodCatId'] == 'qPqbVd/wv7I=');
+  //List<Map<String, dynamic>> thaiAzz = [];
 
-  print(myfood[0].foodCatId);
-  // print(ListFoodata.food[0]['imageName']);
-
-  //final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-  // print(ListFoodata.food[0]['imageName']);
-  print(ListFoodata.food.length);
-
+  print(filterfood.length);
   runApp(const MyApp());
 }
 
@@ -31,12 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // initialRoute: '/',
-      // routes: {
-      //   '/fristpage': (context) => FristPage(),
-      //   '/order': (context) => OrderPage(),
-      //   '/': (context) => HomePage()
-      // },
+      scrollBehavior: AppScrollBehavior(),
       routes: AppRoute().getAll,
       home: const HomePage(),
       debugShowCheckedModeBanner: false,
@@ -55,4 +48,13 @@ class AppRoute {
     fristpage: (context) => const FristPage(),
   };
   get getAll => _route;
+}
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }

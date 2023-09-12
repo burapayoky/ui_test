@@ -120,7 +120,6 @@
                 //         })),
                 //   ),
                 // ),
-<<<<<<< Updated upstream
 
 thai food is Srd8o2evE8g=
 
@@ -232,151 +231,41 @@ thai food is Srd8o2evE8g=
 -today  search bar pop up 
 -searching
 -slicing catfood 
--icon in summit menu
+-icon in summit menu context.side
 -menu price ont the bottomLeft
 *--meybedo
 -repspon on slop side
-=======
-==================================================================================================================
-                Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 14),
-                        child: Row(
-                          children: [
-                            ButtonCatFood(
-                              name_: 'Thaifood',
-                              height_: context.widthsize / 10,
-                              width_: context.widthsize / 28,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            ButtonCatFood(
-                              name_: 'Japanese Menu',
-                              height_: context.widthsize / 10,
-                              width_: context.widthsize / 28,
-                            ),
-                          ],
-                        ),
+
+
+--*
+///////////////////////////////////////////////////////////////////
+Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        children: [
+                          ButtonSetFood(
+                            name_: 'Thaifood',
+                            height_: isScreenwidht()
+                                ? context.widthsize / 10
+                                : context.widthsize / 6,
+                            width_: isScreenwidht()
+                                ? context.widthsize / 28
+                                : context.widthsize / 20,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          ButtonSetFood(
+                            name_: 'Japanese Menu',
+                            height_: isScreenwidht()
+                                ? context.widthsize / 10
+                                : context.widthsize / 6,
+                            width_: isScreenwidht()
+                                ? context.widthsize / 28
+                                : context.widthsize / 20,
+                          ),
+                        ],
                       ),
-<<<<<<< HEAD
-                      Expanded(
-                        child: Wrap(
-                          direction: Axis.horizontal,
-                          spacing: 8,
-                          runSpacing: 4,
-                          children: [
-                            const Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'APPETIZERS',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black45),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 400,
-                              child: Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: GridView.builder(
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 6),
-                                    shrinkWrap: true,
-                                    itemCount: 30,
-                                    itemBuilder: (context, indextto) {
-                                      // print(
-                                      //     'Checking index $indextto: ${ListFoodata.food[indextto]['foodCatId']}');
-                                      print(ListFoodata.food[indextto]);
-                                      if (ListFoodata.food[indextto]['foodCatId'] ==
-                                          'TUYmgy/w29M=') {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(2.0),
-                                          child: Container(
-                                            width: context.widthsize / 2,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.circular(6),
-                                                border: Border.all(
-                                                  color: Colors.black,
-                                                )),
-                                            child: Column(children: [
-                                              Container(
-                                                height: context.widthsize / 16,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.red,
-                                                    image: DecorationImage(
-                                                        image: NetworkImage(ListFoodata
-                                                            .food[indextto]['imageName']),
-                                                        fit: BoxFit.fill)),
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Align(
-                                                    alignment: Alignment.topLeft,
-                                                    child: Text(
-                                                      ListFoodata.food[indextto]
-                                                          ['foodName'],
-                                                      style: TextStyle(fontSize: 12),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    (ListFoodata.food[indextto]
-                                                                ['fooddesc'] ==
-                                                            null)
-                                                        ? ''
-                                                        : ListFoodata.food[indextto]
-                                                            ['fooddesc'],
-                                                    style: TextStyle(fontSize: 2),
-                                                  ),
-                                                  Align(
-                                                    alignment: Alignment.bottomLeft,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.all(8.0),
-                                                      child: Text(
-                                                        '\$${ListFoodata.food[indextto]['foodPrice']}',
-                                                        style: const TextStyle(
-                                                            fontSize: 16,
-                                                            fontFamily: AutofillHints
-                                                                .streetAddressLine1),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            ]),
-                                          ),
-                                        );
-                                      }
-                                    }),
-                              ),
-                            ),
-                            const Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Soups',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black45),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
->>>>>>> Stashed changes
-=======
                     ),
 
                     loopfood() {
@@ -436,15 +325,6 @@ Beverage = UleUUdZYKiA=
 
 *****************************************************************************************
 food = [
-    Appetizer[
-
-    ],
-    Soup and Salads[
-
-    ],
-<<<<<<< HEAD
+    Appetizer[],
+    Soup and Salads[],
 ]
->>>>>>> parent of e817116 (6.05)
-=======
-]
->>>>>>> parent of e817116 (6.05)
