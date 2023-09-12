@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                     image_: 'assets/images/gif/gif2.gif',
                     color_: Colors.blue,
                     text_: 'To Stay',
-                    route_: '/fristpage',
+                    route_: 'fristpage',
                   ),
                   SizedBox(
                     width: 20,
@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                     image_: 'assets/images/gif/gif1.gif',
                     color_: Color(0xFFFFB300),
                     text_: 'Togo Wlak-in',
-                    route_: '/order',
+                    route_: 'order',
                   ),
                 ],
               ),
@@ -142,102 +142,108 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Contact Us',
-                                        style: TextStyle(
-                                            fontSize: context.widthsize / 60,
-                                            color: Colors.white),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 8.0),
-                                        child: Text(
-                                          'Rattanathibech 28  Rattanathibech 28 Alley,\nTambon Bang Kraso, Mueang Nontraburi District',
-                                          //
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white)),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Contact Us',
                                           style: TextStyle(
-                                            fontSize: context.widthsize / 60,
-                                            color: Colors.white,
+                                              fontSize: context.widthsize / 60,
+                                              color: Colors.white),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8.0),
+                                          child: Text(
+                                            'Rattanathibech 28  Rattanathibech 28 Alley,\nTambon Bang Kraso, Mueang Nontraburi District',
+                                            //
+                                            style: TextStyle(
+                                              fontSize: context.widthsize / 60,
+                                              color: Colors.white,
+                                            ),
+                                            softWrap: true,
                                           ),
-                                          softWrap: true,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  //contact
-                                  const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      //phone
-                                      IconwithCircle(
-                                        icon_: Icons.phone,
-                                        text_: '090-0890-xxxx',
-                                        divie: 50,
-                                        textdivie: 60,
-                                      ),
-                                      //instagram
-                                      IconwithCircle(
-                                        icon_: FontAwesomeIcons.instagram,
-                                        text_: 'SoiSiam',
-                                        divie: 50,
-                                        textdivie: 60,
-                                      ),
-                                      //youtube
-                                      IconwithCircle(
-                                        icon_: FontAwesomeIcons.youtube,
-                                        text_: 'SoiSiam Chanal',
-                                        divie: 60,
-                                        textdivie: 60,
-                                      ),
-                                      //gmail
-                                      IconwithCircle(
-                                        icon_: Icons.mail,
-                                        text_: 'SoiSiam@gmail.co.th',
-                                        divie: 50,
-                                        textdivie: 60,
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                              //bottom side
-                              Expanded(
-                                child: Align(
-                                  alignment: FractionalOffset.bottomCenter,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '© Copyright 2022 | Powered by',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: context.heightsize / 60),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 2, left: 2),
-                                        child: SizedBox(
-                                          height: context.widthsize / 15,
-                                          width: context.widthsize / 20,
-                                          child: Image.asset(
-                                              "assets/images/bg/smile.png"),
+                                      ],
+                                    ),
+                                    //contact
+                                    const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        //phone
+                                        IconwithCircle(
+                                          icon_: Icons.phone,
+                                          text_: '090-0890-xxxx',
+                                          divie: 50,
+                                          textdivie: 60,
                                         ),
-                                      )
-                                    ],
-                                  ),
+                                        //instagram
+                                        IconwithCircle(
+                                          icon_: FontAwesomeIcons.instagram,
+                                          text_: 'SoiSiam',
+                                          divie: 50,
+                                          textdivie: 60,
+                                        ),
+                                        //youtube
+                                        IconwithCircle(
+                                          icon_: FontAwesomeIcons.youtube,
+                                          text_: 'SoiSiam Chanal',
+                                          divie: 60,
+                                          textdivie: 60,
+                                        ),
+                                        //gmail
+                                        IconwithCircle(
+                                          icon_: Icons.mail,
+                                          text_: 'SoiSiam@gmail.co.th',
+                                          divie: 50,
+                                          textdivie: 60,
+                                        ),
+                                      ],
+                                    )
+                                  ],
                                 ),
-                              )
-                            ],
+                                //bottom side
+                                Expanded(
+                                  child: Align(
+                                    alignment: FractionalOffset.bottomCenter,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '© Copyright 2022 | Powered by',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize:
+                                                  context.heightsize / 60),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 2, left: 2),
+                                          child: SizedBox(
+                                            height: context.widthsize / 15,
+                                            width: context.widthsize / 20,
+                                            child: Image.asset(
+                                                "assets/images/bg/smile.png"),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         )),
                   )

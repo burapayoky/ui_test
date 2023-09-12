@@ -100,7 +100,7 @@ class _FristPageState extends State<FristPage> {
                   padding: const EdgeInsets.only(top: 16),
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/order');
+                        Navigator.pushNamed(context, 'order');
                       },
                       style: ButtonStyle(
                           shape:
