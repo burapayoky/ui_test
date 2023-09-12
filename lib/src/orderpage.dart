@@ -41,14 +41,17 @@ class _OrderPageState extends State<OrderPage> {
     // TODO: implement initState
     super.initState();
     loopfood();
-    print(Foodgetdata().Appetizer);
+    loadfoodset();
   }
 
   loadfoodset() {
-    var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-    filterfood = filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+    var filterfood = myfood.where((e) => e.foodSetId == 'iS94mlBDp70=');
+    //filterfood = filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
     //appetizer
-    thaiFoodModel[0].add(filterfood);
+    //thaiFoodModel[0].add(filterfood);
+    for (var i in filterfood) {
+      print(i.foodCatId);
+    }
   }
 
   loopfood() {
