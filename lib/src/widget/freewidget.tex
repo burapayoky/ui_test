@@ -235,6 +235,7 @@ thai food is Srd8o2evE8g=
 -menu price ont the bottomLeft
 *--meybedo
 -repspon on slop side
+<<<<<<< HEAD
 
 --*
 ///////////////////////////////////////////////////////////////////
@@ -266,3 +267,35 @@ Padding(
                         ],
                       ),
                     ),
+
+                    loopfood() {
+                        for (var v in myfood) {
+                          if (v.foodCatId == '9YIvS9YpFPQ=') {
+                            Starter.add(v);
+                          } else if (v.foodCatId == 'SwvX07JTXHU=' //v.foodSetId == 'Srd8o2evE8g='
+                              ) {
+                            Soup.add(v);
+                          } else if (v.foodCatId == 'TUYmgy/w29M=') {
+                            Appetizer.add(v);
+                          } else if (v.foodCatId == 'kHAhIe2AFPI=') {
+                            Salads.add(v);
+                          } else if (v.foodSetId == 'EWbC6SALR+c=') {
+                            Noodles.add(v);
+                          } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
+                            Entrees.add(v);
+                          }
+                        }
+                      }
+
+                      final List<Foodmodel> Starter = [];
+                      final List<Foodmodel> Appetizer = [];
+                      final List<Foodmodel> Soup = [];
+                      final List<Foodmodel> Salads = [];
+                      final List<Foodmodel> Noodles = [];
+                      final List<Foodmodel> Entrees = [];
+                      final List<Foodmodel> Side = [];
+                      final List<Foodmodel> Drinks = [];
+                      final List<Foodmodel> foodcat = [];
+=======
+  
+>>>>>>> parent of 5e4ff43 (re factor)

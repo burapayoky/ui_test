@@ -69,13 +69,10 @@ class SliverListFoodOrder extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     color: Colors.red,
                                     image: DecorationImage(
-                                      alignment: Alignment(0, 0),
-                                      image: NetworkImage(
-                                          foodListitem[index].imageName!),
-                                      fit: BoxFit.fill,
-                                      onError: (exception, stackTrace) =>
-                                          print(exception),
-                                    )),
+                                        alignment: Alignment(0, 0),
+                                        image: NetworkImage(
+                                            foodListitem[index].imageName!),
+                                        fit: BoxFit.fill)),
                               ),
                               Column(
                                 children: [
