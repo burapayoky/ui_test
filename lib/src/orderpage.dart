@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:ui_test/src/fristpage.dart';
@@ -17,48 +18,36 @@ class OrderPage extends StatefulWidget {
   State<OrderPage> createState() => _OrderPageState();
 }
 
-class Thaifooddata {}
-
 class _OrderPageState extends State<OrderPage> {
   final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-  final SetFoodModel = [[], [], [], [], [], []];
+  final SetFoodModel = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+  ];
   // final foodthai = ListFoodata.where
-
+  final List<Foodmodel> thaifood = [];
+  final List<Foodmodel> Starter = [];
+  final List<Foodmodel> Appetizer = [];
+  final List<Foodmodel> Soup = [];
+  final List<Foodmodel> Salads = [];
+  final List<Foodmodel> Noodles = [];
+  final List<Foodmodel> Entrees = [];
+  final List<Foodmodel> Side = [];
+  final List<Foodmodel> Drinks = [];
+  final List<Foodmodel> foodcat = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     loopfood();
-    loadThaifoodset();
+    loadThaifoodset(SetFoodModel);
   }
 
   loadJapanesefoodset() {
-    //loop foodSetId
-    var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-    final filterAppetizers =
-        filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-    final filterSoupSalads =
-        filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-    final filterEntrees =
-        filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-    final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-    final filterSideOrder =
-        filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-    final filterLunchSpecial =
-        filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-    //appetizer
-
-    SetFoodModel[0].add(filterAppetizers);
-    SetFoodModel[1].add(filterSoupSalads);
-    SetFoodModel[2].add(filterEntrees);
-    SetFoodModel[3].add(filterKidmu);
-    SetFoodModel[4].add(filterSideOrder);
-    SetFoodModel[5].add(filterLunchSpecial);
-  }
-
-  loadThaifoodset() {
-    final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-
     var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
     final filterAppetizers =
         filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
@@ -78,23 +67,26 @@ class _OrderPageState extends State<OrderPage> {
     SetFoodModel[3].add(filterKidmu);
     SetFoodModel[4].add(filterSideOrder);
     SetFoodModel[5].add(filterLunchSpecial);
+    for (var i in filterfood) {
+      print(i.foodCatId);
+    }
   }
 
   loopfood() {
     for (var v in myfood) {
       if (v.foodCatId == '9YIvS9YpFPQ=') {
-        Foodgetdata.Starter.add(v);
+        Starter.add(v);
       } else if (v.foodCatId == 'SwvX07JTXHU=') {
-        Foodgetdata.Soup.add(v);
+        Soup.add(v);
         //v.foodSetId == 'Srd8o2evE8g='
       } else if (v.foodCatId == 'TUYmgy/w29M=') {
-        Foodgetdata.Appetizer.add(v);
+        Appetizer.add(v);
       } else if (v.foodCatId == 'kHAhIe2AFPI=') {
-        Foodgetdata.Salads.add(v);
+        Salads.add(v);
       } else if (v.foodSetId == 'EWbC6SALR+c=') {
-        Foodgetdata.Noodles.add(v);
+        Noodles.add(v);
       } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
-        Foodgetdata.Entrees.add(v);
+        Entrees.add(v);
       }
     }
   }
@@ -106,14 +98,14 @@ class _OrderPageState extends State<OrderPage> {
         Flexible(
             flex: 3,
             child: SelectedMenu(
-              Drinks: Foodgetdata.Drinks,
-              Soup: Foodgetdata.Soup,
-              Appetizer: Foodgetdata.Appetizer,
-              Noodles: Foodgetdata.Noodles,
-              Salads: Foodgetdata.Salads,
-              Entrees: Foodgetdata.Entrees,
-              Starter: Foodgetdata.Starter,
-              Side: Foodgetdata.Side,
+              Drinks: Drinks,
+              Soup: Soup,
+              Appetizer: Appetizer,
+              Noodles: Noodles,
+              Salads: Salads,
+              Entrees: Entrees,
+              Starter: Starter,
+              Side: Side,
               SetFoodModel: SetFoodModel,
             )),
         const VerticalDivider(
@@ -127,7 +119,7 @@ class _OrderPageState extends State<OrderPage> {
   }
 }
 
-class SelectedMenu extends StatefulWidget {
+class SelectedMenu extends StatelessWidget {
   final List<List<dynamic>> SetFoodModel;
   final List<Foodmodel> Starter;
   final List<Foodmodel> Appetizer;
@@ -138,24 +130,18 @@ class SelectedMenu extends StatefulWidget {
   final List<Foodmodel> Side;
   final List<Foodmodel> Drinks;
 
-  const SelectedMenu({
-    super.key,
-    required this.Starter,
-    required this.Appetizer,
-    required this.Soup,
-    required this.Salads,
-    required this.Noodles,
-    required this.Entrees,
-    required this.Side,
-    required this.Drinks,
-    required this.SetFoodModel,
-  });
+  const SelectedMenu(
+      {super.key,
+      required this.Starter,
+      required this.Appetizer,
+      required this.Soup,
+      required this.Salads,
+      required this.Noodles,
+      required this.Entrees,
+      required this.Side,
+      required this.Drinks,
+      required this.SetFoodModel});
 
-  @override
-  State<SelectedMenu> createState() => _SelectedMenuState();
-}
-
-class _SelectedMenuState extends State<SelectedMenu> {
   @override
   Widget build(BuildContext context) {
     isScreenwidht() {
@@ -218,7 +204,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                loadThaifoodset(SetFoodModel);
+                              },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
@@ -241,11 +229,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  print('object');
-                                });
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
@@ -275,7 +259,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         physics: const AlwaysScrollableScrollPhysics(),
-                        itemCount: 8,
+                        itemCount: ListFoodata.foodCategory.length,
                         itemBuilder: (BuildContext context, int index) {
                           return TextButton(
                               onPressed: () {},
@@ -287,25 +271,23 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   ],
                 )),
           ),
-          // SliverList.builder(itemBuilder: (context, index) {
-
-          // }),
+          //SliverList.builder(itemBuilder: itemBuilder)
           SliverListFoodOrder(
-              foodListitem: widget.Appetizer, foodcatname: 'Appetizer'),
+              foodListitem: Appetizer, foodcatname: 'Appetizer'),
           SliverListFoodOrder(
-            foodListitem: widget.Soup,
+            foodListitem: Soup,
             foodcatname: 'Soup',
           ),
           SliverListFoodOrder(
-            foodListitem: widget.Salads,
+            foodListitem: Salads,
             foodcatname: 'Salad',
           ),
           SliverListFoodOrder(
-            foodListitem: widget.Noodles,
+            foodListitem: Noodles,
             foodcatname: 'Noodles',
           ),
           SliverListFoodOrder(
-            foodListitem: widget.Entrees,
+            foodListitem: Entrees,
             foodcatname: 'Entrees',
           ),
         ],
@@ -433,4 +415,25 @@ class CheckBin extends StatelessWidget {
 // flexibleSpace: FlexibleSpaceBar(
 //   background:
 // )
+loadThaifoodset(List<List<dynamic>> SetFoodModel) {
+  final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
 
+  var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+  final filterAppetizers =
+      filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  final filterSoupSalads =
+      filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
+  final filterEntrees = filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
+  final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
+  final filterSideOrder =
+      filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
+  final filterLunchSpecial =
+      filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
+  //appetizer
+  SetFoodModel[0].add(filterAppetizers);
+  SetFoodModel[1].add(filterSoupSalads);
+  SetFoodModel[2].add(filterEntrees);
+  SetFoodModel[3].add(filterKidmu);
+  SetFoodModel[4].add(filterSideOrder);
+  SetFoodModel[5].add(filterLunchSpecial);
+}
