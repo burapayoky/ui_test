@@ -235,4 +235,34 @@ thai food is Srd8o2evE8g=
 -menu price ont the bottomLeft
 *--meybedo
 -repspon on slop side
-  
+
+--*
+///////////////////////////////////////////////////////////////////
+Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        children: [
+                          ButtonSetFood(
+                            name_: 'Thaifood',
+                            height_: isScreenwidht()
+                                ? context.widthsize / 10
+                                : context.widthsize / 6,
+                            width_: isScreenwidht()
+                                ? context.widthsize / 28
+                                : context.widthsize / 20,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          ButtonSetFood(
+                            name_: 'Japanese Menu',
+                            height_: isScreenwidht()
+                                ? context.widthsize / 10
+                                : context.widthsize / 6,
+                            width_: isScreenwidht()
+                                ? context.widthsize / 28
+                                : context.widthsize / 20,
+                          ),
+                        ],
+                      ),
+                    ),

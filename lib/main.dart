@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ui_test/src/fristpage.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      scrollBehavior: AppScrollBehavior(),
       // initialRoute: '/',
       // routes: {
       //   '/fristpage': (context) => FristPage(),
@@ -49,4 +51,13 @@ class AppRoute {
     fristpage: (context) => const FristPage(),
   };
   get getAll => _route;
+}
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
