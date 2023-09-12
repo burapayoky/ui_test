@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -6,7 +7,7 @@ import 'package:ui_test/src/fristpage.dart';
 
 import 'package:ui_test/src/models/Thaifood.dart';
 import 'package:ui_test/src/models/foodmodel.dart';
-import 'package:ui_test/src/order/orderwidget/bottom_catfood.dart';
+
 import 'package:ui_test/src/order/orderwidget/sliverlist_foodorder.dart';
 import 'widget/appbar/action_flag_icon.dart';
 
@@ -69,12 +70,12 @@ class _OrderPageState extends State<OrderPage> {
               Starter: Starter,
               Side: Side,
             )),
-        VerticalDivider(
+        const VerticalDivider(
           width: 1,
           thickness: 20,
           color: Colors.white54,
         ),
-        Flexible(flex: 1, child: CheckBin())
+        const Flexible(flex: 1, child: CheckBin())
       ],
     );
   }
@@ -151,37 +152,32 @@ class SelectedMenu extends StatelessWidget {
             automaticallyImplyLeading: false,
             bottom: PreferredSize(
                 preferredSize: isScreenwidht()
-                    ? Size.fromHeight(80)
+                    ? Size.fromHeight(60)
                     : Size.fromHeight(80), //bottom sliver appbar
                 child: Column(
                   //menu Set
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: [
-                          ButtonSetFood(
-                            name_: 'Thaifood',
-                            height_: isScreenwidht()
-                                ? context.widthsize / 10
-                                : context.widthsize / 6,
-                            width_: isScreenwidht()
-                                ? context.widthsize / 28
-                                : context.widthsize / 20,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          ButtonSetFood(
-                            name_: 'Japanese Menu',
-                            height_: isScreenwidht()
-                                ? context.widthsize / 10
-                                : context.widthsize / 6,
-                            width_: isScreenwidht()
-                                ? context.widthsize / 28
-                                : context.widthsize / 20,
-                          ),
-                        ],
+                    SizedBox(
+                      height: 60,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.all(10),
+                        itemCount: ListFoodata.foodSet.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Text(
+                                  ListFoodata.foodSet[index]['foodSetName']),
+                            ),
+                          );
+                        },
+                        //ListFoodata.foodSet[index]['foodSetName']
                       ),
                     ),
                     SizedBox(
