@@ -335,3 +335,22 @@ food = [
       // }
       // ListfilterFoodata.foodCatName.add((ListfilterFoodata.myfoodcat
       //     .where((element) => element.foodCatId == food.foodCatId)).toString());
+
+      loopfood() {
+    for (var v in myfood) {
+      if (v.foodCatId == '9YIvS9YpFPQ=') {
+        Foodgetdata.Starter.add(v);
+      } else if (v.foodCatId == 'SwvX07JTXHU=') {
+        Foodgetdata.Soup.add(v);
+        //v.foodSetId == 'Srd8o2evE8g='
+      } else if (v.foodCatId == 'TUYmgy/w29M=') {
+        Foodgetdata.Appetizer.add(v);
+      } else if (v.foodCatId == 'kHAhIe2AFPI=') {
+        Foodgetdata.Salads.add(v);
+      } else if (v.foodSetId == 'EWbC6SALR+c=') {
+        Foodgetdata.Noodles.add(v);
+      } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
+        Foodgetdata.Entrees.add(v);
+      }
+    }
+  }

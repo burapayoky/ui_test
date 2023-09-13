@@ -29,11 +29,10 @@ class _OrderPageState extends State<OrderPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    loopfood();
-    // loadThaifoodset();
+
     loopthaifood();
     //print((ListfilterFoodata.menufood[0].runtimeType));
-    print(ListfilterFoodata.foodCatName.length);
+    print(ListfilterFoodata.foodCatName2.length);
   }
 
   void updateOrderPageState() {
@@ -53,18 +52,7 @@ class _OrderPageState extends State<OrderPage> {
     ListfilterFoodata.filterfood = ListfilterFoodata.myfood
         .where((e) => e.foodSetId == 'Srd8o2evE8g=')
         .toList();
-    for (var food in ListfilterFoodata.filterfood) {
-      // keepfood.add((ListfilterFoodata.myfoodcat
-      //     .where((element) => element.foodCatId == food.foodCatId)).toString());
 
-      for (var foodcat in ListfilterFoodata.myfoodcat) {
-        if (food.foodCatId == foodcat.foodCatId) {
-          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
-        }
-      }
-    }
-    ListfilterFoodata.foodCatName =
-        ListfilterFoodata.foodCatName.toSet().toList();
     //keepfood.removeWhere((element) => element == "()");
     for (var foodcat in ListfilterFoodata.myfoodcat) {
       List<Foodmodel> keepfood = [];
@@ -72,47 +60,76 @@ class _OrderPageState extends State<OrderPage> {
         if (foodcat.foodCatId == food.foodCatId) {
           keepfood.add(food);
         }
+        if (food.foodCatId == foodcat.foodCatId) {
+          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
+        }
       }
 
       ListfilterFoodata.menufood.add(keepfood);
     }
+    ListfilterFoodata.foodCatName =
+        ListfilterFoodata.foodCatName.toSet().toList();
     ListfilterFoodata.menufood.removeWhere((List element) => element.isEmpty);
   }
 
   loopJapanesefood() {
+    //Lkx2cia+nxU=
+    ListfilterFoodata.myfood = [];
+
+    ListfilterFoodata.foodCatName.clear();
     ListfilterFoodata.myfood =
         ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
     ListfilterFoodata.filterfood = ListfilterFoodata.myfood
         .where((e) => e.foodSetId == 'Lkx2cia+nxU=')
         .toList();
-    for (var food in ListfilterFoodata.filterfood) {
-      for (var foodcat in ListfilterFoodata.myfoodcat) {
+
+    //keepfood.removeWhere((element) => element == "()");
+    for (var foodcat in ListfilterFoodata.myfoodcat) {
+      List<Foodmodel> keepfood = [];
+      for (var food in ListfilterFoodata.filterfood) {
+        if (foodcat.foodCatId == food.foodCatId) {
+          keepfood.add(food);
+        }
         if (food.foodCatId == foodcat.foodCatId) {
           ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
         }
       }
+
+      ListfilterFoodata.menufood.add(keepfood);
     }
     ListfilterFoodata.foodCatName =
         ListfilterFoodata.foodCatName.toSet().toList();
+    ListfilterFoodata.menufood.removeWhere((List element) => element.isEmpty);
   }
 
-  loopfood() {
-    for (var v in myfood) {
-      if (v.foodCatId == '9YIvS9YpFPQ=') {
-        Foodgetdata.Starter.add(v);
-      } else if (v.foodCatId == 'SwvX07JTXHU=') {
-        Foodgetdata.Soup.add(v);
-        //v.foodSetId == 'Srd8o2evE8g='
-      } else if (v.foodCatId == 'TUYmgy/w29M=') {
-        Foodgetdata.Appetizer.add(v);
-      } else if (v.foodCatId == 'kHAhIe2AFPI=') {
-        Foodgetdata.Salads.add(v);
-      } else if (v.foodSetId == 'EWbC6SALR+c=') {
-        Foodgetdata.Noodles.add(v);
-      } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
-        Foodgetdata.Entrees.add(v);
+  loopFreeItem() {
+    //Lkx2cia+nxU=
+    ListfilterFoodata.myfood = [];
+
+    ListfilterFoodata.foodCatName.clear();
+    ListfilterFoodata.myfood =
+        ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+    ListfilterFoodata.filterfood = ListfilterFoodata.myfood
+        .where((e) => e.foodSetId == 'iS94mlBDp70=')
+        .toList();
+
+    //keepfood.removeWhere((element) => element == "()");
+    for (var foodcat in ListfilterFoodata.myfoodcat) {
+      List<Foodmodel> keepfood = [];
+      for (var food in ListfilterFoodata.filterfood) {
+        if (foodcat.foodCatId == food.foodCatId) {
+          keepfood.add(food);
+        }
+        if (food.foodCatId == foodcat.foodCatId) {
+          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
+        }
       }
+
+      ListfilterFoodata.menufood.add(keepfood);
     }
+    ListfilterFoodata.foodCatName =
+        ListfilterFoodata.foodCatName.toSet().toList();
+    ListfilterFoodata.menufood.removeWhere((List element) => element.isEmpty);
   }
 
   @override
@@ -341,7 +358,7 @@ class CheckBin extends StatelessWidget {
             ),
           ),
           const Spacer(
-            flex: 5,
+            flex: 2,
           ),
           Expanded(
             child: Column(
