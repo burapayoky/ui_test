@@ -10878,31 +10878,18 @@ class ListFoodata {
   ];
 }
 
-class Foodgetdata {
-  static List<Map<String, dynamic>> starter = [];
-  static List<Foodmodel> Starter = [];
-  static List<Foodmodel> Appetizer = [];
-  static List<Foodmodel> Soup = [];
-  static List<Foodmodel> Salads = [];
-  static List<Foodmodel> Noodles = [];
-  static List<Foodmodel> Entrees = [];
-  static List<Foodmodel> Side = [];
-  static List<Foodmodel> Drinks = [];
-  static List<Foodmodel> foodcat = [];
-}
-
 class ListfilterFoodata {
-  static List<Foodmodel> myfood = [];
+  //keep all food
+  static var myfood =
+      ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
   static var myfoodcat =
       ListFoodata.foodCategory.map((e) => FoodCategory.fromMap(e)).toList();
+  //keep foocatnameID
   static List<String> foodCatName = [];
-
-  static List<String> foodCatName2 = [];
-
+  //keep food my set ID
   static List<Foodmodel> filterfood = [];
+  //keep food sortby catetagory
   static List<List> menufood = [];
-  static List<Foodmodel> filterAppetizers = [];
-  static List<Foodmodel> filterSoupSalads = [];
 
   // You can add more static lists for other categories as needed.
 }

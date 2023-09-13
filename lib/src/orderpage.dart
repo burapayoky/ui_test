@@ -32,7 +32,6 @@ class _OrderPageState extends State<OrderPage> {
 
     loopthaifood();
     //print((ListfilterFoodata.menufood[0].runtimeType));
-    print(ListfilterFoodata.foodCatName2.length);
   }
 
   void updateOrderPageState() {
@@ -139,7 +138,7 @@ class _OrderPageState extends State<OrderPage> {
         Flexible(
             flex: 3,
             child: SelectedMenu(
-              updateOrderPageState: updateOrderPageState,
+              updateOrderPageState: loopJapanesefood,
               listCatfoodmenu_: ListfilterFoodata.foodCatName,
               menufood_: ListfilterFoodata.menufood,
             )),
@@ -171,6 +170,12 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
+  reloaddata() {
+    setState(() {
+      widget.updateOrderPageState;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     isScreenwidht() {
@@ -221,48 +226,74 @@ class _SelectedMenuState extends State<SelectedMenu> {
             automaticallyImplyLeading: false,
             bottom: PreferredSize(
                 preferredSize: isScreenwidht()
-                    ? Size.fromHeight(60)
-                    : Size.fromHeight(80), //bottom sliver appbar
+                    ? Size.fromHeight(100)
+                    : Size.fromHeight(120), //bottom sliver appbar
                 child: Column(
                   //menu Set
                   children: [
                     Row(
                       children: [
                         SizedBox(
-                          height: context.heightsize / 16,
-                          width: context.widthsize / 9,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: Text('Thaifood'),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: context.heightsize / 16,
-                          width: context.widthsize / 9,
+                          height: isScreenwidht()
+                              ? context.heightsize / 14
+                              : context.widthsize / 12,
+                          width: isScreenwidht()
+                              ? context.heightsize / 4
+                              : context.heightsize / 8,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
                               onPressed: () {
-                                widget.updateOrderPageState;
+                                setState(() {});
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
                               ),
-                              child: Text('Japanesefood'),
+                              child: const Text(
+                                'Thaifood',
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.normal),
+                              ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: context.heightsize / 16,
-                          width: context.widthsize / 9,
+                          height: isScreenwidht()
+                              ? context.heightsize / 14
+                              : context.widthsize / 12,
+                          width: isScreenwidht()
+                              ? context.heightsize / 4
+                              : context.heightsize / 8,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  widget.updateOrderPageState;
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: const Text('Japanesefood',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FontStyle.normal)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: isScreenwidht()
+                              ? context.heightsize / 14
+                              : context.widthsize / 12,
+                          width: isScreenwidht()
+                              ? context.heightsize / 4
+                              : context.heightsize / 8,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
@@ -271,28 +302,44 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8)),
                               ),
-                              child: Text('FreeItem'),
+                              child: const Text('FreeItem',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FontStyle.normal)),
                             ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 50,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemCount: widget.listCatfoodmenu_.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return TextButton(
-                              onPressed: () {},
-                              child: Text(widget.listCatfoodmenu_[index]));
-                        },
+                    //Categeory
+                    Padding(
+                      padding: const EdgeInsets.all(14),
+                      child: SizedBox(
+                        height: 50,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemCount: widget.listCatfoodmenu_.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return TextButton(
+                                onPressed: () {},
+                                child: Text(
+                                  widget.listCatfoodmenu_[index],
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black),
+                                ));
+                          },
+                        ),
                       ),
                     )
                   ],
                 )),
           ),
+          //food Menu
           SliverList.builder(
               itemCount: widget.listCatfoodmenu_.length,
               itemBuilder: (context, index) {
@@ -313,9 +360,6 @@ class CheckBin extends StatelessWidget {
   const CheckBin({
     super.key,
   });
-  // isScreenWidth() {
-  //   MediaQuery.of()
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

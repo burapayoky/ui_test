@@ -10,12 +10,12 @@ sealed class OrderState extends Equatable {
 final class OrderInitial extends OrderState {}
 
 class OrderStatefoodsSet extends OrderState {
-  final List<Map<String, dynamic>> ThaiMenu;
-  final List<Map<String, dynamic>> JapanMenu;
-  final List<Map<String, dynamic>> FreeItem;
+  final List<String> foodCatName;
+  final List<Foodmodel> filterfood;
+  final List<List> menufood;
   OrderStatefoodsSet({
-    required this.ThaiMenu,
-    required this.JapanMenu,
-    required this.FreeItem,
+    required this.foodCatName,
+    required this.filterfood,
+    required this.menufood,
   });
 }

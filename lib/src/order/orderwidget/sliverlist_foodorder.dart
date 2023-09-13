@@ -55,7 +55,7 @@ class SliverListFoodOrder extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: Container(
-                  width: context.widthsize / 2,
+                  //width: context.widthsize / 2,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6),
@@ -68,7 +68,7 @@ class SliverListFoodOrder extends StatelessWidget {
                         Container(
                           height: isScreenwidht()
                               ? context.widthsize / 12
-                              : context.widthsize / 9,
+                              : context.widthsize / 11,
                           decoration: BoxDecoration(
                               color: Colors.red,
                               image: DecorationImage(
