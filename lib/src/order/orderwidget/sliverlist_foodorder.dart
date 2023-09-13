@@ -11,7 +11,7 @@ import 'package:ui_test/src/models/foodmodel.dart';
 // }
 
 class SliverListFoodOrder extends StatelessWidget {
-  final List<Foodmodel> foodListitem;
+  final List<dynamic> foodListitem;
   final String foodcatname;
   const SliverListFoodOrder({
     super.key,

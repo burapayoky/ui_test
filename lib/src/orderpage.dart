@@ -22,7 +22,7 @@ class Thaifooddata {}
 
 class _OrderPageState extends State<OrderPage> {
   final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-  final SetFoodModel = [[], [], [], [], [], []];
+
   // final foodthai = ListFoodata.where
 
   @override
@@ -32,7 +32,8 @@ class _OrderPageState extends State<OrderPage> {
     loopfood();
     // loadThaifoodset();
     loopthaifood();
-    print(ListfilterFoodata.foodCatName);
+    //print((ListfilterFoodata.menufood[0].runtimeType));
+    print(ListfilterFoodata.foodCatName.length);
   }
 
   void updateOrderPageState() {
@@ -40,12 +41,12 @@ class _OrderPageState extends State<OrderPage> {
       // ทำอะไรก็ตามที่แปลงสถานะใน OrderPage
       ListfilterFoodata.foodCatName.clear();
       loopJapanesefood();
-      print('object');
     });
   }
 
   loopthaifood() {
     ListfilterFoodata.myfood = [];
+
     ListfilterFoodata.foodCatName.clear();
     ListfilterFoodata.myfood =
         ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
@@ -53,8 +54,9 @@ class _OrderPageState extends State<OrderPage> {
         .where((e) => e.foodSetId == 'Srd8o2evE8g=')
         .toList();
     for (var food in ListfilterFoodata.filterfood) {
-      ListfilterFoodata.menufood.add((ListfilterFoodata.myfoodcat
-          .where((element) => element.foodCatId == food.foodCatId)).toString());
+      // keepfood.add((ListfilterFoodata.myfoodcat
+      //     .where((element) => element.foodCatId == food.foodCatId)).toString());
+
       for (var foodcat in ListfilterFoodata.myfoodcat) {
         if (food.foodCatId == foodcat.foodCatId) {
           ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
@@ -63,6 +65,18 @@ class _OrderPageState extends State<OrderPage> {
     }
     ListfilterFoodata.foodCatName =
         ListfilterFoodata.foodCatName.toSet().toList();
+    //keepfood.removeWhere((element) => element == "()");
+    for (var foodcat in ListfilterFoodata.myfoodcat) {
+      List<Foodmodel> keepfood = [];
+      for (var food in ListfilterFoodata.filterfood) {
+        if (foodcat.foodCatId == food.foodCatId) {
+          keepfood.add(food);
+        }
+      }
+
+      ListfilterFoodata.menufood.add(keepfood);
+    }
+    ListfilterFoodata.menufood.removeWhere((List element) => element.isEmpty);
   }
 
   loopJapanesefood() {
@@ -108,17 +122,9 @@ class _OrderPageState extends State<OrderPage> {
         Flexible(
             flex: 3,
             child: SelectedMenu(
-              Drinks: Foodgetdata.Drinks,
-              Soup: Foodgetdata.Soup,
-              Appetizer: Foodgetdata.Appetizer,
-              Noodles: Foodgetdata.Noodles,
-              Salads: Foodgetdata.Salads,
-              Entrees: Foodgetdata.Entrees,
-              Starter: Foodgetdata.Starter,
-              Side: Foodgetdata.Side,
-              SetFoodModel: SetFoodModel,
               updateOrderPageState: updateOrderPageState,
               listCatfoodmenu_: ListfilterFoodata.foodCatName,
+              menufood_: ListfilterFoodata.menufood,
             )),
         const VerticalDivider(
           width: 1,
@@ -132,32 +138,15 @@ class _OrderPageState extends State<OrderPage> {
 }
 
 class SelectedMenu extends StatefulWidget {
-  final List<List<dynamic>> SetFoodModel;
-  final List<Foodmodel> Starter;
-  final List<Foodmodel> Appetizer;
-  final List<Foodmodel> Soup;
-  final List<Foodmodel> Salads;
-  final List<Foodmodel> Noodles;
-  final List<Foodmodel> Entrees;
-  final List<Foodmodel> Side;
-  final List<Foodmodel> Drinks;
-
   ///
   final Function updateOrderPageState;
   final List<String> listCatfoodmenu_;
+  final List<List> menufood_;
   const SelectedMenu({
     super.key,
-    required this.Starter,
-    required this.Appetizer,
-    required this.Soup,
-    required this.Salads,
-    required this.Noodles,
-    required this.Entrees,
-    required this.Side,
-    required this.Drinks,
-    required this.SetFoodModel,
     required this.updateOrderPageState,
     required this.listCatfoodmenu_,
+    required this.menufood_,
   });
 
   @override
@@ -223,7 +212,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                     Row(
                       children: [
                         SizedBox(
-                          height: 60,
+                          height: context.heightsize / 16,
+                          width: context.widthsize / 9,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
@@ -235,18 +225,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                               child: Text('Thaifood'),
                             ),
                           ),
-                          // child: ListView.builder(
-                          //   scrollDirection: Axis.horizontal,
-                          //   padding: EdgeInsets.all(10),
-                          //   itemCount: ListFoodata.foodSet.length,
-                          //   itemBuilder: (BuildContext context, int index) {
-                          //     return
-                          //   },
-                          //   //ListFoodata.foodSet[index]['foodSetName']
-                          // ),
                         ),
                         SizedBox(
-                          height: 60,
+                          height: context.heightsize / 16,
+                          width: context.widthsize / 9,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
@@ -262,7 +244,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           ),
                         ),
                         SizedBox(
-                          height: 60,
+                          height: context.heightsize / 16,
+                          width: context.widthsize / 9,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
@@ -297,8 +280,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
               itemCount: widget.listCatfoodmenu_.length,
               itemBuilder: (context, index) {
                 // return Text('data');
+                print(widget.listCatfoodmenu_[0]);
                 return SliverListFoodOrder(
-                    foodListitem: widget.Appetizer,
+                    foodListitem: widget.menufood_[index],
                     foodcatname: widget.listCatfoodmenu_[index]);
               }),
         ],
