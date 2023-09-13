@@ -7,6 +7,8 @@ import 'package:ui_test/src/fristpage.dart';
 import 'package:ui_test/src/homepage.dart';
 import 'package:ui_test/src/order/bloc/order_bloc.dart';
 import 'package:ui_test/src/orderpage.dart';
+import 'package:ui_test/test/bloc/get_data_bloc.dart';
+import 'package:ui_test/test/testBloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +22,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final orderBloc = BlocProvider<OrderBloc>(create: (context) => OrderBloc());
+    final testBloc =
+        BlocProvider<GetDataBloc>(create: (context) => GetDataBloc());
     return MultiProvider(
-      providers: [orderBloc],
+      providers: [orderBloc, testBloc],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -30,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         scrollBehavior: AppScrollBehavior(),
         routes: AppRoute().getAll,
-        home: const HomePage(),
+        home: HomePage(),
         debugShowCheckedModeBanner: false,
       ),
     );

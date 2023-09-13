@@ -19,3 +19,16 @@ class OrderStatefoodsSet extends OrderState {
     required this.menufood,
   });
 }
+
+class OrderStatejapanesfoodSet extends OrderState {
+  final List<String> foodCatName;
+  final List<Foodmodel> filterfood;
+  final List<List> menufood;
+
+  OrderStatejapanesfoodSet(
+      {required this.foodCatName,
+      required this.filterfood,
+      required this.menufood});
+}
+
+class OrderStateJapanesFoodButtonClicked extends OrderState {}

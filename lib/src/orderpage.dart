@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:ui_test/src/fristpage.dart';
 
 import 'package:ui_test/src/models/Thaifood.dart';
 import 'package:ui_test/src/models/foodmodel.dart';
+import 'package:ui_test/src/order/bloc/order_bloc.dart';
 
 import 'package:ui_test/src/order/orderwidget/sliverlist_foodorder.dart';
 import 'widget/appbar/action_flag_icon.dart';
@@ -29,8 +30,8 @@ class _OrderPageState extends State<OrderPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    loopthaifood();
+    context.read<OrderBloc>().add(OrderInitialEvent());
+    //loopthaifood();
     //print((ListfilterFoodata.menufood[0].runtimeType));
   }
 
@@ -176,6 +177,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
     });
   }
 
+  bool watin = true;
+
   @override
   Widget build(BuildContext context) {
     isScreenwidht() {
@@ -218,138 +221,173 @@ class _SelectedMenuState extends State<SelectedMenu> {
               ))
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: false,
-            pinned: true,
-            automaticallyImplyLeading: false,
-            bottom: PreferredSize(
-                preferredSize: isScreenwidht()
-                    ? Size.fromHeight(100)
-                    : Size.fromHeight(120), //bottom sliver appbar
-                child: Column(
-                  //menu Set
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: isScreenwidht()
-                              ? context.heightsize / 14
-                              : context.widthsize / 12,
-                          width: isScreenwidht()
-                              ? context.heightsize / 4
-                              : context.heightsize / 8,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {});
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: const Text(
-                                'Thaifood',
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FontStyle.normal),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: isScreenwidht()
-                              ? context.heightsize / 14
-                              : context.widthsize / 12,
-                          width: isScreenwidht()
-                              ? context.heightsize / 4
-                              : context.heightsize / 8,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  widget.updateOrderPageState;
-                                });
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: const Text('Japanesefood',
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FontStyle.normal)),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: isScreenwidht()
-                              ? context.heightsize / 14
-                              : context.widthsize / 12,
-                          width: isScreenwidht()
-                              ? context.heightsize / 4
-                              : context.heightsize / 8,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: const Text('FreeItem',
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FontStyle.normal)),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    //Categeory
-                    Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: SizedBox(
-                        height: 50,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          itemCount: widget.listCatfoodmenu_.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  widget.listCatfoodmenu_[index],
-                                  style: const TextStyle(
-                                      fontSize: 18,
-                                      fontStyle: FontStyle.normal,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ));
-                          },
-                        ),
+      body: BlocBuilder<OrderBloc, OrderState>(
+        buildWhen: (previous, current) => true,
+        builder: (context, state) {
+          print('hello');
+
+          if (state is OrderStatefoodsSet) {
+            Future.delayed(Duration(seconds: 1)).then((value) {
+              setState(() {
+                watin = false;
+              });
+            });
+            return watin
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : CustomScrollView(
+                    slivers: [
+                      SliverAppBar(
+                        floating: false,
+                        pinned: true,
+                        automaticallyImplyLeading: false,
+                        bottom: PreferredSize(
+                            preferredSize: isScreenwidht()
+                                ? Size.fromHeight(100)
+                                : Size.fromHeight(120), //bottom sliver appbar
+                            child: Column(
+                              //menu Set
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      height: isScreenwidht()
+                                          ? context.heightsize / 14
+                                          : context.widthsize / 12,
+                                      width: isScreenwidht()
+                                          ? context.heightsize / 4
+                                          : context.heightsize / 8,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {});
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                          ),
+                                          child: const Text(
+                                            'Thaifood',
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle: FontStyle.normal),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: isScreenwidht()
+                                          ? context.heightsize / 14
+                                          : context.widthsize / 12,
+                                      width: isScreenwidht()
+                                          ? context.heightsize / 4
+                                          : context.heightsize / 8,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            print("set block");
+                                            context
+                                                .read<OrderBloc>()
+                                                .add(OrderInitialEvent());
+                                            context.read<OrderBloc>().add(
+                                                OrderStateJapanesFoodButtonClickedEvent());
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                          ),
+                                          child: const Text('Japanesefood',
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle: FontStyle.normal)),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: isScreenwidht()
+                                          ? context.heightsize / 14
+                                          : context.widthsize / 12,
+                                      width: isScreenwidht()
+                                          ? context.heightsize / 4
+                                          : context.heightsize / 8,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                          ),
+                                          child: const Text('FreeItem',
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle: FontStyle.normal)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                //Categeory
+                                Padding(
+                                  padding: const EdgeInsets.all(14),
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(),
+                                      itemCount: widget.listCatfoodmenu_.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return TextButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              state.foodCatName[index],
+                                              style: const TextStyle(
+                                                  fontSize: 18,
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black),
+                                            ));
+                                      },
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )),
                       ),
-                    )
-                  ],
-                )),
-          ),
-          //food Menu
-          SliverList.builder(
-              itemCount: widget.listCatfoodmenu_.length,
-              itemBuilder: (context, index) {
-                // return Text('data');
-                print(widget.listCatfoodmenu_[0]);
-                return SliverListFoodOrder(
-                    foodListitem: widget.menufood_[index],
-                    foodcatname: widget.listCatfoodmenu_[index]);
-              }),
-        ],
+                      //food Menu
+                      SliverList.builder(
+                          itemCount: state.foodCatName.length,
+                          itemBuilder: (context, index) {
+                            // ListfilterFoodata.foodCatName
+
+                            // return Text('data');
+                            print(state.menufood[index].length);
+                            return SliverListFoodOrder(
+                                foodListitem: state.menufood[index],
+                                foodcatname: state.foodCatName[index]);
+                          }),
+                    ],
+                  );
+          }
+
+          print(state.runtimeType);
+
+          return Container();
+        },
       ),
     );
   }
