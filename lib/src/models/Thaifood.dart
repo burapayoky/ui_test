@@ -4,6 +4,7 @@
 // final Future<String> resopne =
 //     rootBundle.loadString('lib/src/models/data_test.json');
 
+import 'package:ui_test/src/models/food_category.dart';
 import 'package:ui_test/src/models/foodmodel.dart';
 
 class ListFoodata {
@@ -10888,5 +10889,17 @@ class Foodgetdata {
   static List<Foodmodel> Side = [];
   static List<Foodmodel> Drinks = [];
   static List<Foodmodel> foodcat = [];
+}
+
+class ListfilterFoodata {
+  static List<Foodmodel> myfood = [];
+  static var myfoodcat =
+      ListFoodata.foodCategory.map((e) => FoodCategory.fromMap(e)).toList();
+  static List<String> foodCatName = [];
+  static List<Foodmodel> filterfood = [];
+  static List<Foodmodel> filterAppetizers = [];
+  static List<Foodmodel> filterSoupSalads = [];
+
+  // You can add more static lists for other categories as needed.
 }
 // Srd8o2evE8g=  This food set ID is thaiMenu

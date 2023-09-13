@@ -29,36 +29,65 @@ class _OrderPageState extends State<OrderPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    loopfood();
-    loadThaifoodset();
+    // loopfood();
+    // loadThaifoodset();
+    loopthaifood();
   }
 
-  loadJapanesefoodset() {
-    //loop foodSetId
-    var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-    final filterAppetizers =
-        filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-    final filterSoupSalads =
-        filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-    final filterEntrees =
-        filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-    final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-    final filterSideOrder =
-        filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-    final filterLunchSpecial =
-        filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-    //appetizer
+  // loadJapanesefoodset() {
+  //   //loop foodSetId
+  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
 
-    SetFoodModel[0].add(filterAppetizers);
-    SetFoodModel[1].add(filterSoupSalads);
-    SetFoodModel[2].add(filterEntrees);
-    SetFoodModel[3].add(filterKidmu);
-    SetFoodModel[4].add(filterSideOrder);
-    SetFoodModel[5].add(filterLunchSpecial);
+  //   final filterAppetizers =
+  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  //   final filterSoupSalads =
+  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
+  //   final filterEntrees =
+  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
+  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
+  //   final filterSideOrder =
+  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
+  //   final filterLunchSpecial =
+  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
+  //   //appetizer
+
+  //   SetFoodModel[0].add(filterAppetizers);
+  //   SetFoodModel[1].add(filterSoupSalads);
+  //   SetFoodModel[2].add(filterEntrees);
+  //   SetFoodModel[3].add(filterKidmu);
+  //   SetFoodModel[4].add(filterSideOrder);
+  //   SetFoodModel[5].add(filterLunchSpecial);
+  // }
+  void updateOrderPageState() {
+    setState(() {
+      // ทำอะไรก็ตามที่แปลงสถานะใน OrderPage
+    });
+  }
+
+  loopthaifood() {
+    ListfilterFoodata.myfood =
+        ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+    ListfilterFoodata.filterfood = ListfilterFoodata.myfood
+        .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+        .toList();
+    for (var food in ListfilterFoodata.filterfood) {
+      ListfilterFoodata.foodCatName.add((ListfilterFoodata.myfoodcat
+          .where((element) => element.foodCatId == food.foodCatId)).toString());
+    }
   }
 
   loadThaifoodset() {
-    final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+    ListfilterFoodata.myfood =
+        ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+    //appfood
+    ListfilterFoodata.filterfood = ListfilterFoodata.myfood
+        .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+        .toList();
+    //
+    ListfilterFoodata.filterfood = ListfilterFoodata.filterfood =
+        ListfilterFoodata.myfood
+            .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+            .toList();
 
     var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
     final filterAppetizers =
@@ -81,24 +110,24 @@ class _OrderPageState extends State<OrderPage> {
     SetFoodModel[5].add(filterLunchSpecial);
   }
 
-  loopfood() {
-    for (var v in myfood) {
-      if (v.foodCatId == '9YIvS9YpFPQ=') {
-        Foodgetdata.Starter.add(v);
-      } else if (v.foodCatId == 'SwvX07JTXHU=') {
-        Foodgetdata.Soup.add(v);
-        //v.foodSetId == 'Srd8o2evE8g='
-      } else if (v.foodCatId == 'TUYmgy/w29M=') {
-        Foodgetdata.Appetizer.add(v);
-      } else if (v.foodCatId == 'kHAhIe2AFPI=') {
-        Foodgetdata.Salads.add(v);
-      } else if (v.foodSetId == 'EWbC6SALR+c=') {
-        Foodgetdata.Noodles.add(v);
-      } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
-        Foodgetdata.Entrees.add(v);
-      }
-    }
-  }
+  // loopfood() {
+  //   for (var v in myfood) {
+  //     if (v.foodCatId == '9YIvS9YpFPQ=') {
+  //       Foodgetdata.Starter.add(v);
+  //     } else if (v.foodCatId == 'SwvX07JTXHU=') {
+  //       Foodgetdata.Soup.add(v);
+  //       //v.foodSetId == 'Srd8o2evE8g='
+  //     } else if (v.foodCatId == 'TUYmgy/w29M=') {
+  //       Foodgetdata.Appetizer.add(v);
+  //     } else if (v.foodCatId == 'kHAhIe2AFPI=') {
+  //       Foodgetdata.Salads.add(v);
+  //     } else if (v.foodSetId == 'EWbC6SALR+c=') {
+  //       Foodgetdata.Noodles.add(v);
+  //     } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
+  //       Foodgetdata.Entrees.add(v);
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +145,7 @@ class _OrderPageState extends State<OrderPage> {
               Starter: Foodgetdata.Starter,
               Side: Foodgetdata.Side,
               SetFoodModel: SetFoodModel,
+              updateOrderPageState: updateOrderPageState,
             )),
         const VerticalDivider(
           width: 1,
@@ -138,6 +168,7 @@ class SelectedMenu extends StatefulWidget {
   final List<Foodmodel> Entrees;
   final List<Foodmodel> Side;
   final List<Foodmodel> Drinks;
+  final Function updateOrderPageState;
 
   const SelectedMenu({
     super.key,
@@ -150,6 +181,7 @@ class SelectedMenu extends StatefulWidget {
     required this.Side,
     required this.Drinks,
     required this.SetFoodModel,
+    required this.updateOrderPageState,
   });
 
   @override
@@ -243,9 +275,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
                               onPressed: () {
-                                setState(() {
-                                  print('object');
-                                });
+                                setState(() {});
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
