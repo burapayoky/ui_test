@@ -30,7 +30,7 @@ class _OrderPageState extends State<OrderPage> {
     // TODO: implement initState
     super.initState();
     loopfood();
-    loadThaifoodset();
+    //loadThaifoodset();
   }
 
   loadJapanesefoodset() {
@@ -57,29 +57,39 @@ class _OrderPageState extends State<OrderPage> {
     SetFoodModel[5].add(filterLunchSpecial);
   }
 
-  loadThaifoodset() {
-    final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  // loadThaifoodset() {
+  //   ListfilterFoodata.myfood =
+  //       ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  //   //appfood
+  //   ListfilterFoodata.filterfood = ListfilterFoodata.myfood
+  //       .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+  //       .toList();
+  //   //
+  //   ListfilterFoodata.filterfood = ListfilterFoodata.filterfood =
+  //       ListfilterFoodata.myfood
+  //           .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+  //           .toList();
 
-    var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-    final filterAppetizers =
-        filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-    final filterSoupSalads =
-        filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-    final filterEntrees =
-        filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-    final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-    final filterSideOrder =
-        filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-    final filterLunchSpecial =
-        filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-    //appetizer
-    SetFoodModel[0].add(filterAppetizers);
-    SetFoodModel[1].add(filterSoupSalads);
-    SetFoodModel[2].add(filterEntrees);
-    SetFoodModel[3].add(filterKidmu);
-    SetFoodModel[4].add(filterSideOrder);
-    SetFoodModel[5].add(filterLunchSpecial);
-  }
+  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+  //   final filterAppetizers =
+  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  //   final filterSoupSalads =
+  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
+  //   final filterEntrees =
+  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
+  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
+  //   final filterSideOrder =
+  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
+  //   final filterLunchSpecial =
+  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
+  //   //appetizer
+  //   SetFoodModel[0].add(filterAppetizers);
+  //   SetFoodModel[1].add(filterSoupSalads);
+  //   SetFoodModel[2].add(filterEntrees);
+  //   SetFoodModel[3].add(filterKidmu);
+  //   SetFoodModel[4].add(filterSideOrder);
+  //   SetFoodModel[5].add(filterLunchSpecial);
+  // }
 
   loopfood() {
     for (var v in myfood) {
