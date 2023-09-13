@@ -10897,6 +10897,7 @@ class ListfilterFoodata {
       ListFoodata.foodCategory.map((e) => FoodCategory.fromMap(e)).toList();
   static List<String> foodCatName = [];
   static List<Foodmodel> filterfood = [];
+  static List<String> menufood = [];
   static List<Foodmodel> filterAppetizers = [];
   static List<Foodmodel> filterSoupSalads = [];
 

@@ -29,105 +29,77 @@ class _OrderPageState extends State<OrderPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // loopfood();
+    loopfood();
     // loadThaifoodset();
     loopthaifood();
+    print(ListfilterFoodata.foodCatName);
   }
 
-  // loadJapanesefoodset() {
-  //   //loop foodSetId
-  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-
-  //   final filterAppetizers =
-  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-  //   final filterSoupSalads =
-  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-  //   final filterEntrees =
-  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-  //   final filterSideOrder =
-  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-  //   final filterLunchSpecial =
-  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-  //   //appetizer
-
-  //   SetFoodModel[0].add(filterAppetizers);
-  //   SetFoodModel[1].add(filterSoupSalads);
-  //   SetFoodModel[2].add(filterEntrees);
-  //   SetFoodModel[3].add(filterKidmu);
-  //   SetFoodModel[4].add(filterSideOrder);
-  //   SetFoodModel[5].add(filterLunchSpecial);
-  // }
   void updateOrderPageState() {
     setState(() {
       // ทำอะไรก็ตามที่แปลงสถานะใน OrderPage
+      ListfilterFoodata.foodCatName.clear();
+      loopJapanesefood();
+      print('object');
     });
   }
 
   loopthaifood() {
+    ListfilterFoodata.myfood = [];
+    ListfilterFoodata.foodCatName.clear();
     ListfilterFoodata.myfood =
         ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
     ListfilterFoodata.filterfood = ListfilterFoodata.myfood
         .where((e) => e.foodSetId == 'Srd8o2evE8g=')
         .toList();
     for (var food in ListfilterFoodata.filterfood) {
-      ListfilterFoodata.foodCatName.add((ListfilterFoodata.myfoodcat
+      ListfilterFoodata.menufood.add((ListfilterFoodata.myfoodcat
           .where((element) => element.foodCatId == food.foodCatId)).toString());
+      for (var foodcat in ListfilterFoodata.myfoodcat) {
+        if (food.foodCatId == foodcat.foodCatId) {
+          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
+        }
+      }
     }
+    ListfilterFoodata.foodCatName =
+        ListfilterFoodata.foodCatName.toSet().toList();
   }
 
-  loadThaifoodset() {
+  loopJapanesefood() {
     ListfilterFoodata.myfood =
         ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-    //appfood
     ListfilterFoodata.filterfood = ListfilterFoodata.myfood
-        .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+        .where((e) => e.foodSetId == 'Lkx2cia+nxU=')
         .toList();
-    //
-    ListfilterFoodata.filterfood = ListfilterFoodata.filterfood =
-        ListfilterFoodata.myfood
-            .where((e) => e.foodSetId == 'Srd8o2evE8g=')
-            .toList();
-
-    var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-    final filterAppetizers =
-        filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-    final filterSoupSalads =
-        filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-    final filterEntrees =
-        filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-    final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-    final filterSideOrder =
-        filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-    final filterLunchSpecial =
-        filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-    //appetizer
-    SetFoodModel[0].add(filterAppetizers);
-    SetFoodModel[1].add(filterSoupSalads);
-    SetFoodModel[2].add(filterEntrees);
-    SetFoodModel[3].add(filterKidmu);
-    SetFoodModel[4].add(filterSideOrder);
-    SetFoodModel[5].add(filterLunchSpecial);
+    for (var food in ListfilterFoodata.filterfood) {
+      for (var foodcat in ListfilterFoodata.myfoodcat) {
+        if (food.foodCatId == foodcat.foodCatId) {
+          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
+        }
+      }
+    }
+    ListfilterFoodata.foodCatName =
+        ListfilterFoodata.foodCatName.toSet().toList();
   }
 
-  // loopfood() {
-  //   for (var v in myfood) {
-  //     if (v.foodCatId == '9YIvS9YpFPQ=') {
-  //       Foodgetdata.Starter.add(v);
-  //     } else if (v.foodCatId == 'SwvX07JTXHU=') {
-  //       Foodgetdata.Soup.add(v);
-  //       //v.foodSetId == 'Srd8o2evE8g='
-  //     } else if (v.foodCatId == 'TUYmgy/w29M=') {
-  //       Foodgetdata.Appetizer.add(v);
-  //     } else if (v.foodCatId == 'kHAhIe2AFPI=') {
-  //       Foodgetdata.Salads.add(v);
-  //     } else if (v.foodSetId == 'EWbC6SALR+c=') {
-  //       Foodgetdata.Noodles.add(v);
-  //     } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
-  //       Foodgetdata.Entrees.add(v);
-  //     }
-  //   }
-  // }
+  loopfood() {
+    for (var v in myfood) {
+      if (v.foodCatId == '9YIvS9YpFPQ=') {
+        Foodgetdata.Starter.add(v);
+      } else if (v.foodCatId == 'SwvX07JTXHU=') {
+        Foodgetdata.Soup.add(v);
+        //v.foodSetId == 'Srd8o2evE8g='
+      } else if (v.foodCatId == 'TUYmgy/w29M=') {
+        Foodgetdata.Appetizer.add(v);
+      } else if (v.foodCatId == 'kHAhIe2AFPI=') {
+        Foodgetdata.Salads.add(v);
+      } else if (v.foodSetId == 'EWbC6SALR+c=') {
+        Foodgetdata.Noodles.add(v);
+      } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
+        Foodgetdata.Entrees.add(v);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +118,7 @@ class _OrderPageState extends State<OrderPage> {
               Side: Foodgetdata.Side,
               SetFoodModel: SetFoodModel,
               updateOrderPageState: updateOrderPageState,
+              listCatfoodmenu_: ListfilterFoodata.foodCatName,
             )),
         const VerticalDivider(
           width: 1,
@@ -168,8 +141,10 @@ class SelectedMenu extends StatefulWidget {
   final List<Foodmodel> Entrees;
   final List<Foodmodel> Side;
   final List<Foodmodel> Drinks;
-  final Function updateOrderPageState;
 
+  ///
+  final Function updateOrderPageState;
+  final List<String> listCatfoodmenu_;
   const SelectedMenu({
     super.key,
     required this.Starter,
@@ -182,6 +157,7 @@ class SelectedMenu extends StatefulWidget {
     required this.Drinks,
     required this.SetFoodModel,
     required this.updateOrderPageState,
+    required this.listCatfoodmenu_,
   });
 
   @override
@@ -275,7 +251,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                             padding: const EdgeInsets.only(left: 10),
                             child: ElevatedButton(
                               onPressed: () {
-                                setState(() {});
+                                widget.updateOrderPageState;
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -306,39 +282,25 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         physics: const AlwaysScrollableScrollPhysics(),
-                        itemCount: 8,
+                        itemCount: widget.listCatfoodmenu_.length,
                         itemBuilder: (BuildContext context, int index) {
                           return TextButton(
                               onPressed: () {},
-                              child: Text(ListFoodata.foodCategory[index]
-                                  ['foodCatName']));
+                              child: Text(widget.listCatfoodmenu_[index]));
                         },
                       ),
                     )
                   ],
                 )),
           ),
-          // SliverList.builder(itemBuilder: (context, index) {
-
-          // }),
-          SliverListFoodOrder(
-              foodListitem: widget.Appetizer, foodcatname: 'Appetizer'),
-          SliverListFoodOrder(
-            foodListitem: widget.Soup,
-            foodcatname: 'Soup',
-          ),
-          SliverListFoodOrder(
-            foodListitem: widget.Salads,
-            foodcatname: 'Salad',
-          ),
-          SliverListFoodOrder(
-            foodListitem: widget.Noodles,
-            foodcatname: 'Noodles',
-          ),
-          SliverListFoodOrder(
-            foodListitem: widget.Entrees,
-            foodcatname: 'Entrees',
-          ),
+          SliverList.builder(
+              itemCount: widget.listCatfoodmenu_.length,
+              itemBuilder: (context, index) {
+                // return Text('data');
+                return SliverListFoodOrder(
+                    foodListitem: widget.Appetizer,
+                    foodcatname: widget.listCatfoodmenu_[index]);
+              }),
         ],
       ),
     );
@@ -465,3 +427,78 @@ class CheckBin extends StatelessWidget {
 //   background:
 // )
 
+// loadJapanesefoodset() {
+  //   //loop foodSetId
+  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+
+  //   final filterAppetizers =
+  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  //   final filterSoupSalads =
+  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
+  //   final filterEntrees =
+  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
+  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
+  //   final filterSideOrder =
+  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
+  //   final filterLunchSpecial =
+  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
+  //   //appetizer
+
+  //   SetFoodModel[0].add(filterAppetizers);
+  //   SetFoodModel[1].add(filterSoupSalads);
+  //   SetFoodModel[2].add(filterEntrees);
+  //   SetFoodModel[3].add(filterKidmu);
+  //   SetFoodModel[4].add(filterSideOrder);
+  //   SetFoodModel[5].add(filterLunchSpecial);
+  // }
+  // loadThaifoodset() {
+  //   ListfilterFoodata.myfood =
+  //       ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  //   //appfood
+  //   ListfilterFoodata.filterfood = ListfilterFoodata.myfood
+  //       .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+  //       .toList();
+  //   //
+  //   ListfilterFoodata.filterfood = ListfilterFoodata.filterfood =
+  //       ListfilterFoodata.myfood
+  //           .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+  //           .toList();
+
+  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+  //   final filterAppetizers =
+  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  //   final filterSoupSalads =
+  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
+  //   final filterEntrees =
+  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
+  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
+  //   final filterSideOrder =
+  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
+  //   final filterLunchSpecial =
+  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
+  //   //appetizer
+  //   SetFoodModel[0].add(filterAppetizers);
+  //   SetFoodModel[1].add(filterSoupSalads);
+  //   SetFoodModel[2].add(filterEntrees);
+  //   SetFoodModel[3].add(filterKidmu);
+  //   SetFoodModel[4].add(filterSideOrder);
+  //   SetFoodModel[5].add(filterLunchSpecial);
+  // }
+  // SliverListFoodOrder(
+          //     foodListitem: widget.Appetizer, foodcatname: 'Appetizer'),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Soup,
+          //   foodcatname: 'Soup',
+          // ),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Salads,
+          //   foodcatname: 'Salad',
+          // ),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Noodles,
+          //   foodcatname: 'Noodles',
+          // ),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Entrees,
+          //   foodcatname: 'Entrees',
+          // ),
