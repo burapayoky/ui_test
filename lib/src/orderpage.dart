@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:ui_test/src/fristpage.dart';
 
 import 'package:ui_test/src/models/Thaifood.dart';
 import 'package:ui_test/src/models/foodmodel.dart';
+import 'package:ui_test/src/order/bloc/order_bloc.dart';
 
 import 'package:ui_test/src/order/orderwidget/sliverlist_foodorder.dart';
 import 'widget/appbar/action_flag_icon.dart';
@@ -18,148 +19,79 @@ class OrderPage extends StatefulWidget {
   State<OrderPage> createState() => _OrderPageState();
 }
 
-class Thaifooddata {}
-
 class _OrderPageState extends State<OrderPage> {
   final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-  final SetFoodModel = [[], [], [], [], [], []];
+
   // final foodthai = ListFoodata.where
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loopfood();
-    //loadThaifoodset();
+    context.read<OrderBloc>().add(OrderInitialEvent());
+    //loopthaifood();
+    //print((ListfilterFoodata.menufood[0].runtimeType));
   }
 
-  loadJapanesefoodset() {
-    //loop foodSetId
-    var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-    final filterAppetizers =
-        filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-    final filterSoupSalads =
-        filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-    final filterEntrees =
-        filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-    final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-    final filterSideOrder =
-        filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-    final filterLunchSpecial =
-        filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-    //appetizer
+  loopFreeItem() {
+    //Lkx2cia+nxU=
+    ListfilterFoodata.myfood = [];
 
-    SetFoodModel[0].add(filterAppetizers);
-    SetFoodModel[1].add(filterSoupSalads);
-    SetFoodModel[2].add(filterEntrees);
-    SetFoodModel[3].add(filterKidmu);
-    SetFoodModel[4].add(filterSideOrder);
-    SetFoodModel[5].add(filterLunchSpecial);
-  }
+    ListfilterFoodata.foodCatName.clear();
+    ListfilterFoodata.myfood =
+        ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+    ListfilterFoodata.filterfood = ListfilterFoodata.myfood
+        .where((e) => e.foodSetId == 'iS94mlBDp70=')
+        .toList();
 
-  // loadThaifoodset() {
-  //   ListfilterFoodata.myfood =
-  //       ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-  //   //appfood
-  //   ListfilterFoodata.filterfood = ListfilterFoodata.myfood
-  //       .where((e) => e.foodSetId == 'Srd8o2evE8g=')
-  //       .toList();
-  //   //
-  //   ListfilterFoodata.filterfood = ListfilterFoodata.filterfood =
-  //       ListfilterFoodata.myfood
-  //           .where((e) => e.foodSetId == 'Srd8o2evE8g=')
-  //           .toList();
-
-  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-  //   final filterAppetizers =
-  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-  //   final filterSoupSalads =
-  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-  //   final filterEntrees =
-  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-  //   final filterSideOrder =
-  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-  //   final filterLunchSpecial =
-  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-  //   //appetizer
-  //   SetFoodModel[0].add(filterAppetizers);
-  //   SetFoodModel[1].add(filterSoupSalads);
-  //   SetFoodModel[2].add(filterEntrees);
-  //   SetFoodModel[3].add(filterKidmu);
-  //   SetFoodModel[4].add(filterSideOrder);
-  //   SetFoodModel[5].add(filterLunchSpecial);
-  // }
-
-  loopfood() {
-    for (var v in myfood) {
-      if (v.foodCatId == '9YIvS9YpFPQ=') {
-        Foodgetdata.Starter.add(v);
-      } else if (v.foodCatId == 'SwvX07JTXHU=') {
-        Foodgetdata.Soup.add(v);
-        //v.foodSetId == 'Srd8o2evE8g='
-      } else if (v.foodCatId == 'TUYmgy/w29M=') {
-        Foodgetdata.Appetizer.add(v);
-      } else if (v.foodCatId == 'kHAhIe2AFPI=') {
-        Foodgetdata.Salads.add(v);
-      } else if (v.foodSetId == 'EWbC6SALR+c=') {
-        Foodgetdata.Noodles.add(v);
-      } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
-        Foodgetdata.Entrees.add(v);
+    //keepfood.removeWhere((element) => element == "()");
+    for (var foodcat in ListfilterFoodata.myfoodcat) {
+      List<Foodmodel> keepfood = [];
+      for (var food in ListfilterFoodata.filterfood) {
+        if (foodcat.foodCatId == food.foodCatId) {
+          keepfood.add(food);
+        }
+        if (food.foodCatId == foodcat.foodCatId) {
+          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
+        }
       }
+
+      ListfilterFoodata.menufood.add(keepfood);
     }
+    ListfilterFoodata.foodCatName =
+        ListfilterFoodata.foodCatName.toSet().toList();
+    ListfilterFoodata.menufood.removeWhere((List element) => element.isEmpty);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         Flexible(
             flex: 3,
             child: SelectedMenu(
-              Drinks: Foodgetdata.Drinks,
-              Soup: Foodgetdata.Soup,
-              Appetizer: Foodgetdata.Appetizer,
-              Noodles: Foodgetdata.Noodles,
-              Salads: Foodgetdata.Salads,
-              Entrees: Foodgetdata.Entrees,
-              Starter: Foodgetdata.Starter,
-              Side: Foodgetdata.Side,
-              SetFoodModel: SetFoodModel,
-            )),
-        const VerticalDivider(
+                // listCatfoodmenu_: ListfilterFoodata.foodCatName,
+                // menufood_: ListfilterFoodata.menufood,
+                )),
+        VerticalDivider(
           width: 1,
           thickness: 20,
           color: Colors.white54,
         ),
-        const Flexible(flex: 1, child: CheckBin())
+        Flexible(flex: 1, child: CheckBin())
       ],
     );
   }
 }
 
 class SelectedMenu extends StatefulWidget {
-  final List<List<dynamic>> SetFoodModel;
-  final List<Foodmodel> Starter;
-  final List<Foodmodel> Appetizer;
-  final List<Foodmodel> Soup;
-  final List<Foodmodel> Salads;
-  final List<Foodmodel> Noodles;
-  final List<Foodmodel> Entrees;
-  final List<Foodmodel> Side;
-  final List<Foodmodel> Drinks;
-
+  ///
+  // final List<String> listCatfoodmenu_;
+  // final List<List> menufood_;
   const SelectedMenu({
     super.key,
-    required this.Starter,
-    required this.Appetizer,
-    required this.Soup,
-    required this.Salads,
-    required this.Noodles,
-    required this.Entrees,
-    required this.Side,
-    required this.Drinks,
-    required this.SetFoodModel,
+    // required this.listCatfoodmenu_,
+    // required this.menufood_,
   });
 
   @override
@@ -167,6 +99,8 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
+  bool watin = true;
+
   @override
   Widget build(BuildContext context) {
     isScreenwidht() {
@@ -209,117 +143,171 @@ class _SelectedMenuState extends State<SelectedMenu> {
               ))
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: false,
-            pinned: true,
-            automaticallyImplyLeading: false,
-            bottom: PreferredSize(
-                preferredSize: isScreenwidht()
-                    ? Size.fromHeight(60)
-                    : Size.fromHeight(80), //bottom sliver appbar
-                child: Column(
-                  //menu Set
-                  children: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 60,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: Text('Thaifood'),
-                            ),
-                          ),
-                          // child: ListView.builder(
-                          //   scrollDirection: Axis.horizontal,
-                          //   padding: EdgeInsets.all(10),
-                          //   itemCount: ListFoodata.foodSet.length,
-                          //   itemBuilder: (BuildContext context, int index) {
-                          //     return
-                          //   },
-                          //   //ListFoodata.foodSet[index]['foodSetName']
-                          // ),
-                        ),
-                        SizedBox(
-                          height: 60,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  print('object');
-                                });
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: Text('Japanesefood'),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 60,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: Text('FreeItem'),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 50,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemCount: 8,
-                        itemBuilder: (BuildContext context, int index) {
-                          return TextButton(
-                              onPressed: () {},
-                              child: Text(ListFoodata.foodCategory[index]
-                                  ['foodCatName']));
-                        },
+      body: BlocBuilder<OrderBloc, OrderState>(
+        buildWhen: (previous, current) => true,
+        builder: (context, state) {
+          if (state is OrderStatefoodsSet) {
+            Future.delayed(Duration(seconds: 1)).then((value) {
+              setState(() {
+                watin = false;
+              });
+            });
+            return watin
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : CustomScrollView(
+                    slivers: [
+                      SliverAppBar(
+                        floating: false,
+                        pinned: true,
+                        automaticallyImplyLeading: false,
+                        bottom: PreferredSize(
+                            preferredSize: isScreenwidht()
+                                ? Size.fromHeight(100)
+                                : Size.fromHeight(120), //bottom sliver appbar
+                            child: Column(
+                              //menu Set
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      height: isScreenwidht()
+                                          ? context.heightsize / 14
+                                          : context.widthsize / 12,
+                                      width: isScreenwidht()
+                                          ? context.heightsize / 4
+                                          : context.heightsize / 8,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            setState(() {});
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                          ),
+                                          child: const Text(
+                                            'Thaifood',
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle: FontStyle.normal),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: isScreenwidht()
+                                          ? context.heightsize / 14
+                                          : context.widthsize / 12,
+                                      width: isScreenwidht()
+                                          ? context.heightsize / 4
+                                          : context.heightsize / 8,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            print("set block");
+                                            context
+                                                .read<OrderBloc>()
+                                                .add(OrderInitialEvent());
+                                            context.read<OrderBloc>().add(
+                                                OrderStateJapanesFoodButtonClickedEvent());
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                          ),
+                                          child: const Text('Japanesefood',
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle: FontStyle.normal)),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: isScreenwidht()
+                                          ? context.heightsize / 14
+                                          : context.widthsize / 12,
+                                      width: isScreenwidht()
+                                          ? context.heightsize / 4
+                                          : context.heightsize / 8,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                          ),
+                                          child: const Text('FreeItem',
+                                              style: TextStyle(
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle: FontStyle.normal)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                //Categeory
+                                Padding(
+                                  padding: const EdgeInsets.all(14),
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(),
+                                      itemCount: state.foodCatName.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return TextButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              state.foodCatName[index],
+                                              style: const TextStyle(
+                                                  fontSize: 18,
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black),
+                                            ));
+                                      },
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )),
                       ),
-                    )
-                  ],
-                )),
-          ),
-          // SliverList.builder(itemBuilder: (context, index) {
+                      //food Menu
+                      SliverList.builder(
+                          itemCount: state.foodCatName.length,
+                          itemBuilder: (context, index) {
+                            // ListfilterFoodata.foodCatName
 
-          // }),
-          SliverListFoodOrder(
-              foodListitem: widget.Appetizer, foodcatname: 'Appetizer'),
-          SliverListFoodOrder(
-            foodListitem: widget.Soup,
-            foodcatname: 'Soup',
-          ),
-          SliverListFoodOrder(
-            foodListitem: widget.Salads,
-            foodcatname: 'Salad',
-          ),
-          SliverListFoodOrder(
-            foodListitem: widget.Noodles,
-            foodcatname: 'Noodles',
-          ),
-          SliverListFoodOrder(
-            foodListitem: widget.Entrees,
-            foodcatname: 'Entrees',
-          ),
-        ],
+                            // return Text('data');
+                            print(state.menufood[index].length);
+                            return SliverListFoodOrder(
+                                foodListitem: state.menufood[index],
+                                foodcatname: state.foodCatName[index]);
+                          }),
+                    ],
+                  );
+          }
+
+          print(state.runtimeType);
+
+          return Container();
+        },
       ),
     );
   }
@@ -330,9 +318,6 @@ class CheckBin extends StatelessWidget {
   const CheckBin({
     super.key,
   });
-  // isScreenWidth() {
-  //   MediaQuery.of()
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -375,7 +360,7 @@ class CheckBin extends StatelessWidget {
             ),
           ),
           const Spacer(
-            flex: 5,
+            flex: 2,
           ),
           Expanded(
             child: Column(
@@ -445,3 +430,78 @@ class CheckBin extends StatelessWidget {
 //   background:
 // )
 
+// loadJapanesefoodset() {
+  //   //loop foodSetId
+  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+
+  //   final filterAppetizers =
+  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  //   final filterSoupSalads =
+  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
+  //   final filterEntrees =
+  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
+  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
+  //   final filterSideOrder =
+  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
+  //   final filterLunchSpecial =
+  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
+  //   //appetizer
+
+  //   SetFoodModel[0].add(filterAppetizers);
+  //   SetFoodModel[1].add(filterSoupSalads);
+  //   SetFoodModel[2].add(filterEntrees);
+  //   SetFoodModel[3].add(filterKidmu);
+  //   SetFoodModel[4].add(filterSideOrder);
+  //   SetFoodModel[5].add(filterLunchSpecial);
+  // }
+  // loadThaifoodset() {
+  //   ListfilterFoodata.myfood =
+  //       ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
+  //   //appfood
+  //   ListfilterFoodata.filterfood = ListfilterFoodata.myfood
+  //       .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+  //       .toList();
+  //   //
+  //   ListfilterFoodata.filterfood = ListfilterFoodata.filterfood =
+  //       ListfilterFoodata.myfood
+  //           .where((e) => e.foodSetId == 'Srd8o2evE8g=')
+  //           .toList();
+
+  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
+  //   final filterAppetizers =
+  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
+  //   final filterSoupSalads =
+  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
+  //   final filterEntrees =
+  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
+  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
+  //   final filterSideOrder =
+  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
+  //   final filterLunchSpecial =
+  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
+  //   //appetizer
+  //   SetFoodModel[0].add(filterAppetizers);
+  //   SetFoodModel[1].add(filterSoupSalads);
+  //   SetFoodModel[2].add(filterEntrees);
+  //   SetFoodModel[3].add(filterKidmu);
+  //   SetFoodModel[4].add(filterSideOrder);
+  //   SetFoodModel[5].add(filterLunchSpecial);
+  // }
+  // SliverListFoodOrder(
+          //     foodListitem: widget.Appetizer, foodcatname: 'Appetizer'),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Soup,
+          //   foodcatname: 'Soup',
+          // ),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Salads,
+          //   foodcatname: 'Salad',
+          // ),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Noodles,
+          //   foodcatname: 'Noodles',
+          // ),
+          // SliverListFoodOrder(
+          //   foodListitem: widget.Entrees,
+          //   foodcatname: 'Entrees',
+          // ),

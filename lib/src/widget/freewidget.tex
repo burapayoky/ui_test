@@ -328,3 +328,50 @@ food = [
     Appetizer[],
     Soup and Salads[],
 ]
+// if (food.foodCatId ==
+      //     ListfilterFoodata.myfoodcat
+      //         .where((element) => element.foodCatId == food.foodCatId)) {
+      //   ListfilterFoodata.foodCatName.add(food.foodCatId!);
+      // }
+      // ListfilterFoodata.foodCatName.add((ListfilterFoodata.myfoodcat
+      //     .where((element) => element.foodCatId == food.foodCatId)).toString());
+
+      loopfood() {
+    for (var v in myfood) {
+      if (v.foodCatId == '9YIvS9YpFPQ=') {
+        Foodgetdata.Starter.add(v);
+      } else if (v.foodCatId == 'SwvX07JTXHU=') {
+        Foodgetdata.Soup.add(v);
+        //v.foodSetId == 'Srd8o2evE8g='
+      } else if (v.foodCatId == 'TUYmgy/w29M=') {
+        Foodgetdata.Appetizer.add(v);
+      } else if (v.foodCatId == 'kHAhIe2AFPI=') {
+        Foodgetdata.Salads.add(v);
+      } else if (v.foodSetId == 'EWbC6SALR+c=') {
+        Foodgetdata.Noodles.add(v);
+      } else if (v.foodCatId == 'Jh/MlHU3zlY=') {
+        Foodgetdata.Entrees.add(v);
+      }
+    }
+  }
+  // https://grassrootengineer.medium.com/flutter-hide-or-show-appbar-and-bottom-navigation-bar-on-scrolling-5a898ad96b71 *-ref-*
+
+  Container(
+                        height: 50,
+                        width: 770,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(250, 242, 242, 250),
+                            borderRadius: BorderRadius.circular(8)))
+#########################################################################################################################
+
+
+                            // var filterfood =
+                            //     ListFoodata.food.where((e) => e['foodSetId'] == 'Srd8o2evE8g=');
+                          
+                            // var myfoodcat =
+                            //     ListFoodata.foodCategory.map((e) => FoodCategory.fromMap(e)).toList();
+                            //filterfood = filterfood.where((e) => e['foodCatId'] == 'qPqbVd/wv7I=');
+                            //List<Map<String, dynamic>> thaiAzz = [];
+                            // print(ListfilterFoodata.myfoodcat[10].foodCatId);
+                            
+                            
