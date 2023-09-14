@@ -147,164 +147,147 @@ class _SelectedMenuState extends State<SelectedMenu> {
         buildWhen: (previous, current) => true,
         builder: (context, state) {
           if (state is OrderStatefoodsSet) {
-            Future.delayed(Duration(seconds: 1)).then((value) {
-              setState(() {
-                watin = false;
-              });
-            });
-            return watin
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : CustomScrollView(
-                    slivers: [
-                      SliverAppBar(
-                        floating: false,
-                        pinned: true,
-                        automaticallyImplyLeading: false,
-                        bottom: PreferredSize(
-                            preferredSize: isScreenwidht()
-                                ? Size.fromHeight(100)
-                                : Size.fromHeight(120), //bottom sliver appbar
-                            child: Column(
-                              //menu Set
-                              children: [
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      height: isScreenwidht()
-                                          ? context.heightsize / 14
-                                          : context.widthsize / 12,
-                                      width: isScreenwidht()
-                                          ? context.heightsize / 4
-                                          : context.heightsize / 8,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            setState(() {});
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8)),
-                                          ),
-                                          child: const Text(
-                                            'Thaifood',
-                                            style: TextStyle(
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FontStyle.normal),
-                                          ),
-                                        ),
-                                      ),
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  floating: false,
+                  pinned: true,
+                  automaticallyImplyLeading: false,
+                  bottom: PreferredSize(
+                      preferredSize: isScreenwidht()
+                          ? Size.fromHeight(100)
+                          : Size.fromHeight(120), //bottom sliver appbar
+                      child: Column(
+                        //menu Set
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: isScreenwidht()
+                                    ? context.heightsize / 14
+                                    : context.widthsize / 12,
+                                width: isScreenwidht()
+                                    ? context.heightsize / 4
+                                    : context.heightsize / 8,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {});
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
                                     ),
-                                    SizedBox(
-                                      height: isScreenwidht()
-                                          ? context.heightsize / 14
-                                          : context.widthsize / 12,
-                                      width: isScreenwidht()
-                                          ? context.heightsize / 4
-                                          : context.heightsize / 8,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            print("set block");
-                                            context
-                                                .read<OrderBloc>()
-                                                .add(OrderInitialEvent());
-                                            context.read<OrderBloc>().add(
-                                                OrderStateJapanesFoodButtonClickedEvent());
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8)),
-                                          ),
-                                          child: const Text('Japanesefood',
-                                              style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle: FontStyle.normal)),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: isScreenwidht()
-                                          ? context.heightsize / 14
-                                          : context.widthsize / 12,
-                                      width: isScreenwidht()
-                                          ? context.heightsize / 4
-                                          : context.heightsize / 8,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8)),
-                                          ),
-                                          child: const Text('FreeItem',
-                                              style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle: FontStyle.normal)),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                //Categeory
-                                Padding(
-                                  padding: const EdgeInsets.all(14),
-                                  child: SizedBox(
-                                    height: 50,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      physics:
-                                          const AlwaysScrollableScrollPhysics(),
-                                      itemCount: state.foodCatName.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        return TextButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              state.foodCatName[index],
-                                              style: const TextStyle(
-                                                  fontSize: 18,
-                                                  fontStyle: FontStyle.normal,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.black),
-                                            ));
-                                      },
+                                    child: const Text(
+                                      'Thaifood',
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle: FontStyle.normal),
                                     ),
                                   ),
-                                )
-                              ],
-                            )),
-                      ),
-                      //food Menu
-                      SliverList.builder(
-                          itemCount: state.foodCatName.length,
-                          itemBuilder: (context, index) {
-                            // ListfilterFoodata.foodCatName
+                                ),
+                              ),
+                              SizedBox(
+                                height: isScreenwidht()
+                                    ? context.heightsize / 14
+                                    : context.widthsize / 12,
+                                width: isScreenwidht()
+                                    ? context.heightsize / 4
+                                    : context.heightsize / 8,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      print("set block");
 
-                            // return Text('data');
-                            print(state.menufood[index].length);
-                            return SliverListFoodOrder(
-                                foodListitem: state.menufood[index],
-                                foodcatname: state.foodCatName[index]);
-                          }),
-                    ],
-                  );
+                                      context.read<OrderBloc>().add(
+                                          OrderStateJapanesFoodButtonClickedEvent());
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                    ),
+                                    child: const Text('Japanesefood',
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.normal)),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: isScreenwidht()
+                                    ? context.heightsize / 14
+                                    : context.widthsize / 12,
+                                width: isScreenwidht()
+                                    ? context.heightsize / 4
+                                    : context.heightsize / 8,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                    ),
+                                    child: const Text('FreeItem',
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle: FontStyle.normal)),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          //Categeory
+                          Padding(
+                            padding: const EdgeInsets.all(14),
+                            child: SizedBox(
+                              height: 50,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemCount: state.foodCatName.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return TextButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        state.foodCatName[index],
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            fontStyle: FontStyle.normal,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black),
+                                      ));
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+                //food Menu
+                SliverList.builder(
+                    itemCount: state.foodCatName.length,
+                    itemBuilder: (context, index) {
+                      // ListfilterFoodata.foodCatName
+
+                      print(state.foodCatName.length);
+                      print(state.menufood.length);
+                      // return Text('data');
+                      return SliverListFoodOrder(
+                          foodListitem: state.menufood[index],
+                          foodcatname: state.foodCatName[index]);
+                    }),
+              ],
+            );
           }
-
-          print(state.runtimeType);
 
           return Container();
         },
@@ -425,83 +408,3 @@ class CheckBin extends StatelessWidget {
     );
   }
 }
-
-// flexibleSpace: FlexibleSpaceBar(
-//   background:
-// )
-
-// loadJapanesefoodset() {
-  //   //loop foodSetId
-  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-
-  //   final filterAppetizers =
-  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-  //   final filterSoupSalads =
-  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-  //   final filterEntrees =
-  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-  //   final filterSideOrder =
-  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-  //   final filterLunchSpecial =
-  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-  //   //appetizer
-
-  //   SetFoodModel[0].add(filterAppetizers);
-  //   SetFoodModel[1].add(filterSoupSalads);
-  //   SetFoodModel[2].add(filterEntrees);
-  //   SetFoodModel[3].add(filterKidmu);
-  //   SetFoodModel[4].add(filterSideOrder);
-  //   SetFoodModel[5].add(filterLunchSpecial);
-  // }
-  // loadThaifoodset() {
-  //   ListfilterFoodata.myfood =
-  //       ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-  //   //appfood
-  //   ListfilterFoodata.filterfood = ListfilterFoodata.myfood
-  //       .where((e) => e.foodSetId == 'Srd8o2evE8g=')
-  //       .toList();
-  //   //
-  //   ListfilterFoodata.filterfood = ListfilterFoodata.filterfood =
-  //       ListfilterFoodata.myfood
-  //           .where((e) => e.foodSetId == 'Srd8o2evE8g=')
-  //           .toList();
-
-  //   var filterfood = myfood.where((e) => e.foodSetId == 'Srd8o2evE8g=');
-  //   final filterAppetizers =
-  //       filterfood.where((e) => e.foodCatId == 'jePeFNAwuEY=');
-  //   final filterSoupSalads =
-  //       filterfood.where((e) => e.foodCatId == 'vMCylG10cHU=');
-  //   final filterEntrees =
-  //       filterfood.where((e) => e.foodCatId == 'nH/9Nj9g9gI=');
-  //   final filterKidmu = filterfood.where((e) => e.foodCatId == 'CzhVi+Firzc=');
-  //   final filterSideOrder =
-  //       filterfood.where((e) => e.foodCatId == 'ghtx2D66zFg=');
-  //   final filterLunchSpecial =
-  //       filterfood.where((e) => e.foodCatId == 'iS94mlBDp70=');
-  //   //appetizer
-  //   SetFoodModel[0].add(filterAppetizers);
-  //   SetFoodModel[1].add(filterSoupSalads);
-  //   SetFoodModel[2].add(filterEntrees);
-  //   SetFoodModel[3].add(filterKidmu);
-  //   SetFoodModel[4].add(filterSideOrder);
-  //   SetFoodModel[5].add(filterLunchSpecial);
-  // }
-  // SliverListFoodOrder(
-          //     foodListitem: widget.Appetizer, foodcatname: 'Appetizer'),
-          // SliverListFoodOrder(
-          //   foodListitem: widget.Soup,
-          //   foodcatname: 'Soup',
-          // ),
-          // SliverListFoodOrder(
-          //   foodListitem: widget.Salads,
-          //   foodcatname: 'Salad',
-          // ),
-          // SliverListFoodOrder(
-          //   foodListitem: widget.Noodles,
-          //   foodcatname: 'Noodles',
-          // ),
-          // SliverListFoodOrder(
-          //   foodListitem: widget.Entrees,
-          //   foodcatname: 'Entrees',
-          // ),
