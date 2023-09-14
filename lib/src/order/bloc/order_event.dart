@@ -8,3 +8,5 @@ sealed class OrderEvent extends Equatable {
 }
 
 class OrderInitialEvent extends OrderEvent {}
+
+class OrderStateJapanesFoodButtonClickedEvent extends OrderEvent {}
