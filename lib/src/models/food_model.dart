@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-class Foodmodel {
+class FoodModel {
   final String? foodId;
   final String? foodName;
   final String? foodNameAlt;
@@ -38,7 +38,7 @@ class Foodmodel {
   final dynamic plu;
   final String? imageThirdParty;
 
-  const Foodmodel({
+  const FoodModel({
     this.foodId,
     this.foodName,
     this.foodNameAlt,
@@ -77,10 +77,10 @@ class Foodmodel {
 
   @override
   String toString() {
-    return 'Foodmodel(foodId: $foodId, foodName: $foodName, foodNameAlt: $foodNameAlt, foodPrice: $foodPrice, foodDesc: $foodDesc, foodSorting: $foodSorting, active: $active, foodSetId: $foodSetId, foodCatId: $foodCatId, revenueClassId: $revenueClassId, taxRateId: $taxRateId, taxRate2Id: $taxRate2Id, priority: $priority, printSingle: $printSingle, isCommand: $isCommand, foodShowOption: $foodShowOption, foodPdaNumber: $foodPdaNumber, modifyOn: $modifyOn, createOn: $createOn, pureImageName: $pureImageName, imageName: $imageName, qtyLimit: $qtyLimit, isLimit: $isLimit, productId: $productId, isOutStock: $isOutStock, isFree: $isFree, isShow: $isShow, isShowInstruction: $isShowInstruction, imageNameString: $imageNameString, thirdPartyGroupId: $thirdPartyGroupId, foodBaseId: $foodBaseId, isThirdParty: $isThirdParty, plu: $plu, imageThirdParty: $imageThirdParty)';
+    return 'FoodModel(foodId: $foodId, foodName: $foodName, foodNameAlt: $foodNameAlt, foodPrice: $foodPrice, foodDesc: $foodDesc, foodSorting: $foodSorting, active: $active, foodSetId: $foodSetId, foodCatId: $foodCatId, revenueClassId: $revenueClassId, taxRateId: $taxRateId, taxRate2Id: $taxRate2Id, priority: $priority, printSingle: $printSingle, isCommand: $isCommand, foodShowOption: $foodShowOption, foodPdaNumber: $foodPdaNumber, modifyOn: $modifyOn, createOn: $createOn, pureImageName: $pureImageName, imageName: $imageName, qtyLimit: $qtyLimit, isLimit: $isLimit, productId: $productId, isOutStock: $isOutStock, isFree: $isFree, isShow: $isShow, isShowInstruction: $isShowInstruction, imageNameString: $imageNameString, thirdPartyGroupId: $thirdPartyGroupId, foodBaseId: $foodBaseId, isThirdParty: $isThirdParty, plu: $plu, imageThirdParty: $imageThirdParty)';
   }
 
-  factory Foodmodel.fromMap(Map<String, dynamic> data) => Foodmodel(
+  factory FoodModel.fromMap(Map<String, dynamic> data) => FoodModel(
         foodId: data['foodId'] as String?,
         foodName: data['foodName'] as String?,
         foodNameAlt: data['foodNameAlt'] as String?,
@@ -156,17 +156,17 @@ class Foodmodel {
 
   /// `dart:convert`
   ///
-  /// Parses the string and returns the resulting Json object as [Foodmodel].
-  factory Foodmodel.fromJson(String data) {
-    return Foodmodel.fromMap(json.decode(data) as Map<String, dynamic>);
+  /// Parses the string and returns the resulting Json object as [FoodModel].
+  factory FoodModel.fromJson(String data) {
+    return FoodModel.fromMap(json.decode(data) as Map<String, dynamic>);
   }
 
   /// `dart:convert`
   ///
-  /// Converts [Foodmodel] to a JSON string.
+  /// Converts [FoodModel] to a JSON string.
   String toJson() => json.encode(toMap());
 
-  Foodmodel copyWith({
+  FoodModel copyWith({
     String? foodId,
     String? foodName,
     String? foodNameAlt,
@@ -202,7 +202,7 @@ class Foodmodel {
     dynamic plu,
     String? imageThirdParty,
   }) {
-    return Foodmodel(
+    return FoodModel(
       foodId: foodId ?? this.foodId,
       foodName: foodName ?? this.foodName,
       foodNameAlt: foodNameAlt ?? this.foodNameAlt,
@@ -243,7 +243,7 @@ class Foodmodel {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    if (other is! Foodmodel) return false;
+    if (other is! FoodModel) return false;
     final mapEquals = const DeepCollectionEquality().equals;
     return mapEquals(other.toMap(), toMap());
   }

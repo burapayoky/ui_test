@@ -1,16 +1,13 @@
 part of 'order_bloc.dart';
 
-sealed class OrderEvent extends Equatable {
+abstract class OrderEvent {
   const OrderEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
-class OrderInitialEvent extends OrderEvent {}
+class OrderUpdateEvent extends OrderEvent {
+  final String? foodSetId;
 
-class OrderStateThaifoodClickedEvent extends OrderEvent {}
-
-class OrderStateFreeItemButtonClickedEvent extends OrderEvent {}
-
-class OrderStateJapanesFoodButtonClickedEvent extends OrderEvent {}
+  const OrderUpdateEvent({
+    required this.foodSetId,
+  });
+}

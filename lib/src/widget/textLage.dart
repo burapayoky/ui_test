@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 class TextLage extends StatelessWidget {
-  final String hinttext;
-  final double textsize;
+  final String hintText;
+  final double textSize;
 
-  TextLage({
+  const TextLage({
     super.key,
-    required this.hinttext,
-    required this.textsize,
+    required this.hintText,
+    required this.textSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      hinttext,
+      hintText,
       style: TextStyle(
-        fontSize: textsize,
+        fontSize: textSize,
         fontWeight: FontWeight.w800,
         fontFamily: AutofillHints.creditCardFamilyName,
       ),
