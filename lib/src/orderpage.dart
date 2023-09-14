@@ -19,8 +19,6 @@ class OrderPage extends StatefulWidget {
   State<OrderPage> createState() => _OrderPageState();
 }
 
-class Thaifooddata {}
-
 class _OrderPageState extends State<OrderPage> {
   final myfood = ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
 
@@ -33,73 +31,6 @@ class _OrderPageState extends State<OrderPage> {
     context.read<OrderBloc>().add(OrderInitialEvent());
     //loopthaifood();
     //print((ListfilterFoodata.menufood[0].runtimeType));
-  }
-
-  void updateOrderPageState() {
-    setState(() {
-      // ทำอะไรก็ตามที่แปลงสถานะใน OrderPage
-      ListfilterFoodata.foodCatName.clear();
-      loopJapanesefood();
-    });
-  }
-
-  loopthaifood() {
-    ListfilterFoodata.myfood = [];
-
-    ListfilterFoodata.foodCatName.clear();
-    ListfilterFoodata.myfood =
-        ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-    ListfilterFoodata.filterfood = ListfilterFoodata.myfood
-        .where((e) => e.foodSetId == 'Srd8o2evE8g=')
-        .toList();
-
-    //keepfood.removeWhere((element) => element == "()");
-    for (var foodcat in ListfilterFoodata.myfoodcat) {
-      List<Foodmodel> keepfood = [];
-      for (var food in ListfilterFoodata.filterfood) {
-        if (foodcat.foodCatId == food.foodCatId) {
-          keepfood.add(food);
-        }
-        if (food.foodCatId == foodcat.foodCatId) {
-          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
-        }
-      }
-
-      ListfilterFoodata.menufood.add(keepfood);
-    }
-    ListfilterFoodata.foodCatName =
-        ListfilterFoodata.foodCatName.toSet().toList();
-    ListfilterFoodata.menufood.removeWhere((List element) => element.isEmpty);
-  }
-
-  loopJapanesefood() {
-    //Lkx2cia+nxU=
-    ListfilterFoodata.myfood = [];
-
-    ListfilterFoodata.foodCatName.clear();
-    ListfilterFoodata.myfood =
-        ListFoodata.food.map((e) => Foodmodel.fromMap(e)).toList();
-    ListfilterFoodata.filterfood = ListfilterFoodata.myfood
-        .where((e) => e.foodSetId == 'Lkx2cia+nxU=')
-        .toList();
-
-    //keepfood.removeWhere((element) => element == "()");
-    for (var foodcat in ListfilterFoodata.myfoodcat) {
-      List<Foodmodel> keepfood = [];
-      for (var food in ListfilterFoodata.filterfood) {
-        if (foodcat.foodCatId == food.foodCatId) {
-          keepfood.add(food);
-        }
-        if (food.foodCatId == foodcat.foodCatId) {
-          ListfilterFoodata.foodCatName.add(foodcat.foodCatName!);
-        }
-      }
-
-      ListfilterFoodata.menufood.add(keepfood);
-    }
-    ListfilterFoodata.foodCatName =
-        ListfilterFoodata.foodCatName.toSet().toList();
-    ListfilterFoodata.menufood.removeWhere((List element) => element.isEmpty);
   }
 
   loopFreeItem() {
@@ -134,21 +65,20 @@ class _OrderPageState extends State<OrderPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         Flexible(
             flex: 3,
             child: SelectedMenu(
-              updateOrderPageState: loopJapanesefood,
-              listCatfoodmenu_: ListfilterFoodata.foodCatName,
-              menufood_: ListfilterFoodata.menufood,
-            )),
-        const VerticalDivider(
+                // listCatfoodmenu_: ListfilterFoodata.foodCatName,
+                // menufood_: ListfilterFoodata.menufood,
+                )),
+        VerticalDivider(
           width: 1,
           thickness: 20,
           color: Colors.white54,
         ),
-        const Flexible(flex: 1, child: CheckBin())
+        Flexible(flex: 1, child: CheckBin())
       ],
     );
   }
@@ -156,14 +86,12 @@ class _OrderPageState extends State<OrderPage> {
 
 class SelectedMenu extends StatefulWidget {
   ///
-  final Function updateOrderPageState;
-  final List<String> listCatfoodmenu_;
-  final List<List> menufood_;
+  // final List<String> listCatfoodmenu_;
+  // final List<List> menufood_;
   const SelectedMenu({
     super.key,
-    required this.updateOrderPageState,
-    required this.listCatfoodmenu_,
-    required this.menufood_,
+    // required this.listCatfoodmenu_,
+    // required this.menufood_,
   });
 
   @override
@@ -171,12 +99,6 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
-  reloaddata() {
-    setState(() {
-      widget.updateOrderPageState;
-    });
-  }
-
   bool watin = true;
 
   @override
@@ -224,8 +146,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
       body: BlocBuilder<OrderBloc, OrderState>(
         buildWhen: (previous, current) => true,
         builder: (context, state) {
-          print('hello');
-
           if (state is OrderStatefoodsSet) {
             Future.delayed(Duration(seconds: 1)).then((value) {
               setState(() {
@@ -348,7 +268,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                       scrollDirection: Axis.horizontal,
                                       physics:
                                           const AlwaysScrollableScrollPhysics(),
-                                      itemCount: widget.listCatfoodmenu_.length,
+                                      itemCount: state.foodCatName.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
                                         return TextButton(
