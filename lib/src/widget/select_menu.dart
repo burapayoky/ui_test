@@ -25,7 +25,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
     final screenHeight = context.screenHeight;
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
-
     context.read<OrderBloc>().add(
           const OrderUpdateEvent(foodSetId: 'Srd8o2evE8g='),
         );
@@ -186,7 +185,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
         slivers: [
           BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {
+              double widtH = 60;
               return SliverAppBar(
+                //shrikWrap
                 titleSpacing: 0,
                 leading: InkWell(
                   onTap: () => Navigator.pop(context),
@@ -231,22 +232,22 @@ class _SelectedMenuState extends State<SelectedMenu> {
                     ),
                     child: Row(
                       children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.search),
+                        ),
                         SizedBox(
                           width: 100,
                           child: TextField(
-                            onChanged: (value_) {
+                            onChanged: (value) {
                               context.read<OrderBloc>().add(
                                     OrderSearchEvent(
-                                      text: value_,
+                                      text: value,
                                     ),
                                   );
                             },
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.search),
-                        )
                       ],
                     ),
                   ),
