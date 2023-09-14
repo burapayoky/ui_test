@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,11 +9,16 @@ import 'package:ui_test/src/models/food_category_model.dart';
 import 'package:ui_test/src/order/bloc/order_bloc.dart';
 import 'package:ui_test/src/widget/order/sliverlist_foodorder.dart';
 
-class SelectedMenu extends StatelessWidget {
+class SelectedMenu extends StatefulWidget {
   const SelectedMenu({
     super.key,
   });
 
+  @override
+  State<SelectedMenu> createState() => _SelectedMenuState();
+}
+
+class _SelectedMenuState extends State<SelectedMenu> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -19,6 +26,7 @@ class SelectedMenu extends StatelessWidget {
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
 
+    final stcSetState = StreamController<bool>.broadcast();
     context.read<OrderBloc>().add(
           const OrderUpdateEvent(foodSetId: 'Srd8o2evE8g='),
         );
@@ -179,6 +187,7 @@ class SelectedMenu extends StatelessWidget {
         slivers: [
           BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {
+              double w = 60;
               return SliverAppBar(
                 leading: InkWell(
                   onTap: () => Navigator.pop(context),
@@ -203,7 +212,43 @@ class SelectedMenu extends StatelessWidget {
                     ],
                   ),
                 ),
-                actions: const [Icon(Icons.search)],
+                actions: [
+                  Builder(builder: (context) {
+                    return StreamBuilder<bool>(
+                      stream: stcSetState.stream,
+                      builder: (context, snapshot) {
+                        return Container(
+                          height: double.infinity,
+                          width: w,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(104, 182, 180, 180),
+                            borderRadius: BorderRadius.circular(8),
+
+                            //border: Border.all(color: Colors.black)),
+                          ),
+                          child: w != 60
+                              ? Row(
+                                  children: [
+                                    SizedBox(width: 100, child: TextField()),
+                                    IconButton(
+                                        onPressed: () {
+                                          w = 60;
+                                          stcSetState.add(true);
+                                        },
+                                        icon: Icon(Icons.search))
+                                  ],
+                                )
+                              : IconButton(
+                                  onPressed: () {
+                                    w = 150;
+                                    stcSetState.add(false);
+                                  },
+                                  icon: const Icon(Icons.search)),
+                        );
+                      },
+                    );
+                  })
+                ],
               );
             },
           ),
