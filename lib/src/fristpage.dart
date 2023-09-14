@@ -16,14 +16,6 @@ class _FristPageState extends State<FristPage> {
   //Listitem? item;
   @override
   Widget build(BuildContext context) {
-    isScreenwidht() {
-      if (context.widthsize > context.heightsize) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -63,217 +55,109 @@ class _FristPageState extends State<FristPage> {
           ],
         ),
         /////body
-        body: !isScreenwidht()
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Column(
+        body: Column(
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: context.heightsize / 8),
+                  child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: context.heightsize / 8),
-                        child: Column(
-                          children: [
-                            TextLage(
-                                hinttext: 'Self-Service',
-                                textsize: context.heightsize / 14),
-                            TextLage(
-                                hinttext: 'Experience.',
-                                textsize: context.heightsize / 14),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: context.heightsize / 30,
-                      ),
-                      Text(
-                        'Form self-order to self-checkout',
-                        style: TextStyle(fontSize: context.heightsize / 48),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.credit_card,
-                            size: context.heightsize / 48,
-                            color: Colors.red,
-                          ),
-                          Text(
-                            ' Aceept only Credit Card',
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontSize: context.heightsize / 48,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.red),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, 'order');
-                            },
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                )),
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Colors.blue)),
-                            child: Text(
-                              'Tap to Order',
-                              style: TextStyle(
-                                  fontSize: context.heightsize / 50,
-                                  color: Colors.white),
-                            )),
-                      ),
-                      //end of button
+                      TextLage(
+                          hinttext: 'Self-Service',
+                          textsize: context.heightsize / 14),
+                      TextLage(
+                          hinttext: 'Experience.',
+                          textsize: context.heightsize / 14),
                     ],
                   ),
-                  //end of body text
-                  //gif
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/gif/gif1.gif'),
-                              fit: BoxFit.fill)),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            right: context.widthsize / 35,
-                            top: context.heightsize / 9),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(
-                                Icons.restaurant,
-                                size: context.widthsize / 38,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text(
-                              'Soi Siam',
-                              style: TextStyle(
-                                  fontSize: context.widthsize / 40,
-                                  color: Colors.white),
-                            ),
-                          ],
+                ),
+                SizedBox(
+                  height: context.heightsize / 30,
+                ),
+                Text(
+                  'Form self-order to self-checkout',
+                  style: TextStyle(fontSize: context.heightsize / 48),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.credit_card,
+                      size: context.heightsize / 48,
+                      color: Colors.red,
+                    ),
+                    Text(
+                      ' Aceept only Credit Card',
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontSize: context.heightsize / 48,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.red),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'order');
+                      },
+                      style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          )),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue)),
+                      child: Text(
+                        'Tap to Order',
+                        style: TextStyle(
+                            fontSize: context.heightsize / 50,
+                            color: Colors.white),
+                      )),
+                ),
+                //end of button
+              ],
+            ),
+            //end of body text
+            //gif
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/gif/gif1.gif'),
+                        fit: BoxFit.fill)),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      right: context.widthsize / 35,
+                      top: context.heightsize / 9),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Icon(
+                          Icons.restaurant,
+                          size: context.widthsize / 38,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              )
-            : Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: context.heightsize / 8),
-                          child: Column(
-                            children: [
-                              TextLage(
-                                  hinttext: 'Self-Service',
-                                  textsize: context.heightsize / 14),
-                              TextLage(
-                                  hinttext: 'Experience.',
-                                  textsize: context.heightsize / 14),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: context.heightsize / 30,
-                        ),
-                        Text(
-                          'Form self-order to self-checkout',
-                          style: TextStyle(fontSize: context.heightsize / 48),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.credit_card,
-                              size: context.heightsize / 48,
-                              color: Colors.red,
-                            ),
-                            Text(
-                              ' Aceept only Credit Card',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: context.heightsize / 48,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.red),
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, 'order');
-                              },
-                              style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  )),
-                                  backgroundColor:
-                                      MaterialStatePropertyAll(Colors.blue)),
-                              child: Text(
-                                'Tap to Order',
-                                style: TextStyle(
-                                    fontSize: context.heightsize / 50,
-                                    color: Colors.white),
-                              )),
-                        ),
-                        //end of button
-                      ],
-                    ),
-                  ),
-                  //end of body text
-                  //gif
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/gif/gif1.gif'),
-                              fit: BoxFit.fill)),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            right: context.widthsize / 35,
-                            top: context.heightsize / 9),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Icon(
-                                Icons.restaurant,
-                                size: context.widthsize / 38,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text(
-                              'Soi Siam',
-                              style: TextStyle(
-                                  fontSize: context.widthsize / 40,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
+                      Text(
+                        'Soi Siam',
+                        style: TextStyle(
+                            fontSize: context.widthsize / 40,
+                            color: Colors.white),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ));
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
 

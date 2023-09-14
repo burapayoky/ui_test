@@ -1,15 +1,19 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import 'package:ui_test/src/fristpage.dart';
 import 'package:ui_test/src/homepage.dart';
-import 'package:ui_test/src/order/bloc/order_bloc.dart';
+import 'package:ui_test/src/models/Thaifood.dart';
+import 'package:ui_test/src/models/foodmodel.dart';
 import 'package:ui_test/src/orderpage.dart';
-import 'package:ui_test/test/bloc/get_data_bloc.dart';
 
 void main() {
+  var filterfood =
+      ListFoodata.food.where((e) => e['foodSetId'] == 'Srd8o2evE8g=');
+  //filterfood = filterfood.where((e) => e['foodCatId'] == 'qPqbVd/wv7I=');
+  //List<Map<String, dynamic>> thaiAzz = [];
+
+  print(filterfood.length);
   runApp(const MyApp());
 }
 
@@ -17,25 +21,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
-    final orderBloc = BlocProvider<OrderBloc>(create: (context) => OrderBloc());
-    final testBloc =
-        BlocProvider<GetDataBloc>(create: (context) => GetDataBloc());
-    return MultiProvider(
-      providers: [orderBloc, testBloc],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        scrollBehavior: AppScrollBehavior(),
-        routes: AppRoute().getAll,
-        home: HomePage(),
-        debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
+      scrollBehavior: AppScrollBehavior(),
+      routes: AppRoute().getAll,
+      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -61,4 +58,3 @@ class AppScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.trackpad,
       };
 }
-//final homemainBloc =BlocProvider<OrderBloc>(create: (context) => OrderBloc());
