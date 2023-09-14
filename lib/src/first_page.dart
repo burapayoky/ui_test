@@ -13,7 +13,7 @@ class FirstPage extends StatelessWidget {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
-    final isLandscape = screenWidth > screenHeight;
+    // final isLandscape = screenWidth > screenHeight;
 
     PreferredSizeWidget appBar() {
       return AppBar(

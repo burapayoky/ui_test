@@ -16,19 +16,24 @@ class SelectedMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
-    final isPortrait = screenHeight > screenWidth;
+    //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
+
+    context.read<OrderBloc>().add(
+          const OrderUpdateEvent(foodSetId: 'j8CZNxgCebY='),
+        );
 
     PreferredSizeWidget appBar() {
       return AppBar(
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.keyboard_arrow_left,
-              size: 32,
-            )),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(
+            Icons.keyboard_arrow_left,
+            size: 32,
+          ),
+        ),
         actions: [
           Container(
             height: 60,
@@ -58,11 +63,11 @@ class SelectedMenu extends StatelessWidget {
         children: [
           ...FoodData.getFoodSet().mapIndexed(
             (i, e) {
-              if (i == 0) {
-                context.read<OrderBloc>().add(
-                      OrderUpdateEvent(foodSetId: e.foodSetId),
-                    );
-              }
+              // if (i == 0) {
+              //   context.read<OrderBloc>().add(
+              //         OrderUpdateEvent(foodSetId: e.foodSetId),
+              //       );
+              // }
 
               return SizedBox(
                 height: isLandscape
@@ -170,22 +175,35 @@ class SelectedMenu extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: appBar(),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            floating: false,
-            pinned: true,
-            automaticallyImplyLeading: false,
-            bottom: PreferredSize(
-              preferredSize: Size.fromHeight(isLandscape ? 100 : 120),
-              child: Column(
-                children: [
-                  selectedFoodSet(),
-                  selectedFoodCategory(),
-                ],
-              ),
-            ),
+          BlocBuilder<OrderBloc, OrderState>(
+            builder: (context, state) {
+              return SliverAppBar(
+                leading: const InkWell(
+                  child: Row(
+                    children: [
+                      Icon(Icons.arrow_back),
+                      Text(
+                        'Black',
+                        style: TextStyle(fontSize: 12),
+                      )
+                    ],
+                  ),
+                ),
+                floating: false,
+                pinned: true,
+                bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(isLandscape ? 140 : 120),
+                  child: Column(
+                    children: [
+                      selectedFoodSet(),
+                      selectedFoodCategory(),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
           foodMenu(),
         ],

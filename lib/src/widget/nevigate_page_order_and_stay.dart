@@ -17,7 +17,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = context.screenWidth;
+    //final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
 
     return SizedBox(

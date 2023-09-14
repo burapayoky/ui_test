@@ -94,7 +94,7 @@ class SliverListFoodOrder extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                '\$${foods[index].foodPrice}',
+                                '\$ ${foods[index].foodPrice}',
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontFamily: AutofillHints.streetAddressLine1,
