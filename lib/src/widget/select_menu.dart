@@ -17,6 +17,18 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
+  final ScrollController _controller = ScrollController();
+
+  void scrollToIndex(int index) {
+    if (_controller.hasClients) {
+      _controller.animateTo(
+        index * 3 * 225, // Replace with your item height
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
   @override
   dispose();
   @override
@@ -134,7 +146,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 itemCount: foodCategories.length,
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      scrollToIndex(index);
+                    },
                     child: Text(
                       foodCategories[index].foodCatName ?? '',
                       style: const TextStyle(
@@ -182,6 +196,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     return Scaffold(
       body: CustomScrollView(
+        controller: _controller,
         slivers: [
           BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {

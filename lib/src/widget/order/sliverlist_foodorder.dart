@@ -37,7 +37,7 @@ class SliverListFoodOrder extends StatelessWidget {
               crossAxisSpacing: 16,
               mainAxisSpacing: 12,
               childAspectRatio: isLandscape
-                  ? context.screenWidth / 1900
+                  ? context.screenWidth / 1500
                   : context.screenWidth / 700,
             ),
             shrinkWrap: true,
@@ -80,9 +80,10 @@ class SliverListFoodOrder extends StatelessWidget {
                                 width: 300,
                                 child: Text(
                                   foods[index].foodName!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16,
-                                      overflow: TextOverflow.ellipsis),
+                                      overflow: TextOverflow.ellipsis,
+                                      fontFamily: 'Roboto'),
                                 ),
                               ),
                             ),
@@ -97,10 +98,10 @@ class SliverListFoodOrder extends StatelessWidget {
                                   (foods[index].foodDesc == null)
                                       ? ''
                                       : foods[index].foodDesc!,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontFamily: 'Roboto'),
                                 ),
                               ),
                             ),
@@ -117,7 +118,7 @@ class SliverListFoodOrder extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               fontSize: 16,
-                              fontFamily: AutofillHints.streetAddressLine1,
+                              fontFamily: 'Roboto',
                             ),
                           ),
                         ),
