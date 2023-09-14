@@ -62,7 +62,7 @@ class SliverListFoodOrder extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.red,
                           image: DecorationImage(
-                            alignment: Alignment(0, 0),
+                            alignment: const Alignment(0, 0),
                             image: NetworkImage(foods[index].imageName!),
                             fit: BoxFit.fill,
                           ),
@@ -84,7 +84,7 @@ class SliverListFoodOrder extends StatelessWidget {
                             (foods[index].foodDesc == null)
                                 ? ''
                                 : foods[index].foodDesc!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               overflow: TextOverflow.ellipsis,
                             ),

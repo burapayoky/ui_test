@@ -23,10 +23,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         } else {
           prev[cur.foodCatId!] = [cur];
         }
+
         return prev;
       });
-
-      print('detect event');
 
       emit(OrderUpdateState(foodData: foodData));
     });

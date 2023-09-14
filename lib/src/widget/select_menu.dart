@@ -20,7 +20,7 @@ class SelectedMenu extends StatelessWidget {
     final isLandscape = screenWidth > screenHeight;
 
     context.read<OrderBloc>().add(
-          const OrderUpdateEvent(foodSetId: 'j8CZNxgCebY='),
+          const OrderUpdateEvent(foodSetId: 'Srd8o2evE8g='),
         );
 
     PreferredSizeWidget appBar() {
@@ -203,6 +203,7 @@ class SelectedMenu extends StatelessWidget {
                     ],
                   ),
                 ),
+                actions: const [Icon(Icons.search)],
               );
             },
           ),
