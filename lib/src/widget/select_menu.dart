@@ -20,13 +20,14 @@ class SelectedMenu extends StatefulWidget {
 
 class _SelectedMenuState extends State<SelectedMenu> {
   @override
+  dispose();
+  @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
 
-    final stcSetState = StreamController<bool>.broadcast();
     context.read<OrderBloc>().add(
           const OrderUpdateEvent(foodSetId: 'Srd8o2evE8g='),
         );
@@ -187,7 +188,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
         slivers: [
           BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {
-              double w = 60;
               return SliverAppBar(
                 leading: InkWell(
                   onTap: () => Navigator.pop(context),
@@ -213,41 +213,36 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   ),
                 ),
                 actions: [
-                  Builder(builder: (context) {
-                    return StreamBuilder<bool>(
-                      stream: stcSetState.stream,
-                      builder: (context, snapshot) {
-                        return Container(
-                          height: double.infinity,
-                          width: w,
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(104, 182, 180, 180),
-                            borderRadius: BorderRadius.circular(8),
+                  Container(
+                    height: double.infinity,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(104, 182, 180, 180),
+                      borderRadius: BorderRadius.circular(8),
 
-                            //border: Border.all(color: Colors.black)),
+                      //border: Border.all(color: Colors.black)),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 100,
+                          child: TextField(
+                            onChanged: (value_) {
+                              context.read<OrderBloc>().add(
+                                    OrderSearchEvent(
+                                      text: value_,
+                                    ),
+                                  );
+                            },
                           ),
-                          child: w != 60
-                              ? Row(
-                                  children: [
-                                    SizedBox(width: 100, child: TextField()),
-                                    IconButton(
-                                        onPressed: () {
-                                          w = 60;
-                                          stcSetState.add(true);
-                                        },
-                                        icon: Icon(Icons.search))
-                                  ],
-                                )
-                              : IconButton(
-                                  onPressed: () {
-                                    w = 150;
-                                    stcSetState.add(false);
-                                  },
-                                  icon: const Icon(Icons.search)),
-                        );
-                      },
-                    );
-                  })
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.search),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               );
             },

@@ -11,3 +11,11 @@ class OrderUpdateEvent extends OrderEvent {
     required this.foodSetId,
   });
 }
+
+class OrderSearchEvent extends OrderEvent {
+  final String? text;
+
+  const OrderSearchEvent({
+    required this.text,
+  });
+}
