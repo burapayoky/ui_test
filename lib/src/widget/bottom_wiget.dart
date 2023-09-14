@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:ui_test/src/fristpage.dart';
+import 'package:ui_test/extensions/build_context.dart';
 
 class BottomWidget extends StatelessWidget {
   const BottomWidget({super.key});
@@ -12,8 +12,7 @@ class BottomWidget extends StatelessWidget {
       width: double.maxFinite,
       color: Colors.black,
       child: Padding(
-        padding: EdgeInsets.all(30.0),
-        //body side
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
             Row(
@@ -25,16 +24,16 @@ class BottomWidget extends StatelessWidget {
                     Text(
                       'Contact Us',
                       style: TextStyle(
-                          fontSize: context.widthsize / 40,
-                          color: Colors.white),
+                        fontSize: context.screenWidth / 40,
+                        color: Colors.white,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
                         'Rattanathibech 28  Rattanathibech 28 Alley,\nTambon Bang Kraso, Mueang Nontraburi District',
-                        //
                         style: TextStyle(
-                          fontSize: context.widthsize / 40,
+                          fontSize: context.screenWidth / 40,
                           color: Colors.white,
                         ),
                         softWrap: true,
@@ -42,43 +41,37 @@ class BottomWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                //contact
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //phone
-                    IconwithCircle(
-                      icon_: Icons.phone,
-                      text_: '090-0890-xxxx',
-                      divie: 30,
-                      textdivie: 40,
+                    IconWithCircle(
+                      icon: Icons.phone,
+                      text: '090-0890-xxxx',
+                      divide: 30,
+                      textDivide: 40,
                     ),
-                    //instagram
-                    IconwithCircle(
-                      icon_: FontAwesomeIcons.instagram,
-                      text_: 'SoiSiam',
-                      divie: 30,
-                      textdivie: 40,
+                    IconWithCircle(
+                      icon: FontAwesomeIcons.instagram,
+                      text: 'SoiSiam',
+                      divide: 30,
+                      textDivide: 40,
                     ),
-                    //youtube
-                    IconwithCircle(
-                      icon_: FontAwesomeIcons.youtube,
-                      text_: 'SoiSiam Chanal',
-                      divie: 35,
-                      textdivie: 40,
+                    IconWithCircle(
+                      icon: FontAwesomeIcons.youtube,
+                      text: 'SoiSiam Chanel',
+                      divide: 35,
+                      textDivide: 40,
                     ),
-                    //gmail
-                    IconwithCircle(
-                      icon_: Icons.mail,
-                      text_: 'SoiSiam@gmail.co.th',
-                      divie: 30,
-                      textdivie: 40,
+                    IconWithCircle(
+                      icon: Icons.mail,
+                      text: 'SoiSiam@gmail.co.th',
+                      divide: 30,
+                      textDivide: 40,
                     ),
                   ],
-                )
+                ),
               ],
             ),
-            //bottom side
             Expanded(
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
@@ -88,8 +81,9 @@ class BottomWidget extends StatelessWidget {
                     Text(
                       '© Copyright 2022 | Powered by',
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: context.heightsize / 60),
+                        color: Colors.white,
+                        fontSize: context.screenHeight / 60,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8, left: 8),
@@ -98,11 +92,11 @@ class BottomWidget extends StatelessWidget {
                         width: 70,
                         child: Image.asset("assets/images/bg/smile.png"),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -110,17 +104,18 @@ class BottomWidget extends StatelessWidget {
   }
 }
 
-class IconwithCircle extends StatelessWidget {
-  final String text_;
-  final IconData icon_;
-  final double divie;
-  final double textdivie;
-  const IconwithCircle({
+class IconWithCircle extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final double divide;
+  final double textDivide;
+
+  const IconWithCircle({
     super.key,
-    required this.text_,
-    required this.icon_,
-    required this.divie,
-    required this.textdivie,
+    required this.text,
+    required this.icon,
+    required this.divide,
+    required this.textDivide,
   });
 
   @override
@@ -128,17 +123,22 @@ class IconwithCircle extends StatelessWidget {
     return Row(
       children: [
         Padding(
-          padding: EdgeInsets.only(right: context.widthsize / 30),
+          padding: EdgeInsets.only(right: context.screenWidth / 30),
           child: SizedBox(
             width: 30,
-            child: FaIcon(icon_,
-                color: Colors.white, size: context.heightsize / divie),
+            child: FaIcon(
+              icon,
+              color: Colors.white,
+              size: context.screenHeight / divide,
+            ),
           ),
         ),
         Text(
-          text_,
+          text,
           style: TextStyle(
-              color: Colors.white, fontSize: context.widthsize / textdivie),
+            color: Colors.white,
+            fontSize: context.screenWidth / textDivide,
+          ),
         )
       ],
     );

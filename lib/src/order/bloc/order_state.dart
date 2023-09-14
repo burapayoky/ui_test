@@ -1,47 +1,19 @@
 part of 'order_bloc.dart';
 
-sealed class OrderState extends Equatable {
-  const OrderState();
+abstract class OrderState {
+  final Map<String, List<FoodModel>> foodData;
 
-  @override
-  List<Object> get props => [];
-}
-
-final class OrderInitial extends OrderState {}
-
-class OrderStatefoodsSet extends OrderState {
-  final List<String> foodCatName;
-  final List<Foodmodel> filterfood;
-  final List<List> menufood;
-  OrderStatefoodsSet({
-    required this.foodCatName,
-    required this.filterfood,
-    required this.menufood,
+  const OrderState({
+    this.foodData = const {},
   });
 }
 
-class OrderStatejapanesfoodSet extends OrderState {
-  final List<String> foodCatName;
-  final List<Foodmodel> filterfood;
-  final List<List> menufood;
+class OrderInitial extends OrderState {}
 
-  OrderStatejapanesfoodSet(
-      {required this.foodCatName,
-      required this.filterfood,
-      required this.menufood});
+class OrderUpdateState extends OrderState {
+  const OrderUpdateState({
+    required Map<String, List<FoodModel>> foodData,
+  }) : super(
+          foodData: foodData,
+        );
 }
-
-class OrderStateFreeitemSet extends OrderState {
-  final List<String> foodCatName;
-  final List<Foodmodel> filterfood;
-  final List<List> menufood;
-
-  OrderStateFreeitemSet(
-      {required this.foodCatName,
-      required this.filterfood,
-      required this.menufood});
-}
-
-class OrStateFreeitemButtonClicked extends OrderState {}
-
-class OrderStateJapanesFoodButtonClicked extends OrderState {}
