@@ -36,7 +36,9 @@ class SliverListFoodOrder extends StatelessWidget {
               crossAxisCount: isLandscape ? 4 : 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 12,
-              childAspectRatio: isLandscape ? 1 : 1.25,
+              childAspectRatio: isLandscape
+                  ? context.screenWidth / 1900
+                  : context.screenWidth / 700,
             ),
             shrinkWrap: true,
             itemCount: foods.length,
@@ -57,8 +59,8 @@ class SliverListFoodOrder extends StatelessWidget {
                     children: [
                       Container(
                         height: isLandscape
-                            ? context.screenWidth / 12
-                            : context.screenWidth / 11,
+                            ? context.screenWidth / 14
+                            : context.screenWidth / 8,
                         decoration: BoxDecoration(
                           color: Colors.red,
                           image: DecorationImage(
@@ -75,7 +77,7 @@ class SliverListFoodOrder extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: Container(
-                                width: 200,
+                                width: 300,
                                 child: Text(
                                   foods[index].foodName!,
                                   style: TextStyle(
@@ -85,30 +87,41 @@ class SliverListFoodOrder extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Visibility(
-                            visible:
-                                (foods[index].foodDesc == '') ? true : false,
-                            child: Text(
-                              foods[index].foodDesc!,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '\$ ${foods[index].foodPrice}',
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontFamily: AutofillHints.streetAddressLine1,
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 300,
+                                child: Text(
+                                  (foods[index].foodDesc == null)
+                                      ? ''
+                                      : foods[index].foodDesc!,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ],
-                      )
+                      ),
+                      Spacer(),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            '\$ ${foods[index].foodPrice}',
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontFamily: AutofillHints.streetAddressLine1,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
