@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -189,16 +187,25 @@ class _SelectedMenuState extends State<SelectedMenu> {
           BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {
               return SliverAppBar(
+                titleSpacing: 0,
                 leading: InkWell(
                   onTap: () => Navigator.pop(context),
-                  child: const Row(
-                    children: [
-                      Icon(Icons.keyboard_arrow_left),
-                      Text(
-                        'Black',
-                        style: TextStyle(fontSize: 12),
-                      )
-                    ],
+                  child: Container(
+                    width: 20,
+                    height: 14,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black12,
+                    ),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.keyboard_arrow_left),
+                        Text(
+                          'Back',
+                          style: TextStyle(fontSize: 12),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 floating: false,
@@ -238,7 +245,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         ),
                         IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.search),
+                          icon: const Icon(Icons.search),
                         )
                       ],
                     ),
