@@ -77,11 +77,11 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
               return SizedBox(
                 height: isLandscape
-                    ? context.screenHeight / 14
+                    ? context.screenHeight / 15
                     : context.screenWidth / 12,
                 width: isLandscape
-                    ? context.screenHeight / 4
-                    : context.screenHeight / 8,
+                    ? context.screenHeight / 5.2
+                    : context.screenHeight / 6,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: ElevatedButton(
@@ -98,7 +98,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                     child: Text(
                       e.foodSetName ?? '',
                       style: const TextStyle(
-                        fontSize: 24,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500,
                         fontStyle: FontStyle.normal,
                       ),

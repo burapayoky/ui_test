@@ -74,31 +74,36 @@ class SliverListFoodOrder extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 14, top: 8),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: Text(
-                                foods[index].foodName!,
-                                style: TextStyle(fontSize: 16),
+                              child: Container(
+                                width: 200,
+                                child: Text(
+                                  foods[index].foodName!,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      overflow: TextOverflow.ellipsis),
+                                ),
                               ),
                             ),
                           ),
-                          Text(
-                            (foods[index].foodDesc == null)
-                                ? ''
-                                : foods[index].foodDesc!,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              overflow: TextOverflow.ellipsis,
+                          Visibility(
+                            visible:
+                                (foods[index].foodDesc == '') ? true : false,
+                            child: Text(
+                              foods[index].foodDesc!,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                '\$ ${foods[index].foodPrice}',
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: AutofillHints.streetAddressLine1,
-                                ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '\$ ${foods[index].foodPrice}',
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontFamily: AutofillHints.streetAddressLine1,
                               ),
                             ),
                           ),
