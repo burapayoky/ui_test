@@ -180,10 +180,11 @@ class SelectedMenu extends StatelessWidget {
           BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {
               return SliverAppBar(
-                leading: const InkWell(
-                  child: Row(
+                leading: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: const Row(
                     children: [
-                      Icon(Icons.arrow_back),
+                      Icon(Icons.keyboard_arrow_left),
                       Text(
                         'Black',
                         style: TextStyle(fontSize: 12),
