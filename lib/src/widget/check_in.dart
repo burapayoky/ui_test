@@ -12,6 +12,7 @@ class CheckIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         actions: const [
           ActionsFlagIcon(),

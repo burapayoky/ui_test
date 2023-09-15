@@ -39,7 +39,12 @@ class _SelectedMenuState extends State<SelectedMenu> {
   }
 
   @override
-  dispose();
+  void dispose() {
+    // ignore: avoid_print
+    print('Dispose used');
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -83,51 +88,51 @@ class _SelectedMenuState extends State<SelectedMenu> {
     }
 
     Widget selectedFoodSet() {
-      return Row(
-        children: [
-          ...FoodData.getFoodSet().mapIndexed(
-            (i, e) {
-              // if (i == 0) {
-              //   context.read<OrderBloc>().add(
-              //         OrderUpdateEvent(foodSetId: e.foodSetId),
-              //       );
-              // }
-
-              return SizedBox(
-                height: isLandscape
-                    ? context.screenHeight / 14
-                    : context.screenWidth / 12,
-                width: isLandscape
-                    ? context.screenWidth / 9
-                    : context.screenHeight / 6,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<OrderBloc>().add(
-                            OrderUpdateEvent(foodSetId: e.foodSetId),
-                          );
-                    },
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        backgroundColor: Colors.black26),
-                    child: Text(
-                      e.foodSetName ?? '',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.normal,
-                          fontFamily: 'Roboto',
-                          color: Colors.white),
+      return SizedBox(
+        height:
+            isLandscape ? context.screenHeight / 16 : context.screenWidth / 12,
+        width: double.infinity,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            ...FoodData.getFoodSet().mapIndexed(
+              (i, e) {
+                return SizedBox(
+                  height: isLandscape
+                      ? context.screenHeight / 16
+                      : context.screenWidth / 12,
+                  width: isLandscape
+                      ? context.screenWidth / 7
+                      : context.screenHeight / 6,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<OrderBloc>().add(
+                              OrderUpdateEvent(foodSetId: e.foodSetId),
+                            );
+                      },
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          backgroundColor: Colors.black26),
+                      child: Text(
+                        e.foodSetName ?? '',
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FontStyle.normal,
+                            fontFamily: 'Roboto',
+                            color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       );
     }
 
@@ -145,7 +150,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
           return Padding(
             padding: const EdgeInsets.all(14),
-            child: SizedBox(
+            child: Container(
               height: 50,
               child: ListView.builder(
                 key: key,
@@ -153,18 +158,23 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: foodCategories.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return TextButton(
-                    onPressed: () {
-                      scrollToIndex(index, foodCategories.length);
-                      print('index $index:${foodCategories.length}');
-                    },
-                    child: Text(
-                      foodCategories[index].foodCatName ?? '',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
+                  return Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black38,
+                        borderRadius: BorderRadius.circular(4)),
+                    child: TextButton(
+                      onPressed: () {
+                        scrollToIndex(index, foodCategories.length);
+                        print('index $index:${foodCategories.length}');
+                      },
+                      child: Text(
+                        foodCategories[index].foodCatName ?? '',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   );
@@ -211,6 +221,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             builder: (context, state) {
               return SliverAppBar(
                 //shrikWrap
+                backgroundColor: Colors.white,
                 titleSpacing: 0,
                 leading: InkWell(
                   onTap: () => Navigator.pop(context),
@@ -235,7 +246,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 floating: false,
                 pinned: true,
                 bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(isLandscape ? 140 : 120),
+                  preferredSize: Size.fromHeight(isLandscape ? 140 : 140),
                   child: Column(
                     children: [
                       selectedFoodSet(),
@@ -284,3 +295,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
     );
   }
 }
+   // if (i == 0) {
+              //   context.read<OrderBloc>().add(
+              //         OrderUpdateEvent(foodSetId: e.foodSetId),
+              //       );
+              // }

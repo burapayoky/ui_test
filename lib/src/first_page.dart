@@ -18,6 +18,7 @@ class FirstPage extends StatelessWidget {
     PreferredSizeWidget appBar() {
       return AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
         title: Padding(
           padding: const EdgeInsets.all(20),
           child: InkWell(

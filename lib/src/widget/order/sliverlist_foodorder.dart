@@ -38,7 +38,7 @@ class SliverListFoodOrder extends StatelessWidget {
               mainAxisSpacing: 12,
               childAspectRatio: isLandscape
                   ? context.screenWidth / 1800
-                  : context.screenHeight / 1100,
+                  : context.screenHeight / 1600,
             ),
             shrinkWrap: true,
             itemCount: foods.length,
@@ -93,16 +93,20 @@ class SliverListFoodOrder extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
-                                width: isLandscape ? 280 : 260,
+                                width: isLandscape ? 280 : 240,
                                 child: Text(
                                   (foods[index].foodDesc == null)
                                       ? ''
                                       : foods[index].foodDesc!,
                                   style: const TextStyle(
-                                      fontSize: 12, fontFamily: 'Roboto'),
-                                  overflow: isLandscape
-                                      ? TextOverflow.ellipsis
-                                      : null,
+                                      fontSize: 12,
+                                      fontFamily: 'Roboto',
+                                      color: Colors.black54),
+                                  maxLines: isLandscape ? 3 : 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  // isLandscape
+                                  //     ? TextOverflow.ellipsis
+                                  //     : null,
                                 ),
                               ),
                             ),
@@ -113,7 +117,7 @@ class SliverListFoodOrder extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Text(
                             '\$ ${foods[index].foodPrice}',
                             overflow: TextOverflow.ellipsis,

@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
 
     PreferredSizeWidget appBar() {
       return AppBar(
+        backgroundColor: Colors.white,
         title: Padding(
           padding: const EdgeInsets.all(20),
           child: InkWell(
