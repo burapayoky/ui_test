@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+
 import 'package:ui_test/src/data/food_data.dart';
 import 'package:ui_test/src/models/food_model.dart';
 

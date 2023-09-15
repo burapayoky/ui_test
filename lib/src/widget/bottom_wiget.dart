@@ -53,7 +53,7 @@ class BottomWidget extends StatelessWidget {
                     IconWithCircle(
                       icon: FontAwesomeIcons.instagram,
                       text: 'SoiSiam',
-                      divide: 30,
+                      divide: 28,
                       textDivide: 40,
                     ),
                     IconWithCircle(

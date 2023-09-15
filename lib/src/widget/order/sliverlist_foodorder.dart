@@ -37,8 +37,8 @@ class SliverListFoodOrder extends StatelessWidget {
               crossAxisSpacing: 16,
               mainAxisSpacing: 12,
               childAspectRatio: isLandscape
-                  ? context.screenWidth / 1500
-                  : context.screenWidth / 700,
+                  ? context.screenWidth / 1800
+                  : context.screenHeight / 1100,
             ),
             shrinkWrap: true,
             itemCount: foods.length,
@@ -59,7 +59,7 @@ class SliverListFoodOrder extends StatelessWidget {
                     children: [
                       Container(
                         height: isLandscape
-                            ? context.screenWidth / 14
+                            ? context.screenWidth / 13
                             : context.screenWidth / 8,
                         decoration: BoxDecoration(
                           color: Colors.red,
@@ -73,10 +73,10 @@ class SliverListFoodOrder extends StatelessWidget {
                       Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 14, top: 8),
+                            padding: const EdgeInsets.only(left: 8, top: 8),
                             child: Align(
                               alignment: Alignment.topLeft,
-                              child: Container(
+                              child: SizedBox(
                                 width: 300,
                                 child: Text(
                                   foods[index].foodName!,
@@ -92,23 +92,24 @@ class SliverListFoodOrder extends StatelessWidget {
                             alignment: Alignment.bottomLeft,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: 300,
+                              child: SizedBox(
+                                width: isLandscape ? 280 : 260,
                                 child: Text(
                                   (foods[index].foodDesc == null)
                                       ? ''
                                       : foods[index].foodDesc!,
                                   style: const TextStyle(
-                                      fontSize: 16,
-                                      overflow: TextOverflow.ellipsis,
-                                      fontFamily: 'Roboto'),
+                                      fontSize: 12, fontFamily: 'Roboto'),
+                                  overflow: isLandscape
+                                      ? TextOverflow.ellipsis
+                                      : null,
                                 ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Padding(

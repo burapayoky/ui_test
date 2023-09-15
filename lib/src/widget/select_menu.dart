@@ -18,11 +18,11 @@ class SelectedMenu extends StatefulWidget {
 
 class _SelectedMenuState extends State<SelectedMenu> {
   final ScrollController _controller = ScrollController();
-
-  void scrollToIndex(int index) {
+  GlobalKey key = GlobalKey();
+  void scrollToIndex(int index, int heightRow) {
     if (_controller.hasClients) {
       _controller.animateTo(
-        index * 3 * 225, // Replace with your item height
+        index * 5 * 125, // Replace with your item height
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
@@ -95,10 +95,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
               return SizedBox(
                 height: isLandscape
-                    ? context.screenHeight / 15
+                    ? context.screenHeight / 14
                     : context.screenWidth / 12,
                 width: isLandscape
-                    ? context.screenHeight / 5.2
+                    ? context.screenWidth / 9
                     : context.screenHeight / 6,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10),
@@ -148,13 +148,15 @@ class _SelectedMenuState extends State<SelectedMenu> {
             child: SizedBox(
               height: 50,
               child: ListView.builder(
+                key: key,
                 scrollDirection: Axis.horizontal,
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: foodCategories.length,
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(
                     onPressed: () {
-                      scrollToIndex(index);
+                      scrollToIndex(index, foodCategories.length);
+                      print('index $index:${foodCategories.length}');
                     },
                     child: Text(
                       foodCategories[index].foodCatName ?? '',
@@ -207,7 +209,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
         slivers: [
           BlocBuilder<OrderBloc, OrderState>(
             builder: (context, state) {
-              double widtH = 60;
               return SliverAppBar(
                 //shrikWrap
                 titleSpacing: 0,

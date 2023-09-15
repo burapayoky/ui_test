@@ -20,7 +20,7 @@ class CheckIn extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             child: Container(
               child: Row(
                 children: [
