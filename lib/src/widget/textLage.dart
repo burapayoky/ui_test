@@ -14,9 +14,9 @@ class TextLage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       hintText,
-      style: TextStyle(
-        fontSize: textSize,
-        fontWeight: FontWeight.w800,
+      style: const TextStyle(
+        fontSize: 124,
+        fontWeight: FontWeight.w600,
         fontFamily: AutofillHints.creditCardFamilyName,
       ),
     );

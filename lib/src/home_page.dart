@@ -46,18 +46,21 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             },
-            child: Row(
+            child: const Row(
               children: [
                 Icon(
                   Icons.restaurant,
-                  size: screenHeight / 40,
-                  color: Colors.black54,
+                  size: 32,
+                  color: Colors.black,
                 ),
-                Text(
-                  'Soi Siam',
-                  style: TextStyle(
-                    fontSize: screenHeight / 40,
-                    color: Colors.black54,
+                Padding(
+                  padding: EdgeInsets.all(14.0),
+                  child: Text(
+                    'Soi Siam',
+                    style: TextStyle(
+                        fontSize: 36,
+                        color: Colors.black,
+                        fontFamily: 'Roboto'),
                   ),
                 ),
               ],
