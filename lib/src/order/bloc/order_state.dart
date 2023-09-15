@@ -3,7 +3,6 @@ part of 'order_bloc.dart';
 abstract class OrderState {
   final Map<String, List<FoodModel>> foodData;
   final String? foodSetId;
-
   const OrderState({
     this.foodData = const {},
     this.foodSetId,
