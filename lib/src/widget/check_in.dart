@@ -21,24 +21,26 @@ class CheckIn extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-            child: Row(
-              children: [
-                const Text(
-                  'My Order',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 34,
-                    fontStyle: FontStyle.normal,
+            child: Container(
+              child: Row(
+                children: [
+                  const Text(
+                    'My Order',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 24,
+                        fontStyle: FontStyle.normal,
+                        overflow: TextOverflow.fade),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: FaIcon(
-                    FontAwesomeIcons.edit,
-                    size: context.screenWidth / 80,
-                  ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: FaIcon(
+                      FontAwesomeIcons.penToSquare,
+                      size: context.screenWidth / 80,
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           const Divider(),
@@ -53,11 +55,11 @@ class CheckIn extends StatelessWidget {
               ),
             ),
           ),
-          const Spacer(flex: 2),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Spacer(),
                 const Divider(),
                 Padding(
                   padding: EdgeInsets.all(context.screenWidth / 40),
@@ -79,40 +81,48 @@ class CheckIn extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: context.screenWidth / 24,
-                  width: context.screenWidth / 5,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                      backgroundColor: const MaterialStatePropertyAll(
-                        Color.fromARGB(136, 187, 186, 186),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 2),
-                          child: Icon(
-                            Icons.shopping_cart,
-                            size: context.screenWidth / 80,
-                            color: Colors.white,
+                  height: context.screenWidth / 18,
+                  width: context.screenWidth / 6,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
                           ),
                         ),
-                        Text(
-                          'confirm Order (0)',
-                          style: TextStyle(
-                            fontSize: context.screenWidth / 90,
-                            color: Colors.white,
+                        backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(136, 187, 186, 186),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 2),
+                            child: Icon(
+                              Icons.shopping_cart,
+                              size: context.screenWidth / 80,
+                              color: Colors.white,
+                            ),
                           ),
-                          overflow: TextOverflow.fade,
-                        )
-                      ],
+                          Flexible(
+                            // ใช้ Flexible ในการครอบ Text
+                            child: Text(
+                              'confirm Order (0)',
+                              style: TextStyle(
+                                fontSize: context.screenWidth / 90,
+                                color: Colors.white,
+                              ),
+                              overflow: TextOverflow
+                                  .ellipsis, // เพิ่ม overflow ด้วย TextOverflow.ellipsis
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

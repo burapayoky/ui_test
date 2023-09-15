@@ -30,6 +30,15 @@ class _SelectedMenuState extends State<SelectedMenu> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<OrderBloc>().add(
+          const OrderUpdateEvent(foodSetId: 'Srd8o2evE8g='),
+        );
+  }
+
+  @override
   dispose();
   @override
   Widget build(BuildContext context) {
@@ -37,9 +46,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
     final screenHeight = context.screenHeight;
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
-    context.read<OrderBloc>().add(
-          const OrderUpdateEvent(foodSetId: 'Srd8o2evE8g='),
-        );
 
     PreferredSizeWidget appBar() {
       return AppBar(
@@ -103,17 +109,18 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           );
                     },
                     style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        backgroundColor: Colors.black26),
                     child: Text(
                       e.foodSetName ?? '',
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.normal,
-                      ),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.normal,
+                          fontFamily: 'Roboto',
+                          color: Colors.white),
                     ),
                   ),
                 ),
