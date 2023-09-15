@@ -29,7 +29,7 @@ class CheckIn extends StatelessWidget {
                     'My Order',
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 24,
+                        fontSize: 20,
                         fontStyle: FontStyle.normal,
                         overflow: TextOverflow.fade),
                   ),

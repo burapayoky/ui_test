@@ -6,7 +6,6 @@ abstract class OrderEvent {
 
 class OrderUpdateEvent extends OrderEvent {
   final String? foodSetId;
-
   const OrderUpdateEvent({
     required this.foodSetId,
   });

@@ -22,10 +22,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
   /// Controller to scroll a certain number of pixels relative to the current
   /// scroll offset.
+
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
-
-  double alignment = 0;
 
   void scrollTo(int index) => itemScrollController.scrollTo(
         index: index,
@@ -120,11 +119,11 @@ class _SelectedMenuState extends State<SelectedMenu> {
               (i, e) {
                 return SizedBox(
                   height: isLandscape
-                      ? context.screenHeight / 16
-                      : context.screenWidth / 12,
+                      ? context.screenHeight / 14
+                      : context.screenWidth / 9,
                   width: isLandscape
-                      ? context.screenWidth / 7
-                      : context.screenHeight / 6,
+                      ? context.screenWidth / 5
+                      : context.screenHeight / 4,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: ElevatedButton(
@@ -189,7 +188,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     decoration: BoxDecoration(
-                      color: Colors.black38,
+                      color: Colors.blue,
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: TextButton(
@@ -271,8 +270,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
                     child: selectedFoodSet(),
                   ),
                 )
-                //selectedFoodSet(),
-                //selectedFoodCategory(),
               ],
             ),
             Row(
@@ -280,12 +277,12 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 Expanded(
                   child: SizedBox(
                     width: double.infinity,
-                    height: context.screenHeight / 12,
+                    height: isLandscape
+                        ? context.screenHeight / 11
+                        : context.screenWidth / 8,
                     child: selectedFoodCategory(),
                   ),
                 )
-                //selectedFoodSet(),
-                //selectedFoodCategory(),
               ],
             ),
             Expanded(
@@ -295,11 +292,3 @@ class _SelectedMenuState extends State<SelectedMenu> {
         ));
   }
 }
-// if (i == 0) {
-//   context.read<OrderBloc>().add(
-//         OrderUpdateEvent(foodSetId: e.foodSetId),
-//       );
-// }
-
-// selectedFoodSet(),
-//         selectedFoodCategory(),
