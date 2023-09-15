@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:ui_test/extensions/build_context.dart';
 import 'package:ui_test/src/data/food_data.dart';
 import 'package:ui_test/src/models/food_category_model.dart';
@@ -17,16 +18,25 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
-  final ScrollController _controller = ScrollController();
-  GlobalKey key = GlobalKey();
-  void scrollToIndex(int index, int heightRow) {
-    if (_controller.hasClients) {
-      _controller.animateTo(
-        index * 5 * 125, // Replace with your item height
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
+  final ItemScrollController itemScrollController = ItemScrollController();
+
+  /// Controller to scroll a certain number of pixels relative to the current
+  /// scroll offset.
+  final ScrollOffsetController scrollOffsetController =
+      ScrollOffsetController();
+
+  double alignment = 0;
+
+  void scrollTo(int index) => itemScrollController.scrollTo(
+        index: index,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubic,
       );
-    }
+  @override
+  void dispose() {
+    // ignore: avoid_print
+    scrollOffsetController;
+    super.dispose();
   }
 
   @override
@@ -39,13 +49,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
   }
 
   @override
-  void dispose() {
-    // ignore: avoid_print
-    print('Dispose used');
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
@@ -54,33 +57,57 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     PreferredSizeWidget appBar() {
       return AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.keyboard_arrow_left,
-            size: 32,
+        backgroundColor: Colors.white,
+        titleSpacing: 0,
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Container(
+            width: 20,
+            height: 14,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.black12,
+            ),
+            child: const Row(
+              children: [
+                Icon(Icons.keyboard_arrow_left),
+                Text(
+                  'Back',
+                  style: TextStyle(fontSize: 12),
+                )
+              ],
+            ),
           ),
         ),
         actions: [
           Container(
-            height: 60,
-            width: 60,
+            height: double.infinity,
+            width: 150,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(117, 233, 230, 230),
+              color: const Color.fromARGB(104, 182, 180, 180),
               borderRadius: BorderRadius.circular(8),
+
               //border: Border.all(color: Colors.black)),
             ),
-            child: IconButton(
-              onPressed: () {
-                // Navigator.of(context)
-                //     .push(MaterialPageRoute(builder: (_) => Searchpage()));
-              },
-              icon: const Icon(
-                Icons.search,
-                size: 30,
-              ),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.search),
+                ),
+                SizedBox(
+                  width: 100,
+                  child: TextField(
+                    onChanged: (value) {
+                      context.read<OrderBloc>().add(
+                            OrderSearchEvent(
+                              text: value,
+                            ),
+                          );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -139,7 +166,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
     Widget selectedFoodCategory() {
       return BlocBuilder<OrderBloc, OrderState>(
         builder: (context, state) {
-          final foodCategories = state.foodData.keys
+          List<FoodCategory> foodCategories = state.foodData.keys
               .map((e) {
                 return FoodData.getFoodCategories().firstWhereOrNull((f) {
                   return f.foodCatId == e;
@@ -148,24 +175,32 @@ class _SelectedMenuState extends State<SelectedMenu> {
               .whereType<FoodCategory>()
               .toList();
 
+          foodCategories.sort(((a, b) {
+            return a.foodCatId!.toLowerCase().compareTo(
+                  b.foodCatId!.toLowerCase(),
+                );
+          }));
+          // foodCategories.forEach((element) {
+          //   print(element.foodCatId);
+          // });
+
           return Padding(
             padding: const EdgeInsets.all(14),
-            child: Container(
+            child: SizedBox(
               height: 50,
               child: ListView.builder(
-                key: key,
                 scrollDirection: Axis.horizontal,
                 physics: const AlwaysScrollableScrollPhysics(),
                 itemCount: foodCategories.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
                     decoration: BoxDecoration(
-                        color: Colors.black38,
-                        borderRadius: BorderRadius.circular(4)),
+                      color: Colors.black38,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                     child: TextButton(
                       onPressed: () {
-                        scrollToIndex(index, foodCategories.length);
-                        print('index $index:${foodCategories.length}');
+                        scrollTo(index);
                       },
                       child: Text(
                         foodCategories[index].foodCatName ?? '',
@@ -189,9 +224,25 @@ class _SelectedMenuState extends State<SelectedMenu> {
     Widget foodMenu() {
       return BlocBuilder<OrderBloc, OrderState>(
         builder: (context, state) {
-          final foodData = state.foodData.entries.toList();
+          final foodData = state.foodData.entries.where((e) {
+            final foodCategory =
+                FoodData.getFoodCategories().firstWhereOrNull((foodCat) {
+              return foodCat.foodCatId == e.key;
+            });
 
-          return SliverList.builder(
+            if (foodCategory == null) {
+              return false;
+            }
+
+            return true;
+          }).toList();
+
+          foodData.sort(((a, b) {
+            return a.key.toLowerCase().compareTo(b.key.toLowerCase());
+          }));
+
+          return ScrollablePositionedList.builder(
+            itemScrollController: itemScrollController,
             itemCount: foodData.length,
             itemBuilder: (context, index) {
               final foodCategory =
@@ -214,89 +265,47 @@ class _SelectedMenuState extends State<SelectedMenu> {
     }
 
     return Scaffold(
-      body: CustomScrollView(
-        controller: _controller,
-        slivers: [
-          BlocBuilder<OrderBloc, OrderState>(
-            builder: (context, state) {
-              return SliverAppBar(
-                //shrikWrap
-                backgroundColor: Colors.white,
-                titleSpacing: 0,
-                leading: InkWell(
-                  onTap: () => Navigator.pop(context),
+        appBar: appBar(),
+        body: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
                   child: Container(
-                    width: 20,
-                    height: 14,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.black12,
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(Icons.keyboard_arrow_left),
-                        Text(
-                          'Back',
-                          style: TextStyle(fontSize: 12),
-                        )
-                      ],
-                    ),
+                    width: double.infinity,
+                    height: context.screenHeight / 15,
+                    child: selectedFoodSet(),
                   ),
-                ),
-                floating: false,
-                pinned: true,
-                bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(isLandscape ? 140 : 140),
-                  child: Column(
-                    children: [
-                      selectedFoodSet(),
-                      selectedFoodCategory(),
-                    ],
+                )
+                //selectedFoodSet(),
+                //selectedFoodCategory(),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    height: context.screenHeight / 15,
+                    child: selectedFoodCategory(),
                   ),
-                ),
-                actions: [
-                  Container(
-                    height: double.infinity,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(104, 182, 180, 180),
-                      borderRadius: BorderRadius.circular(8),
-
-                      //border: Border.all(color: Colors.black)),
-                    ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.search),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: TextField(
-                            onChanged: (value) {
-                              context.read<OrderBloc>().add(
-                                    OrderSearchEvent(
-                                      text: value,
-                                    ),
-                                  );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              );
-            },
-          ),
-          foodMenu(),
-        ],
-      ),
-    );
+                )
+                //selectedFoodSet(),
+                //selectedFoodCategory(),
+              ],
+            ),
+            Expanded(
+              child: Container(child: foodMenu()),
+            )
+          ],
+        ));
   }
 }
-   // if (i == 0) {
-              //   context.read<OrderBloc>().add(
-              //         OrderUpdateEvent(foodSetId: e.foodSetId),
-              //       );
-              // }
+// if (i == 0) {
+//   context.read<OrderBloc>().add(
+//         OrderUpdateEvent(foodSetId: e.foodSetId),
+//       );
+// }
+
+// selectedFoodSet(),
+//         selectedFoodCategory(),

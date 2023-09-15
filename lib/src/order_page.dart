@@ -13,7 +13,7 @@ class OrderPage extends StatelessWidget {
         VerticalDivider(
           width: 1,
           thickness: 20,
-          color: Colors.white54,
+          color: Colors.black,
         ),
         Flexible(flex: 1, child: CheckIn())
       ],
