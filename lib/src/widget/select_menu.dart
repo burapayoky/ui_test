@@ -32,12 +32,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
         duration: Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
-  @override
-  void dispose() {
-    // ignore: avoid_print
-    scrollOffsetController;
-    super.dispose();
-  }
 
   @override
   void initState() {
@@ -284,9 +278,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
             Row(
               children: [
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     width: double.infinity,
-                    height: context.screenHeight / 15,
+                    height: context.screenHeight / 12,
                     child: selectedFoodCategory(),
                   ),
                 )

@@ -70,13 +70,14 @@ class CheckIn extends StatelessWidget {
                       Text(
                         'Total',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: context.screenHeight / 60,
-                        ),
+                            color: Colors.black,
+                            fontSize: context.screenHeight / 60,
+                            fontFamily: 'Roboto'),
                       ),
                       const Text(
-                        'xxx',
-                        style: TextStyle(color: Colors.purple),
+                        '\$ 0.00',
+                        style: TextStyle(
+                            color: Colors.purple, fontFamily: 'Roboto'),
                       )
                     ],
                   ),
