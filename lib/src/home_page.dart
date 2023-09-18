@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Icon(
                   Icons.restaurant,
-                  size: 32,
-                  color: Colors.black,
+                  size: 32.667,
+                  color: Colors.black38,
                 ),
                 Padding(
                   padding: EdgeInsets.all(14.0),
@@ -59,7 +59,8 @@ class _HomePageState extends State<HomePage> {
                     'Soi Siam',
                     style: TextStyle(
                         fontSize: 36,
-                        color: Colors.black,
+                        color: Colors.black38,
+                        fontWeight: FontWeight.w500,
                         fontFamily: 'Roboto'),
                   ),
                 ),
@@ -96,7 +97,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Text(
             'Form self-order to self-checkout',
-            style: TextStyle(fontSize: screenHeight / 48),
+            style: TextStyle(fontSize: screenHeight / 48, fontFamily: 'Roboto'),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -111,6 +112,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   color: Colors.red,
                   fontSize: screenHeight / 48,
+                  fontFamily: 'Roboto',
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.red,
                 ),
@@ -231,33 +233,84 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: appBar(),
-      body: Column(
+      body: Stack(
         children: [
-          bodyText(),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+          Align(
+            alignment: Alignment.topLeft,
+            child: Column(
               children: [
-                NavigatePageOrderAndStay(
-                  image: 'assets/images/gif/gif2.gif',
-                  color: Colors.blue,
-                  text: 'To Stay',
-                  route: 'first-page',
-                ),
-                SizedBox(width: 20),
-                NavigatePageOrderAndStay(
-                  image: 'assets/images/gif/gif1.gif',
-                  color: Color(0xFFFFB300),
-                  text: 'Togo Walk-in',
-                  route: 'order',
-                ),
+                bodyText(),
+                bottomSheet(),
               ],
             ),
           ),
-          bottomSheet(),
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              width: double.infinity,
+              child: const Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NavigatePageOrderAndStay(
+                          image: 'assets/images/gif/gif2.gif',
+                          color: Colors.blue,
+                          text: 'To Stay',
+                          route: 'first-page',
+                        ),
+                        SizedBox(width: 20),
+                        NavigatePageOrderAndStay(
+                          image: 'assets/images/gif/gif1.gif',
+                          color: Color(0xFFFFB300),
+                          text: 'Togo Walk-in',
+                          route: 'order',
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
   }
 }
+// return Scaffold(
+//       appBar: appBar(),
+//       body: Stack(
+//         children: [
+//           Column(
+//             children: [
+//               bodyText(),
+//               const Padding(
+//                 padding: EdgeInsets.all(8.0),
+//                 child: Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     NavigatePageOrderAndStay(
+//                       image: 'assets/images/gif/gif2.gif',
+//                       color: Colors.blue,
+//                       text: 'To Stay',
+//                       route: 'first-page',
+//                     ),
+//                     SizedBox(width: 20),
+//                     NavigatePageOrderAndStay(
+//                       image: 'assets/images/gif/gif1.gif',
+//                       color: Color(0xFFFFB300),
+//                       text: 'Togo Walk-in',
+//                       route: 'order',
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//               bottomSheet(),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );

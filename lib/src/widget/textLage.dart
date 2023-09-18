@@ -17,7 +17,7 @@ class TextLage extends StatelessWidget {
       style: const TextStyle(
         fontSize: 124,
         fontWeight: FontWeight.w600,
-        fontFamily: AutofillHints.creditCardFamilyName,
+        fontFamily: 'Rasa',
       ),
     );
   }
