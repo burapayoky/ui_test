@@ -89,7 +89,7 @@ flutter:
         - asset: fonts/Roboto-Black.ttf
     - family: Roboto_Light
       fonts:
-        - asset: fonts/Roboto-Light.ttf
+        - asset: fonts/Roboto-Medium.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
     - family: Rasa

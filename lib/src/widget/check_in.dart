@@ -60,7 +60,7 @@ class CheckIn extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Spacer(),
+                const Spacer(),
                 const Divider(),
                 Padding(
                   padding: EdgeInsets.all(context.screenWidth / 40),

@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 36,
                           color: Colors.black38,
                           fontWeight: FontWeight.w500,
-                          fontFamily: 'Roboto'),
+                          fontFamily: 'Roboto_Lights'),
                     ),
                   ),
                 ],
@@ -303,52 +303,33 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget portraitWidget() {
-      return Stack(
+      return Column(
         children: [
-          Transform.rotate(
-            angle: 12.57,
-            child: Transform.translate(
-              offset: Offset(-4, 0),
-              child: Expanded(
-                child: Container(
-                  height: context.screenWidth * 100,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/bg/Bg1.png'),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
+          bodyText(),
+          Padding(
+            padding: EdgeInsets.only(
+                bottom: context.screenHeight / 10,
+                top: context.screenHeight / 35),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                NavigatePageOrderAndStay(
+                  image: 'assets/images/gif/gif2.gif',
+                  color: Colors.blue,
+                  text: 'To Stay',
+                  route: 'first-page',
                 ),
-              ),
+                SizedBox(width: 20),
+                NavigatePageOrderAndStay(
+                  image: 'assets/images/gif/gif1.gif',
+                  color: Color(0xFFFFB300),
+                  text: 'Togo',
+                  route: 'order',
+                ),
+              ],
             ),
           ),
-          Column(
-            children: [
-              bodyText(),
-              Padding(
-                padding: EdgeInsets.only(bottom: context.screenHeight / 8.2),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    NavigatePageOrderAndStay(
-                      image: 'assets/images/gif/gif2.gif',
-                      color: Colors.blue,
-                      text: 'To Stay',
-                      route: 'first-page',
-                    ),
-                    SizedBox(width: 20),
-                    NavigatePageOrderAndStay(
-                      image: 'assets/images/gif/gif1.gif',
-                      color: Color(0xFFFFB300),
-                      text: 'Togo',
-                      route: 'order',
-                    ),
-                  ],
-                ),
-              ),
-              bottomSheet(),
-            ],
-          ),
+          bottomSheet(),
         ],
       );
     }
@@ -359,37 +340,20 @@ class _HomePageState extends State<HomePage> {
     //isPortrait ? portraitWidget() : landscapeWidget());
   }
 }
-// return Scaffold(
-//       appBar: appBar(),
-//       body: Stack(
-//         children: [
-//           Column(
-//             children: [
-//               bodyText(),
-//               const Padding(
-//                 padding: EdgeInsets.all(8.0),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     NavigatePageOrderAndStay(
-//                       image: 'assets/images/gif/gif2.gif',
-//                       color: Colors.blue,
-//                       text: 'To Stay',
-//                       route: 'first-page',
-//                     ),
-//                     SizedBox(width: 20),
-//                     NavigatePageOrderAndStay(
-//                       image: 'assets/images/gif/gif1.gif',
-//                       color: Color(0xFFFFB300),
-//                       text: 'Togo Walk-in',
-//                       route: 'order',
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               bottomSheet(),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
+  // Transform.rotate(
+  //           angle: 12.57,
+  //           child: Transform.translate(
+  //             offset: Offset(-4, 0),
+  //             child: Expanded(
+  //               child: Container(
+  //                 height: context.screenWidth * 100,
+  //                 decoration: const BoxDecoration(
+  //                   image: DecorationImage(
+  //                     image: AssetImage('assets/images/bg/Bg1.png'),
+  //                     fit: BoxFit.contain,
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         ),

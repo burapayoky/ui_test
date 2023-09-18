@@ -56,10 +56,10 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                   child: Text(
                     text, //
                     style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 36,
-                    ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 36,
+                        fontFamily: 'Roboto_Light'),
                   ),
                 ),
               ),

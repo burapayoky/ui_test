@@ -46,9 +46,9 @@ class FirstPage extends StatelessWidget {
                 Text(
                   'Soi Siam',
                   style: TextStyle(
-                    fontSize: screenHeight / 40,
-                    color: Colors.black54,
-                  ),
+                      fontSize: screenHeight / 40,
+                      color: Colors.black54,
+                      fontFamily: 'Roboto_Light'),
                 ),
               ],
             ),
