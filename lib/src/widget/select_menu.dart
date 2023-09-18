@@ -18,20 +18,17 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
+//Scroll Controller
   final ItemScrollController itemScrollController = ItemScrollController();
-
-  /// Controller to scroll a certain number of pixels relative to the current
-  /// scroll offset.
-
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
-
+//Fuction Scroll to index
   void scrollTo(int index) => itemScrollController.scrollTo(
         index: index,
         duration: Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
-
+//
   @override
   void initState() {
     // TODO: implement initState
@@ -72,6 +69,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
             ),
           ),
         ),
+
+        //aciton
         actions: [
           Container(
             height: double.infinity,
@@ -107,6 +106,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
       );
     }
 
+// thai Menu,Japan Menu,FreeItem {foodSet}
     Widget selectedFoodSet() {
       return SizedBox(
         height:
@@ -117,37 +117,50 @@ class _SelectedMenuState extends State<SelectedMenu> {
           children: [
             ...FoodData.getFoodSet().mapIndexed(
               (i, e) {
-                return SizedBox(
-                  height: isLandscape
-                      ? context.screenHeight / 14
-                      : context.screenWidth / 9,
-                  width: isLandscape
-                      ? context.screenWidth / 5
-                      : context.screenHeight / 4,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        context.read<OrderBloc>().add(
-                              OrderUpdateEvent(foodSetId: e.foodSetId),
-                            );
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                int _coLor = 0;
+                return BlocBuilder<OrderBloc, OrderState>(
+                  builder: (context, state) {
+                    return SizedBox(
+                      height: isLandscape
+                          ? context.screenHeight / 14
+                          : context.screenWidth / 9,
+                      width: isLandscape
+                          ? context.screenWidth / 8
+                          : context.screenHeight / 4,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context.read<OrderBloc>().add(
+                                  OrderUpdateEvent(foodSetId: e.foodSetId),
+                                );
+                          },
+                          //onpress
+
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: BorderSide(
+                                      color: _coLor == i
+                                          ? Colors.black26
+                                          : const Color.fromARGB(
+                                              66, 235, 229, 229))),
+                              backgroundColor: _coLor == i
+                                  ? Colors.cyan
+                                  : const Color.fromARGB(66, 235, 229, 229)),
+                          child: Text(
+                            e.foodSetName ?? '',
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.normal,
+                                fontFamily: 'Roboto',
+                                color: Colors.white),
                           ),
-                          backgroundColor: Colors.black26),
-                      child: Text(
-                        e.foodSetName ?? '',
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.normal,
-                            fontFamily: 'Roboto',
-                            color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
               },
             ),
@@ -156,9 +169,11 @@ class _SelectedMenuState extends State<SelectedMenu> {
       );
     }
 
+//KidMenu,SideOrder,Luch,Appitizer {foodcat}
     Widget selectedFoodCategory() {
       return BlocBuilder<OrderBloc, OrderState>(
         builder: (context, state) {
+          //filtter foodCat
           List<FoodCategory> foodCategories = state.foodData.keys
               .map((e) {
                 return FoodData.getFoodCategories().firstWhereOrNull((f) {
@@ -173,9 +188,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   b.foodCatId!.toLowerCase(),
                 );
           }));
-          // foodCategories.forEach((element) {
-          //   print(element.foodCatId);
-          // });
 
           return Padding(
             padding: const EdgeInsets.all(14),
@@ -214,6 +226,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
       );
     }
 
+//Images,FoodName,FoodDest,price {Food}
     Widget foodMenu() {
       return BlocBuilder<OrderBloc, OrderState>(
         builder: (context, state) {

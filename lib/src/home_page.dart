@@ -147,11 +147,11 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(border: Border.all(color: Colors.white)),
             child: Column(
               children: [
-                const Row(
+                Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -174,32 +174,32 @@ class _HomePageState extends State<HomePage> {
                     ),
                     //contact
                     Padding(
-                      padding: EdgeInsets.only(left: 380.0, top: 20),
+                      padding: EdgeInsets.only(left: 280.0, top: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           IconWithCircle(
                             icon: Icons.phone,
                             text: '090-0890-xxxx',
-                            divide: 30,
+                            divide: isPortrait ? 30 : 30,
                             textDivide: 60,
                           ),
                           IconWithCircle(
                             icon: FontAwesomeIcons.instagram,
                             text: 'SoiSiam',
-                            divide: 24,
+                            divide: isPortrait ? 30 : 24,
                             textDivide: 60,
                           ),
                           IconWithCircle(
                             icon: FontAwesomeIcons.youtube,
                             text: 'SoiSiam Chanal',
-                            divide: 30,
+                            divide: isPortrait ? 35 : 30,
                             textDivide: 60,
                           ),
                           IconWithCircle(
                             icon: Icons.mail,
                             text: 'SoiSiam@gmail.co.th',
-                            divide: 25,
+                            divide: isPortrait ? 30 : 25,
                             textDivide: 60,
                           ),
                         ],
@@ -225,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.only(top: 2, left: 2),
                           child: SizedBox(
                             height: screenWidth / 15,
-                            width: screenWidth / 20,
+                            width: screenWidth / 8,
                             child: Image.asset("assets/images/bg/smile.png"),
                           ),
                         )
@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 100, bottom: 12),
+            padding: const EdgeInsets.only(left: 100, bottom: 30),
             child: Row(
               children: [
                 Align(
@@ -295,7 +295,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           bodyText(),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(bottom: 60),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -314,9 +314,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-          ),
-          const SizedBox(
-            height: 60,
           ),
           bottomSheet(),
         ],
