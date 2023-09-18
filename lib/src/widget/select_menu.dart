@@ -214,7 +214,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(10),
                                   side: BorderSide(
                                       color: state.selectedId == i
                                           ? Colors.black26
@@ -265,9 +265,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
           }));
 
           return Padding(
-            padding: const EdgeInsets.all(14),
+            padding: const EdgeInsets.only(top: 14),
             child: SizedBox(
-              height: 50,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -349,7 +348,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
         //appBar: appBar(),
 
         body: Padding(
-      padding: const EdgeInsets.only(left: 14),
+      padding: const EdgeInsets.only(left: 28),
       child: Column(
         children: [
           SafeArea(child: headding()),

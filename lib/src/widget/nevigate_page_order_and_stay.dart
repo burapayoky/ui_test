@@ -22,7 +22,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
     final isPortrait = screenHeight > screenWidth;
 
     return SizedBox(
-      width: isPortrait ? screenHeight / 4 : screenWidth / 5,
+      width: isPortrait ? screenHeight / 5 : screenWidth / 5,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, route);
@@ -30,8 +30,8 @@ class NavigatePageOrderAndStay extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: isPortrait ? screenHeight / 4 : screenWidth / 5,
-              width: isPortrait ? screenHeight / 4 : screenWidth / 5,
+              height: isPortrait ? screenHeight / 5 : screenWidth / 5,
+              width: isPortrait ? screenHeight / 5 : screenWidth / 5,
               decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(image), //
@@ -43,7 +43,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                       topRight: Radius.circular(8))),
             ),
             SizedBox(
-              height: isPortrait ? screenHeight / 16 : screenWidth / 20,
+              height: isPortrait ? screenHeight / 21 : screenWidth / 20,
               child: Container(
                 decoration: BoxDecoration(
                   color: color,

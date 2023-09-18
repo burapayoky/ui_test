@@ -314,7 +314,7 @@ class FirstPage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(
                       right: screenWidth / 35,
-                      top: screenHeight / 9,
+                      top: screenHeight / 4,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

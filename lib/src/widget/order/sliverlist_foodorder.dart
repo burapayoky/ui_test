@@ -17,7 +17,7 @@ class SliverListFoodOrder extends StatelessWidget {
     final isLandscape = context.screenWidth > context.screenHeight;
 
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.only(right: 22.0),
       child: Column(
         children: [
           Padding(

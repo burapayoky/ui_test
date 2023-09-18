@@ -31,8 +31,9 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               if (screenHeight > 900) {
                 null;
+              } else if (isLandscape) {
+                null;
               }
-
               showModalBottomSheet(
                 context: context,
                 constraints: const BoxConstraints(maxWidth: double.infinity),
@@ -89,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 TextLage(
                   hintText: 'Self-Service',
-                  textSize: screenHeight / 14,
+                  textSize: screenHeight / 16,
                 ),
                 TextLage(
                   hintText: 'Experience.',
@@ -148,33 +149,44 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Contact Us',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 80),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Contact Us',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                width: 400,
+                                child: const Text(
+                                  'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                                  //
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "Roboto"),
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 4,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            'Rattanathibech 28  Rattanathibech 28 Alley,\nTambon Bang Kraso, Mueang Nontraburi District',
-                            //
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontFamily: "Roboto"),
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                     //contact
-                    Padding(
-                      padding: EdgeInsets.only(left: 280.0, top: 20),
+                    Align(
+                      alignment: Alignment.centerRight,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -222,10 +234,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 2, left: 2),
+                          padding: const EdgeInsets.only(top: 2, left: 1),
                           child: SizedBox(
                             height: screenWidth / 15,
-                            width: screenWidth / 8,
+                            width: screenWidth / 22,
                             child: Image.asset("assets/images/bg/smile.png"),
                           ),
                         )
@@ -244,7 +256,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 100, bottom: 30),
+            padding: const EdgeInsets.only(left: 160, bottom: 60),
             child: Row(
               children: [
                 Align(
@@ -255,7 +267,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(top: 100.0, left: 80),
+                  padding: EdgeInsets.only(top: 100.0, left: 160),
                   child: Row(
                     children: [
                       Padding(
@@ -291,31 +303,52 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget portraitWidget() {
-      return Column(
+      return Stack(
         children: [
-          bodyText(),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 60),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                NavigatePageOrderAndStay(
-                  image: 'assets/images/gif/gif2.gif',
-                  color: Colors.blue,
-                  text: 'To Stay',
-                  route: 'first-page',
+          Transform.rotate(
+            angle: 12.57,
+            child: Transform.translate(
+              offset: Offset(-4, 0),
+              child: Expanded(
+                child: Container(
+                  height: context.screenWidth * 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/bg/Bg1.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
-                SizedBox(width: 20),
-                NavigatePageOrderAndStay(
-                  image: 'assets/images/gif/gif1.gif',
-                  color: Color(0xFFFFB300),
-                  text: 'Togo',
-                  route: 'order',
-                ),
-              ],
+              ),
             ),
           ),
-          bottomSheet(),
+          Column(
+            children: [
+              bodyText(),
+              Padding(
+                padding: EdgeInsets.only(bottom: context.screenHeight / 8.2),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    NavigatePageOrderAndStay(
+                      image: 'assets/images/gif/gif2.gif',
+                      color: Colors.blue,
+                      text: 'To Stay',
+                      route: 'first-page',
+                    ),
+                    SizedBox(width: 20),
+                    NavigatePageOrderAndStay(
+                      image: 'assets/images/gif/gif1.gif',
+                      color: Color(0xFFFFB300),
+                      text: 'Togo',
+                      route: 'order',
+                    ),
+                  ],
+                ),
+              ),
+              bottomSheet(),
+            ],
+          ),
         ],
       );
     }
