@@ -19,3 +19,10 @@ class OrderSearchEvent extends OrderEvent {
     required this.text,
   });
 }
+
+//------------------------------------------\\
+class OrderFoodSetUpdateEvent extends OrderEvent {
+  final int selectedItem;
+
+  OrderFoodSetUpdateEvent({required this.selectedItem});
+}

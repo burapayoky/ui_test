@@ -101,6 +101,8 @@ class FirstPage extends StatelessWidget {
                     'Form self-order to self-checkout',
                     style: TextStyle(
                       fontSize: screenHeight / 48,
+                      fontFamily: 'Roboto',
+                      color: Colors.black38,
                     ),
                   ),
                   Row(
@@ -118,32 +120,38 @@ class FirstPage extends StatelessWidget {
                           fontSize: screenHeight / 48,
                           decoration: TextDecoration.underline,
                           decorationColor: Colors.red,
+                          fontFamily: 'Roboto',
                         ),
                       )
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'order');
-                      },
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
+                    padding: const EdgeInsets.all(24),
+                    child: SizedBox(
+                      width: screenHeight / 4,
+                      height: screenHeight / 12,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, 'order');
+                          },
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            )),
+                            backgroundColor: const MaterialStatePropertyAll(
+                              Colors.blue,
+                            ),
                           ),
-                        ),
-                        backgroundColor: const MaterialStatePropertyAll(
-                          Colors.blue,
-                        ),
-                      ),
-                      child: Text(
-                        'Tap to Order',
-                        style: TextStyle(
-                          fontSize: screenHeight / 50,
-                          color: Colors.white,
+                          child: Text(
+                            'Tap to Order',
+                            style: TextStyle(
+                              fontSize: screenHeight / 50,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -264,8 +272,8 @@ class FirstPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      width: screenWidth / 6,
-                      height: screenWidth / 16,
+                      width: screenHeight / 4,
+                      height: screenHeight / 12,
                       child: Padding(
                         padding: const EdgeInsets.only(top: 16),
                         child: ElevatedButton(

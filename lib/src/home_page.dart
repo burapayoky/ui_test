@@ -29,8 +29,8 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(20),
           child: InkWell(
             onTap: () {
-              if (isPortrait) {
-                return;
+              if (screenHeight > 900) {
+                null;
               }
 
               showModalBottomSheet(
@@ -46,29 +46,36 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             },
-            child: const Row(
-              children: [
-                Icon(
-                  Icons.restaurant,
-                  size: 32,
-                  color: Colors.black,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(14.0),
-                  child: Text(
-                    'Soi Siam',
-                    style: TextStyle(
-                        fontSize: 36,
-                        color: Colors.black,
-                        fontFamily: 'Roboto'),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 30.0),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.restaurant,
+                    size: 32.667,
+                    color: Colors.black38,
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: EdgeInsets.all(14.0),
+                    child: Text(
+                      'Soi Siam',
+                      style: TextStyle(
+                          fontSize: 36,
+                          color: Colors.black38,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Roboto'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
         actions: const [
-          ActionsFlagIcon(),
+          Padding(
+            padding: EdgeInsets.only(top: 13.0, right: 8),
+            child: ActionsFlagIcon(),
+          ),
         ],
       );
     }
@@ -92,25 +99,29 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(
-            height: screenHeight / 30,
+            height: screenHeight / 60,
           ),
           Text(
             'Form self-order to self-checkout',
-            style: TextStyle(fontSize: screenHeight / 48),
+            style: TextStyle(
+                fontSize: isPortrait ? screenHeight / 48 : screenWidth / 50,
+                color: Colors.black38,
+                fontFamily: 'Roboto'),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 Icons.credit_card,
-                size: screenHeight / 48,
+                size: isPortrait ? screenHeight / 48 : screenWidth / 48,
                 color: Colors.red,
               ),
               Text(
                 ' Accept only Credit Card',
                 style: TextStyle(
                   color: Colors.red,
-                  fontSize: screenHeight / 48,
+                  fontSize: isPortrait ? screenHeight / 48 : screenWidth / 48,
+                  fontFamily: 'Roboto',
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.red,
                 ),
@@ -122,7 +133,9 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget bottomSheet() {
-      if (isLandscape) {
+      if (screenHeight < 800) {
+        return Container();
+      } else if (isLandscape && screenHeight > 1200) {
         return Container();
       }
 
@@ -130,112 +143,159 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           width: double.infinity,
           color: Colors.black,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Container(
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.white)),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Contact Us',
+          child: Container(
+            decoration: BoxDecoration(border: Border.all(color: Colors.white)),
+            child: Column(
+              children: [
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Contact Us',
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            'Rattanathibech 28  Rattanathibech 28 Alley,\nTambon Bang Kraso, Mueang Nontraburi District',
+                            //
                             style: TextStyle(
-                                fontSize: screenWidth / 60,
-                                color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              'Rattanathibech 28  Rattanathibech 28 Alley,\nTambon Bang Kraso, Mueang Nontraburi District',
-                              //
-                              style: TextStyle(
-                                fontSize: screenWidth / 60,
+                                fontSize: 18,
                                 color: Colors.white,
-                              ),
-                              softWrap: true,
-                            ),
+                                fontFamily: "Roboto"),
+                            softWrap: true,
                           ),
-                        ],
-                      ),
-                      //contact
-                      const Column(
+                        ),
+                      ],
+                    ),
+                    //contact
+                    Padding(
+                      padding: EdgeInsets.only(left: 280.0, top: 20),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           IconWithCircle(
                             icon: Icons.phone,
                             text: '090-0890-xxxx',
-                            divide: 50,
+                            divide: isPortrait ? 30 : 30,
                             textDivide: 60,
                           ),
                           IconWithCircle(
                             icon: FontAwesomeIcons.instagram,
                             text: 'SoiSiam',
-                            divide: 50,
+                            divide: isPortrait ? 30 : 24,
                             textDivide: 60,
                           ),
                           IconWithCircle(
                             icon: FontAwesomeIcons.youtube,
                             text: 'SoiSiam Chanal',
-                            divide: 60,
+                            divide: isPortrait ? 35 : 30,
                             textDivide: 60,
                           ),
                           IconWithCircle(
                             icon: Icons.mail,
                             text: 'SoiSiam@gmail.co.th',
-                            divide: 50,
+                            divide: isPortrait ? 30 : 25,
                             textDivide: 60,
                           ),
                         ],
-                      )
-                    ],
-                  ),
-                  //bottom side
-                  Expanded(
-                    child: Align(
-                      alignment: FractionalOffset.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '© Copyright 2022 | Powered by',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: screenHeight / 60,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 2, left: 2),
-                            child: SizedBox(
-                              height: screenWidth / 15,
-                              width: screenWidth / 20,
-                              child: Image.asset("assets/images/bg/smile.png"),
-                            ),
-                          )
-                        ],
                       ),
+                    )
+                  ],
+                ),
+                //bottom side
+                Expanded(
+                  child: Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '© Copyright 2022 | Powered by',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: screenHeight / 60,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2, left: 2),
+                          child: SizedBox(
+                            height: screenWidth / 15,
+                            width: screenWidth / 8,
+                            child: Image.asset("assets/images/bg/smile.png"),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
         ),
       );
     }
 
-    return Scaffold(
-      appBar: appBar(),
-      body: Column(
+    Widget landscapeWidget() {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 100, bottom: 30),
+            child: Row(
+              children: [
+                Align(
+                  child: Column(
+                    children: [
+                      bodyText(),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 100.0, left: 80),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            NavigatePageOrderAndStay(
+                              image: 'assets/images/gif/gif2.gif',
+                              color: Colors.blue,
+                              text: 'To Stay',
+                              route: 'first-page',
+                            ),
+                            SizedBox(width: 20),
+                            NavigatePageOrderAndStay(
+                              image: 'assets/images/gif/gif1.gif',
+                              color: Color(0xFFFFB300),
+                              text: 'Togo',
+                              route: 'order',
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          bottomSheet()
+        ],
+      );
+    }
+
+    Widget portraitWidget() {
+      return Column(
         children: [
           bodyText(),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(bottom: 60),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -249,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                 NavigatePageOrderAndStay(
                   image: 'assets/images/gif/gif1.gif',
                   color: Color(0xFFFFB300),
-                  text: 'Togo Walk-in',
+                  text: 'Togo',
                   route: 'order',
                 ),
               ],
@@ -257,7 +317,46 @@ class _HomePageState extends State<HomePage> {
           ),
           bottomSheet(),
         ],
-      ),
-    );
+      );
+    }
+
+    return Scaffold(
+        appBar: appBar(),
+        body: isLandscape ? landscapeWidget() : portraitWidget());
+    //isPortrait ? portraitWidget() : landscapeWidget());
   }
 }
+// return Scaffold(
+//       appBar: appBar(),
+//       body: Stack(
+//         children: [
+//           Column(
+//             children: [
+//               bodyText(),
+//               const Padding(
+//                 padding: EdgeInsets.all(8.0),
+//                 child: Row(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     NavigatePageOrderAndStay(
+//                       image: 'assets/images/gif/gif2.gif',
+//                       color: Colors.blue,
+//                       text: 'To Stay',
+//                       route: 'first-page',
+//                     ),
+//                     SizedBox(width: 20),
+//                     NavigatePageOrderAndStay(
+//                       image: 'assets/images/gif/gif1.gif',
+//                       color: Color(0xFFFFB300),
+//                       text: 'Togo Walk-in',
+//                       route: 'order',
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//               bottomSheet(),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );

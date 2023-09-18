@@ -18,20 +18,17 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
+//Scroll Controller
   final ItemScrollController itemScrollController = ItemScrollController();
-
-  /// Controller to scroll a certain number of pixels relative to the current
-  /// scroll offset.
-
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
-
+//Fuction Scroll to index
   void scrollTo(int index) => itemScrollController.scrollTo(
         index: index,
         duration: Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
-
+//
   @override
   void initState() {
     // TODO: implement initState
@@ -72,6 +69,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
             ),
           ),
         ),
+
+        //aciton
         actions: [
           Container(
             height: double.infinity,
@@ -107,6 +106,79 @@ class _SelectedMenuState extends State<SelectedMenu> {
       );
     }
 
+    Widget headding() {
+      return Padding(
+        padding: const EdgeInsets.only(top: 28, bottom: 18),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  width: 90,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.keyboard_arrow_left,
+                        size: 24,
+                      ),
+                      Text(
+                        'Back',
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              height: 40,
+              width: 150,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(104, 182, 180, 180),
+                borderRadius: BorderRadius.circular(8),
+
+                //border: Border.all(color: Colors.black)),
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.search),
+                  ),
+                  SizedBox(
+                    width: 100,
+                    child: TextField(
+                      onChanged: (value) {
+                        context.read<OrderBloc>().add(
+                              OrderSearchEvent(
+                                text: value,
+                              ),
+                            );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+// thai Menu,Japan Menu,FreeItem {foodSet}
     Widget selectedFoodSet() {
       return SizedBox(
         height:
@@ -117,37 +189,53 @@ class _SelectedMenuState extends State<SelectedMenu> {
           children: [
             ...FoodData.getFoodSet().mapIndexed(
               (i, e) {
-                return SizedBox(
-                  height: isLandscape
-                      ? context.screenHeight / 14
-                      : context.screenWidth / 9,
-                  width: isLandscape
-                      ? context.screenWidth / 5
-                      : context.screenHeight / 4,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        context.read<OrderBloc>().add(
-                              OrderUpdateEvent(foodSetId: e.foodSetId),
-                            );
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                return BlocBuilder<OrderBloc, OrderState>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: SizedBox(
+                        height: isLandscape
+                            ? context.screenHeight / 14
+                            : context.screenWidth / 9,
+                        width: isLandscape
+                            ? context.screenWidth / 8
+                            : context.screenHeight / 4,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context
+                                .read<OrderBloc>()
+                                .add(OrderFoodSetUpdateEvent(selectedItem: i));
+
+                            context.read<OrderBloc>().add(
+                                  OrderUpdateEvent(foodSetId: e.foodSetId),
+                                );
+                          },
+                          //onpress
+
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: BorderSide(
+                                      color: state.selectedId == i
+                                          ? Colors.black26
+                                          : const Color.fromARGB(
+                                              66, 235, 229, 229))),
+                              backgroundColor: state.selectedId == i
+                                  ? Colors.cyan
+                                  : const Color.fromARGB(66, 235, 229, 229)),
+                          child: Text(
+                            e.foodSetName ?? '',
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.normal,
+                                fontFamily: 'Roboto',
+                                color: Colors.white),
                           ),
-                          backgroundColor: Colors.black26),
-                      child: Text(
-                        e.foodSetName ?? '',
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.normal,
-                            fontFamily: 'Roboto',
-                            color: Colors.white),
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 );
               },
             ),
@@ -156,9 +244,11 @@ class _SelectedMenuState extends State<SelectedMenu> {
       );
     }
 
+//KidMenu,SideOrder,Luch,Appitizer {foodcat}
     Widget selectedFoodCategory() {
       return BlocBuilder<OrderBloc, OrderState>(
         builder: (context, state) {
+          //filtter foodCat
           List<FoodCategory> foodCategories = state.foodData.keys
               .map((e) {
                 return FoodData.getFoodCategories().firstWhereOrNull((f) {
@@ -173,9 +263,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   b.foodCatId!.toLowerCase(),
                 );
           }));
-          // foodCategories.forEach((element) {
-          //   print(element.foodCatId);
-          // });
 
           return Padding(
             padding: const EdgeInsets.all(14),
@@ -214,6 +301,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
       );
     }
 
+//Images,FoodName,FoodDest,price {Food}
     Widget foodMenu() {
       return BlocBuilder<OrderBloc, OrderState>(
         builder: (context, state) {
@@ -258,37 +346,42 @@ class _SelectedMenuState extends State<SelectedMenu> {
     }
 
     return Scaffold(
-        appBar: appBar(),
-        body: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: context.screenHeight / 15,
-                    child: selectedFoodSet(),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: isLandscape
-                        ? context.screenHeight / 11
-                        : context.screenWidth / 8,
-                    child: selectedFoodCategory(),
-                  ),
-                )
-              ],
-            ),
-            Expanded(
-              child: Container(child: foodMenu()),
-            )
-          ],
-        ));
+        //appBar: appBar(),
+
+        body: Padding(
+      padding: const EdgeInsets.only(left: 14),
+      child: Column(
+        children: [
+          SafeArea(child: headding()),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  height: context.screenHeight / 15,
+                  child: selectedFoodSet(),
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: isLandscape
+                      ? context.screenHeight / 11
+                      : context.screenWidth / 8,
+                  child: selectedFoodCategory(),
+                ),
+              )
+            ],
+          ),
+          Expanded(
+            child: Container(child: foodMenu()),
+          )
+        ],
+      ),
+    ));
   }
 }

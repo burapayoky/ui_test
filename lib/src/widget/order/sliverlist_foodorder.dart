@@ -40,8 +40,8 @@ class SliverListFoodOrder extends StatelessWidget {
               crossAxisSpacing: 16,
               mainAxisSpacing: 12,
               childAspectRatio: isLandscape
-                  ? context.screenWidth / 1500
-                  : context.screenHeight / 1300,
+                  ? context.screenWidth / 1600
+                  : context.screenHeight / 1500,
             ),
             shrinkWrap: true,
             itemCount: foods.length,

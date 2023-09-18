@@ -17,11 +17,12 @@ class NavigatePageOrderAndStay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final screenWidth = context.screenWidth;
+    final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
+    final isPortrait = screenHeight > screenWidth;
 
     return SizedBox(
-      width: screenHeight / 4,
+      width: isPortrait ? screenHeight / 4 : screenWidth / 5,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, route);
@@ -29,17 +30,20 @@ class NavigatePageOrderAndStay extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: screenHeight / 4,
-              width: screenHeight / 4,
+              height: isPortrait ? screenHeight / 4 : screenWidth / 5,
+              width: isPortrait ? screenHeight / 4 : screenWidth / 5,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(image), //
-                  fit: BoxFit.fill,
-                ),
-              ),
+                  image: DecorationImage(
+                    image: AssetImage(image), //
+                    fit: BoxFit.fill,
+                  ),
+                  border: Border.all(width: 0.25),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8))),
             ),
             SizedBox(
-              height: screenHeight / 20,
+              height: isPortrait ? screenHeight / 16 : screenWidth / 20,
               child: Container(
                 decoration: BoxDecoration(
                   color: color,
@@ -51,10 +55,10 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                 child: Center(
                   child: Text(
                     text, //
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: screenHeight / 40,
+                      fontSize: 36,
                     ),
                   ),
                 ),
