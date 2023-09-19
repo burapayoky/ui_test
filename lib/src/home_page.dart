@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
-//appbar
+
     PreferredSizeWidget appBar() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -47,27 +47,24 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             },
-            child: Padding(
-              padding: EdgeInsets.only(top: 18.0),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 25.0),
               child: Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.restaurant,
                     size: 32.667,
                     color: Colors.black38,
                   ),
                   Padding(
                     padding: EdgeInsets.all(14.0),
-                    child: SizedBox(
-                      width: screenWidth / 3,
-                      child: const Text(
-                        'Soi Siam',
-                        style: TextStyle(
-                            fontSize: 36,
-                            color: Colors.black38,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Roboto_Lights'),
-                      ),
+                    child: Text(
+                      'Soi Siam',
+                      style: TextStyle(
+                          fontSize: 36,
+                          color: Colors.black38,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Roboto_Lights'),
                     ),
                   ),
                 ],
@@ -84,12 +81,11 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-//body text  'Self-Service...'
     Widget bodyText() {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: screenHeight / 9),
+            padding: EdgeInsets.only(top: screenHeight / 8),
             child: Column(
               children: [
                 TextLage(
@@ -137,13 +133,10 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-//Contract
     Widget bottomSheet() {
       if (screenHeight < 800) {
         return Container();
       } else if (isLandscape && screenHeight > 1200) {
-        return Container();
-      } else if (isLandscape && screenWidth > 2000 && screenHeight < 800) {
         return Container();
       }
       return Expanded(
@@ -154,74 +147,77 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(border: Border.all(color: Colors.white)),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      child: Column(
+                Padding(
+                  padding: EdgeInsets.only(top: screenHeight / 100),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 80),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Contact Us',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Container(
+                                  width: 400,
+                                  child: const Text(
+                                    'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                                    //
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontFamily: "Roboto"),
+                                    softWrap: true,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 4,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      //contact
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Contact Us',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          IconWithCircle(
+                            icon: Icons.phone,
+                            text: '090-0890-xxxx',
+                            divide: isPortrait ? 45 : 30,
+                            textDivide: 60,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Container(
-                              width: screenWidth / 2,
-                              child: const Text(
-                                'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
-                                //
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontFamily: "Roboto"),
-                                softWrap: true,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 4,
-                              ),
-                            ),
+                          IconWithCircle(
+                            icon: FontAwesomeIcons.instagram,
+                            text: 'SoiSiam',
+                            divide: isPortrait ? 40 : 24,
+                            textDivide: 60,
+                          ),
+                          IconWithCircle(
+                            icon: FontAwesomeIcons.youtube,
+                            text: 'SoiSiam Chanal',
+                            divide: isPortrait ? 50 : 30,
+                            textDivide: 60,
+                          ),
+                          IconWithCircle(
+                            icon: Icons.mail,
+                            text: 'SoiSiam@gmail.co.th',
+                            divide: isPortrait ? 42 : 25,
+                            textDivide: 60,
                           ),
                         ],
                       ),
-                    ),
-                    //contact
-                    Padding(
-                      padding: const EdgeInsets.only(top: 80.0),
-                      child: SizedBox(
-                        width: screenWidth / 2,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            IconWithCircle(
-                              icon: Icons.phone,
-                              text: '090-0890-xxxx',
-                              divide: isPortrait ? 50 : 40,
-                              textDivide: 60,
-                            ),
-                            IconContract(
-                              icon: FontAwesomeIcons.instagram,
-                              text: 'SoiSiam',
-                              divide: isPortrait ? 50 : 30,
-                              textDivide: 60,
-                            ),
-                            IconWithCircle(
-                              icon: FontAwesomeIcons.youtube,
-                              text: 'SoiSiam Chanal',
-                              divide: isPortrait ? 60 : 48,
-                              textDivide: 60,
-                            ),
-                            IconContract(
-                              icon: Icons.mail,
-                              text: 'SoiSiam@gmail.co.th',
-                              divide: isPortrait ? 50 : 30,
-                              textDivide: 60,
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
+                      //contact
+                    ],
+                  ),
                 ),
                 //bottom side
                 Expanded(
@@ -256,13 +252,11 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-//จอเเนวนอน
     Widget landscapeWidget() {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(
-                left: screenWidth / 16, bottom: screenHeight / 20), //20
+            padding: const EdgeInsets.only(left: 160, bottom: 60),
             child: Row(
               children: [
                 Align(
@@ -272,9 +266,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 80.0, left: screenWidth / 16),
-                  child: const Row(
+                const Padding(
+                  padding: EdgeInsets.only(top: 100.0, left: 160),
+                  child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.0),
@@ -308,16 +302,13 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-//จอเเนวตั้ง
     Widget portraitWidget() {
       return Column(
         children: [
           bodyText(),
           Padding(
             padding: EdgeInsets.only(
-                bottom: isLandscape
-                    ? context.screenHeight / 60
-                    : context.screenWidth / 7,
+                bottom: context.screenHeight / 10,
                 top: context.screenHeight / 35),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -366,4 +357,3 @@ class _HomePageState extends State<HomePage> {
   //             ),
   //           ),
   //         ),
- 

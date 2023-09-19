@@ -56,7 +56,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             height: 14,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.black12,
+              color: const Color.fromARGB(31, 156, 155, 155),
             ),
             child: const Row(
               children: [

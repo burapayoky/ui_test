@@ -43,7 +43,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                       topRight: Radius.circular(8))),
             ),
             SizedBox(
-              height: isPortrait ? screenHeight / 18 : screenWidth / 20,
+              height: isPortrait ? screenHeight / 20 : screenWidth / 20,
               child: Container(
                 decoration: BoxDecoration(
                   color: color,
@@ -55,10 +55,10 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                 child: Center(
                   child: Text(
                     text, //
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 36,
+                        fontSize: screenHeight / 50,
                         fontFamily: 'Roboto_Light'),
                   ),
                 ),

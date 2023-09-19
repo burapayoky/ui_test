@@ -54,7 +54,7 @@ class BottomWidget extends StatelessWidget {
                         divide: 30,
                         textDivide: 40,
                       ),
-                      IconContract(
+                      IconWithCircle(
                         icon: FontAwesomeIcons.instagram,
                         text: 'SoiSiam',
                         divide: 28,
@@ -66,7 +66,7 @@ class BottomWidget extends StatelessWidget {
                         divide: 35,
                         textDivide: 40,
                       ),
-                      IconContract(
+                      IconWithCircle(
                         icon: Icons.mail,
                         text: 'SoiSiam@gmail.co.th',
                         divide: 30,
@@ -114,85 +114,45 @@ class IconWithCircle extends StatelessWidget {
   final IconData icon;
   final double divide;
   final double textDivide;
-  final Color color;
 
-  const IconWithCircle(
-      {super.key,
-      required this.text,
-      required this.icon,
-      required this.divide,
-      required this.textDivide,
-      this.color = Colors.black});
+  const IconWithCircle({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.divide,
+    required this.textDivide,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = context.screenWidth;
-    final screenHeight = context.screenHeight;
+    // final screenWidth = context.screenWidth;
+    // final screenHeight = context.screenHeight;
     //final isPortrait = screenHeight > screenWidth;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: screenWidth / 28,
-          child: CircleAvatar(
-            backgroundColor: Colors.white,
-            child: FaIcon(
-              icon,
-              color: Colors.black,
-              size: context.screenHeight / divide, //40
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(right: context.screenWidth / 30),
+            child: SizedBox(
+              width: 30,
+              child: FaIcon(
+                icon,
+                color: Colors.white,
+                size: context.screenHeight / divide,
+              ),
             ),
           ),
-        ),
-        Align(
-          child: Text(
+          Text(
             text,
             style: TextStyle(
               color: Colors.white,
               fontSize: context.screenWidth / textDivide,
             ),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class IconContract extends StatelessWidget {
-  final String text;
-  final IconData icon;
-  final double divide;
-  final double textDivide;
-  final Color color;
-
-  const IconContract(
-      {super.key,
-      required this.text,
-      required this.icon,
-      required this.divide,
-      required this.textDivide,
-      this.color = Colors.black});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: 30,
-          child: Icon(
-            icon,
-            color: Colors.white,
-            size: context.screenHeight / divide, //24
-          ),
-        ),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.screenWidth / textDivide,
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }
