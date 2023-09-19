@@ -107,9 +107,6 @@ class SliverListFoodOrder extends StatelessWidget {
                                       color: Colors.black54),
                                   maxLines: isLandscape ? 2 : 3,
                                   overflow: TextOverflow.ellipsis,
-                                  // isLandscape
-                                  //     ? TextOverflow.ellipsis
-                                  //     : null,
                                 ),
                               ),
                             ),

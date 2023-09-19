@@ -9,10 +9,10 @@ class ActionsFlagIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 2, right: 4),
+      padding: const EdgeInsets.only(right: 2),
       child: Container(
-        height: context.screenHeight / 10,
-        width: 100,
+        height: context.screenHeight / 15,
+        width: 50,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
@@ -22,7 +22,7 @@ class ActionsFlagIcon extends StatelessWidget {
         ),
         child: PopupMenuButton(
           iconSize: 0,
-          offset: const Offset(0, 45),
+          offset: Offset(0, context.screenWidth / 20),
           itemBuilder: (BuildContext context) {
             return const [
               PopupMenuItem(value: 1, child: Text('English')),

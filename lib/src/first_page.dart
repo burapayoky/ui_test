@@ -64,15 +64,61 @@ class FirstPage extends StatelessWidget {
       return Stack(
         children: [
           Transform.translate(
-            offset: Offset(-120.0, -80),
-            child: Container(
-                // decoration: const BoxDecoration(
-                //   image: DecorationImage(
-                //     image: AssetImage('assets/images/bg/home_background1 1.png'),
-                //     fit: BoxFit.contain,
-                //   ),
-                // ),
+            offset: Offset(context.screenHeight / 25, -300),
+            child: Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image:
+                        AssetImage('assets/images/bg/home_background1 1.png'),
+                    fit: BoxFit.contain,
+                  ),
                 ),
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      constraints:
+                          const BoxConstraints(maxWidth: double.infinity),
+                      builder: (context) {
+                        return const SafeArea(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(),
+                            child: BottomWidget(),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.restaurant,
+                        size: screenHeight / 40,
+                        color: Colors.black54,
+                      ),
+                      Text(
+                        'Soi Siam',
+                        style: TextStyle(
+                            fontSize: screenHeight / 40,
+                            color: Colors.black54,
+                            fontFamily: 'Roboto_Light'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ActionsFlagIcon(),
+            ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,21 +250,65 @@ class FirstPage extends StatelessWidget {
     Widget landscapeWidget() {
       return Stack(
         children: [
-          Transform.rotate(
-            angle: 28.2,
-            child: Transform.translate(
-              offset: Offset(620, -60),
-              child: Container(
-                height: context.screenWidth * 100,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                        AssetImage('assets/images/bg/home_background1 1.png'),
-                    fit: BoxFit.contain,
+          Positioned(
+            child: Transform.rotate(
+              angle: 28.3,
+              child: Transform.translate(
+                offset: Offset(screenWidth / 2.6, -18),
+                child: Container(
+                  height: context.screenWidth * 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image:
+                          AssetImage('assets/images/bg/home_background1 1.png'),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      constraints:
+                          const BoxConstraints(maxWidth: double.infinity),
+                      builder: (context) {
+                        return const SafeArea(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(),
+                            child: BottomWidget(),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.restaurant,
+                        size: screenHeight / 40,
+                        color: Colors.black54,
+                      ),
+                      Text(
+                        'Soi Siam',
+                        style: TextStyle(
+                            fontSize: screenHeight / 40,
+                            color: Colors.black54,
+                            fontFamily: 'Roboto_Light'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const ActionsFlagIcon(),
+            ],
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -346,7 +436,7 @@ class FirstPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: appBar(),
+      // appBar: appBar(),
       body: isPortrait ? portraitWidget() : landscapeWidget(),
     );
   }
