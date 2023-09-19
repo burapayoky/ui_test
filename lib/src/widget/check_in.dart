@@ -74,17 +74,19 @@ class CheckIn extends StatelessWidget {
                             fontSize: context.screenHeight / 60,
                             fontFamily: 'Roboto'),
                       ),
-                      const Text(
+                      Text(
                         '\$ 0.00',
                         style: TextStyle(
-                            color: Colors.purple, fontFamily: 'Roboto'),
+                            color: const Color(0xFF7B61FF),
+                            fontFamily: 'Roboto',
+                            fontSize: context.screenHeight / 60),
                       )
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: context.screenWidth / 18,
-                  width: context.screenWidth / 6,
+                  height: context.screenWidth / 12,
+                  width: context.screenWidth / 3,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ElevatedButton(
@@ -96,18 +98,18 @@ class CheckIn extends StatelessWidget {
                           ),
                         ),
                         backgroundColor: MaterialStateProperty.all(
-                          const Color.fromARGB(136, 187, 186, 186),
+                          Colors.black26,
                         ),
                       ),
                       onPressed: () {},
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(right: 2),
                             child: Icon(
                               Icons.shopping_cart,
-                              size: context.screenWidth / 80,
+                              size: context.screenWidth / 30,
                               color: Colors.white,
                             ),
                           ),
@@ -116,9 +118,9 @@ class CheckIn extends StatelessWidget {
                             child: Text(
                               'confirm Order (0)',
                               style: TextStyle(
-                                fontSize: context.screenWidth / 90,
-                                color: Colors.white,
-                              ),
+                                  fontSize: context.screenWidth / 40,
+                                  color: Colors.white,
+                                  fontFamily: 'Roboto'),
                               overflow: TextOverflow
                                   .ellipsis, // เพิ่ม overflow ด้วย TextOverflow.ellipsis
                             ),

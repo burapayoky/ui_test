@@ -142,7 +142,7 @@ class FirstPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                             )),
                             backgroundColor: const MaterialStatePropertyAll(
-                              Colors.blue,
+                              Color(0xFF496EE2),
                             ),
                           ),
                           child: Text(

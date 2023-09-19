@@ -138,6 +138,8 @@ class _HomePageState extends State<HomePage> {
         return Container();
       } else if (isLandscape && screenHeight > 1200) {
         return Container();
+      } else if (isLandscape && screenWidth > 2000) {
+        return Container();
       }
       return Expanded(
         child: Container(
@@ -153,36 +155,33 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 80),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Contact Us',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                child: Container(
-                                  width: 400,
-                                  child: const Text(
-                                    'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
-                                    //
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontFamily: "Roboto"),
-                                    softWrap: true,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 4,
-                                  ),
+                        padding: EdgeInsets.only(left: screenWidth / 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Contact Us',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                width: 400,
+                                child: const Text(
+                                  'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                                  //
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "Roboto"),
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 4,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       //contact
@@ -256,7 +255,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 160, bottom: 60),
+            padding: EdgeInsets.only(left: screenWidth / 15, bottom: 60),
             child: Row(
               children: [
                 Align(
@@ -266,9 +265,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 100.0, left: 160),
-                  child: Row(
+                Padding(
+                  padding: EdgeInsets.only(top: 100.0, left: screenHeight / 10),
+                  child: const Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.0),
@@ -277,14 +276,14 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             NavigatePageOrderAndStay(
                               image: 'assets/images/gif/gif2.gif',
-                              color: Colors.blue,
+                              color: Color(0xFF496EE2),
                               text: 'To Stay',
                               route: 'first-page',
                             ),
                             SizedBox(width: 20),
                             NavigatePageOrderAndStay(
                               image: 'assets/images/gif/gif1.gif',
-                              color: Color(0xFFFFB300),
+                              color: Color(0xFFFAA21c),
                               text: 'Togo',
                               route: 'order',
                             ),

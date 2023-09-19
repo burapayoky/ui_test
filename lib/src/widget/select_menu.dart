@@ -122,13 +122,13 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   width: 90,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: Colors.black12,
+                      color: Color(0xFFF6F6F6),
                       borderRadius: BorderRadius.circular(8)),
                   child: const Row(
                     children: [
                       Icon(
                         Icons.keyboard_arrow_left,
-                        size: 24,
+                        size: 30,
                       ),
                       Text(
                         'Back',
@@ -181,9 +181,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
 // thai Menu,Japan Menu,FreeItem {foodSet}
     Widget selectedFoodSet() {
       return SizedBox(
-        height:
-            isLandscape ? context.screenHeight / 16 : context.screenWidth / 12,
-        width: double.infinity,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
@@ -194,12 +191,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
                     return Padding(
                       padding: const EdgeInsets.only(right: 12.0),
                       child: SizedBox(
-                        height: isLandscape
-                            ? context.screenHeight / 14
-                            : context.screenWidth / 9,
                         width: isLandscape
-                            ? context.screenWidth / 8
-                            : context.screenHeight / 4,
+                            ? context.screenWidth / 6
+                            : context.screenHeight / 6,
                         child: ElevatedButton(
                           onPressed: () {
                             context
@@ -214,23 +208,25 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(12),
                                   side: BorderSide(
                                       color: state.selectedId == i
-                                          ? Colors.black26
+                                          ? Color(0xFF636363)
                                           : const Color.fromARGB(
                                               66, 235, 229, 229))),
                               backgroundColor: state.selectedId == i
-                                  ? Colors.cyan
-                                  : const Color.fromARGB(66, 235, 229, 229)),
+                                  ? const Color(0xFF02CCFE)
+                                  : const Color(0xFFF6F6F6)),
                           child: Text(
                             e.foodSetName ?? '',
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.normal,
                                 fontFamily: 'Roboto',
-                                color: Colors.white),
+                                color: state.selectedId == i
+                                    ? Colors.white
+                                    : Colors.black87),
                           ),
                         ),
                       ),
@@ -357,7 +353,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  height: context.screenHeight / 15,
+                  height: context.screenHeight / 20,
                   child: selectedFoodSet(),
                 ),
               )

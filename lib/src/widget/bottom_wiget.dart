@@ -128,31 +128,28 @@ class IconWithCircle extends StatelessWidget {
     // final screenWidth = context.screenWidth;
     // final screenHeight = context.screenHeight;
     //final isPortrait = screenHeight > screenWidth;
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(right: context.screenWidth / 30),
-            child: SizedBox(
-              width: 30,
-              child: FaIcon(
-                icon,
-                color: Colors.white,
-                size: context.screenHeight / divide,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(right: context.screenWidth / 30),
+          child: SizedBox(
+            width: 30,
+            child: FaIcon(
+              icon,
+              color: Colors.white,
+              size: context.screenHeight / divide,
             ),
           ),
-          Text(
-            text,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: context.screenWidth / textDivide,
-            ),
-          )
-        ],
-      ),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: context.screenWidth / textDivide,
+          ),
+        )
+      ],
     );
   }
 }

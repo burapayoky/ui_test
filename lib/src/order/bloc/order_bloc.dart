@@ -32,7 +32,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           foodData: foodData,
           foodSetId: event.foodSetId,
           selectedId: state.selectedId));
-      print("selectedID:${state.selectedId}");
     });
 
     on<OrderSearchEvent>(
