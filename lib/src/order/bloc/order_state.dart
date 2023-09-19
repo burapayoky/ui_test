@@ -21,12 +21,10 @@ class OrderUpdateState extends OrderState {
     required Map<String, List<FoodModel>> foodData,
     required String? foodSetId,
     required int selectedId,
-    required int selectedCat,
   }) : super(
           foodData: foodData,
           foodSetId: foodSetId,
           selectedId: selectedId,
-          selectedCat: selectedCat,
         );
 }
 
@@ -34,7 +32,8 @@ class OrderUpdateColorsState extends OrderState {
   OrderUpdateColorsState({required selectedId}) : super(selectedId: selectedId);
 }
 
-class OrderUpdateColorsCatState extends OrderState {
-  OrderUpdateColorsCatState({required selectedCat})
-      : super(selectedCat: selectedCat);
-}
+// class OrderUpdateColorsCatState extends OrderState {
+//   OrderUpdateColorsCatState({required selectedCat})
+//       : super(selectedCat: selectedCat);
+// }
+  // selectedCat: selectedCat,    // required int selectedCat,

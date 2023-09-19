@@ -45,7 +45,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
     final screenHeight = context.screenHeight;
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
-    //final _scrollKey = GlobalKey();
+
     PreferredSizeWidget appBar() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -109,74 +109,77 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     Widget headding() {
       return Padding(
-        padding: const EdgeInsets.only(top: 28, bottom: 18),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  width: 90,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: Color(0xFFF6F6F6),
-                      borderRadius: BorderRadius.circular(8)),
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.keyboard_arrow_left,
-                        size: 30,
-                      ),
-                      Text(
-                        'Back',
-                        style: TextStyle(
-                            fontSize: 24,
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black54),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 40,
-              width: 150,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(104, 182, 180, 180),
-                borderRadius: BorderRadius.circular(8),
-
-                //border: Border.all(color: Colors.black)),
-              ),
-              child: Row(
+          padding: const EdgeInsets.only(top: 28, bottom: 18),
+          child: BlocBuilder<OrderBloc, OrderState>(
+            builder: (context, state) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.search),
-                  ),
-                  SizedBox(
-                    width: 100,
-                    child: TextField(
-                      onChanged: (value) {
-                        context.read<OrderBloc>().add(
-                              OrderSearchEvent(
-                                text: value,
-                              ),
-                            );
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
                       },
+                      child: Container(
+                        width: 90,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Color(0xFFF6F6F6),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.keyboard_arrow_left,
+                              size: 30,
+                            ),
+                            Text(
+                              'Back',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black54),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 40,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(104, 182, 180, 180),
+                      borderRadius: BorderRadius.circular(8),
+
+                      //border: Border.all(color: Colors.black)),
+                    ),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.search),
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: TextField(
+                            onChanged: (value) {
+                              context.read<OrderBloc>().add(
+                                    OrderSearchEvent(
+                                      text: value,
+                                    ),
+                                  );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              ),
-            ),
-          ],
-        ),
-      );
+              );
+            },
+          ));
     }
 
 // thai Menu,Japan Menu,FreeItem {foodSet}
@@ -194,7 +197,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       child: SizedBox(
                         width: isLandscape
                             ? context.screenWidth / 6
-                            : context.screenHeight / 8,
+                            : context.screenWidth / 5,
                         child: ElevatedButton(
                           onPressed: () {
                             context
@@ -223,7 +226,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           child: Text(
                             e.foodSetName ?? '',
                             style: TextStyle(
-                                fontSize: 18,
+                                fontSize: isLandscape
+                                    ? screenWidth / 90
+                                    : screenWidth / 55,
                                 fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.normal,
                                 fontFamily: 'Roboto',
@@ -246,6 +251,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 //KidMenu,SideOrder,Luch,Appitizer {foodcat}
     Widget selectedFoodCategory() {
       return BlocBuilder<OrderBloc, OrderState>(
+        //buildWhen: (previous, current) => State is OrderUpdateColorsCatState,
         builder: (context, state) {
           //filtter foodCat
           List<FoodCategory> foodCategories = state.foodData.keys
@@ -280,6 +286,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                     // context
                     //     .read<OrderBloc>()
                     //     .add(OrderFoodCatUpdateEvent(SelectedCat: index));
+                    // print(index);
                     scrollTo(index);
                   },
                   child: Text(
@@ -358,7 +365,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  height: context.screenHeight / 28,
+                  height: isLandscape
+                      ? screenHeight / 15
+                      : screenWidth / 16, //context.screenHeight / 28,
                   child: selectedFoodSet(),
                 ),
               )

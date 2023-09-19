@@ -27,12 +27,12 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
         return prev;
       });
-
+      // emit(OrderUpdateColorsState(selectedId: state.selectedId));
       emit(OrderUpdateState(
-          foodData: foodData,
-          foodSetId: event.foodSetId,
-          selectedId: state.selectedId,
-          selectedCat: state.selectedCat));
+        foodData: foodData,
+        foodSetId: event.foodSetId,
+        selectedId: state.selectedId,
+      ));
     });
 
     on<OrderSearchEvent>(
@@ -73,10 +73,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         });
 
         emit(OrderUpdateState(
-            foodData: foodData,
-            foodSetId: state.foodSetId,
-            selectedId: state.selectedId,
-            selectedCat: state.selectedCat));
+          foodData: foodData,
+          foodSetId: state.foodSetId,
+          selectedId: state.selectedId,
+        ));
       }),
     );
     on<OrderFoodSetUpdateEvent>(
@@ -88,8 +88,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     );
     // on<OrderFoodCatUpdateEvent>(
     //   ((event, emit) {
-    //     //print(state.selectedId);
-    //     emit(OrderUpdateColorsCatState(selectedCat: event.SelectedCat));
+    //     print("state:${state.selectedId}");
+    //     print("Event:${event.SelectedCat}");
     //   }),
     // );
   }

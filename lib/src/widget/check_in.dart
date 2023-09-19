@@ -10,6 +10,10 @@ class CheckIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+    //final isPortrait = screenHeight > screenWidth;
+    final isLandscape = screenWidth > screenHeight;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -67,29 +71,32 @@ class CheckIn extends StatelessWidget {
                 const Divider(),
                 Padding(
                   padding: EdgeInsets.all(context.screenWidth / 40),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'Total',
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: context.screenHeight / 60,
+                            fontSize: 16,
                             fontFamily: 'Roboto'),
                       ),
                       Text(
                         '\$ 0.00',
                         style: TextStyle(
-                            color: const Color(0xFF7B61FF),
+                            color: Color(0xFF7B61FF),
                             fontFamily: 'Roboto',
-                            fontSize: context.screenHeight / 60),
+                            fontSize: 16),
                       )
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: context.screenWidth / 12,
-                  width: context.screenWidth / 3,
+                  height: isLandscape
+                      ? screenHeight / 10
+                      : context.screenWidth / 12,
+                  width:
+                      isLandscape ? screenHeight / 3 : context.screenWidth / 3,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ElevatedButton(
@@ -112,7 +119,9 @@ class CheckIn extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 2),
                             child: Icon(
                               Icons.shopping_cart,
-                              size: context.screenWidth / 30,
+                              size: isLandscape
+                                  ? screenWidth / 50
+                                  : screenWidth / 38,
                               color: Colors.white,
                             ),
                           ),
@@ -121,7 +130,9 @@ class CheckIn extends StatelessWidget {
                             child: Text(
                               'confirm Order (0)',
                               style: TextStyle(
-                                  fontSize: context.screenWidth / 40,
+                                  fontSize: isLandscape
+                                      ? screenWidth / 66
+                                      : context.screenWidth / 40,
                                   color: Colors.white,
                                   fontFamily: 'Roboto'),
                               overflow: TextOverflow

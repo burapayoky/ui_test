@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_test/extensions/build_context.dart';
 import 'package:ui_test/src/widget/check_in.dart';
 import 'package:ui_test/src/widget/select_menu.dart';
 
@@ -7,15 +8,19 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+    //final isPortrait = screenHeight > screenWidth;
+    final isLandscape = screenWidth > screenHeight;
+    return Row(
       children: [
-        Flexible(flex: 3, child: SelectedMenu()),
-        VerticalDivider(
+        const Flexible(flex: 3, child: SelectedMenu()),
+        const VerticalDivider(
           width: 1,
           thickness: 20,
           color: Colors.black,
         ),
-        Flexible(flex: 2, child: CheckIn())
+        Flexible(flex: isLandscape ? 1 : 2, child: const CheckIn())
       ],
     );
   }
