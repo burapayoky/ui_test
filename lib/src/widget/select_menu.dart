@@ -28,6 +28,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
         duration: Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
+  void jumpTo(int index) => itemScrollController.jumpTo(index: index);
 //
   @override
   void initState() {
@@ -44,7 +45,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
     final screenHeight = context.screenHeight;
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
-
+    //final _scrollKey = GlobalKey();
     PreferredSizeWidget appBar() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -193,7 +194,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       child: SizedBox(
                         width: isLandscape
                             ? context.screenWidth / 6
-                            : context.screenHeight / 6,
+                            : context.screenHeight / 8,
                         child: ElevatedButton(
                           onPressed: () {
                             context
@@ -203,6 +204,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                             context.read<OrderBloc>().add(
                                   OrderUpdateEvent(foodSetId: e.foodSetId),
                                 );
+                            jumpTo(0);
+                            // scrollTo(0);
                           },
                           //onpress
 
@@ -260,37 +263,39 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 );
           }));
 
-          return Padding(
-            padding: const EdgeInsets.only(top: 14),
-            child: SizedBox(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                physics: const AlwaysScrollableScrollPhysics(),
-                itemCount: foodCategories.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(4),
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemCount: foodCategories.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: state.selectedCat == index
+                      ? const Color(0xFF02CCFE)
+                      : const Color(0xFFF6F6F6),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    // context
+                    //     .read<OrderBloc>()
+                    //     .add(OrderFoodCatUpdateEvent(SelectedCat: index));
+                    scrollTo(index);
+                  },
+                  child: Text(
+                    foodCategories[index].foodCatName ?? '',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w500,
+                      color: state.selectedCat == index
+                          ? Colors.white
+                          : Colors.black,
                     ),
-                    child: TextButton(
-                      onPressed: () {
-                        scrollTo(index);
-                      },
-                      child: Text(
-                        foodCategories[index].foodCatName ?? '',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+                  ),
+                ),
+              );
+            },
           );
         },
       );
@@ -353,7 +358,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  height: context.screenHeight / 20,
+                  height: context.screenHeight / 28,
                   child: selectedFoodSet(),
                 ),
               )
@@ -362,12 +367,15 @@ class _SelectedMenuState extends State<SelectedMenu> {
           Row(
             children: [
               Expanded(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: isLandscape
-                      ? context.screenHeight / 11
-                      : context.screenWidth / 8,
-                  child: selectedFoodCategory(),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: isLandscape
+                        ? context.screenHeight / 16
+                        : context.screenWidth / 14,
+                    child: selectedFoodCategory(),
+                  ),
                 ),
               )
             ],

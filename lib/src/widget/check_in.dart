@@ -25,19 +25,22 @@ class CheckIn extends StatelessWidget {
             child: Container(
               child: Row(
                 children: [
-                  const Text(
-                    'My Order',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
-                        fontStyle: FontStyle.normal,
-                        overflow: TextOverflow.fade),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 12.0),
+                    child: Text(
+                      'My Order',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 34,
+                          fontStyle: FontStyle.normal,
+                          overflow: TextOverflow.fade),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 5),
                     child: FaIcon(
                       FontAwesomeIcons.penToSquare,
-                      size: context.screenWidth / 80,
+                      size: context.screenWidth / 60,
                     ),
                   )
                 ],
