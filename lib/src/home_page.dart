@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
-
+//appbar
     PreferredSizeWidget appBar() {
       return AppBar(
         backgroundColor: Colors.white,
@@ -47,24 +47,27 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             },
-            child: const Padding(
-              padding: EdgeInsets.only(top: 30.0),
+            child: Padding(
+              padding: EdgeInsets.only(top: 18.0),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.restaurant,
                     size: 32.667,
                     color: Colors.black38,
                   ),
                   Padding(
                     padding: EdgeInsets.all(14.0),
-                    child: Text(
-                      'Soi Siam',
-                      style: TextStyle(
-                          fontSize: 36,
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Roboto_Lights'),
+                    child: SizedBox(
+                      width: screenWidth / 3,
+                      child: const Text(
+                        'Soi Siam',
+                        style: TextStyle(
+                            fontSize: 36,
+                            color: Colors.black38,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Roboto_Lights'),
+                      ),
                     ),
                   ),
                 ],
@@ -81,11 +84,12 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+//body text  'Self-Service...'
     Widget bodyText() {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: screenHeight / 8),
+            padding: EdgeInsets.only(top: screenHeight / 9),
             child: Column(
               children: [
                 TextLage(
@@ -133,10 +137,13 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+//Contract
     Widget bottomSheet() {
       if (screenHeight < 800) {
         return Container();
       } else if (isLandscape && screenHeight > 1200) {
+        return Container();
+      } else if (isLandscape && screenWidth > 2000 && screenHeight < 1000) {
         return Container();
       }
 
@@ -166,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Container(
-                                width: 400,
+                                width: screenWidth / 3,
                                 child: const Text(
                                   'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
                                   //
@@ -193,25 +200,25 @@ class _HomePageState extends State<HomePage> {
                           IconWithCircle(
                             icon: Icons.phone,
                             text: '090-0890-xxxx',
-                            divide: isPortrait ? 30 : 30,
+                            divide: isPortrait ? 50 : 40,
                             textDivide: 60,
                           ),
-                          IconWithCircle(
+                          IconContract(
                             icon: FontAwesomeIcons.instagram,
                             text: 'SoiSiam',
-                            divide: isPortrait ? 30 : 24,
+                            divide: isPortrait ? 33 : 30,
                             textDivide: 60,
                           ),
                           IconWithCircle(
                             icon: FontAwesomeIcons.youtube,
                             text: 'SoiSiam Chanal',
-                            divide: isPortrait ? 35 : 30,
+                            divide: isPortrait ? 59 : 48,
                             textDivide: 60,
                           ),
-                          IconWithCircle(
+                          IconContract(
                             icon: Icons.mail,
                             text: 'SoiSiam@gmail.co.th',
-                            divide: isPortrait ? 30 : 25,
+                            divide: isPortrait ? 33 : 30,
                             textDivide: 60,
                           ),
                         ],
@@ -252,11 +259,13 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+//จอเเนวนอน
     Widget landscapeWidget() {
       return Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 160, bottom: 60),
+            padding: EdgeInsets.only(
+                left: screenWidth / 16, bottom: screenHeight / 20), //20
             child: Row(
               children: [
                 Align(
@@ -266,9 +275,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 100.0, left: 160),
-                  child: Row(
+                Padding(
+                  padding: EdgeInsets.only(top: 80.0, left: screenWidth / 16),
+                  child: const Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(8.0),
@@ -302,13 +311,16 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+//จอเเนวตั้ง
     Widget portraitWidget() {
       return Column(
         children: [
           bodyText(),
           Padding(
             padding: EdgeInsets.only(
-                bottom: context.screenHeight / 10,
+                bottom: isLandscape
+                    ? context.screenHeight / 60
+                    : context.screenHeight / 20,
                 top: context.screenHeight / 35),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -357,3 +369,4 @@ class _HomePageState extends State<HomePage> {
   //             ),
   //           ),
   //         ),
+  
