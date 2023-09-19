@@ -21,7 +21,7 @@ class SliverListFoodOrder extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 16),
+            padding: const EdgeInsets.only(left: 24, top: 20),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -29,7 +29,7 @@ class SliverListFoodOrder extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 38,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.black54,
                 ),
               ),
             ),
@@ -62,7 +62,7 @@ class SliverListFoodOrder extends StatelessWidget {
                     children: [
                       Container(
                         height: isLandscape
-                            ? context.screenWidth / 15
+                            ? context.screenWidth / 10
                             : context.screenWidth / 7,
                         decoration: BoxDecoration(
                           color: Colors.red,
