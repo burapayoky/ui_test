@@ -63,21 +63,21 @@ class FirstPage extends StatelessWidget {
     Widget portraitWidget() {
       return Stack(
         children: [
-          Transform.translate(
-            offset: Offset(context.screenHeight / 25, -300),
-            child: Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                        AssetImage('assets/images/bg/home_background1 1.png'),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // Transform.translate(
+          //   offset: Offset(context.screenHeight / 25, -300),
+          //   child: Expanded(
+          //     child: Container(
+          //       width: double.infinity,
+          //       decoration: const BoxDecoration(
+          //         image: DecorationImage(
+          //           image:
+          //               AssetImage('assets/images/bg/home_background1 1.png'),
+          //           fit: BoxFit.contain,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
