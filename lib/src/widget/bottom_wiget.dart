@@ -11,8 +11,7 @@ class BottomWidget extends StatelessWidget {
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
     return Container(
-      height: 400,
-      width: double.maxFinite,
+      width: double.infinity,
       color: Colors.black,
       child: Padding(
         padding: const EdgeInsets.all(30.0),
@@ -127,27 +126,30 @@ class IconWithCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+    //final isPortrait = screenHeight > screenWidth;
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: EdgeInsets.only(right: context.screenWidth / 30),
-          child: SizedBox(
-            width: 30,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: FaIcon(
-                icon,
-                color: Colors.black,
-                size: context.screenHeight / divide, //40
-              ),
+        SizedBox(
+          width: screenWidth / 28,
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: FaIcon(
+              icon,
+              color: Colors.black,
+              size: context.screenHeight / divide, //40
             ),
           ),
         ),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.screenWidth / textDivide,
+        Align(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: context.screenWidth / textDivide,
+            ),
           ),
         )
       ],
@@ -175,15 +177,12 @@ class IconContract extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: EdgeInsets.only(right: context.screenWidth / 30),
-          child: SizedBox(
-            width: 30,
-            child: Icon(
-              icon,
-              color: Colors.white,
-              size: context.screenHeight / divide, //24
-            ),
+        SizedBox(
+          width: 30,
+          child: Icon(
+            icon,
+            color: Colors.white,
+            size: context.screenHeight / divide, //24
           ),
         ),
         Text(
