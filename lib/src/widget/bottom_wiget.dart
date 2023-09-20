@@ -182,8 +182,9 @@ class IconCircle extends StatelessWidget {
           child: CircleAvatar(
             maxRadius: isPortrait ? screenHeight / 90 : 19,
             minRadius: 9,
+            backgroundColor: Colors.white,
             child: SizedBox(
-              width: isPortrait ? 40 : 31,
+              width: isPortrait ? 40 : 32,
               child: FaIcon(
                 icon,
                 color: Colors.black,

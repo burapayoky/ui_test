@@ -149,37 +149,60 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 40,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(104, 182, 180, 180),
-                      borderRadius: BorderRadius.circular(8),
+                  issearch == true
+                      ? Container(
+                          height: 40,
+                          width: 250,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(104, 182, 180, 180),
+                            borderRadius: BorderRadius.circular(8),
 
-                      //border: Border.all(color: Colors.black)),
-                    ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.search),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: TextField(
-                            controller: fieldText,
-                            onChanged: (value) {
-                              context.read<OrderBloc>().add(
-                                    OrderSearchEvent(
-                                      text: value,
-                                    ),
-                                  );
-                            },
+                            //border: Border.all(color: Colors.black)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Icon(
+                                Icons.search,
+                              ),
+                              SizedBox(
+                                width: 150,
+                                child: TextField(
+                                  controller: fieldText,
+                                  onChanged: (value) {
+                                    context.read<OrderBloc>().add(
+                                          OrderSearchEvent(
+                                            text: value,
+                                          ),
+                                        );
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  issearch = false;
+                                  setState(() {});
+                                },
+                                icon: const Icon(Icons.close),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xFFF6F6F6),
+                                borderRadius: BorderRadius.circular(6)),
+                            child: IconButton(
+                              icon: const Icon(Icons.search),
+                              onPressed: () {
+                                issearch = true;
+                                setState(() {});
+                              },
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  )
                 ],
               );
             },

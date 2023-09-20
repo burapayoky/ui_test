@@ -67,13 +67,14 @@ class FirstPage extends StatelessWidget {
             child: Transform.rotate(
               angle: 6.3,
               child: Transform.translate(
-                offset: Offset(screenWidth / 60, -400),
+                offset: Offset(screenWidth / 300, -330),
                 child: Container(
+                  width: screenWidth * 2,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image:
                           AssetImage('assets/images/bg/home_background1 1.png'),
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                 ),
@@ -180,7 +181,7 @@ class FirstPage extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.only(top: 40, bottom: 100),
                     child: SizedBox(
                       width: screenHeight / 4,
                       height: screenHeight / 12,
@@ -342,7 +343,7 @@ class FirstPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(6),
                             )),
                             backgroundColor: const MaterialStatePropertyAll(
-                              Colors.blue,
+                              Color(0xFF496EE2),
                             ),
                           ),
                           child: Text(
@@ -443,9 +444,9 @@ class FirstPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: const ActionsFlagIcon(),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ActionsFlagIcon(),
                 ),
               ],
             ),

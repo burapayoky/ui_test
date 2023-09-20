@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               if (screenHeight > 900) {
                 null;
-              } else if (isLandscape) {
+              } else if (isPortrait) {
                 null;
               }
               showModalBottomSheet(
@@ -255,14 +255,14 @@ class _HomePageState extends State<HomePage> {
             child: Transform.rotate(
               angle: 28.3,
               child: Transform.translate(
-                offset: Offset(screenWidth / 2.6, -18),
+                offset: Offset(screenWidth / 60, 0),
                 child: Container(
-                  height: context.screenWidth * 100,
+                  height: double.infinity,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image:
                           AssetImage('assets/images/bg/home_background1 1.png'),
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                 ),
@@ -317,6 +317,59 @@ class _HomePageState extends State<HomePage> {
               bottomSheet()
             ],
           ),
+          SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        constraints:
+                            const BoxConstraints(maxWidth: double.infinity),
+                        builder: (context) {
+                          return const SafeArea(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: BottomWidget(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              Icons.restaurant,
+                              size: screenHeight / 40,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          Text(
+                            'Soi Siam',
+                            style: TextStyle(
+                                fontSize: screenHeight / 40,
+                                color: Colors.black54,
+                                fontFamily: 'Roboto_Light'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ActionsFlagIcon(),
+                ),
+              ],
+            ),
+          ),
         ],
       );
     }
@@ -328,13 +381,13 @@ class _HomePageState extends State<HomePage> {
             child: Transform.rotate(
               angle: -18.86,
               child: Transform.translate(
-                offset: Offset(screenWidth / 2000, -60),
+                offset: Offset(screenWidth / 2000, 0),
                 child: Container(
                   height: 2000, //2000
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/bg/Bg1.png'),
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                 ),
@@ -353,7 +406,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     NavigatePageOrderAndStay(
                       image: 'assets/images/gif/gif2.gif',
-                      color: Colors.blue,
+                      color: Color(0xFF496EE2),
                       text: 'To Stay',
                       route: 'first-page',
                     ),
@@ -375,7 +428,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
-        appBar: appBar(),
+        // appBar: appBar(),
         body: isLandscape ? landscapeWidget() : portraitWidget());
     //isPortrait ? portraitWidget() : landscapeWidget());
   }
