@@ -41,6 +41,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
         );
   }
 
+  int selectCategory = 0;
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -148,46 +149,37 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       ),
                     ),
                   ),
-                  issearch != true
-                      ? Container(
-                          height: 40,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(104, 182, 180, 180),
-                            borderRadius: BorderRadius.circular(8),
+                  Container(
+                    height: 40,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(104, 182, 180, 180),
+                      borderRadius: BorderRadius.circular(8),
 
-                            //border: Border.all(color: Colors.black)),
-                          ),
-                          child: Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.search),
-                              ),
-                              SizedBox(
-                                width: 100,
-                                child: TextField(
-                                  controller: fieldText,
-                                  onChanged: (value) {
-                                    context.read<OrderBloc>().add(
-                                          OrderSearchEvent(
-                                            text: value,
-                                          ),
-                                        );
-                                  },
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {}, icon: Icon(Icons.close))
-                            ],
-                          ),
-                        )
-                      : Container(
-                          child: IconButton(
-                            icon: const Icon(Icons.search),
-                            onPressed: () {},
+                      //border: Border.all(color: Colors.black)),
+                    ),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.search),
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: TextField(
+                            controller: fieldText,
+                            onChanged: (value) {
+                              context.read<OrderBloc>().add(
+                                    OrderSearchEvent(
+                                      text: value,
+                                    ),
+                                  );
+                            },
                           ),
                         ),
+                      ],
+                    ),
+                  )
                 ],
               );
             },
@@ -221,6 +213,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                 );
                             fieldText.clear();
                             jumpTo(0);
+                            selectCategory = 0;
                             // scrollTo(0);
                           },
                           //onpress
@@ -289,13 +282,15 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 decoration: BoxDecoration(
-                  color: state.selectedCat == index
+                  color: selectCategory == index
                       ? const Color(0xFF02CCFE)
                       : const Color(0xFFF6F6F6),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: TextButton(
                   onPressed: () {
+                    selectCategory = index;
+                    setState(() {});
                     scrollTo(index);
                   },
                   child: Text(
@@ -304,9 +299,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       fontSize: 18,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
-                      color: state.selectedCat == index
-                          ? Colors.white
-                          : Colors.black,
+                      color:
+                          selectCategory == index ? Colors.white : Colors.black,
                     ),
                   ),
                 ),

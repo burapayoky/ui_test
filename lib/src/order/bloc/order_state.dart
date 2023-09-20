@@ -4,13 +4,11 @@ abstract class OrderState {
   final Map<String, List<FoodModel>> foodData;
   final String? foodSetId;
   late int selectedId;
-  final int selectedCat;
 
   OrderState({
     this.foodData = const {},
     this.foodSetId,
     this.selectedId = 0,
-    this.selectedCat = 0,
   });
 }
 

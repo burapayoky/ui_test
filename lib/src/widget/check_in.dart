@@ -31,7 +31,6 @@ class CheckIn extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10.0),
                   child: Container(
-                    color: Colors.amber,
                     width: 160,
                     child: const Text(
                       'My Order',
