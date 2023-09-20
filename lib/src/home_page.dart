@@ -85,12 +85,12 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: screenHeight / 8),
+            padding: EdgeInsets.only(top: screenHeight / 10),
             child: Column(
               children: [
                 TextLage(
                   hintText: 'Self-Service',
-                  textSize: screenHeight / 16,
+                  textSize: isLandscape ? screenWidth / 50 : screenHeight / 16,
                 ),
                 TextLage(
                   hintText: 'Experience.',
@@ -99,13 +99,10 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          SizedBox(
-            height: screenHeight / 60,
-          ),
           Text(
             'Form self-order to self-checkout',
             style: TextStyle(
-                fontSize: isPortrait ? screenHeight / 48 : screenWidth / 50,
+                fontSize: isPortrait ? screenHeight / 48 : screenWidth / 60,
                 color: Colors.black38,
                 fontFamily: 'Roboto'),
           ),
@@ -121,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                 ' Accept only Credit Card',
                 style: TextStyle(
                   color: Colors.red,
-                  fontSize: isPortrait ? screenHeight / 48 : screenWidth / 48,
+                  fontSize: isPortrait ? screenHeight / 48 : screenWidth / 58,
                   fontFamily: 'Roboto',
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.red,
@@ -255,7 +252,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(left: screenWidth / 15, bottom: 60),
+            padding: EdgeInsets.only(left: screenWidth / 15, bottom: 90),
             child: Row(
               children: [
                 Align(
