@@ -26,32 +26,31 @@ class CheckIn extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-            child: Container(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 12.0),
-                    child: SizedBox(
-                      width: screenWidth / 7,
-                      child: const Text(
-                        'My Order',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 34,
-                            fontStyle: FontStyle.normal,
-                            overflow: TextOverflow.fade),
-                      ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Container(
+                    color: Colors.amber,
+                    width: 160,
+                    child: const Text(
+                      'My Order',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 34,
+                          fontStyle: FontStyle.normal,
+                          overflow: TextOverflow.fade),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: FaIcon(
-                      FontAwesomeIcons.penToSquare,
-                      size: context.screenWidth / 60,
-                    ),
-                  )
-                ],
-              ),
+                ),
+                Visibility(
+                  visible: screenWidth / 60 > 15.37 ? true : false,
+                  child: const FaIcon(
+                    FontAwesomeIcons.penToSquare,
+                    size: 34,
+                  ),
+                )
+              ],
             ),
           ),
           const Divider(),
@@ -114,7 +113,9 @@ class CheckIn extends StatelessWidget {
                           Colors.black26,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        print(context.screenWidth / 60);
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [

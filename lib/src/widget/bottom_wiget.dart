@@ -48,7 +48,7 @@ class BottomWidget extends StatelessWidget {
                   child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      IconWithCircle(
+                      IconCircle(
                         icon: Icons.phone,
                         text: '090-0890-xxxx',
                         divide: 30,
@@ -57,10 +57,10 @@ class BottomWidget extends StatelessWidget {
                       IconWithCircle(
                         icon: FontAwesomeIcons.instagram,
                         text: 'SoiSiam',
-                        divide: 28,
+                        divide: 22,
                         textDivide: 40,
                       ),
-                      IconWithCircle(
+                      IconCircle(
                         icon: FontAwesomeIcons.youtube,
                         text: 'SoiSiam Chanel',
                         divide: 35,
@@ -69,7 +69,7 @@ class BottomWidget extends StatelessWidget {
                       IconWithCircle(
                         icon: Icons.mail,
                         text: 'SoiSiam@gmail.co.th',
-                        divide: 30,
+                        divide: 22,
                         textDivide: 40,
                       ),
                     ],
@@ -139,6 +139,56 @@ class IconWithCircle extends StatelessWidget {
               icon,
               color: Colors.white,
               size: context.screenHeight / divide,
+            ),
+          ),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: context.screenWidth / textDivide,
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class IconCircle extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final double divide;
+  final double textDivide;
+
+  const IconCircle({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.divide,
+    required this.textDivide,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+    final isPortrait = screenHeight > screenWidth;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+              right: isPortrait ? screenHeight / 80 : context.screenWidth / 40),
+          child: CircleAvatar(
+            maxRadius: isPortrait ? screenHeight / 90 : 19,
+            minRadius: 9,
+            child: SizedBox(
+              width: isPortrait ? 40 : 31,
+              child: FaIcon(
+                icon,
+                color: Colors.black,
+                size: context.screenHeight / divide,
+              ),
             ),
           ),
         ),

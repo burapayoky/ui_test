@@ -63,26 +63,28 @@ class FirstPage extends StatelessWidget {
     Widget portraitWidget() {
       return Stack(
         children: [
-          // Transform.translate(
-          //   offset: Offset(context.screenHeight / 25, -300),
-          //   child: Expanded(
-          //     child: Container(
-          //       width: double.infinity,
-          //       decoration: const BoxDecoration(
-          //         image: DecorationImage(
-          //           image:
-          //               AssetImage('assets/images/bg/home_background1 1.png'),
-          //           fit: BoxFit.contain,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Positioned(
+            child: Transform.rotate(
+              angle: 6.3,
+              child: Transform.translate(
+                offset: Offset(screenWidth / 60, -400),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image:
+                          AssetImage('assets/images/bg/home_background1 1.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(12),
                 child: InkWell(
                   onTap: () {
                     showModalBottomSheet(
@@ -99,25 +101,31 @@ class FirstPage extends StatelessWidget {
                       },
                     );
                   },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.restaurant,
-                        size: screenHeight / 40,
-                        color: Colors.black54,
-                      ),
-                      Text(
-                        'Soi Siam',
-                        style: TextStyle(
-                            fontSize: screenHeight / 40,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Icon(
+                            Icons.restaurant,
+                            size: screenHeight / 60,
                             color: Colors.black54,
-                            fontFamily: 'Roboto_Light'),
-                      ),
-                    ],
+                          ),
+                        ),
+                        Text(
+                          'Soi Siam',
+                          style: TextStyle(
+                              fontSize: screenHeight / 60,
+                              color: Colors.black54,
+                              fontFamily: 'Roboto_Light'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              ActionsFlagIcon(),
+              const ActionsFlagIcon(),
             ],
           ),
           Column(
@@ -254,7 +262,7 @@ class FirstPage extends StatelessWidget {
             child: Transform.rotate(
               angle: 28.3,
               child: Transform.translate(
-                offset: Offset(screenWidth / 2.6, -18),
+                offset: Offset(screenWidth / 3.4, -150),
                 child: Container(
                   height: context.screenWidth * 100,
                   decoration: const BoxDecoration(
@@ -269,55 +277,13 @@ class FirstPage extends StatelessWidget {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(12),
-                child: InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      constraints:
-                          const BoxConstraints(maxWidth: double.infinity),
-                      builder: (context) {
-                        return const SafeArea(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(),
-                            child: BottomWidget(),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.restaurant,
-                        size: screenHeight / 40,
-                        color: Colors.black54,
-                      ),
-                      Text(
-                        'Soi Siam',
-                        style: TextStyle(
-                            fontSize: screenHeight / 40,
-                            color: Colors.black54,
-                            fontFamily: 'Roboto_Light'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const ActionsFlagIcon(),
-            ],
-          ),
-          Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: screenHeight / 8),
+                      padding: EdgeInsets.only(top: screenHeight / 6),
                       child: Column(
                         children: [
                           TextLage(
@@ -431,13 +397,108 @@ class FirstPage extends StatelessWidget {
               ),
             ],
           ),
+          SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        constraints:
+                            const BoxConstraints(maxWidth: double.infinity),
+                        builder: (context) {
+                          return const SafeArea(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: BottomWidget(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              Icons.restaurant,
+                              size: screenHeight / 40,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          Text(
+                            'Soi Siam',
+                            style: TextStyle(
+                                fontSize: screenHeight / 40,
+                                color: Colors.black54,
+                                fontFamily: 'Roboto_Light'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const ActionsFlagIcon(),
+                ),
+              ],
+            ),
+          ),
         ],
       );
     }
 
     return Scaffold(
-      // appBar: appBar(),
+      // appBar: isPortrait ? null : appBar(),
       body: isPortrait ? portraitWidget() : landscapeWidget(),
     );
   }
 }
+// Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Padding(
+//                 padding: const EdgeInsets.all(12),
+//                 child: InkWell(
+//                   onTap: () {
+//                     showModalBottomSheet(
+//                       context: context,
+//                       constraints:
+//                           const BoxConstraints(maxWidth: double.infinity),
+//                       builder: (context) {
+//                         return const SafeArea(
+//                           child: Padding(
+//                             padding: EdgeInsets.symmetric(),
+//                             child: BottomWidget(),
+//                           ),
+//                         );
+//                       },
+//                     );
+//                   },
+//                   child: Row(
+//                     children: [
+//                       Icon(
+//                         Icons.restaurant,
+//                         size: screenHeight / 40,
+//                         color: Colors.black54,
+//                       ),
+//                       Text(
+//                         'Soi Siam',
+//                         style: TextStyle(
+//                             fontSize: screenHeight / 40,
+//                             color: Colors.black54,
+//                             fontFamily: 'Roboto_Light'),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//               const ActionsFlagIcon(),
+//             ],
+//           ),

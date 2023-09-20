@@ -16,7 +16,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       final List<FoodModel> filteredFoodSet = FoodData.getFoods().where((e) {
         return e.foodSetId == event.foodSetId;
       }).toList();
-
+      // print(state.selectedCat);
       final Map<String, List<FoodModel>> foodData =
           filteredFoodSet.fold({}, (prev, cur) {
         if (prev.containsKey(cur.foodCatId)) {
@@ -86,11 +86,5 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             selectedId: state.selectedId = event.selectedItem));
       }),
     );
-    // on<OrderFoodCatUpdateEvent>(
-    //   ((event, emit) {
-    //     print("state:${state.selectedId}");
-    //     print("Event:${event.SelectedCat}");
-    //   }),
-    // );
   }
 }

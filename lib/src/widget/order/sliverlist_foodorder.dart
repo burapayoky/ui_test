@@ -52,10 +52,17 @@ class SliverListFoodOrder extends StatelessWidget {
                   //width: context.widthsize / 2,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: Colors.black,
+                      color: Colors.black12,
                     ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 2,
+                        offset: Offset(1, 6), // Shadow position
+                      ),
+                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -66,6 +73,9 @@ class SliverListFoodOrder extends StatelessWidget {
                             : context.screenWidth / 7,
                         decoration: BoxDecoration(
                           color: Colors.red,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10)),
                           image: DecorationImage(
                             alignment: const Alignment(0, 0),
                             image: NetworkImage(foods[index].imageName!),

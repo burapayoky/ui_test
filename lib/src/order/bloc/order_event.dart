@@ -27,8 +27,9 @@ class OrderFoodSetUpdateEvent extends OrderEvent {
   OrderFoodSetUpdateEvent({required this.selectedItem});
 }
 
-// class OrderFoodCatUpdateEvent extends OrderEvent {
-//   final int SelectedCat;
+///-----------------------------------------------------\\
+class OrderisSearchEvent extends OrderEvent {
+  final bool isSearch;
 
-//   OrderFoodCatUpdateEvent({required this.SelectedCat});
-// }
+  OrderisSearchEvent({required this.isSearch});
+}

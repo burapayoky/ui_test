@@ -22,6 +22,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
+  final fieldText = TextEditingController();
+  bool issearch = false;
 //Fuction Scroll to index
   void scrollTo(int index) => itemScrollController.scrollTo(
         index: index,
@@ -146,36 +148,46 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 40,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(104, 182, 180, 180),
-                      borderRadius: BorderRadius.circular(8),
+                  issearch != true
+                      ? Container(
+                          height: 40,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(104, 182, 180, 180),
+                            borderRadius: BorderRadius.circular(8),
 
-                      //border: Border.all(color: Colors.black)),
-                    ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.search),
-                        ),
-                        SizedBox(
-                          width: 100,
-                          child: TextField(
-                            onChanged: (value) {
-                              context.read<OrderBloc>().add(
-                                    OrderSearchEvent(
-                                      text: value,
-                                    ),
-                                  );
-                            },
+                            //border: Border.all(color: Colors.black)),
+                          ),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.search),
+                              ),
+                              SizedBox(
+                                width: 100,
+                                child: TextField(
+                                  controller: fieldText,
+                                  onChanged: (value) {
+                                    context.read<OrderBloc>().add(
+                                          OrderSearchEvent(
+                                            text: value,
+                                          ),
+                                        );
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {}, icon: Icon(Icons.close))
+                            ],
+                          ),
+                        )
+                      : Container(
+                          child: IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () {},
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                 ],
               );
             },
@@ -207,6 +219,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                             context.read<OrderBloc>().add(
                                   OrderUpdateEvent(foodSetId: e.foodSetId),
                                 );
+                            fieldText.clear();
                             jumpTo(0);
                             // scrollTo(0);
                           },
@@ -217,7 +230,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                   borderRadius: BorderRadius.circular(12),
                                   side: BorderSide(
                                       color: state.selectedId == i
-                                          ? Color(0xFF636363)
+                                          ? const Color.fromARGB(
+                                              66, 235, 229, 229)
                                           : const Color.fromARGB(
                                               66, 235, 229, 229))),
                               backgroundColor: state.selectedId == i
@@ -251,7 +265,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
 //KidMenu,SideOrder,Luch,Appitizer {foodcat}
     Widget selectedFoodCategory() {
       return BlocBuilder<OrderBloc, OrderState>(
-        //buildWhen: (previous, current) => State is OrderUpdateColorsCatState,
         builder: (context, state) {
           //filtter foodCat
           List<FoodCategory> foodCategories = state.foodData.keys
@@ -283,10 +296,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    // context
-                    //     .read<OrderBloc>()
-                    //     .add(OrderFoodCatUpdateEvent(SelectedCat: index));
-                    // print(index);
                     scrollTo(index);
                   },
                   child: Text(

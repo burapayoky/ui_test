@@ -185,10 +185,10 @@ class _HomePageState extends State<HomePage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          IconWithCircle(
-                            icon: Icons.phone,
+                          IconCircle(
+                            icon: Icons.call,
                             text: '090-0890-xxxx',
-                            divide: isPortrait ? 45 : 30,
+                            divide: isPortrait ? 45 : 28,
                             textDivide: 60,
                           ),
                           IconWithCircle(
@@ -197,10 +197,10 @@ class _HomePageState extends State<HomePage> {
                             divide: isPortrait ? 40 : 24,
                             textDivide: 60,
                           ),
-                          IconWithCircle(
+                          IconCircle(
                             icon: FontAwesomeIcons.youtube,
                             text: 'SoiSiam Chanal',
-                            divide: isPortrait ? 50 : 30,
+                            divide: isPortrait ? 60 : 35,
                             textDivide: 60,
                           ),
                           IconWithCircle(
@@ -249,83 +249,127 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget landscapeWidget() {
-      return Column(
+      return Stack(
         children: [
-          Padding(
-            padding: EdgeInsets.only(left: screenWidth / 15, bottom: 90),
-            child: Row(
-              children: [
-                Align(
-                  child: Column(
-                    children: [
-                      bodyText(),
-                    ],
+          Positioned(
+            child: Transform.rotate(
+              angle: 28.3,
+              child: Transform.translate(
+                offset: Offset(screenWidth / 2.6, -18),
+                child: Container(
+                  height: context.screenWidth * 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image:
+                          AssetImage('assets/images/bg/home_background1 1.png'),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 100.0, left: screenHeight / 10),
-                  child: const Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            NavigatePageOrderAndStay(
-                              image: 'assets/images/gif/gif2.gif',
-                              color: Color(0xFF496EE2),
-                              text: 'To Stay',
-                              route: 'first-page',
-                            ),
-                            SizedBox(width: 20),
-                            NavigatePageOrderAndStay(
-                              image: 'assets/images/gif/gif1.gif',
-                              color: Color(0xFFFAA21c),
-                              text: 'Togo',
-                              route: 'order',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+              ),
             ),
           ),
-          bottomSheet()
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: screenWidth / 15, bottom: 90),
+                child: Row(
+                  children: [
+                    Align(
+                      child: Column(
+                        children: [
+                          bodyText(),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: 100.0, left: screenHeight / 10),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                NavigatePageOrderAndStay(
+                                  image: 'assets/images/gif/gif2.gif',
+                                  color: Color(0xFF496EE2),
+                                  text: 'To Stay',
+                                  route: 'first-page',
+                                ),
+                                SizedBox(width: 20),
+                                NavigatePageOrderAndStay(
+                                  image: 'assets/images/gif/gif1.gif',
+                                  color: Color(0xFFFAA21c),
+                                  text: 'Togo',
+                                  route: 'order',
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              bottomSheet()
+            ],
+          ),
         ],
       );
     }
 
     Widget portraitWidget() {
-      return Column(
+      return Stack(
         children: [
-          bodyText(),
-          Padding(
-            padding: EdgeInsets.only(
-                bottom: context.screenHeight / 10,
-                top: context.screenHeight / 35),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                NavigatePageOrderAndStay(
-                  image: 'assets/images/gif/gif2.gif',
-                  color: Colors.blue,
-                  text: 'To Stay',
-                  route: 'first-page',
+          Positioned(
+            child: Transform.rotate(
+              angle: -18.86,
+              child: Transform.translate(
+                offset: Offset(screenWidth / 2000, -60),
+                child: Container(
+                  height: 2000, //2000
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/bg/Bg1.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
-                SizedBox(width: 20),
-                NavigatePageOrderAndStay(
-                  image: 'assets/images/gif/gif1.gif',
-                  color: Color(0xFFFFB300),
-                  text: 'Togo',
-                  route: 'order',
-                ),
-              ],
+              ),
             ),
           ),
-          bottomSheet(),
+          Column(
+            children: [
+              bodyText(),
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: context.screenHeight / 10,
+                    top: context.screenHeight / 35),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    NavigatePageOrderAndStay(
+                      image: 'assets/images/gif/gif2.gif',
+                      color: Colors.blue,
+                      text: 'To Stay',
+                      route: 'first-page',
+                    ),
+                    SizedBox(width: 20),
+                    NavigatePageOrderAndStay(
+                      image: 'assets/images/gif/gif1.gif',
+                      color: Color(0xFFFFB300),
+                      text: 'Togo',
+                      route: 'order',
+                    ),
+                  ],
+                ),
+              ),
+              bottomSheet(),
+            ],
+          ),
         ],
       );
     }

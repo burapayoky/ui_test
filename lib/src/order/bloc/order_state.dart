@@ -4,7 +4,7 @@ abstract class OrderState {
   final Map<String, List<FoodModel>> foodData;
   final String? foodSetId;
   late int selectedId;
-  late int selectedCat;
+  final int selectedCat;
 
   OrderState({
     this.foodData = const {},
@@ -32,8 +32,7 @@ class OrderUpdateColorsState extends OrderState {
   OrderUpdateColorsState({required selectedId}) : super(selectedId: selectedId);
 }
 
-// class OrderUpdateColorsCatState extends OrderState {
-//   OrderUpdateColorsCatState({required selectedCat})
-//       : super(selectedCat: selectedCat);
-// }
-  // selectedCat: selectedCat,    // required int selectedCat,
+//-----------------------------------------------------
+class Searchcontext extends OrderState {}
+
+// selectedCat: selectedCat,    // required int selectedCat,

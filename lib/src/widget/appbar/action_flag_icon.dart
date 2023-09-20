@@ -22,7 +22,7 @@ class ActionsFlagIcon extends StatelessWidget {
         ),
         child: PopupMenuButton(
           iconSize: 0,
-          offset: Offset(0, context.screenWidth / 20),
+          offset: Offset(0, 50),
           itemBuilder: (BuildContext context) {
             return const [
               PopupMenuItem(value: 1, child: Text('English')),
