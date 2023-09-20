@@ -16,6 +16,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
@@ -399,7 +405,7 @@ class _HomePageState extends State<HomePage> {
               bodyText(),
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: context.screenHeight / 10,
+                    bottom: context.screenHeight / 7,
                     top: context.screenHeight / 35),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
