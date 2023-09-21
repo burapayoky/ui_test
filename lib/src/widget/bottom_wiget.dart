@@ -225,18 +225,61 @@ class ContractIconCircle extends StatelessWidget {
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CircleAvatar(
           maxRadius: isPortrait ? screenHeight / 90 : 19,
           minRadius: 9,
           backgroundColor: Colors.white,
           child: SizedBox(
-            width: isPortrait ? 40 : 32,
+            width: isPortrait ? 35 : 32,
             child: FaIcon(
               icon,
-              color: Colors.white,
+              color: Colors.black,
               size: context.screenHeight / divide,
             ),
+          ),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: context.screenWidth / textDivide,
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class ContractIcon extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final double divide;
+  final double textDivide;
+
+  const ContractIcon({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.divide,
+    required this.textDivide,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // final screenWidth = context.screenWidth;
+    // final screenHeight = context.screenHeight;
+    //final isPortrait = screenHeight > screenWidth;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: 30,
+          child: FaIcon(
+            icon,
+            color: Colors.white,
+            size: context.screenHeight / divide,
           ),
         ),
         Text(
