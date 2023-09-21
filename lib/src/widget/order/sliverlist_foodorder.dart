@@ -37,11 +37,10 @@ class SliverListFoodOrder extends StatelessWidget {
           GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: isLandscape ? 4 : 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 12,
-                childAspectRatio: isLandscape
-                    ? context.screenWidth / 2000
-                    : context.screenWidth / 1200 //context.screenHeight / 2000,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 14,
+                childAspectRatio:
+                    isLandscape ? 0.74 : 0.6 //context.screenHeight / 2000,
                 ),
             shrinkWrap: true,
             itemCount: foods.length,
@@ -124,7 +123,6 @@ class SliverListFoodOrder extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Spacer(),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Padding(
