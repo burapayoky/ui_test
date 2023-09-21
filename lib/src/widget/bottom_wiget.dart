@@ -193,11 +193,13 @@ class IconCircle extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.screenWidth / textDivide,
+        Container(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: context.screenWidth / textDivide,
+            ),
           ),
         )
       ],
@@ -224,30 +226,32 @@ class ContractIconCircle extends StatelessWidget {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CircleAvatar(
-          maxRadius: isPortrait ? screenHeight / 90 : 19,
-          minRadius: 9,
-          backgroundColor: Colors.white,
-          child: SizedBox(
-            width: isPortrait ? 35 : 32,
-            child: FaIcon(
-              icon,
-              color: Colors.black,
-              size: context.screenHeight / divide,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 100,
+            child: CircleAvatar(
+              maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
+              backgroundColor: Colors.white,
+              child: FaIcon(
+                icon,
+                color: Colors.black,
+                size: context.screenHeight / divide,
+              ),
             ),
           ),
-        ),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.screenWidth / textDivide,
-          ),
-        )
-      ],
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: context.screenWidth / textDivide,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -268,57 +272,37 @@ class ContractIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = context.screenWidth;
-    // final screenHeight = context.screenHeight;
-    //final isPortrait = screenHeight > screenWidth;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(
-          width: 30,
-          child: FaIcon(
-            icon,
-            color: Colors.white,
-            size: context.screenHeight / divide,
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+    // ignore: unused_local_variable
+    final isPortrait = screenHeight > screenWidth;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            width: 100,
+            child: CircleAvatar(
+              maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
+              backgroundColor: Colors.black,
+              child: FaIcon(
+                icon,
+                color: Colors.white,
+                size: context.screenHeight / divide,
+              ),
+            ),
           ),
-        ),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.screenWidth / textDivide,
-          ),
-        )
-      ],
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: context.screenWidth / textDivide,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
-// return Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: [
-//         Padding(
-//           padding: EdgeInsets.only(
-//               right: isPortrait ? screenHeight / 80 : context.screenWidth / 40),
-//           child: CircleAvatar(
-//             maxRadius: isPortrait ? screenHeight / 90 : 19,
-//             minRadius: 9,
-//             backgroundColor: Colors.white,
-//             child: SizedBox(
-//               width: isPortrait ? 40 : 32,
-//               child: FaIcon(
-//                 icon,
-//                 color: Colors.black,
-//                 size: context.screenHeight / divide,
-//               ),
-//             ),
-//           ),
-//         ),
-//         Text(
-//           text,
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontSize: context.screenWidth / textDivide,
-//           ),
-//         )
-//       ],
-//     );

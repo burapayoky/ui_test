@@ -27,7 +27,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 //Fuction Scroll to index
   void scrollTo(int index) => itemScrollController.scrollTo(
         index: index,
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
   void jumpTo(int index) => itemScrollController.jumpTo(index: index);
@@ -112,101 +112,102 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     Widget headding() {
       return Padding(
-          padding: const EdgeInsets.only(top: 28, bottom: 18),
-          child: BlocBuilder<OrderBloc, OrderState>(
-            builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        width: 90,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Color(0xFFF6F6F6),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.keyboard_arrow_left,
-                              size: 30,
-                            ),
-                            Text(
-                              'Back',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black54),
-                            ),
-                          ],
-                        ),
+        padding: const EdgeInsets.only(top: 28, bottom: 18),
+        child: BlocBuilder<OrderBloc, OrderState>(
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 90,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFF6F6F6),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: const Row(
+                        children: [
+                          Icon(
+                            Icons.keyboard_arrow_left,
+                            size: 30,
+                          ),
+                          Text(
+                            'Back',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black54),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  issearch == true
-                      ? Container(
-                          height: 40,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(104, 182, 180, 180),
-                            borderRadius: BorderRadius.circular(8),
+                ),
+                issearch == true
+                    ? Container(
+                        height: 40,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(104, 182, 180, 180),
+                          borderRadius: BorderRadius.circular(8),
 
-                            //border: Border.all(color: Colors.black)),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(
-                                Icons.search,
-                              ),
-                              SizedBox(
-                                width: 150,
-                                child: TextField(
-                                  controller: fieldText,
-                                  onChanged: (value) {
-                                    context.read<OrderBloc>().add(
-                                          OrderSearchEvent(
-                                            text: value,
-                                          ),
-                                        );
-                                  },
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  issearch = false;
-                                  setState(() {});
+                          //border: Border.all(color: Colors.black)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Icon(
+                              Icons.search,
+                            ),
+                            SizedBox(
+                              width: 150,
+                              child: TextField(
+                                controller: fieldText,
+                                onChanged: (value) {
+                                  context.read<OrderBloc>().add(
+                                        OrderSearchEvent(
+                                          text: value,
+                                        ),
+                                      );
                                 },
-                                icon: const Icon(Icons.close),
                               ),
-                            ],
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xFFF6F6F6),
-                                borderRadius: BorderRadius.circular(6)),
-                            child: IconButton(
-                              icon: const Icon(Icons.search),
+                            ),
+                            IconButton(
                               onPressed: () {
-                                issearch = true;
+                                issearch = false;
                                 setState(() {});
                               },
+                              icon: const Icon(Icons.close),
                             ),
+                          ],
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xFFF6F6F6),
+                              borderRadius: BorderRadius.circular(6)),
+                          child: IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () {
+                              issearch = true;
+                              setState(() {});
+                            },
                           ),
                         ),
-                ],
-              );
-            },
-          ));
+                      ),
+              ],
+            );
+          },
+        ),
+      );
     }
 
 // thai Menu,Japan Menu,FreeItem {foodSet}
@@ -292,11 +293,13 @@ class _SelectedMenuState extends State<SelectedMenu> {
               .whereType<FoodCategory>()
               .toList();
 
-          foodCategories.sort(((a, b) {
-            return a.foodCatId!.toLowerCase().compareTo(
-                  b.foodCatId!.toLowerCase(),
-                );
-          }));
+          foodCategories.sort(
+            ((a, b) {
+              return a.foodCatId!.toLowerCase().compareTo(
+                    b.foodCatId!.toLowerCase(),
+                  );
+            }),
+          );
 
           return ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -308,7 +311,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
                       : const Color(0xFFF6F6F6),
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: selectCategory == index
+                      ? BorderRadius.circular(12)
+                      : BorderRadius.circular(4),
                 ),
                 child: TextButton(
                   onPressed: () {
@@ -339,10 +344,11 @@ class _SelectedMenuState extends State<SelectedMenu> {
       return BlocBuilder<OrderBloc, OrderState>(
         builder: (context, state) {
           final foodData = state.foodData.entries.where((e) {
-            final foodCategory =
-                FoodData.getFoodCategories().firstWhereOrNull((foodCat) {
-              return foodCat.foodCatId == e.key;
-            });
+            final foodCategory = FoodData.getFoodCategories().firstWhereOrNull(
+              (foodCat) {
+                return foodCat.foodCatId == e.key;
+              },
+            );
 
             if (foodCategory == null) {
               return false;
@@ -351,23 +357,26 @@ class _SelectedMenuState extends State<SelectedMenu> {
             return true;
           }).toList();
 
-          foodData.sort(((a, b) {
-            return a.key.toLowerCase().compareTo(b.key.toLowerCase());
-          }));
+          foodData.sort(
+            ((a, b) {
+              return a.key.toLowerCase().compareTo(b.key.toLowerCase());
+            }),
+          );
 
           return ScrollablePositionedList.builder(
             itemScrollController: itemScrollController,
             itemCount: foodData.length,
             itemBuilder: (context, index) {
               final foodCategory =
-                  FoodData.getFoodCategories().firstWhereOrNull((e) {
-                return e.foodCatId == foodData[index].key;
-              });
+                  FoodData.getFoodCategories().firstWhereOrNull(
+                (e) {
+                  return e.foodCatId == foodData[index].key;
+                },
+              );
 
               if (foodCategory == null) {
                 return Container();
               }
-
               return SliverListFoodOrder(
                 foodCategoryName: foodCategory.foodCatName ?? '',
                 foods: foodData[index].value,
@@ -379,47 +388,48 @@ class _SelectedMenuState extends State<SelectedMenu> {
     }
 
     return Scaffold(
-        //appBar: appBar(),
+      //appBar: appBar(),
 
-        body: Padding(
-      padding: const EdgeInsets.only(left: 28),
-      child: Column(
-        children: [
-          SafeArea(child: headding()),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: isLandscape
-                      ? screenHeight / 15
-                      : screenWidth / 16, //context.screenHeight / 28,
-                  child: selectedFoodSet(),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 28),
+        child: Column(
+          children: [
+            SafeArea(child: headding()),
+            Row(
+              children: [
+                Expanded(
                   child: Container(
                     width: double.infinity,
                     height: isLandscape
-                        ? context.screenHeight / 16
-                        : context.screenWidth / 14,
-                    child: selectedFoodCategory(),
+                        ? screenHeight / 15
+                        : screenWidth / 16, //context.screenHeight / 28,
+                    child: selectedFoodSet(),
                   ),
-                ),
-              )
-            ],
-          ),
-          Expanded(
-            child: Container(child: foodMenu()),
-          )
-        ],
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: isLandscape
+                          ? context.screenHeight / 16
+                          : context.screenWidth / 14,
+                      child: selectedFoodCategory(),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Expanded(
+              child: Container(child: foodMenu()),
+            )
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

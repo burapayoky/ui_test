@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
-    final isLandscape = screenWidth > screenHeight;
+    bool isLandscape = screenWidth > screenHeight;
 
     PreferredSizeWidget appBar() {
       return AppBar(
@@ -137,110 +137,114 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget bottomSheet() {
-      if (screenHeight < 800) {
-        return Container();
-      } else if (isLandscape && screenHeight > 1200) {
-        return Container();
-      } else if (isLandscape && screenWidth > 2000) {
-        return Container();
-      }
+      print("$screenHeight $screenWidth");
       return Expanded(
         child: Container(
-          width: double.infinity,
           color: Colors.black,
-          child: Stack(
+          child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: screenHeight / 40),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Flexible(
-                      flex: 4,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Contact Us',
-                            style: TextStyle(fontSize: 18, color: Colors.white),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Container(
-                              width: 400,
-                              child: const Text(
-                                'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
-                                //
+                padding: EdgeInsets.only(), //top: screenHeight / 40),
+                child: Container(
+                  width: double.maxFinite,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Flexible(
+                        flex: 4,
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Contact Us',
                                 style: TextStyle(
+                                    fontFamily: "Roboto",
                                     fontSize: 18,
-                                    color: Colors.white,
-                                    fontFamily: "Roboto"),
-                                softWrap: true,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 4,
+                                    color: Colors.white),
                               ),
-                            ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                // ignore: sized_box_for_whitespace
+                                child: Container(
+                                  width: 400,
+                                  child: const Text(
+                                    'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                                    //
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontFamily: "Roboto"),
+                                    softWrap: true,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                    Flexible(
-                      flex: 2,
-                      child: Container(
-                        child: Column(
-                          children: [
-                            ContractIconCircle(
-                              icon: Icons.call,
-                              text: '090-0890-xxxx',
-                              divide: isPortrait ? 48 : 28,
-                              textDivide: 60,
-                            ),
-                            ContractIcon(
-                              icon: FontAwesomeIcons.instagram,
-                              text: 'SoiSiam',
-                              divide: isPortrait ? 40 : 24,
-                              textDivide: 60,
-                            ),
-                            ContractIconCircle(
-                              icon: FontAwesomeIcons.youtube,
-                              text: 'SoiSiam Chanal',
-                              divide: isPortrait ? 58 : 35,
-                              textDivide: 60,
-                            ),
-                            ContractIcon(
-                              icon: Icons.mail,
-                              text: 'SoiSiam@gmail.co.th',
-                              divide: isPortrait ? 42 : 25,
-                              textDivide: 60,
-                            ),
-                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          child: Column(
+                            children: [
+                              ContractIconCircle(
+                                icon: Icons.call,
+                                text: '090-0890-xxxx',
+                                divide: isPortrait ? 48 : 40,
+                                textDivide: 60,
+                              ),
+                              ContractIcon(
+                                icon: FontAwesomeIcons.instagram,
+                                text: 'SoiSiam',
+                                divide: isPortrait ? 40 : 24,
+                                textDivide: 60,
+                              ),
+                              ContractIconCircle(
+                                icon: FontAwesomeIcons.youtube,
+                                text: 'SoiSiam Chanal',
+                                divide: isPortrait ? 58 : 30,
+                                textDivide: 60,
+                              ),
+                              ContractIcon(
+                                icon: Icons.mail,
+                                text: 'SoiSiam@gmail.co.th',
+                                divide: isPortrait ? 42 : 25,
+                                textDivide: 60,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '© Copyright 2022 | Powered by',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: screenHeight / 60,
+              Flexible(
+                flex: 1,
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '© Copyright 2022 | Powered by',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: screenHeight / 60,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 2, left: 1),
-                      child: SizedBox(
-                        height: screenWidth / 15,
-                        width: screenWidth / 22,
-                        child: Image.asset("assets/images/bg/smile.png"),
-                      ),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2, left: 1),
+                        child: SizedBox(
+                          height: screenWidth / 15,
+                          width: screenWidth / 22,
+                          child: Image.asset("assets/images/bg/smile.png"),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -273,7 +277,8 @@ class _HomePageState extends State<HomePage> {
           Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: screenWidth / 15, bottom: 90),
+                padding: EdgeInsets.only(
+                    left: screenWidth / 15, bottom: screenHeight / 6),
                 child: Row(
                   children: [
                     Align(
@@ -311,7 +316,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
