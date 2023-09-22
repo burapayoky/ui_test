@@ -225,7 +225,7 @@ class ContractIconCircle extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
-    final isPortrait = screenHeight > screenWidth;
+    // final isPortrait = screenHeight > screenWidth;
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Row(
