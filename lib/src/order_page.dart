@@ -14,13 +14,13 @@ class OrderPage extends StatelessWidget {
     final isLandscape = screenWidth > screenHeight;
     return Row(
       children: [
-        const Flexible(flex: 4, child: SelectedMenu()),
+        const Flexible(flex: 3, child: SelectedMenu()),
         const VerticalDivider(
           width: 1,
           thickness: 20,
           color: Colors.black,
         ),
-        Expanded(flex: isLandscape ? 1 : 2, child: const CheckIn())
+        Flexible(flex: isLandscape ? 1 : 2, child: const CheckIn())
       ],
     );
   }
