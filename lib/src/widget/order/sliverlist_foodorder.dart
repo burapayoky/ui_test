@@ -15,61 +15,58 @@ class SliverListFoodOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLandscape = context.screenWidth > context.screenHeight;
-
-    return Padding(
-      padding: const EdgeInsets.only(right: 22.0),
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 24, top: 20),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                foodCategoryName,
-                style: const TextStyle(
-                  fontSize: 38,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black54,
-                ),
+    //screenheiht:1920.0,screenWidth:1080.0
+    print(
+        'screenheiht:${context.screenHeight},screenWidth:${context.screenWidth}');
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 24, top: 20),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              foodCategoryName,
+              style: const TextStyle(
+                fontSize: 38,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
               ),
             ),
           ),
-          GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: isLandscape ? 4 : 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 14,
-                childAspectRatio:
-                    isLandscape ? 0.74 : 0.6 //context.screenHeight / 2000,
-                ),
-            shrinkWrap: true,
-            itemCount: foods.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Container(
-                  //width: context.widthsize / 2,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: Colors.black12,
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 2,
-                        offset: Offset(1, 6), // Shadow position
-                      ),
-                    ],
+        ),
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: isLandscape ? 4 : 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 14,
+              childAspectRatio: isLandscape ? 0.65 : 0.95 //0.7 : 0.95
+              ),
+          physics: const BouncingScrollPhysics(parent: ScrollPhysics()),
+          shrinkWrap: true,
+          itemCount: foods.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Colors.black12,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                        height: isLandscape
-                            ? context.screenWidth / 11
-                            : context.screenWidth / 7,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 2,
+                      offset: Offset(1, 6), // Shadow position
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: Container(
                         decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: const BorderRadius.only(
@@ -82,7 +79,9 @@ class SliverListFoodOrder extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Column(
+                    ),
+                    Expanded(
+                      child: Column(
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 8, top: 8),
@@ -106,7 +105,7 @@ class SliverListFoodOrder extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
-                                width: isLandscape ? 290 : 240,
+                                width: isLandscape ? 600 : 300,
                                 child: Text(
                                   (foods[index].foodDesc == null)
                                       ? ''
@@ -123,28 +122,28 @@ class SliverListFoodOrder extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '\$ ${foods[index].foodPrice}',
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Roboto',
-                            ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '\$ ${foods[index].foodPrice}',
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              );
-            },
-          ),
-        ],
-      ),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

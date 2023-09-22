@@ -12,12 +12,12 @@ class ActionsFlagIcon extends StatelessWidget {
       padding: const EdgeInsets.only(right: 2),
       child: Container(
         height: context.screenHeight / 15,
-        width: 50,
+        width: 20,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage('assets/images/bg/unitedflag.png'),
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.fill,
           ),
         ),
         child: PopupMenuButton(

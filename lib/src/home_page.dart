@@ -137,7 +137,6 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget bottomSheet() {
-      print("$screenHeight $screenWidth");
       return Expanded(
         child: Container(
           color: Colors.black,
@@ -434,6 +433,59 @@ class _HomePageState extends State<HomePage> {
               ),
               bottomSheet(),
             ],
+          ),
+          SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        constraints:
+                            const BoxConstraints(maxWidth: double.infinity),
+                        builder: (context) {
+                          return const SafeArea(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: BottomWidget(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              Icons.restaurant,
+                              size: screenHeight / 40,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          Text(
+                            'Soi Siam',
+                            style: TextStyle(
+                                fontSize: screenHeight / 40,
+                                color: Colors.black54,
+                                fontFamily: 'Roboto_Light'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ActionsFlagIcon(),
+                ),
+              ],
+            ),
           ),
         ],
       );

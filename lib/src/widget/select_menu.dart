@@ -389,13 +389,12 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     return Scaffold(
       //appBar: appBar(),
-
-      body: Padding(
-        padding: const EdgeInsets.only(left: 28),
-        child: Column(
-          children: [
-            SafeArea(child: headding()),
-            Row(
+      body: Column(
+        children: [
+          SafeArea(child: headding()),
+          Padding(
+            padding: const EdgeInsets.only(left: 28.0),
+            child: Row(
               children: [
                 Expanded(
                   child: Container(
@@ -408,7 +407,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 )
               ],
             ),
-            Row(
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 28.0),
+            child: Row(
               children: [
                 Expanded(
                   child: Padding(
@@ -424,11 +426,14 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 )
               ],
             ),
-            Expanded(
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 28.0, right: 14),
               child: Container(child: foodMenu()),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
