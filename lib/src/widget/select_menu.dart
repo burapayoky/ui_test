@@ -120,31 +120,34 @@ class _SelectedMenuState extends State<SelectedMenu> {
               children: [
                 Align(
                   alignment: Alignment.topLeft,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      width: 90,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: const Color(0xFFF6F6F6),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: const Row(
-                        children: [
-                          Icon(
-                            Icons.keyboard_arrow_left,
-                            size: 30,
-                          ),
-                          Text(
-                            'Back',
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black54),
-                          ),
-                        ],
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 24.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: 90,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFF6F6F6),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: const Row(
+                          children: [
+                            Icon(
+                              Icons.keyboard_arrow_left,
+                              size: 30,
+                            ),
+                            Text(
+                              'Back',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black54),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -192,7 +195,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xFFF6F6F6),
+                              color: const Color(0xFFF6F6F6),
                               borderRadius: BorderRadius.circular(6)),
                           child: IconButton(
                             icon: const Icon(Icons.search),
@@ -243,17 +246,17 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           //onpress
 
                           style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  side: BorderSide(
-                                      color: state.selectedId == i
-                                          ? const Color.fromARGB(
-                                              66, 235, 229, 229)
-                                          : const Color.fromARGB(
-                                              66, 235, 229, 229))),
-                              backgroundColor: state.selectedId == i
-                                  ? const Color(0xFF02CCFE)
-                                  : const Color(0xFFF6F6F6)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                side: BorderSide(
+                                    color: state.selectedId == i
+                                        ? Color(0xff636363)
+                                        : const Color(0xffF6F6F6))),
+                            backgroundColor: state.selectedId == i
+                                ? const Color(0xFF02CCFE)
+                                : const Color(0xFFF6F6F6),
+                          ),
+
                           child: Text(
                             e.foodSetName ?? '',
                             style: TextStyle(
@@ -327,8 +330,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       fontSize: 18,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
-                      color:
-                          selectCategory == index ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto_Light',
+                      color: selectCategory == index
+                          ? Colors.white
+                          : Color(0xff4F4F4F),
                     ),
                   ),
                 ),

@@ -222,7 +222,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Flexible(
-                flex: 1,
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

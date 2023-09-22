@@ -15,6 +15,9 @@ class SliverListFoodOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLandscape = context.screenWidth > context.screenHeight;
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+    final isPortrait = screenHeight > screenWidth;
     //screenheiht:1920.0,screenWidth:1080.0
     print(
         'screenheiht:${context.screenHeight},screenWidth:${context.screenWidth}');
@@ -95,13 +98,16 @@ class SliverListFoodOrder extends StatelessWidget {
                                       fontSize: 16,
                                       overflow: TextOverflow.ellipsis,
                                       fontFamily: 'Roboto'),
-                                  maxLines: 2,
+                                  maxLines: (isLandscape &&
+                                              context.screenWidth < 984) ||
+                                          isPortrait && screenWidth < 800
+                                      ? 1
+                                      : 2,
                                 ),
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.bottomLeft,
+                          Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
@@ -114,7 +120,7 @@ class SliverListFoodOrder extends StatelessWidget {
                                       fontSize: 12,
                                       fontFamily: 'Roboto',
                                       color: Colors.black54),
-                                  maxLines: isLandscape ? 2 : 3,
+                                  maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),

@@ -28,23 +28,23 @@ class CheckIn extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Container(
-                    width: 160,
-                    child: const Text(
-                      'My Order',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 34,
-                          fontStyle: FontStyle.normal,
-                          overflow: TextOverflow.fade),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Container(
+                      child: const Text(
+                        'My Order',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 34,
+                            fontStyle: FontStyle.normal,
+                            overflow: TextOverflow.fade),
+                      ),
                     ),
                   ),
                 ),
-                Visibility(
-                  visible: screenWidth / 60 > 15.37 ? true : false,
-                  child: const FaIcon(
+                const Expanded(
+                  child: FaIcon(
                     FontAwesomeIcons.penToSquare,
                     size: 34,
                   ),
@@ -57,11 +57,11 @@ class CheckIn extends StatelessWidget {
             child: Text(
               'No order selected',
               style: TextStyle(
-                fontSize: 24,
-                color: Color.fromARGB(79, 79, 79, 74),
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w400,
-              ),
+                  fontSize: 24,
+                  color: Color(0xff4f4f4f),
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Roboto_Light'),
             ),
           ),
           Expanded(
@@ -70,63 +70,50 @@ class CheckIn extends StatelessWidget {
               children: [
                 const Spacer(),
                 const Divider(),
-                Padding(
-                  padding: EdgeInsets.all(context.screenWidth / 40),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Total',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontFamily: 'Roboto'),
-                      ),
-                      Text(
-                        '\$ 0.00',
-                        style: TextStyle(
-                            color: Color(0xFF7B61FF),
-                            fontFamily: 'Roboto',
-                            fontSize: 16),
-                      )
-                    ],
+                const Padding(
+                  padding: EdgeInsets.all(14),
+                  child: Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Total',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 32,
+                              fontFamily: 'Roboto'),
+                        ),
+                        Text(
+                          '\$ 0.00',
+                          style: TextStyle(
+                              color: Color(0xFF7B61FF),
+                              fontFamily: 'Roboto',
+                              fontSize: 32),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: isLandscape
-                      ? screenHeight / 10
-                      : context.screenWidth / 12,
-                  width:
-                      isLandscape ? screenHeight / 3 : context.screenWidth / 3,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.black26,
-                        ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xff4F4F4F),
+                        borderRadius: BorderRadius.circular(14),
                       ),
-                      onPressed: () {
-                        print(context.screenWidth / 60);
-                      },
+                      width: double.infinity,
+                      height: 40,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 2),
-                            child: Icon(
-                              Icons.shopping_cart,
-                              size: isLandscape
-                                  ? screenWidth / 50
-                                  : screenWidth / 38,
-                              color: Colors.white,
-                            ),
+                          Icon(
+                            Icons.shopping_cart,
+                            size: isLandscape
+                                ? screenWidth / 50
+                                : screenWidth / 38,
+                            color: Colors.white,
                           ),
                           Flexible(
                             // ใช้ Flexible ในการครอบ Text
@@ -146,7 +133,7 @@ class CheckIn extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -155,3 +142,58 @@ class CheckIn extends StatelessWidget {
     );
   }
 }
+// SizedBox(
+//                   height: isLandscape
+//                       ? screenHeight / 10
+//                       : context.screenWidth / 12,
+//                   width:
+//                       isLandscape ? screenHeight / 3 : context.screenWidth / 3,
+//                   child: Padding(
+//                     padding: const EdgeInsets.only(bottom: 8),
+//                     child: ElevatedButton(
+//                       style: ButtonStyle(
+//                         shape:
+//                             MaterialStateProperty.all<RoundedRectangleBorder>(
+//                           RoundedRectangleBorder(
+//                             borderRadius: BorderRadius.circular(4),
+//                           ),
+//                         ),
+//                         backgroundColor: MaterialStateProperty.all(
+//                           Colors.black26,
+//                         ),
+//                       ),
+//                       onPressed: () {
+//                         print(context.screenWidth / 60);
+//                       },
+//                       child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                         children: [
+//                           Padding(
+//                             padding: const EdgeInsets.only(right: 2),
+//                             child: Icon(
+//                               Icons.shopping_cart,
+//                               size: isLandscape
+//                                   ? screenWidth / 50
+//                                   : screenWidth / 38,
+//                               color: Colors.white,
+//                             ),
+//                           ),
+//                           Flexible(
+//                             // ใช้ Flexible ในการครอบ Text
+//                             child: Text(
+//                               'confirm Order (0)',
+//                               style: TextStyle(
+//                                   fontSize: isLandscape
+//                                       ? screenWidth / 66
+//                                       : context.screenWidth / 40,
+//                                   color: Colors.white,
+//                                   fontFamily: 'Roboto'),
+//                               overflow: TextOverflow
+//                                   .ellipsis, // เพิ่ม overflow ด้วย TextOverflow.ellipsis
+//                             ),
+//                           )
+//                         ],
+//                       ),
+//                     ),
+//                   ),
+//                 ),
