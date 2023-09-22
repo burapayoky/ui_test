@@ -382,6 +382,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
               if (foodCategory == null) {
                 return Container();
               }
+              //int Menufoodindex = index;
+              print(foodCategory.foodCatName);
               return SliverListFoodOrder(
                 foodCategoryName: foodCategory.foodCatName ?? '',
                 foods: foodData[index].value,
@@ -394,6 +396,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     return Scaffold(
       //appBar: appBar(),
+
       body: Column(
         children: [
           SafeArea(child: headding()),
@@ -437,7 +440,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               padding: const EdgeInsets.only(left: 28.0, right: 14),
               child: Container(child: foodMenu()),
             ),
-          )
+          ),
         ],
       ),
     );

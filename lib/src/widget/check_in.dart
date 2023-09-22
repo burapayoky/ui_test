@@ -94,26 +94,41 @@ class CheckIn extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xff4F4F4F),
-                        borderRadius: BorderRadius.circular(14),
+                SizedBox(
+                  height: isLandscape
+                      ? screenHeight / 10
+                      : context.screenWidth / 12,
+                  width:
+                      isLandscape ? screenHeight / 3 : context.screenWidth / 3,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Color(0xff4F4F4F),
+                        ),
                       ),
-                      width: double.infinity,
-                      height: 40,
+                      onPressed: () {
+                        print(context.screenWidth / 60);
+                      },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Icon(
-                            Icons.shopping_cart,
-                            size: isLandscape
-                                ? screenWidth / 50
-                                : screenWidth / 38,
-                            color: Colors.white,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 2),
+                            child: Icon(
+                              Icons.shopping_cart,
+                              size: isLandscape
+                                  ? screenWidth / 50
+                                  : screenWidth / 38,
+                              color: Colors.white,
+                            ),
                           ),
                           Flexible(
                             // ใช้ Flexible ในการครอบ Text
@@ -133,7 +148,7 @@ class CheckIn extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
