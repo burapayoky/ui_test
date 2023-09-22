@@ -19,8 +19,8 @@ class SliverListFoodOrder extends StatelessWidget {
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
     //screenheiht:1920.0,screenWidth:1080.0
-    // print(
-    //     'screenheiht:${context.screenHeight},screenWidth:${context.screenWidth}');
+    print(
+        'screenheiht:${context.screenHeight},screenWidth:${context.screenWidth}');
     return Column(
       children: [
         Padding(
@@ -42,7 +42,7 @@ class SliverListFoodOrder extends StatelessWidget {
               crossAxisCount: isLandscape ? 4 : 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 14,
-              childAspectRatio: isLandscape ? 0.98 : 0.95 //0.65 : 0.95
+              childAspectRatio: isLandscape ? 0.65 : 0.95 //0.7 : 0.95
               ),
           physics: const BouncingScrollPhysics(parent: ScrollPhysics()),
           shrinkWrap: true,
@@ -84,67 +84,61 @@ class SliverListFoodOrder extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8, top: 8),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: SizedBox(
-                                  width: 300,
-                                  child: Text(
-                                    foods[index].foodName!,
-                                    style: const TextStyle(
-                                        fontSize: 16,
-                                        overflow: TextOverflow.ellipsis,
-                                        fontFamily: 'Roboto'),
-                                    maxLines: (isLandscape &&
-                                                context.screenWidth < 984) ||
-                                            isPortrait && screenWidth < 800
-                                        ? 1
-                                        : 2,
-                                  ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8, top: 8),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: SizedBox(
+                                width: 300,
+                                child: Text(
+                                  foods[index].foodName!,
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontFamily: 'Roboto'),
+                                  maxLines: (isLandscape &&
+                                              context.screenWidth < 984) ||
+                                          isPortrait && screenWidth < 800
+                                      ? 1
+                                      : 2,
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  width: isLandscape ? 600 : 300,
-                                  child: Text(
-                                    (foods[index].foodDesc == null)
-                                        ? ''
-                                        : foods[index].foodDesc!,
-                                    style: const TextStyle(
-                                        fontSize: 12,
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xff828282)),
-                                    maxLines: isLandscape ? 2 : 3,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                width: isLandscape ? 600 : 300,
+                                child: Text(
+                                  (foods[index].foodDesc == null)
+                                      ? ''
+                                      : foods[index].foodDesc!,
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'Roboto',
+                                      color: Colors.black54),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '\$ ${foods[index].foodPrice}',
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Roboto',
-                            ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '\$ ${foods[index].foodPrice}',
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
                           ),
                         ),
                       ),

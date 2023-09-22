@@ -450,7 +450,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               padding: const EdgeInsets.only(left: 28.0, right: 14),
               child: Container(child: foodMenu()),
             ),
-          ),
+          )
         ],
       ),
     );
