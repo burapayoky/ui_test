@@ -119,7 +119,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     Widget headding() {
       return Padding(
-        padding: const EdgeInsets.only(top: 28, bottom: 18),
+        padding: const EdgeInsets.only(top: 60, bottom: 18),
         child: BlocBuilder<OrderBloc, OrderState>(
           builder: (context, state) {
             return Row(
@@ -134,8 +134,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                        width: 90,
-                        height: 40,
+                        width: 120,
+                        height: 60,
                         decoration: BoxDecoration(
                             color: const Color(0xFFF6F6F6),
                             borderRadius: BorderRadius.circular(8)),
@@ -143,7 +143,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           children: [
                             Icon(
                               Icons.keyboard_arrow_left,
-                              size: 30,
+                              size: 40,
                             ),
                             Text(
                               'Back',
@@ -235,7 +235,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       child: SizedBox(
                         width: isLandscape
                             ? context.screenWidth / 6
-                            : context.screenWidth / 5,
+                            : context.screenWidth / 5.5,
                         child: ElevatedButton(
                           onPressed: () {
                             context
@@ -316,6 +316,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
+                width: 140,
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
@@ -382,7 +383,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
           return ScrollablePositionedList.builder(
             itemScrollController: itemScrollController,
             itemCount: foodData.length,
-
+//            key: GlobalKey,
             //itemPositionsListener: itemPositionsListener,
             itemBuilder: (context, index) {
               final foodCategory =
@@ -427,7 +428,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 28.0),
+            padding: const EdgeInsets.only(left: 28.0, top: 14),
             child: Row(
               children: [
                 Expanded(
@@ -447,7 +448,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(left: 28.0, right: 14),
+              padding: const EdgeInsets.only(left: 28.0, right: 6),
               child: Container(child: foodMenu()),
             ),
           )

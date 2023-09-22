@@ -142,76 +142,74 @@ class _HomePageState extends State<HomePage> {
           color: Colors.black,
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(), //top: screenHeight / 40),
-                child: Container(
-                  width: double.maxFinite,
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(), //top: screenHeight / 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Flexible(
-                        flex: 4,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Contact Us',
+                            style: TextStyle(
+                                fontFamily: "Roboto",
+                                fontSize: 18,
+                                color: Colors.white),
+                          ),
+                          Container(
+                            width: 400,
+                            child: const Text(
+                              'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                              //
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: "Roboto"),
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        // flex: 2,
                         child: Container(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                'Contact Us',
-                                style: TextStyle(
-                                    fontFamily: "Roboto",
-                                    fontSize: 18,
-                                    color: Colors.white),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
-                                // ignore: sized_box_for_whitespace
-                                child: Container(
-                                  width: 400,
-                                  child: const Text(
-                                    'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
-                                    //
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontFamily: "Roboto"),
-                                    softWrap: true,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
+                              Expanded(
+                                child: ContractIconCircle(
+                                  icon: Icons.call,
+                                  text: '090-0890-xxxx',
+                                  divide: isPortrait ? 48 : 40,
+                                  textDivide: 60,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 2,
-                        child: Container(
-                          child: Column(
-                            children: [
-                              ContractIconCircle(
-                                icon: Icons.call,
-                                text: '090-0890-xxxx',
-                                divide: isPortrait ? 48 : 40,
-                                textDivide: 60,
+                              Expanded(
+                                child: ContractIcon(
+                                  icon: FontAwesomeIcons.instagram,
+                                  text: 'SoiSiam',
+                                  divide: isPortrait ? 40 : 40,
+                                  textDivide: 100,
+                                ),
                               ),
-                              ContractIcon(
-                                icon: FontAwesomeIcons.instagram,
-                                text: 'SoiSiam',
-                                divide: isPortrait ? 40 : 24,
-                                textDivide: 60,
+                              Expanded(
+                                child: ContractIconCircle(
+                                  icon: FontAwesomeIcons.youtube,
+                                  text: 'SoiSiam Chanal',
+                                  divide: isPortrait ? 58 : 55,
+                                  textDivide: 100,
+                                ),
                               ),
-                              ContractIconCircle(
-                                icon: FontAwesomeIcons.youtube,
-                                text: 'SoiSiam Chanal',
-                                divide: isPortrait ? 58 : 30,
-                                textDivide: 60,
-                              ),
-                              ContractIcon(
-                                icon: Icons.mail,
-                                text: 'SoiSiam@gmail.co.th',
-                                divide: isPortrait ? 42 : 25,
-                                textDivide: 60,
+                              Expanded(
+                                child: ContractIcon(
+                                  icon: Icons.mail,
+                                  text: 'SoiSiam@gmail.co.th',
+                                  divide: isPortrait ? 42 : 40,
+                                  textDivide: 100,
+                                ),
                               ),
                             ],
                           ),
@@ -221,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Flexible(
+              Expanded(
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -254,24 +252,24 @@ class _HomePageState extends State<HomePage> {
     Widget landscapeWidget() {
       return Stack(
         children: [
-          Positioned(
-            child: Transform.rotate(
-              angle: 28.3,
-              child: Transform.translate(
-                offset: Offset(screenWidth / 60, 0),
-                child: Container(
-                  height: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image:
-                          AssetImage('assets/images/bg/home_background1 1.png'),
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   child: Transform.rotate(
+          //     angle: 28.3,
+          //     child: Transform.translate(
+          //       offset: Offset(screenWidth / 60, 0),
+          //       child: Container(
+          //         height: double.infinity,
+          //         decoration: const BoxDecoration(
+          //           image: DecorationImage(
+          //             image:
+          //                 AssetImage('assets/images/bg/home_background1 1.png'),
+          //             fit: BoxFit.fitWidth,
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Column(
             children: [
               Padding(
@@ -401,12 +399,6 @@ class _HomePageState extends State<HomePage> {
           Column(
             children: [
               bodyText(),
-              // TextButton(
-              //     onPressed: () {
-              //       print(
-              //           'screenwidth:$screenWidth , Sreenheight:$screenHeight');
-              //     },
-              //     child: Text('data')),
               Padding(
                 padding: EdgeInsets.only(
                     bottom: context.screenHeight / 6,

@@ -234,7 +234,7 @@ class ContractIconCircle extends StatelessWidget {
           Container(
             width: 100,
             child: CircleAvatar(
-              maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
+              // maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
               backgroundColor: Colors.white,
               child: FaIcon(
                 icon,
@@ -247,7 +247,7 @@ class ContractIconCircle extends StatelessWidget {
             text,
             style: TextStyle(
               color: Colors.white,
-              fontSize: context.screenWidth / textDivide,
+              fontSize: 12,
             ),
           )
         ],
@@ -298,7 +298,7 @@ class ContractIcon extends StatelessWidget {
             text,
             style: TextStyle(
               color: Colors.white,
-              fontSize: context.screenWidth / textDivide,
+              fontSize: 12,
             ),
           )
         ],

@@ -29,25 +29,20 @@ class CheckIn extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Container(
-                      child: const Text(
-                        'My Order',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 34,
-                            fontStyle: FontStyle.normal,
-                            overflow: TextOverflow.fade),
-                      ),
+                  child: Container(
+                    child: const Text(
+                      'My Order',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 34,
+                          fontStyle: FontStyle.normal,
+                          overflow: TextOverflow.fade),
                     ),
                   ),
                 ),
-                const Expanded(
-                  child: FaIcon(
-                    FontAwesomeIcons.penToSquare,
-                    size: 34,
-                  ),
+                FaIcon(
+                  FontAwesomeIcons.penToSquare,
+                  size: 34,
                 )
               ],
             ),
@@ -72,30 +67,35 @@ class CheckIn extends StatelessWidget {
                 const Divider(),
                 const Padding(
                   padding: EdgeInsets.all(14),
-                  child: Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
                           'Total',
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 32,
                               fontFamily: 'Roboto'),
                         ),
-                        Text(
-                          '\$ 0.00',
-                          style: TextStyle(
-                              color: Color(0xFF7B61FF),
-                              fontFamily: 'Roboto',
-                              fontSize: 32),
-                        )
-                      ],
-                    ),
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            '\$ 0.00',
+                            style: TextStyle(
+                                color: Color(0xFF7B61FF),
+                                fontFamily: 'Roboto',
+                                fontSize: 32),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: InkWell(
                     onTap: () {},
                     child: Container(
@@ -104,7 +104,7 @@ class CheckIn extends StatelessWidget {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       width: double.infinity,
-                      height: 40,
+                      height: 100,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

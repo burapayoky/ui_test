@@ -42,7 +42,7 @@ class SliverListFoodOrder extends StatelessWidget {
               crossAxisCount: isLandscape ? 4 : 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 14,
-              childAspectRatio: isLandscape ? 0.65 : 0.95 //0.7 : 0.95
+              childAspectRatio: isLandscape ? 0.65 : 0.8 //0.7 : 0.95
               ),
           physics: const BouncingScrollPhysics(parent: ScrollPhysics()),
           shrinkWrap: true,
@@ -53,7 +53,7 @@ class SliverListFoodOrder extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(6),
                   border: Border.all(
                     color: Colors.black12,
                   ),
@@ -71,7 +71,6 @@ class SliverListFoodOrder extends StatelessWidget {
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.red,
                           borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10)),
@@ -132,7 +131,7 @@ class SliverListFoodOrder extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Text(
                           '\$ ${foods[index].foodPrice}',
                           overflow: TextOverflow.ellipsis,
@@ -153,3 +152,4 @@ class SliverListFoodOrder extends StatelessWidget {
     );
   }
 }
+//flutter gem
