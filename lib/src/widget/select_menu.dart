@@ -22,7 +22,13 @@ class _SelectedMenuState extends State<SelectedMenu> {
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
+
+  //
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+  //
   final fieldText = TextEditingController();
+  int listenerindex = 0;
   bool issearch = false;
 //Fuction Scroll to index
   void scrollTo(int index) => itemScrollController.scrollTo(
@@ -42,6 +48,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
   }
 
   int selectCategory = 0;
+  int foodMenuscroll = 0;
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -256,7 +263,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                 ? const Color(0xFF02CCFE)
                                 : const Color(0xFFF6F6F6),
                           ),
-
                           child: Text(
                             e.foodSetName ?? '',
                             style: TextStyle(
@@ -346,7 +352,12 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
 //Images,FoodName,FoodDest,price {Food}
     Widget foodMenu() {
-      return BlocBuilder<OrderBloc, OrderState>(
+      return BlocConsumer<OrderBloc, OrderState>(
+        listener: (BuildContext context, OrderState state) {
+          if (foodMenuscroll != listenerindex) {
+            print(listenerindex);
+          }
+        },
         builder: (context, state) {
           final foodData = state.foodData.entries.where((e) {
             final foodCategory = FoodData.getFoodCategories().firstWhereOrNull(
@@ -371,6 +382,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
           return ScrollablePositionedList.builder(
             itemScrollController: itemScrollController,
             itemCount: foodData.length,
+
+            //itemPositionsListener: itemPositionsListener,
             itemBuilder: (context, index) {
               final foodCategory =
                   FoodData.getFoodCategories().firstWhereOrNull(
@@ -382,8 +395,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
               if (foodCategory == null) {
                 return Container();
               }
-              //int Menufoodindex = index;
-              print(foodCategory.foodCatName);
               return SliverListFoodOrder(
                 foodCategoryName: foodCategory.foodCatName ?? '',
                 foods: foodData[index].value,
@@ -396,7 +407,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     return Scaffold(
       //appBar: appBar(),
-
       body: Column(
         children: [
           SafeArea(child: headding()),

@@ -20,7 +20,7 @@ class OrderPage extends StatelessWidget {
           thickness: 20,
           color: Colors.black,
         ),
-        Flexible(flex: isLandscape ? 1 : 2, child: const CheckIn())
+        Expanded(flex: isLandscape ? 1 : 2, child: const CheckIn())
       ],
     );
   }
