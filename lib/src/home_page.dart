@@ -144,38 +144,43 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(), //top: screenHeight / 40),
+                  padding: EdgeInsets.only(top: 28), //top: screenHeight / 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Contact Us',
-                            style: TextStyle(
-                                fontFamily: "Roboto",
-                                fontSize: 18,
-                                color: Colors.white),
-                          ),
-                          Container(
-                            width: 400,
-                            child: const Text(
-                              'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
-                              //
+                      Flexible(
+                        flex: 4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Contact Us',
                               style: TextStyle(
+                                  fontFamily: "Roboto",
                                   fontSize: 18,
-                                  color: Colors.white,
-                                  fontFamily: "Roboto"),
-                              softWrap: true,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
+                                  color: Colors.white),
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              child: Container(
+                                width: 400,
+                                child: const Text(
+                                  'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                                  //
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontFamily: "Roboto"),
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      Expanded(
-                        // flex: 2,
+                      Flexible(
+                        flex: 2,
                         child: Container(
                           child: Column(
                             children: [
@@ -191,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                                 child: ContractIcon(
                                   icon: FontAwesomeIcons.instagram,
                                   text: 'SoiSiam',
-                                  divide: isPortrait ? 40 : 40,
+                                  divide: isPortrait ? 50 : 40,
                                   textDivide: 100,
                                 ),
                               ),
@@ -199,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                 child: ContractIconCircle(
                                   icon: FontAwesomeIcons.youtube,
                                   text: 'SoiSiam Chanal',
-                                  divide: isPortrait ? 58 : 55,
+                                  divide: isPortrait ? 60 : 80,
                                   textDivide: 100,
                                 ),
                               ),
@@ -207,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                                 child: ContractIcon(
                                   icon: Icons.mail,
                                   text: 'SoiSiam@gmail.co.th',
-                                  divide: isPortrait ? 42 : 40,
+                                  divide: isPortrait ? 50 : 40,
                                   textDivide: 100,
                                 ),
                               ),
