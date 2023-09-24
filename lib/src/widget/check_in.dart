@@ -67,73 +67,96 @@ class CheckIn extends StatelessWidget {
                 const Divider(),
                 const Padding(
                   padding: EdgeInsets.all(14),
-                  child: Row(
+                  child: Flex(
+                    direction: Axis
+                        .horizontal, // Make sure it's horizontal for a row-like layout
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
+                      Flexible(
                         child: Text(
                           'Total',
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 32,
-                              fontFamily: 'Roboto'),
+                            color: Colors.black,
+                            fontSize: 32,
+                            fontFamily: 'Roboto',
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Expanded(
+                      Flexible(
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(
                             '\$ 0.00',
                             style: TextStyle(
-                                color: Color(0xFF7B61FF),
-                                fontFamily: 'Roboto',
-                                fontSize: 32),
+                              color: Color(0xFF7B61FF),
+                              fontFamily: 'Roboto',
+                              fontSize: 32,
+                            ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xff4F4F4F),
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      width: double.infinity,
-                      height: 100,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.shopping_cart,
-                            size: isLandscape
-                                ? screenWidth / 50
-                                : screenWidth / 38,
-                            color: Colors.white,
+                SizedBox(
+                  height:
+                      isLandscape ? screenHeight / 8 : context.screenWidth / 12,
+                  width:
+                      isLandscape ? screenHeight / 3 : context.screenWidth / 3,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
                           ),
-                          Flexible(
-                            // ใช้ Flexible ในการครอบ Text
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Colors.black26,
+                        ),
+                      ),
+                      onPressed: () {
+                        print(context.screenWidth / 60);
+                      },
+                      child: Flex(
+                        direction: isLandscape
+                            ? Axis.horizontal
+                            : Axis
+                                .vertical, // Choose the direction based on screen orientation
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 2),
+                            child: Icon(
+                              Icons.shopping_cart,
+                              size: isLandscape
+                                  ? screenWidth / 50
+                                  : screenWidth / 38,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Expanded(
+                            // Use Expanded to allow text to take available space
                             child: Text(
                               'confirm Order (0)',
                               style: TextStyle(
-                                  fontSize: isLandscape
-                                      ? screenWidth / 66
-                                      : context.screenWidth / 40,
-                                  color: Colors.white,
-                                  fontFamily: 'Roboto'),
-                              overflow: TextOverflow
-                                  .ellipsis, // เพิ่ม overflow ด้วย TextOverflow.ellipsis
+                                fontSize: isLandscape
+                                    ? screenWidth / 66
+                                    : context.screenWidth / 40,
+                                color: Colors.white,
+                                fontFamily: 'Roboto',
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -142,41 +165,27 @@ class CheckIn extends StatelessWidget {
     );
   }
 }
-// SizedBox(
-//                   height: isLandscape
-//                       ? screenHeight / 10
-//                       : context.screenWidth / 12,
-//                   width:
-//                       isLandscape ? screenHeight / 3 : context.screenWidth / 3,
-//                   child: Padding(
-//                     padding: const EdgeInsets.only(bottom: 8),
-//                     child: ElevatedButton(
-//                       style: ButtonStyle(
-//                         shape:
-//                             MaterialStateProperty.all<RoundedRectangleBorder>(
-//                           RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.circular(4),
-//                           ),
-//                         ),
-//                         backgroundColor: MaterialStateProperty.all(
-//                           Colors.black26,
-//                         ),
+
+// Padding(
+//                   padding: const EdgeInsets.all(20.0),
+//                   child: InkWell(
+//                     onTap: () {},
+//                     child: Container(
+//                       decoration: BoxDecoration(
+//                         color: Color(0xff4F4F4F),
+//                         borderRadius: BorderRadius.circular(14),
 //                       ),
-//                       onPressed: () {
-//                         print(context.screenWidth / 60);
-//                       },
+//                       width: double.infinity,
+//                       height: 100,
 //                       child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//                         mainAxisAlignment: MainAxisAlignment.center,
 //                         children: [
-//                           Padding(
-//                             padding: const EdgeInsets.only(right: 2),
-//                             child: Icon(
-//                               Icons.shopping_cart,
-//                               size: isLandscape
-//                                   ? screenWidth / 50
-//                                   : screenWidth / 38,
-//                               color: Colors.white,
-//                             ),
+//                           Icon(
+//                             Icons.shopping_cart,
+//                             size: isLandscape
+//                                 ? screenWidth / 50
+//                                 : screenWidth / 38,
+//                             color: Colors.white,
 //                           ),
 //                           Flexible(
 //                             // ใช้ Flexible ในการครอบ Text
