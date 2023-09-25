@@ -26,6 +26,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
   //
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
+  final ScrollController scrollController = ScrollController();
 
   //
   final fieldText = TextEditingController();
@@ -38,6 +39,20 @@ class _SelectedMenuState extends State<SelectedMenu> {
         curve: Curves.easeInOutCubic,
       );
   void jumpTo(int index) => itemScrollController.jumpTo(index: index);
+  listnerScrolling(Iterable<ItemPosition> positions) {
+    int indexx = 0;
+    // List<int> cateIndex = [];
+
+    for (ItemPosition position in positions) {
+      int index = position.index;
+
+      indexx = index;
+    }
+    return indexx;
+    // indexx = cateIndex.first;
+    //ตำเเหน่ง top last
+  }
+
 //
   @override
   void initState() {
@@ -271,7 +286,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                width: 140,
+                width: 180,
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
@@ -283,6 +298,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 child: TextButton(
                   onPressed: () {
                     selectCategory = index;
+                    print(selectCategory);
                     setState(() {});
                     scrollTo(index);
                   },
@@ -334,8 +350,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               return a.key.toLowerCase().compareTo(b.key.toLowerCase());
             }),
           );
-          Iterable<ItemPosition> positions =
-              itemPositionsListener.itemPositions.value;
+
           int initialindex = 0;
           return NotificationListener<ScrollNotification>(
             onNotification: (scrollinfo) {
@@ -344,15 +359,21 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 itemPositionsListener.itemPositions.addListener(() {
                   Iterable<ItemPosition> positions =
                       itemPositionsListener.itemPositions.value;
-                  for (ItemPosition position in positions) {
-                    int index = position.index;
-                    double itemLeadingEdge = position.itemLeadingEdge;
-                    double itemTrailingEdge = position.itemTrailingEdge;
-                    print(index);
-                    // print(
-                    //     "Item $index is currently in position with leading edge at $itemLeadingEdge and trailing edge at $itemTrailingEdge");
+                  int newIndex = listnerScrolling(positions);
+                  final ScrollMetrics metrics = scrollinfo.metrics;
 
-                    // ทำสิ่งที่คุณต้องการด้วยตำแหน่ง index และ position ที่คุณได้รับ
+                  if (metrics.atEdge) {
+                    if (metrics.pixels == 0) {
+                      newIndex = 0;
+                    } else if (metrics.pixels == metrics.maxScrollExtent) {
+                      // Scroll อยู่ที่ด้านล่างสุด
+                      newIndex = foodData.length - 1;
+                    }
+                  }
+                  if (newIndex != selectCategory) {
+                    setState(() {
+                      selectCategory = newIndex;
+                    });
                   }
                 });
               }
@@ -360,29 +381,28 @@ class _SelectedMenuState extends State<SelectedMenu> {
               return false;
             },
             child: ScrollablePositionedList.builder(
-              itemScrollController: itemScrollController,
-              itemCount: foodData.length,
-              // key: GlobalKey,
-              initialScrollIndex: initialindex,
-              itemPositionsListener: itemPositionsListener,
-              itemBuilder: (context, index) {
-                final foodCategory =
-                    FoodData.getFoodCategories().firstWhereOrNull(
-                  (e) {
-                    return e.foodCatId == foodData[index].key;
-                  },
-                );
-                positions = itemPositionsListener.itemPositions.value;
-                if (foodCategory == null) {
-                  return Container();
-                }
-                initialindex = index;
-                return SliverListFoodOrder(
-                  foodCategoryName: foodCategory.foodCatName ?? '',
-                  foods: foodData[index].value,
-                );
-              },
-            ),
+                itemScrollController: itemScrollController,
+                itemCount: foodData.length,
+                // key: GlobalKey,
+                initialScrollIndex: initialindex,
+                itemPositionsListener: itemPositionsListener,
+                itemBuilder: (context, index) {
+                  final foodCategory =
+                      FoodData.getFoodCategories().firstWhereOrNull(
+                    (e) {
+                      return e.foodCatId == foodData[index].key;
+                    },
+                  );
+
+                  if (foodCategory == null) {
+                    return Container();
+                  }
+                  initialindex = index;
+                  return SliverListFoodOrder(
+                    foodCategoryName: foodCategory.foodCatName ?? '',
+                    foods: foodData[index].value,
+                  );
+                }),
           );
         },
       );
