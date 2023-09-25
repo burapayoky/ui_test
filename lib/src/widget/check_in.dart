@@ -73,7 +73,7 @@ class CheckIn extends StatelessWidget {
               children: [
                 const Spacer(),
                 const Divider(),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(14),
                   child: Flex(
                     direction: Axis
@@ -85,7 +85,7 @@ class CheckIn extends StatelessWidget {
                           'Total',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 32,
+                            fontSize: context.screenHeight / 20,
                             fontFamily: 'Roboto',
                           ),
                           overflow: TextOverflow.ellipsis,
@@ -99,7 +99,7 @@ class CheckIn extends StatelessWidget {
                             style: TextStyle(
                               color: Color(0xFF7B61FF),
                               fontFamily: 'Roboto',
-                              fontSize: 32,
+                              fontSize: context.screenHeight / 20,
                             ),
                           ),
                         ),
