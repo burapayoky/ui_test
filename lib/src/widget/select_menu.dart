@@ -56,68 +56,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
 
-    PreferredSizeWidget appBar() {
-      return AppBar(
-        backgroundColor: Colors.white,
-        titleSpacing: 0,
-        leading: InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Container(
-            width: 20,
-            height: 14,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: const Color.fromARGB(31, 156, 155, 155),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.keyboard_arrow_left),
-                Text(
-                  'Back',
-                  style: TextStyle(fontSize: 12),
-                )
-              ],
-            ),
-          ),
-        ),
-
-        //aciton
-        actions: [
-          Container(
-            height: double.infinity,
-            width: 150,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(104, 182, 180, 180),
-              borderRadius: BorderRadius.circular(8),
-
-              //border: Border.all(color: Colors.black)),
-            ),
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.search),
-                ),
-                SizedBox(
-                  width: 100,
-                  child: TextField(
-                    onChanged: (value) {
-                      context.read<OrderBloc>().add(
-                            OrderSearchEvent(
-                              text: value,
-                            ),
-                          );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      );
-    }
-
     Widget headding() {
       return Padding(
         padding: const EdgeInsets.only(top: 20, bottom: 18),
@@ -137,7 +75,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         },
                         child: Container(
                           width:
-                              isLandscape ? screenHeight / 8 : screenWidth / 9,
+                              isLandscape ? screenHeight / 7 : screenWidth / 9,
                           height: isLandscape
                               ? screenHeight / 18
                               : screenWidth / 15,
@@ -395,12 +333,13 @@ class _SelectedMenuState extends State<SelectedMenu> {
               return a.key.toLowerCase().compareTo(b.key.toLowerCase());
             }),
           );
-
+          int initialindex = 0;
           return ScrollablePositionedList.builder(
             itemScrollController: itemScrollController,
             itemCount: foodData.length,
-//            key: GlobalKey,
-            //itemPositionsListener: itemPositionsListener,
+            // key: GlobalKey,
+            initialScrollIndex: initialindex,
+            itemPositionsListener: itemPositionsListener,
             itemBuilder: (context, index) {
               final foodCategory =
                   FoodData.getFoodCategories().firstWhereOrNull(
@@ -412,6 +351,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               if (foodCategory == null) {
                 return Container();
               }
+              print(initialindex);
               return SliverListFoodOrder(
                 foodCategoryName: foodCategory.foodCatName ?? '',
                 foods: foodData[index].value,
