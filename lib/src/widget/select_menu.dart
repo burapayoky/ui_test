@@ -91,7 +91,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         },
                         child: Container(
                           width:
-                              isLandscape ? screenHeight / 7 : screenWidth / 9,
+                              isLandscape ? screenHeight / 6 : screenWidth / 9,
                           height: isLandscape
                               ? screenHeight / 18
                               : screenWidth / 15,
@@ -101,25 +101,19 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           child: const Row(
                             children: [
                               Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Icon(
-                                    Icons.keyboard_arrow_left,
-                                    size: 40,
-                                  ),
+                                child: Icon(
+                                  Icons.keyboard_arrow_left,
+                                  size: 40,
                                 ),
                               ),
                               Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    'Back',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontFamily: 'Roboto',
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.black54),
-                                  ),
+                                child: Text(
+                                  'Back',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black54),
                                 ),
                               ),
                             ],
@@ -286,7 +280,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                width: 180,
+                width: 160, //180
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
@@ -298,7 +292,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 child: TextButton(
                   onPressed: () {
                     selectCategory = index;
-                    print(selectCategory);
+                    //print(selectCategory);
                     setState(() {});
                     scrollTo(index);
                   },
@@ -325,11 +319,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 //Images,FoodName,FoodDest,price {Food}
     Widget foodMenu() {
       return BlocConsumer<OrderBloc, OrderState>(
-        listener: (BuildContext context, OrderState state) {
-          if (foodMenuscroll != listenerindex) {
-            print(listenerindex);
-          }
-        },
+        listener: (BuildContext context, OrderState state) {},
         builder: (context, state) {
           final foodData = state.foodData.entries.where((e) {
             final foodCategory = FoodData.getFoodCategories().firstWhereOrNull(

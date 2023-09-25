@@ -85,7 +85,10 @@ class SliverListFoodOrder extends StatelessWidget {
                     child: Column(
                       children: [
                         Flexible(
-                          flex: 1,
+                          flex: isLandscape && screenWidth < 555 ||
+                                  isPortrait && screenWidth < 342
+                              ? 1
+                              : 0, //,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8, top: 0),
                             child: Align(
@@ -99,7 +102,7 @@ class SliverListFoodOrder extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                       fontFamily: 'Roboto'),
                                   maxLines: (isLandscape &&
-                                              context.screenWidth < 984) ||
+                                              context.screenWidth < 999) ||
                                           isPortrait && screenWidth < 800
                                       ? 1
                                       : 2,
