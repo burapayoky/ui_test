@@ -40,23 +40,30 @@ class CheckIn extends StatelessWidget {
                     ),
                   ),
                 ),
-                FaIcon(
-                  FontAwesomeIcons.penToSquare,
-                  size: 34,
+                // SizedBox(
+                //   width: screenWidth / 30,
+                // ),
+                const Expanded(
+                  child: FaIcon(
+                    FontAwesomeIcons.penToSquare,
+                    size: 34,
+                  ),
                 )
               ],
             ),
           ),
           const Divider(),
-          const Center(
-            child: Text(
-              'No order selected',
-              style: TextStyle(
-                  fontSize: 24,
-                  color: Color(0xff4f4f4f),
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'Roboto_Light'),
+          const Expanded(
+            child: Center(
+              child: Text(
+                'No order selected',
+                style: TextStyle(
+                    fontSize: 24,
+                    color: Color(0xff4f4f4f),
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Roboto_Light'),
+              ),
             ),
           ),
           Expanded(
@@ -72,7 +79,7 @@ class CheckIn extends StatelessWidget {
                         .horizontal, // Make sure it's horizontal for a row-like layout
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Flexible(
+                      Expanded(
                         child: Text(
                           'Total',
                           style: TextStyle(
@@ -83,7 +90,7 @@ class CheckIn extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Flexible(
+                      Expanded(
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(
@@ -100,8 +107,9 @@ class CheckIn extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height:
-                      isLandscape ? screenHeight / 8 : context.screenWidth / 12,
+                  height: isLandscape
+                      ? screenHeight / 14
+                      : context.screenWidth / 12,
                   width:
                       isLandscape ? screenHeight / 3 : context.screenWidth / 3,
                   child: Padding(
@@ -111,7 +119,7 @@ class CheckIn extends StatelessWidget {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
+                            borderRadius: BorderRadius.circular(6),
                           ),
                         ),
                         backgroundColor: MaterialStateProperty.all(
@@ -121,11 +129,7 @@ class CheckIn extends StatelessWidget {
                       onPressed: () {
                         print(context.screenWidth / 60);
                       },
-                      child: Flex(
-                        direction: isLandscape
-                            ? Axis.horizontal
-                            : Axis
-                                .vertical, // Choose the direction based on screen orientation
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Padding(
@@ -139,7 +143,6 @@ class CheckIn extends StatelessWidget {
                             ),
                           ),
                           Expanded(
-                            // Use Expanded to allow text to take available space
                             child: Text(
                               'confirm Order (0)',
                               style: TextStyle(

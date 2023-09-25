@@ -137,12 +137,17 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget bottomSheet() {
+      if (isLandscape && screenHeight < 450 ||
+          isPortrait && screenHeight < 731) {
+        return Container();
+      }
       return Expanded(
         child: Container(
           color: Colors.black,
           child: Column(
             children: [
-              Expanded(
+              Flexible(
+                flex: 3,
                 child: Padding(
                   padding: EdgeInsets.only(top: 28), //top: screenHeight / 40),
                   child: Row(
@@ -153,14 +158,17 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Contact Us',
-                              style: TextStyle(
-                                  fontFamily: "Roboto",
-                                  fontSize: 18,
-                                  color: Colors.white),
+                            const Flexible(
+                              child: Text(
+                                'Contact Us',
+                                style: TextStyle(
+                                    fontFamily: "Roboto",
+                                    fontSize: 18,
+                                    color: Colors.white),
+                              ),
                             ),
-                            Expanded(
+                            Flexible(
+                              flex: 2,
                               child: Container(
                                 width: 400,
                                 child: const Text(
@@ -188,7 +196,7 @@ class _HomePageState extends State<HomePage> {
                                 child: ContractIconCircle(
                                   icon: Icons.call,
                                   text: '090-0890-xxxx',
-                                  divide: isPortrait ? 48 : 40,
+                                  divide: isPortrait ? 60 : 54,
                                   textDivide: 60,
                                 ),
                               ),
@@ -196,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                 child: ContractIcon(
                                   icon: FontAwesomeIcons.instagram,
                                   text: 'SoiSiam',
-                                  divide: isPortrait ? 50 : 40,
+                                  divide: isPortrait ? 50 : 30,
                                   textDivide: 100,
                                 ),
                               ),
@@ -204,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                                 child: ContractIconCircle(
                                   icon: FontAwesomeIcons.youtube,
                                   text: 'SoiSiam Chanal',
-                                  divide: isPortrait ? 60 : 80,
+                                  divide: isPortrait ? 80 : 58,
                                   textDivide: 100,
                                 ),
                               ),
@@ -212,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                                 child: ContractIcon(
                                   icon: Icons.mail,
                                   text: 'SoiSiam@gmail.co.th',
-                                  divide: isPortrait ? 50 : 40,
+                                  divide: isPortrait ? 50 : 30,
                                   textDivide: 100,
                                 ),
                               ),
@@ -224,7 +232,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              Expanded(
+              Flexible(
+                flex: 1,
                 child: Container(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -277,48 +286,53 @@ class _HomePageState extends State<HomePage> {
           // ),
           Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    left: screenWidth / 15, bottom: screenHeight / 6),
-                child: Row(
-                  children: [
-                    Align(
-                      child: Column(
-                        children: [
-                          bodyText(),
-                        ],
+              Flexible(
+                flex: 3,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: screenWidth / 15,
+                  ),
+                  child: Row(
+                    children: [
+                      Align(
+                        child: Column(
+                          children: [
+                            bodyText(),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: 100.0, left: screenHeight / 10),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                NavigatePageOrderAndStay(
-                                  image: 'assets/images/gif/gif2.gif',
-                                  color: Color(0xFF496EE2),
-                                  text: 'To Stay',
-                                  route: 'first-page',
-                                ),
-                                SizedBox(width: 20),
-                                NavigatePageOrderAndStay(
-                                  image: 'assets/images/gif/gif1.gif',
-                                  color: Color(0xFFFAA21c),
-                                  text: 'Togo',
-                                  route: 'order',
-                                ),
-                              ],
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          top: 100.0,
+                        ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  NavigatePageOrderAndStay(
+                                    image: 'assets/images/gif/gif2.gif',
+                                    color: Color(0xFF496EE2),
+                                    text: 'To Stay',
+                                    route: 'first-page',
+                                  ),
+                                  SizedBox(width: 20),
+                                  NavigatePageOrderAndStay(
+                                    image: 'assets/images/gif/gif1.gif',
+                                    color: Color(0xFFFAA21c),
+                                    text: 'Togo',
+                                    route: 'order',
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               bottomSheet()
@@ -407,7 +421,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.only(
                     bottom: context.screenHeight / 6,
-                    top: context.screenHeight / 35),
+                    top: context.screenHeight / 40),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -487,9 +501,8 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return Scaffold(
-        // appBar: appBar(),
-        body: isLandscape ? landscapeWidget() : portraitWidget());
+    print(screenHeight);
+    return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
     //isPortrait ? portraitWidget() : landscapeWidget());
   }
 }

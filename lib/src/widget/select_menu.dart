@@ -125,40 +125,44 @@ class _SelectedMenuState extends State<SelectedMenu> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 24.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        width: screenHeight / 6,
-                        height: screenWidth / 20,
-                        decoration: BoxDecoration(
-                            color: const Color(0xFFF6F6F6),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Icon(
-                                Icons.keyboard_arrow_left,
-                                size: 40,
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width:
+                              isLandscape ? screenHeight / 5 : screenWidth / 6,
+                          height:
+                              isLandscape ? screenWidth / 20 : screenWidth / 15,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFF6F6F6),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(
+                                child: Icon(
+                                  Icons.keyboard_arrow_left,
+                                  size: 40,
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                'Back',
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.black54),
+                              Expanded(
+                                child: Text(
+                                  'Back',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black54),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

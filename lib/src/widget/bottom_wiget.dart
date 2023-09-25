@@ -223,35 +223,36 @@ class ContractIconCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenWidth = context.screenWidth;
-    // final screenHeight = context.screenHeight;
-    // final isPortrait = screenHeight > screenWidth;
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            width: 100,
-            child: CircleAvatar(
-              // maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
-              backgroundColor: Colors.white,
-              child: FaIcon(
-                icon,
-                color: Colors.black,
-                size: context.screenHeight / divide,
-              ),
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+
+    final isPortrait = screenHeight > screenWidth;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          width: 100,
+          child: CircleAvatar(
+            maxRadius: isPortrait ? screenWidth / 70 : screenWidth / 80,
+            backgroundColor: Colors.white,
+            child: FaIcon(
+              icon,
+              color: Colors.black,
+              size: context.screenHeight / divide,
             ),
           ),
-          Text(
+        ),
+        Expanded(
+          child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 12,
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -274,35 +275,61 @@ class ContractIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
-    // ignore: unused_local_variable
+
     final isPortrait = screenHeight > screenWidth;
 
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            width: 100,
-            child: CircleAvatar(
-              maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
-              backgroundColor: Colors.black,
-              child: FaIcon(
-                icon,
-                color: Colors.white,
-                size: context.screenHeight / divide,
-              ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          width: 100,
+          child: CircleAvatar(
+            maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
+            backgroundColor: Colors.black,
+            child: FaIcon(
+              icon,
+              color: Colors.white,
+              size: context.screenHeight / divide,
             ),
           ),
-          Text(
+        ),
+        Expanded(
+          child: Text(
             text,
             style: TextStyle(
               color: Colors.white,
               fontSize: 12,
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
+ // return Padding(
+    //   padding: const EdgeInsets.only(top: 8.0),
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: [
+    //       Container(
+    //         width: 100,
+    //         child: CircleAvatar(
+    //           // maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
+    //           backgroundColor: Colors.white,
+    //           child: FaIcon(
+    //             icon,
+    //             color: Colors.black,
+    //             size: context.screenHeight / divide,
+    //           ),
+    //         ),
+    //       ),
+    //       Text(
+    //         text,
+    //         style: TextStyle(
+    //           color: Colors.white,
+    //           fontSize: 12,
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    // );
