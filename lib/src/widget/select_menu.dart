@@ -26,6 +26,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
   //
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
+
   //
   final fieldText = TextEditingController();
   int listenerindex = 0;
@@ -146,18 +147,18 @@ class _SelectedMenuState extends State<SelectedMenu> {
                               borderRadius: BorderRadius.circular(8)),
                           child: const Row(
                             children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Expanded(
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
                                   child: Icon(
                                     Icons.keyboard_arrow_left,
                                     size: 40,
                                   ),
                                 ),
                               ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Expanded(
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
                                   child: Text(
                                     'Back',
                                     style: TextStyle(
@@ -395,6 +396,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               return a.key.toLowerCase().compareTo(b.key.toLowerCase());
             }),
           );
+<<<<<<< Updated upstream
 
           return ScrollablePositionedList.builder(
             itemScrollController: itemScrollController,
@@ -408,15 +410,64 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   return e.foodCatId == foodData[index].key;
                 },
               );
+=======
+          Iterable<ItemPosition> positions =
+              itemPositionsListener.itemPositions.value;
+          int initialindex = 0;
+          return NotificationListener<ScrollNotification>(
+            onNotification: (scrollinfo) {
+              if (scrollinfo is ScrollUpdateNotification) {
+                //print("object: $positions");
+                itemPositionsListener.itemPositions.addListener(() {
+                  Iterable<ItemPosition> positions =
+                      itemPositionsListener.itemPositions.value;
+                  for (ItemPosition position in positions) {
+                    int index = position.index;
+                    double itemLeadingEdge = position.itemLeadingEdge;
+                    double itemTrailingEdge = position.itemTrailingEdge;
+                    print(index);
+                    // print(
+                    //     "Item $index is currently in position with leading edge at $itemLeadingEdge and trailing edge at $itemTrailingEdge");
+>>>>>>> Stashed changes
 
-              if (foodCategory == null) {
-                return Container();
+                    // ทำสิ่งที่คุณต้องการด้วยตำแหน่ง index และ position ที่คุณได้รับ
+                  }
+                });
               }
+<<<<<<< Updated upstream
               return SliverListFoodOrder(
                 foodCategoryName: foodCategory.foodCatName ?? '',
                 foods: foodData[index].value,
               );
+=======
+
+              return false;
+>>>>>>> Stashed changes
             },
+            child: ScrollablePositionedList.builder(
+              itemScrollController: itemScrollController,
+              itemCount: foodData.length,
+              // key: GlobalKey,
+              initialScrollIndex: initialindex,
+              itemPositionsListener: itemPositionsListener,
+              itemBuilder: (context, index) {
+                final foodCategory =
+                    FoodData.getFoodCategories().firstWhereOrNull(
+                  (e) {
+                    return e.foodCatId == foodData[index].key;
+                  },
+                );
+                positions = itemPositionsListener.itemPositions.value;
+                if (foodCategory == null) {
+                  return Container();
+                }
+                initialindex = index;
+                return SliverListFoodOrder(
+                  foodCategoryName: foodCategory.foodCatName ?? '',
+                  foods: foodData[index].value,
+                );
+              },
+            ),
           );
         },
       );
