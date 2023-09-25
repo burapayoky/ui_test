@@ -54,7 +54,8 @@ class CheckIn extends StatelessWidget {
           ),
           const Divider(),
           const Expanded(
-            child: Center(
+            child: Align(
+              alignment: Alignment.topCenter,
               child: Text(
                 'No order selected',
                 style: TextStyle(
