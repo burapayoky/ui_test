@@ -70,6 +70,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               color: const Color.fromARGB(31, 156, 155, 155),
             ),
             child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Icon(Icons.keyboard_arrow_left),
                 Text(
@@ -119,7 +120,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     Widget headding() {
       return Padding(
-        padding: const EdgeInsets.only(top: 60, bottom: 18),
+        padding: const EdgeInsets.only(top: 20, bottom: 18),
         child: BlocBuilder<OrderBloc, OrderState>(
           builder: (context, state) {
             return Row(
@@ -136,29 +137,35 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         },
                         child: Container(
                           width:
-                              isLandscape ? screenHeight / 5 : screenWidth / 6,
-                          height:
-                              isLandscape ? screenWidth / 20 : screenWidth / 15,
+                              isLandscape ? screenHeight / 8 : screenWidth / 9,
+                          height: isLandscape
+                              ? screenHeight / 18
+                              : screenWidth / 15,
                           decoration: BoxDecoration(
                               color: const Color(0xFFF6F6F6),
                               borderRadius: BorderRadius.circular(8)),
                           child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Expanded(
-                                child: Icon(
-                                  Icons.keyboard_arrow_left,
-                                  size: 40,
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Expanded(
+                                  child: Icon(
+                                    Icons.keyboard_arrow_left,
+                                    size: 40,
+                                  ),
                                 ),
                               ),
-                              Expanded(
-                                child: Text(
-                                  'Back',
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black54),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Expanded(
+                                  child: Text(
+                                    'Back',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black54),
+                                  ),
                                 ),
                               ),
                             ],
