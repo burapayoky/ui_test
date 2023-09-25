@@ -28,10 +28,8 @@ class CheckIn extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
+                Expanded(
                   child: Container(
-                    width: 160,
                     child: const Text(
                       'My Order',
                       style: TextStyle(
@@ -42,9 +40,11 @@ class CheckIn extends StatelessWidget {
                     ),
                   ),
                 ),
-                Visibility(
-                  visible: screenWidth / 60 > 15.37 ? true : false,
-                  child: const FaIcon(
+                // SizedBox(
+                //   width: screenWidth / 30,
+                // ),
+                const Expanded(
+                  child: FaIcon(
                     FontAwesomeIcons.penToSquare,
                     size: 34,
                   ),
@@ -53,14 +53,16 @@ class CheckIn extends StatelessWidget {
             ),
           ),
           const Divider(),
-          const Center(
-            child: Text(
-              'No order selected',
-              style: TextStyle(
-                fontSize: 24,
-                color: Color.fromARGB(79, 79, 79, 74),
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w400,
+          const Expanded(
+            child: Center(
+              child: Text(
+                'No order selected',
+                style: TextStyle(
+                    fontSize: 24,
+                    color: Color(0xff4f4f4f),
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Roboto_Light'),
               ),
             ),
           ),
@@ -70,31 +72,43 @@ class CheckIn extends StatelessWidget {
               children: [
                 const Spacer(),
                 const Divider(),
-                Padding(
-                  padding: EdgeInsets.all(context.screenWidth / 40),
-                  child: const Row(
+                const Padding(
+                  padding: EdgeInsets.all(14),
+                  child: Flex(
+                    direction: Axis
+                        .horizontal, // Make sure it's horizontal for a row-like layout
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Total',
-                        style: TextStyle(
+                      Expanded(
+                        child: Text(
+                          'Total',
+                          style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16,
-                            fontFamily: 'Roboto'),
-                      ),
-                      Text(
-                        '\$ 0.00',
-                        style: TextStyle(
-                            color: Color(0xFF7B61FF),
+                            fontSize: 32,
                             fontFamily: 'Roboto',
-                            fontSize: 16),
-                      )
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            '\$ 0.00',
+                            style: TextStyle(
+                              color: Color(0xFF7B61FF),
+                              fontFamily: 'Roboto',
+                              fontSize: 32,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 SizedBox(
                   height: isLandscape
-                      ? screenHeight / 10
+                      ? screenHeight / 14
                       : context.screenWidth / 12,
                   width:
                       isLandscape ? screenHeight / 3 : context.screenWidth / 3,
@@ -105,7 +119,7 @@ class CheckIn extends StatelessWidget {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
+                            borderRadius: BorderRadius.circular(6),
                           ),
                         ),
                         backgroundColor: MaterialStateProperty.all(
@@ -128,20 +142,19 @@ class CheckIn extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          Flexible(
-                            // ใช้ Flexible ในการครอบ Text
+                          Expanded(
                             child: Text(
                               'confirm Order (0)',
                               style: TextStyle(
-                                  fontSize: isLandscape
-                                      ? screenWidth / 66
-                                      : context.screenWidth / 40,
-                                  color: Colors.white,
-                                  fontFamily: 'Roboto'),
-                              overflow: TextOverflow
-                                  .ellipsis, // เพิ่ม overflow ด้วย TextOverflow.ellipsis
+                                fontSize: isLandscape
+                                    ? screenWidth / 66
+                                    : context.screenWidth / 40,
+                                color: Colors.white,
+                                fontFamily: 'Roboto',
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -155,3 +168,44 @@ class CheckIn extends StatelessWidget {
     );
   }
 }
+
+// Padding(
+//                   padding: const EdgeInsets.all(20.0),
+//                   child: InkWell(
+//                     onTap: () {},
+//                     child: Container(
+//                       decoration: BoxDecoration(
+//                         color: Color(0xff4F4F4F),
+//                         borderRadius: BorderRadius.circular(14),
+//                       ),
+//                       width: double.infinity,
+//                       height: 100,
+//                       child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Icon(
+//                             Icons.shopping_cart,
+//                             size: isLandscape
+//                                 ? screenWidth / 50
+//                                 : screenWidth / 38,
+//                             color: Colors.white,
+//                           ),
+//                           Flexible(
+//                             // ใช้ Flexible ในการครอบ Text
+//                             child: Text(
+//                               'confirm Order (0)',
+//                               style: TextStyle(
+//                                   fontSize: isLandscape
+//                                       ? screenWidth / 66
+//                                       : context.screenWidth / 40,
+//                                   color: Colors.white,
+//                                   fontFamily: 'Roboto'),
+//                               overflow: TextOverflow
+//                                   .ellipsis, // เพิ่ม overflow ด้วย TextOverflow.ellipsis
+//                             ),
+//                           )
+//                         ],
+//                       ),
+//                     ),
+//                   ),
+//                 ),

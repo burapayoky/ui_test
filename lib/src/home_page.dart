@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
-    final isLandscape = screenWidth > screenHeight;
+    bool isLandscape = screenWidth > screenHeight;
 
     PreferredSizeWidget appBar() {
       return AppBar(
@@ -137,38 +137,38 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget bottomSheet() {
-      if (screenHeight < 800) {
-        return Container();
-      } else if (isLandscape && screenHeight > 1200) {
-        return Container();
-      } else if (isLandscape && screenWidth > 2000) {
+      if (isLandscape && screenHeight < 450 ||
+          isPortrait && screenHeight < 731) {
         return Container();
       }
       return Expanded(
         child: Container(
-          width: double.infinity,
           color: Colors.black,
-          child: Container(
-            decoration: BoxDecoration(border: Border.all(color: Colors.white)),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: screenHeight / 100),
+          child: Column(
+            children: [
+              Flexible(
+                flex: 3,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 28), //top: screenHeight / 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: screenWidth / 20),
+                      Flexible(
+                        flex: 4,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              'Contact Us',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.white),
+                            const Flexible(
+                              child: Text(
+                                'Contact Us',
+                                style: TextStyle(
+                                    fontFamily: "Roboto",
+                                    fontSize: 18,
+                                    color: Colors.white),
+                              ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
+                            Flexible(
+                              flex: 2,
                               child: Container(
                                 width: 400,
                                 child: const Text(
@@ -180,75 +180,84 @@ class _HomePageState extends State<HomePage> {
                                       fontFamily: "Roboto"),
                                   softWrap: true,
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines: 4,
+                                  maxLines: 2,
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      //contact
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          IconCircle(
-                            icon: Icons.call,
-                            text: '090-0890-xxxx',
-                            divide: isPortrait ? 45 : 28,
-                            textDivide: 60,
+                      Flexible(
+                        flex: 2,
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: ContractIconCircle(
+                                  icon: Icons.call,
+                                  text: '090-0890-xxxx',
+                                  divide: isPortrait ? 60 : 54,
+                                  textDivide: 60,
+                                ),
+                              ),
+                              Expanded(
+                                child: ContractIcon(
+                                  icon: FontAwesomeIcons.instagram,
+                                  text: 'SoiSiam',
+                                  divide: isPortrait ? 50 : 30,
+                                  textDivide: 100,
+                                ),
+                              ),
+                              Expanded(
+                                child: ContractIconCircle(
+                                  icon: FontAwesomeIcons.youtube,
+                                  text: 'SoiSiam Chanal',
+                                  divide: isPortrait ? 80 : 58,
+                                  textDivide: 100,
+                                ),
+                              ),
+                              Expanded(
+                                child: ContractIcon(
+                                  icon: Icons.mail,
+                                  text: 'SoiSiam@gmail.co.th',
+                                  divide: isPortrait ? 50 : 30,
+                                  textDivide: 100,
+                                ),
+                              ),
+                            ],
                           ),
-                          IconWithCircle(
-                            icon: FontAwesomeIcons.instagram,
-                            text: 'SoiSiam',
-                            divide: isPortrait ? 40 : 24,
-                            textDivide: 60,
-                          ),
-                          IconCircle(
-                            icon: FontAwesomeIcons.youtube,
-                            text: 'SoiSiam Chanal',
-                            divide: isPortrait ? 60 : 35,
-                            textDivide: 60,
-                          ),
-                          IconWithCircle(
-                            icon: Icons.mail,
-                            text: 'SoiSiam@gmail.co.th',
-                            divide: isPortrait ? 42 : 25,
-                            textDivide: 60,
-                          ),
-                        ],
+                        ),
                       ),
-                      //contact
                     ],
                   ),
                 ),
-                //bottom side
-                Expanded(
-                  child: Align(
-                    alignment: FractionalOffset.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '© Copyright 2022 | Powered by',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: screenHeight / 60,
-                          ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '© Copyright 2022 | Powered by',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: screenHeight / 60,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 2, left: 1),
-                          child: SizedBox(
-                            height: screenWidth / 15,
-                            width: screenWidth / 22,
-                            child: Image.asset("assets/images/bg/smile.png"),
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2, left: 1),
+                        child: SizedBox(
+                          height: screenWidth / 15,
+                          width: screenWidth / 22,
+                          child: Image.asset("assets/images/bg/smile.png"),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -257,67 +266,73 @@ class _HomePageState extends State<HomePage> {
     Widget landscapeWidget() {
       return Stack(
         children: [
-          Positioned(
-            child: Transform.rotate(
-              angle: 28.3,
-              child: Transform.translate(
-                offset: Offset(screenWidth / 60, 0),
-                child: Container(
-                  height: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image:
-                          AssetImage('assets/images/bg/home_background1 1.png'),
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   child: Transform.rotate(
+          //     angle: 28.3,
+          //     child: Transform.translate(
+          //       offset: Offset(screenWidth / 60, 0),
+          //       child: Container(
+          //         height: double.infinity,
+          //         decoration: const BoxDecoration(
+          //           image: DecorationImage(
+          //             image:
+          //                 AssetImage('assets/images/bg/home_background1 1.png'),
+          //             fit: BoxFit.fitWidth,
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: screenWidth / 15, bottom: 90),
-                child: Row(
-                  children: [
-                    Align(
-                      child: Column(
-                        children: [
-                          bodyText(),
-                        ],
+              Flexible(
+                flex: 3,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: screenWidth / 15,
+                  ),
+                  child: Row(
+                    children: [
+                      Align(
+                        child: Column(
+                          children: [
+                            bodyText(),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: 100.0, left: screenHeight / 10),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                NavigatePageOrderAndStay(
-                                  image: 'assets/images/gif/gif2.gif',
-                                  color: Color(0xFF496EE2),
-                                  text: 'To Stay',
-                                  route: 'first-page',
-                                ),
-                                SizedBox(width: 20),
-                                NavigatePageOrderAndStay(
-                                  image: 'assets/images/gif/gif1.gif',
-                                  color: Color(0xFFFAA21c),
-                                  text: 'Togo',
-                                  route: 'order',
-                                ),
-                              ],
+                      const Padding(
+                        padding: EdgeInsets.only(
+                          top: 100.0,
+                        ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  NavigatePageOrderAndStay(
+                                    image: 'assets/images/gif/gif2.gif',
+                                    color: Color(0xFF496EE2),
+                                    text: 'To Stay',
+                                    route: 'first-page',
+                                  ),
+                                  SizedBox(width: 20),
+                                  NavigatePageOrderAndStay(
+                                    image: 'assets/images/gif/gif1.gif',
+                                    color: Color(0xFFFAA21c),
+                                    text: 'Togo',
+                                    route: 'order',
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
               bottomSheet()
@@ -405,8 +420,8 @@ class _HomePageState extends State<HomePage> {
               bodyText(),
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: context.screenHeight / 7,
-                    top: context.screenHeight / 35),
+                    bottom: context.screenHeight / 6,
+                    top: context.screenHeight / 40),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -429,30 +444,65 @@ class _HomePageState extends State<HomePage> {
               bottomSheet(),
             ],
           ),
+          SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        constraints:
+                            const BoxConstraints(maxWidth: double.infinity),
+                        builder: (context) {
+                          return const SafeArea(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(),
+                              child: BottomWidget(),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              Icons.restaurant,
+                              size: screenHeight / 40,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          Text(
+                            'Soi Siam',
+                            style: TextStyle(
+                                fontSize: screenHeight / 40,
+                                color: Colors.black54,
+                                fontFamily: 'Roboto_Light'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ActionsFlagIcon(),
+                ),
+              ],
+            ),
+          ),
         ],
       );
     }
 
-    return Scaffold(
-        // appBar: appBar(),
-        body: isLandscape ? landscapeWidget() : portraitWidget());
+    print(screenHeight);
+    return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
     //isPortrait ? portraitWidget() : landscapeWidget());
   }
 }
-  // Transform.rotate(
-  //           angle: 12.57,
-  //           child: Transform.translate(
-  //             offset: Offset(-4, 0),
-  //             child: Expanded(
-  //               child: Container(
-  //                 height: context.screenWidth * 100,
-  //                 decoration: const BoxDecoration(
-  //                   image: DecorationImage(
-  //                     image: AssetImage('assets/images/bg/Bg1.png'),
-  //                     fit: BoxFit.contain,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         ),

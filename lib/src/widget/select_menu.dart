@@ -22,12 +22,18 @@ class _SelectedMenuState extends State<SelectedMenu> {
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
+
+  //
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+  //
   final fieldText = TextEditingController();
+  int listenerindex = 0;
   bool issearch = false;
 //Fuction Scroll to index
   void scrollTo(int index) => itemScrollController.scrollTo(
         index: index,
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
   void jumpTo(int index) => itemScrollController.jumpTo(index: index);
@@ -42,6 +48,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
   }
 
   int selectCategory = 0;
+  int foodMenuscroll = 0;
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -63,6 +70,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
               color: const Color.fromARGB(31, 156, 155, 155),
             ),
             child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Icon(Icons.keyboard_arrow_left),
                 Text(
@@ -112,101 +120,120 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     Widget headding() {
       return Padding(
-          padding: const EdgeInsets.only(top: 28, bottom: 18),
-          child: BlocBuilder<OrderBloc, OrderState>(
-            builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
+        padding: const EdgeInsets.only(top: 20, bottom: 18),
+        child: BlocBuilder<OrderBloc, OrderState>(
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Align(
                     alignment: Alignment.topLeft,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Container(
-                        width: 90,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Color(0xFFF6F6F6),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: const Row(
-                          children: [
-                            Icon(
-                              Icons.keyboard_arrow_left,
-                              size: 30,
-                            ),
-                            Text(
-                              'Back',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black54),
-                            ),
-                          ],
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24.0),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width:
+                              isLandscape ? screenHeight / 8 : screenWidth / 9,
+                          height: isLandscape
+                              ? screenHeight / 18
+                              : screenWidth / 15,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFF6F6F6),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Row(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Expanded(
+                                  child: Icon(
+                                    Icons.keyboard_arrow_left,
+                                    size: 40,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Expanded(
+                                  child: Text(
+                                    'Back',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black54),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  issearch == true
-                      ? Container(
-                          height: 40,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(104, 182, 180, 180),
-                            borderRadius: BorderRadius.circular(8),
+                ),
+                issearch == true
+                    ? Container(
+                        height: 40,
+                        width: 250,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(104, 182, 180, 180),
+                          borderRadius: BorderRadius.circular(8),
 
-                            //border: Border.all(color: Colors.black)),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(
-                                Icons.search,
-                              ),
-                              SizedBox(
-                                width: 150,
-                                child: TextField(
-                                  controller: fieldText,
-                                  onChanged: (value) {
-                                    context.read<OrderBloc>().add(
-                                          OrderSearchEvent(
-                                            text: value,
-                                          ),
-                                        );
-                                  },
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  issearch = false;
-                                  setState(() {});
+                          //border: Border.all(color: Colors.black)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Icon(
+                              Icons.search,
+                            ),
+                            SizedBox(
+                              width: 150,
+                              child: TextField(
+                                controller: fieldText,
+                                onChanged: (value) {
+                                  context.read<OrderBloc>().add(
+                                        OrderSearchEvent(
+                                          text: value,
+                                        ),
+                                      );
                                 },
-                                icon: const Icon(Icons.close),
                               ),
-                            ],
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xFFF6F6F6),
-                                borderRadius: BorderRadius.circular(6)),
-                            child: IconButton(
-                              icon: const Icon(Icons.search),
+                            ),
+                            IconButton(
                               onPressed: () {
-                                issearch = true;
+                                issearch = false;
                                 setState(() {});
                               },
+                              icon: const Icon(Icons.close),
                             ),
+                          ],
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFF6F6F6),
+                              borderRadius: BorderRadius.circular(6)),
+                          child: IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () {
+                              issearch = true;
+                              setState(() {});
+                            },
                           ),
                         ),
-                ],
-              );
-            },
-          ));
+                      ),
+              ],
+            );
+          },
+        ),
+      );
     }
 
 // thai Menu,Japan Menu,FreeItem {foodSet}
@@ -224,7 +251,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       child: SizedBox(
                         width: isLandscape
                             ? context.screenWidth / 6
-                            : context.screenWidth / 5,
+                            : context.screenWidth / 5.5,
                         child: ElevatedButton(
                           onPressed: () {
                             context
@@ -242,17 +269,16 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           //onpress
 
                           style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  side: BorderSide(
-                                      color: state.selectedId == i
-                                          ? const Color.fromARGB(
-                                              66, 235, 229, 229)
-                                          : const Color.fromARGB(
-                                              66, 235, 229, 229))),
-                              backgroundColor: state.selectedId == i
-                                  ? const Color(0xFF02CCFE)
-                                  : const Color(0xFFF6F6F6)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                side: BorderSide(
+                                    color: state.selectedId == i
+                                        ? Color(0xff636363)
+                                        : const Color(0xffF6F6F6))),
+                            backgroundColor: state.selectedId == i
+                                ? const Color(0xFF02CCFE)
+                                : const Color(0xFFF6F6F6),
+                          ),
                           child: Text(
                             e.foodSetName ?? '',
                             style: TextStyle(
@@ -292,11 +318,13 @@ class _SelectedMenuState extends State<SelectedMenu> {
               .whereType<FoodCategory>()
               .toList();
 
-          foodCategories.sort(((a, b) {
-            return a.foodCatId!.toLowerCase().compareTo(
-                  b.foodCatId!.toLowerCase(),
-                );
-          }));
+          foodCategories.sort(
+            ((a, b) {
+              return a.foodCatId!.toLowerCase().compareTo(
+                    b.foodCatId!.toLowerCase(),
+                  );
+            }),
+          );
 
           return ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -304,11 +332,14 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
+                width: 140,
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
                       : const Color(0xFFF6F6F6),
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: selectCategory == index
+                      ? BorderRadius.circular(12)
+                      : BorderRadius.circular(4),
                 ),
                 child: TextButton(
                   onPressed: () {
@@ -322,8 +353,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       fontSize: 18,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
-                      color:
-                          selectCategory == index ? Colors.white : Colors.black,
+                      fontFamily: 'Roboto_Light',
+                      color: selectCategory == index
+                          ? Colors.white
+                          : Color(0xff4F4F4F),
                     ),
                   ),
                 ),
@@ -336,13 +369,19 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
 //Images,FoodName,FoodDest,price {Food}
     Widget foodMenu() {
-      return BlocBuilder<OrderBloc, OrderState>(
+      return BlocConsumer<OrderBloc, OrderState>(
+        listener: (BuildContext context, OrderState state) {
+          if (foodMenuscroll != listenerindex) {
+            print(listenerindex);
+          }
+        },
         builder: (context, state) {
           final foodData = state.foodData.entries.where((e) {
-            final foodCategory =
-                FoodData.getFoodCategories().firstWhereOrNull((foodCat) {
-              return foodCat.foodCatId == e.key;
-            });
+            final foodCategory = FoodData.getFoodCategories().firstWhereOrNull(
+              (foodCat) {
+                return foodCat.foodCatId == e.key;
+              },
+            );
 
             if (foodCategory == null) {
               return false;
@@ -351,23 +390,28 @@ class _SelectedMenuState extends State<SelectedMenu> {
             return true;
           }).toList();
 
-          foodData.sort(((a, b) {
-            return a.key.toLowerCase().compareTo(b.key.toLowerCase());
-          }));
+          foodData.sort(
+            ((a, b) {
+              return a.key.toLowerCase().compareTo(b.key.toLowerCase());
+            }),
+          );
 
           return ScrollablePositionedList.builder(
             itemScrollController: itemScrollController,
             itemCount: foodData.length,
+//            key: GlobalKey,
+            //itemPositionsListener: itemPositionsListener,
             itemBuilder: (context, index) {
               final foodCategory =
-                  FoodData.getFoodCategories().firstWhereOrNull((e) {
-                return e.foodCatId == foodData[index].key;
-              });
+                  FoodData.getFoodCategories().firstWhereOrNull(
+                (e) {
+                  return e.foodCatId == foodData[index].key;
+                },
+              );
 
               if (foodCategory == null) {
                 return Container();
               }
-
               return SliverListFoodOrder(
                 foodCategoryName: foodCategory.foodCatName ?? '',
                 foods: foodData[index].value,
@@ -379,47 +423,53 @@ class _SelectedMenuState extends State<SelectedMenu> {
     }
 
     return Scaffold(
-        //appBar: appBar(),
-
-        body: Padding(
-      padding: const EdgeInsets.only(left: 28),
-      child: Column(
+      //appBar: appBar(),
+      body: Column(
         children: [
           SafeArea(child: headding()),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  height: isLandscape
-                      ? screenHeight / 15
-                      : screenWidth / 16, //context.screenHeight / 28,
-                  child: selectedFoodSet(),
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+          Padding(
+            padding: const EdgeInsets.only(left: 28.0),
+            child: Row(
+              children: [
+                Expanded(
                   child: Container(
                     width: double.infinity,
                     height: isLandscape
-                        ? context.screenHeight / 16
-                        : context.screenWidth / 14,
-                    child: selectedFoodCategory(),
+                        ? screenHeight / 15
+                        : screenWidth / 16, //context.screenHeight / 28,
+                    child: selectedFoodSet(),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 28.0, top: 14),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: isLandscape
+                          ? context.screenHeight / 16
+                          : context.screenWidth / 14,
+                      child: selectedFoodCategory(),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
           Expanded(
-            child: Container(child: foodMenu()),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 28.0, right: 6),
+              child: Container(child: foodMenu()),
+            ),
           )
         ],
       ),
-    ));
+    );
   }
 }

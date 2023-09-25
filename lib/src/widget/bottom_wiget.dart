@@ -193,14 +193,143 @@ class IconCircle extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: context.screenWidth / textDivide,
+        Container(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: context.screenWidth / textDivide,
+            ),
           ),
         )
       ],
     );
   }
 }
+
+class ContractIconCircle extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final double divide;
+  final double textDivide;
+
+  const ContractIconCircle({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.divide,
+    required this.textDivide,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+
+    final isPortrait = screenHeight > screenWidth;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          width: 100,
+          child: CircleAvatar(
+            maxRadius: isPortrait ? screenWidth / 70 : screenWidth / 80,
+            backgroundColor: Colors.white,
+            child: FaIcon(
+              icon,
+              color: Colors.black,
+              size: context.screenHeight / divide,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            text,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ContractIcon extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final double divide;
+  final double textDivide;
+
+  const ContractIcon({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.divide,
+    required this.textDivide,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+
+    final isPortrait = screenHeight > screenWidth;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          width: 100,
+          child: CircleAvatar(
+            maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
+            backgroundColor: Colors.black,
+            child: FaIcon(
+              icon,
+              color: Colors.white,
+              size: context.screenHeight / divide,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+ // return Padding(
+    //   padding: const EdgeInsets.only(top: 8.0),
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: [
+    //       Container(
+    //         width: 100,
+    //         child: CircleAvatar(
+    //           // maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
+    //           backgroundColor: Colors.white,
+    //           child: FaIcon(
+    //             icon,
+    //             color: Colors.black,
+    //             size: context.screenHeight / divide,
+    //           ),
+    //         ),
+    //       ),
+    //       Text(
+    //         text,
+    //         style: TextStyle(
+    //           color: Colors.white,
+    //           fontSize: 12,
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    // );
