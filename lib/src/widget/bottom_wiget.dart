@@ -11,99 +11,122 @@ class BottomWidget extends StatelessWidget {
     final screenHeight = context.screenHeight;
     final isPortrait = screenHeight > screenWidth;
     return Container(
-      width: double.infinity,
       color: Colors.black,
-      child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Contact Us',
-                      style: TextStyle(
-                        fontSize: context.screenWidth / 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        'Rattanathibech 28  Rattanathibech 28 Alley,\nTambon Bang Kraso, Mueang Nontraburi District',
-                        style: TextStyle(
-                          fontSize: context.screenWidth / 40,
-                          color: Colors.white,
+      child: Column(
+        children: [
+          Flexible(
+            flex: 3,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: screenHeight / 40), //top: screenHeight / 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Flexible(
+                    flex: 4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Flexible(
+                          child: Text(
+                            'Contact Us',
+                            style: TextStyle(
+                                fontFamily: "Roboto_Light",
+                                fontSize: 18,
+                                color: Colors.white),
+                          ),
                         ),
-                        softWrap: true,
-                      ),
+                        Flexible(
+                          flex: 2,
+                          child: Container(
+                            width: 400,
+                            child: const Text(
+                              'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                              //
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontFamily: "Roboto_Light"),
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: isPortrait ? 30 : 2),
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      IconCircle(
-                        icon: Icons.phone,
-                        text: '090-0890-xxxx',
-                        divide: 30,
-                        textDivide: 40,
-                      ),
-                      IconWithCircle(
-                        icon: FontAwesomeIcons.instagram,
-                        text: 'SoiSiam',
-                        divide: 22,
-                        textDivide: 40,
-                      ),
-                      IconCircle(
-                        icon: FontAwesomeIcons.youtube,
-                        text: 'SoiSiam Chanel',
-                        divide: 35,
-                        textDivide: 40,
-                      ),
-                      IconWithCircle(
-                        icon: Icons.mail,
-                        text: 'SoiSiam@gmail.co.th',
-                        divide: 22,
-                        textDivide: 40,
-                      ),
-                    ],
                   ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '© Copyright 2022 | Powered by',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: context.screenHeight / 60,
+                  Flexible(
+                    flex: 2,
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: ContractIconCircle(
+                              icon: Icons.call,
+                              text: '090-0890-xxxx',
+                              divide: isPortrait ? 60 : 54,
+                              textDivide: 60,
+                            ),
+                          ),
+                          Expanded(
+                            child: ContractIcon(
+                              icon: FontAwesomeIcons.instagram,
+                              text: 'SoiSiam',
+                              divide: isPortrait ? 50 : 30,
+                              textDivide: 100,
+                            ),
+                          ),
+                          Expanded(
+                            child: ContractIconCircle(
+                              icon: FontAwesomeIcons.youtube,
+                              text: 'SoiSiam Chanal',
+                              divide: isPortrait ? 80 : 58,
+                              textDivide: 100,
+                            ),
+                          ),
+                          Expanded(
+                            child: ContractIcon(
+                              icon: Icons.mail,
+                              text: 'SoiSiam@gmail.co.th',
+                              divide: isPortrait ? 50 : 30,
+                              textDivide: 100,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 8),
-                      child: SizedBox(
-                        height: 70,
-                        width: 70,
-                        child: Image.asset("assets/images/bg/smile.png"),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '© Copyright 2022 | Powered by',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: screenHeight / 60,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2, left: 1),
+                    child: SizedBox(
+                      height: screenWidth / 15,
+                      width: screenWidth / 22,
+                      child: Image.asset("assets/images/bg/smile.png"),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

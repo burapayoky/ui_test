@@ -25,7 +25,7 @@ class CheckIn extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
             child: Row(
               children: [
                 Padding(
@@ -53,18 +53,26 @@ class CheckIn extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(),
-          Expanded(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                'No order selected',
-                style: TextStyle(
-                    fontSize: screenWidth / 40,
-                    color: Color(0xff4f4f4f),
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto_Light'),
+          const Divider(
+            thickness: 1,
+            indent: 30,
+            endIndent: 30,
+          ),
+          Flexible(
+            flex: 0,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  'No order selected',
+                  style: TextStyle(
+                      fontSize: screenWidth / 70,
+                      color: Color(0xff4f4f4f),
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Roboto_Light'),
+                ),
               ),
             ),
           ),
@@ -73,9 +81,12 @@ class CheckIn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Spacer(),
-                const Divider(),
+                const Divider(
+                  indent: 30,
+                  endIndent: 30,
+                ),
                 Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(28),
                   child: Flex(
                     direction: Axis
                         .horizontal, // Make sure it's horizontal for a row-like layout
@@ -114,10 +125,11 @@ class CheckIn extends StatelessWidget {
                 ),
                 SizedBox(
                   height: isLandscape
-                      ? screenHeight / 15
-                      : context.screenWidth / 12,
-                  width:
-                      isLandscape ? screenWidth / 5 : context.screenWidth / 3,
+                      ? screenHeight / 13
+                      : context.screenWidth / 11,
+                  width: isLandscape
+                      ? screenWidth / 5.8
+                      : context.screenWidth / 3.5,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ElevatedButton(
@@ -139,7 +151,7 @@ class CheckIn extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(right: 2),
                             child: Icon(
-                              Icons.shopping_cart,
+                              Icons.shopping_cart_outlined,
                               size: isLandscape
                                   ? screenWidth / 50
                                   : screenWidth / 38,

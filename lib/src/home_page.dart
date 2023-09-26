@@ -53,13 +53,13 @@ class _HomePageState extends State<HomePage> {
                 },
               );
             },
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.only(top: 25.0),
               child: Row(
                 children: [
                   Icon(
                     Icons.restaurant,
-                    size: 32.667,
+                    size: screenWidth / 40,
                     color: Colors.black38,
                   ),
                   Padding(
@@ -91,16 +91,16 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: screenHeight / 10),
+            padding: EdgeInsets.only(top: screenHeight / 8),
             child: Column(
               children: [
                 TextLage(
                   hintText: 'Self-Service',
-                  textSize: isLandscape ? screenWidth / 50 : screenHeight / 16,
+                  textSize: isLandscape ? screenHeight / 50 : screenHeight / 16,
                 ),
                 TextLage(
                   hintText: 'Experience.',
-                  textSize: screenHeight / 14,
+                  textSize: screenHeight / 30,
                 ),
               ],
             ),
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
           Text(
             'Form self-order to self-checkout',
             style: TextStyle(
-                fontSize: isPortrait ? screenHeight / 48 : screenWidth / 60,
+                fontSize: isPortrait ? screenHeight / 50 : screenWidth / 60,
                 color: Colors.black38,
                 fontFamily: 'Roboto'),
           ),
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                 ' Accept only Credit Card',
                 style: TextStyle(
                   color: Colors.red,
-                  fontSize: isPortrait ? screenHeight / 48 : screenWidth / 58,
+                  fontSize: isPortrait ? screenHeight / 50 : screenWidth / 58,
                   fontFamily: 'Roboto',
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.red,
@@ -149,7 +149,8 @@ class _HomePageState extends State<HomePage> {
               Flexible(
                 flex: 3,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 28), //top: screenHeight / 40),
+                  padding: EdgeInsets.only(
+                      top: screenHeight / 40), //top: screenHeight / 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 'Contact Us',
                                 style: TextStyle(
-                                    fontFamily: "Roboto",
+                                    fontFamily: "Roboto_Light",
                                     fontSize: 18,
                                     color: Colors.white),
                               ),
@@ -177,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.white,
-                                      fontFamily: "Roboto"),
+                                      fontFamily: "Roboto_Light"),
                                   softWrap: true,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
@@ -282,24 +283,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          // Positioned(
-          //   child: Transform.rotate(
-          //     angle: 28.3,
-          //     child: Transform.translate(
-          //       offset: Offset(screenWidth / 60, 0),
-          //       child: Container(
-          //         height: double.infinity,
-          //         decoration: const BoxDecoration(
-          //           image: DecorationImage(
-          //             image:
-          //                 AssetImage('assets/images/bg/home_background1 1.png'),
-          //             fit: BoxFit.fitWidth,
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Column(
             children: [
               Flexible(
@@ -309,6 +292,7 @@ class _HomePageState extends State<HomePage> {
                     left: screenWidth / 15,
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Align(
                         child: Column(
@@ -319,7 +303,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                            top: screenWidth / 15, left: screenWidth / 14),
+                            top: screenWidth / 20, left: screenWidth / 14),
                         child: const Row(
                           children: [
                             Padding(
@@ -361,6 +345,9 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(12),
                   child: InkWell(
                     onTap: () {
+                      if (screenWidth > 1200) {
+                        return null;
+                      }
                       showModalBottomSheet(
                         context: context,
                         constraints:
@@ -450,8 +437,8 @@ class _HomePageState extends State<HomePage> {
               bodyText(),
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: context.screenHeight / 6,
-                    top: context.screenHeight / 40),
+                    bottom: context.screenHeight / 10,
+                    top: context.screenHeight / 50),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -504,14 +491,14 @@ class _HomePageState extends State<HomePage> {
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Icon(
                               Icons.restaurant,
-                              size: screenHeight / 40,
+                              size: screenHeight / 50,
                               color: Colors.black54,
                             ),
                           ),
                           Text(
                             'Soi Siam',
                             style: TextStyle(
-                                fontSize: screenHeight / 40,
+                                fontSize: screenHeight / 50,
                                 color: Colors.black54,
                                 fontFamily: 'Roboto_Light'),
                           ),
@@ -531,6 +518,8 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+    print("W$screenWidth");
+    print("H$screenHeight");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
     //isPortrait ? portraitWidget() : landscapeWidget());
   }

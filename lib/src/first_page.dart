@@ -55,7 +55,7 @@ class FirstPage extends StatelessWidget {
               child: FractionalTranslation(
                 translation: Offset(screenWidth / 8000, 0),
                 child: Container(
-                  width: screenHeight / 1.3,
+                  width: screenHeight / 1.1,
                   height: screenHeight / 1.4,
                   //width: screenWidth * 2,
                   decoration: const BoxDecoration(

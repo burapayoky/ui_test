@@ -126,7 +126,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 issearch == true
                     ? Container(
                         height: 40,
-                        width: 250,
+                        width: screenWidth / 3,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(104, 182, 180, 180),
                           borderRadius: BorderRadius.circular(8),
@@ -140,7 +140,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                               Icons.search,
                             ),
                             SizedBox(
-                              width: 150,
+                              width: screenWidth / 6,
                               child: TextField(
                                 controller: fieldText,
                                 onChanged: (value) {
@@ -157,7 +157,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                 issearch = false;
                                 setState(() {});
                               },
-                              icon: const Icon(Icons.close),
+                              icon: Icon(
+                                Icons.close,
+                                size: screenWidth / 80,
+                              ),
                             ),
                           ],
                         ),
@@ -280,7 +283,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                width: screenWidth / 5, //180
+                width: isLandscape ? screenWidth / 5 : screenHeight / 8, //180
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
@@ -299,7 +302,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   child: Text(
                     foodCategories[index].foodCatName ?? '',
                     style: TextStyle(
-                      fontSize: screenWidth / 40,
+                      fontSize:
+                          isLandscape ? screenWidth / 80 : screenWidth / 50,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
                       fontFamily: 'Roboto_Light',

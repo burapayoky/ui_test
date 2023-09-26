@@ -29,8 +29,8 @@ class SliverListFoodOrder extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               foodCategoryName,
-              style: const TextStyle(
-                fontSize: 38,
+              style: TextStyle(
+                fontSize: isLandscape ? screenWidth / 40 : screenWidth / 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               ),
@@ -132,7 +132,7 @@ class SliverListFoodOrder extends StatelessWidget {
                                       fontSize: isLandscape
                                           ? screenWidth / 130
                                           : screenHeight / 100,
-                                      fontFamily: 'Roboto_Light',
+                                      fontFamily: 'Roboto',
                                       color: Colors.black54),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,

@@ -19,10 +19,10 @@ class NavigatePageOrderAndStay extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
-    final isPortrait = screenHeight > screenWidth;
-
+    // final isPortrait = screenHeight > screenWidth;
+    final isLandscape = screenWidth > screenHeight;
     return SizedBox(
-      width: isPortrait ? screenHeight / 5 : screenWidth / 5,
+      width: isLandscape ? screenWidth / 5 : screenHeight / 5,
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, route);
@@ -30,20 +30,22 @@ class NavigatePageOrderAndStay extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: isPortrait ? screenHeight / 5 : screenWidth / 5,
-              width: isPortrait ? screenHeight / 5 : screenWidth / 5,
+              height: isLandscape ? screenWidth / 5 : screenHeight / 5,
+              width: isLandscape ? screenWidth / 5 : screenHeight / 5,
               decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(image), //
                     fit: BoxFit.fill,
                   ),
-                  border: Border.all(width: 0.25),
+                  border: Border.all(width: 0.25, color: Colors.white),
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(8))),
             ),
             SizedBox(
-              height: isPortrait ? screenHeight / 20 : screenWidth / 20,
+              height: screenHeight < 640 && screenWidth < 1011
+                  ? screenWidth / 28
+                  : screenHeight / 18,
               child: Container(
                 decoration: BoxDecoration(
                   color: color,
@@ -58,7 +60,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: screenHeight / 35,
+                        fontSize: screenHeight / 50,
                         fontFamily: 'Roboto_Light'),
                   ),
                 ),
@@ -70,3 +72,5 @@ class NavigatePageOrderAndStay extends StatelessWidget {
     );
   }
 }
+//  screenHeight < 640 && screenWidth < 900
+//           ? 
