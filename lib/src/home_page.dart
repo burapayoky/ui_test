@@ -290,51 +290,46 @@ class _HomePageState extends State<HomePage> {
             children: [
               Flexible(
                 flex: 3,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: screenWidth / 15,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Align(
-                        child: Column(
-                          children: [
-                            bodyText(),
-                          ],
-                        ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      child: Column(
+                        children: [
+                          bodyText(),
+                        ],
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsets.only(top: 140, left: screenWidth / 14),
-                        child: const Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  NavigatePageOrderAndStay(
-                                    image: 'assets/images/gif/gif2.gif',
-                                    color: Color(0xFF496EE2),
-                                    text: 'To Stay',
-                                    route: 'first-page',
-                                  ),
-                                  SizedBox(width: 20),
-                                  NavigatePageOrderAndStay(
-                                    image: 'assets/images/gif/gif1.gif',
-                                    color: Color(0xFFFAA21c),
-                                    text: 'Togo',
-                                    route: 'order',
-                                  ),
-                                ],
-                              ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: 140, left: screenWidth / 28),
+                      child: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                NavigatePageOrderAndStay(
+                                  image: 'assets/images/gif/gif2.gif',
+                                  color: Color(0xFF496EE2),
+                                  text: 'To Stay',
+                                  route: 'first-page',
+                                ),
+                                SizedBox(width: 20),
+                                NavigatePageOrderAndStay(
+                                  image: 'assets/images/gif/gif1.gif',
+                                  color: Color(0xFFFAA21c),
+                                  text: 'Togo',
+                                  route: 'order',
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               bottomSheet()
@@ -454,7 +449,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(15),
                   child: InkWell(
                     onTap: () {
                       showModalBottomSheet(
@@ -496,7 +491,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.only(right: 4.0),
                   child: ActionsFlagIcon(),
                 ),
               ],
@@ -509,6 +504,5 @@ class _HomePageState extends State<HomePage> {
     // print("W$screenWidth");
     // print("H$screenHeight");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
-    //isPortrait ? portraitWidget() : landscapeWidget());
   }
 }

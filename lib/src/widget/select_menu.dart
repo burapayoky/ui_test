@@ -91,7 +91,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         },
                         child: Container(
                           width:
-                              isLandscape ? screenHeight / 6 : screenWidth / 9,
+                              isLandscape ? screenHeight / 7 : screenWidth / 9,
                           height: isLandscape
                               ? screenHeight / 18
                               : screenWidth / 15,
@@ -203,7 +203,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       padding: const EdgeInsets.only(right: 12.0),
                       child: SizedBox(
                         width: isLandscape
-                            ? context.screenWidth / 6
+                            ? context.screenWidth / 7
                             : context.screenWidth / 4.8,
                         child: ElevatedButton(
                           onPressed: () {
@@ -285,7 +285,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                width: isLandscape ? screenWidth / 5 : screenHeight / 8, //180
+                width: isLandscape ? screenWidth / 8 : screenHeight / 8, //180
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)

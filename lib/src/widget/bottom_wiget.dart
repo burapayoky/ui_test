@@ -255,7 +255,7 @@ class ContractIconCircle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: 100,
+          width: screenWidth / 20, //100
           child: CircleAvatar(
             maxRadius: isPortrait ? screenWidth / 70 : screenWidth / 80,
             backgroundColor: Colors.white,
@@ -269,9 +269,9 @@ class ContractIconCircle extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: screenWidth / 60,
             ),
           ),
         ),
@@ -305,7 +305,7 @@ class ContractIcon extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          width: 100,
+          width: screenWidth / 20,
           child: CircleAvatar(
             maxRadius: isPortrait ? screenWidth / 50 : screenWidth / 70,
             backgroundColor: Colors.black,
@@ -321,7 +321,7 @@ class ContractIcon extends StatelessWidget {
             text,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: screenWidth / 60,
             ),
           ),
         )

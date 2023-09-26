@@ -37,7 +37,9 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                     image: AssetImage(image), //
                     fit: BoxFit.fill,
                   ),
-                  border: Border.all(width: 0.25, color: Colors.white),
+                  border: Border.all(
+                      width: 0.25,
+                      color: const Color.fromARGB(255, 190, 190, 190)),
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(8))),

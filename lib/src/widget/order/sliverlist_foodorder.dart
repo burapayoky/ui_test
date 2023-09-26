@@ -30,7 +30,7 @@ class SliverListFoodOrder extends StatelessWidget {
             child: Text(
               foodCategoryName,
               style: TextStyle(
-                fontSize: isLandscape ? screenWidth / 40 : screenWidth / 20,
+                fontSize: isLandscape ? screenWidth / 45 : screenWidth / 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               ),
@@ -67,12 +67,13 @@ class SliverListFoodOrder extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Flexible(
-                    flex: isLandscape ? 1 : 1,
+                    flex: isLandscape ? 2 : 1,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10)),
+                        //border: Border.all(color: Colors.red),
                         image: DecorationImage(
                           alignment: const Alignment(0, 0),
                           image: NetworkImage(foods[index].imageName!),
@@ -90,7 +91,7 @@ class SliverListFoodOrder extends StatelessWidget {
                               ? 1
                               : 0, //,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8, top: 8),
+                            padding: const EdgeInsets.only(left: 14, top: 14),
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: SizedBox(
