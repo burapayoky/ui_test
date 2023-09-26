@@ -394,6 +394,21 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+// Positioned(
+//   child: Transform.rotate(
+//     angle: 28.3,
+//     child: Container(
+//       width: screenWidth / 2, // ปรับความกว้างตามที่คุณต้องการ
+//       height: screenHeight / 2, // ปรับความสูงตามที่คุณต้องการ
+//       decoration: const BoxDecoration(
+//         image: DecorationImage(
+//           image: AssetImage('assets/images/bg/home_background1 1.png'),
+//           fit: BoxFit.fitWidth,
+//         ),
+//       ),
+//     ),
+//   ),
+// ),
     Widget portraitWidget() {
       return Stack(
         children: [
