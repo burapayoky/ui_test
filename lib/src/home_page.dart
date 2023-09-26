@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 120),
+            padding: EdgeInsets.only(top: screenHeight / 6),
             child: Column(
               children: [
                 TextLage(
@@ -269,15 +269,18 @@ class _HomePageState extends State<HomePage> {
         children: [
           Positioned(
             child: Transform.rotate(
-              angle: 28.3,
-              child: Container(
-                width: screenWidth / 2,
-                height: screenHeight / 1,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                        AssetImage('assets/images/bg/home_background1 1.png'),
-                    fit: BoxFit.fitWidth,
+              angle: 28.28,
+              child: Transform.translate(
+                offset: Offset(40, -120),
+                child: Container(
+                  width: screenWidth / 2,
+                  height: screenHeight / 0.1,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image:
+                          AssetImage('assets/images/bg/home_background1 1.png'),
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
               ),
@@ -303,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsets.only(top: 80, left: screenWidth / 14),
+                            EdgeInsets.only(top: 140, left: screenWidth / 14),
                         child: const Row(
                           children: [
                             Padding(
@@ -422,8 +425,8 @@ class _HomePageState extends State<HomePage> {
               bodyText(),
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: context.screenHeight / 10,
-                    top: context.screenHeight / 50),
+                    bottom: context.screenHeight / 12,
+                    top: context.screenHeight / 40),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

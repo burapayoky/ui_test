@@ -29,7 +29,7 @@ class CheckIn extends StatelessWidget {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
+                  padding: EdgeInsets.only(right: screenWidth / 80),
                   child: Container(
                     child: Text(
                       'My Order',
