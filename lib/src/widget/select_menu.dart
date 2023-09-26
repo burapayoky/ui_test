@@ -111,7 +111,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                   'Back',
                                   style: TextStyle(
                                       fontSize: screenWidth / 60,
-                                      fontFamily: 'Roboto',
+                                      fontFamily: 'Roboto_Light',
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black54),
                                 ),
@@ -240,10 +240,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                     : screenWidth / 55,
                                 fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.normal,
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Roboto_Light',
                                 color: state.selectedId == i
                                     ? Colors.white
-                                    : Colors.black87),
+                                    : Color(0xff4F4F4F)),
                           ),
                         ),
                       ),
