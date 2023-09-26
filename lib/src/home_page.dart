@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: screenHeight / 8),
+            padding: EdgeInsets.only(top: 120),
             child: Column(
               children: [
                 TextLage(
@@ -271,8 +271,8 @@ class _HomePageState extends State<HomePage> {
             child: Transform.rotate(
               angle: 28.3,
               child: Container(
-                width: screenWidth / 2, // ปรับความกว้างตามที่คุณต้องการ
-                height: screenHeight / 1, // ปรับความสูงตามที่คุณต้องการ
+                width: screenWidth / 2,
+                height: screenHeight / 1,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image:
@@ -302,8 +302,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
-                            top: screenWidth / 20, left: screenWidth / 14),
+                        padding:
+                            EdgeInsets.only(top: 80, left: screenWidth / 14),
                         child: const Row(
                           children: [
                             Padding(
@@ -397,21 +397,6 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-// Positioned(
-//   child: Transform.rotate(
-//     angle: 28.3,
-//     child: Container(
-//       width: screenWidth / 2, // ปรับความกว้างตามที่คุณต้องการ
-//       height: screenHeight / 2, // ปรับความสูงตามที่คุณต้องการ
-//       decoration: const BoxDecoration(
-//         image: DecorationImage(
-//           image: AssetImage('assets/images/bg/home_background1 1.png'),
-//           fit: BoxFit.fitWidth,
-//         ),
-//       ),
-//     ),
-//   ),
-// ),
     Widget portraitWidget() {
       return Stack(
         children: [
@@ -518,8 +503,8 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    print("W$screenWidth");
-    print("H$screenHeight");
+    // print("W$screenWidth");
+    // print("H$screenHeight");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
     //isPortrait ? portraitWidget() : landscapeWidget());
   }

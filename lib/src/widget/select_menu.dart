@@ -126,7 +126,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 issearch == true
                     ? Container(
                         height: 40,
-                        width: screenWidth / 3,
+                        width: screenWidth / 4.2,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(104, 182, 180, 180),
                           borderRadius: BorderRadius.circular(8),
@@ -152,14 +152,16 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                 },
                               ),
                             ),
-                            IconButton(
-                              onPressed: () {
-                                issearch = false;
-                                setState(() {});
-                              },
-                              icon: Icon(
-                                Icons.close,
-                                size: screenWidth / 80,
+                            Expanded(
+                              child: IconButton(
+                                onPressed: () {
+                                  issearch = false;
+                                  setState(() {});
+                                },
+                                icon: Icon(
+                                  Icons.close,
+                                  size: screenWidth / 80,
+                                ),
                               ),
                             ),
                           ],
