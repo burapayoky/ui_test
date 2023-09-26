@@ -98,19 +98,19 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           decoration: BoxDecoration(
                               color: const Color(0xFFF6F6F6),
                               borderRadius: BorderRadius.circular(8)),
-                          child: const Row(
+                          child: Row(
                             children: [
                               Expanded(
                                 child: Icon(
                                   Icons.keyboard_arrow_left,
-                                  size: 40,
+                                  size: screenWidth / 50,
                                 ),
                               ),
                               Expanded(
                                 child: Text(
                                   'Back',
                                   style: TextStyle(
-                                      fontSize: 24,
+                                      fontSize: screenWidth / 60,
                                       fontFamily: 'Roboto',
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black54),
@@ -199,7 +199,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       child: SizedBox(
                         width: isLandscape
                             ? context.screenWidth / 6
-                            : context.screenWidth / 5.5,
+                            : context.screenWidth / 4.8,
                         child: ElevatedButton(
                           onPressed: () {
                             context
@@ -280,7 +280,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                width: 160, //180
+                width: screenWidth / 5, //180
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
@@ -299,7 +299,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   child: Text(
                     foodCategories[index].foodCatName ?? '',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: screenWidth / 40,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w500,
                       fontFamily: 'Roboto_Light',

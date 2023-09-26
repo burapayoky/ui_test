@@ -266,6 +266,22 @@ class _HomePageState extends State<HomePage> {
     Widget landscapeWidget() {
       return Stack(
         children: [
+          Positioned(
+            child: Transform.rotate(
+              angle: 28.3,
+              child: Container(
+                width: screenWidth / 2, // ปรับความกว้างตามที่คุณต้องการ
+                height: screenHeight / 1, // ปรับความสูงตามที่คุณต้องการ
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image:
+                        AssetImage('assets/images/bg/home_background1 1.png'),
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+            ),
+          ),
           // Positioned(
           //   child: Transform.rotate(
           //     angle: 28.3,
@@ -515,10 +531,6 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    if (isLandscape && screenWidth < 555 || isPortrait && screenWidth < 342) {
-      print("object");
-    }
-    print(screenWidth);
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
     //isPortrait ? portraitWidget() : landscapeWidget());
   }

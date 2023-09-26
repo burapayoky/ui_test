@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_test/extensions/build_context.dart';
 import 'package:ui_test/src/widget/TextLage.dart';
-import 'package:ui_test/src/widget/bottom_wiget.dart';
 
 import 'widget/appbar/action_flag_icon.dart';
 
@@ -22,20 +21,7 @@ class FirstPage extends StatelessWidget {
         title: Padding(
           padding: const EdgeInsets.all(20),
           child: InkWell(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                constraints: const BoxConstraints(maxWidth: double.infinity),
-                builder: (context) {
-                  return const SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(),
-                      child: BottomWidget(),
-                    ),
-                  );
-                },
-              );
-            },
+            onTap: () {},
             child: Row(
               children: [
                 Icon(
@@ -66,15 +52,18 @@ class FirstPage extends StatelessWidget {
           Positioned(
             child: Transform.rotate(
               angle: 6.3,
-              child: Transform.translate(
-                offset: Offset(screenWidth / 300, -330),
+              child: FractionalTranslation(
+                translation: Offset(screenWidth / 8000, 0),
                 child: Container(
-                  width: screenWidth * 2,
+                  width: screenHeight / 1.3,
+                  height: screenHeight / 1.4,
+                  //width: screenWidth * 2,
                   decoration: const BoxDecoration(
+                    // color: Colors.amber,
                     image: DecorationImage(
                       image:
                           AssetImage('assets/images/bg/home_background1 1.png'),
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -86,43 +75,26 @@ class FirstPage extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12),
-                child: InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      constraints:
-                          const BoxConstraints(maxWidth: double.infinity),
-                      builder: (context) {
-                        return const SafeArea(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(),
-                            child: BottomWidget(),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Icon(
-                            Icons.restaurant,
-                            size: screenHeight / 60,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Icon(
+                          Icons.restaurant,
+                          size: screenHeight / 60,
+                          color: Colors.black54,
+                        ),
+                      ),
+                      Text(
+                        'Soi Siam',
+                        style: TextStyle(
+                            fontSize: screenHeight / 60,
                             color: Colors.black54,
-                          ),
-                        ),
-                        Text(
-                          'Soi Siam',
-                          style: TextStyle(
-                              fontSize: screenHeight / 60,
-                              color: Colors.black54,
-                              fontFamily: 'Roboto_Light'),
-                        ),
-                      ],
-                    ),
+                            fontFamily: 'Roboto_Light'),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -261,17 +233,20 @@ class FirstPage extends StatelessWidget {
         children: [
           Positioned(
             child: Transform.rotate(
-              angle: 28.3,
-              child: Transform.translate(
-                offset: Offset(screenWidth / 3.4, -150),
+              angle: 28.27,
+              child: FractionalTranslation(
+                translation: Offset(screenWidth / 10000, -0.16),
                 child: Container(
-                  height: context.screenWidth * 100,
+                  height: context.screenWidth / 0.5,
+                  width: screenWidth / 1.8,
+                  // width: screenWidth * 200,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image:
                           AssetImage('assets/images/bg/home_background1 1.png'),
-                      fit: BoxFit.contain,
+                      fit: BoxFit.fitHeight,
                     ),
+                    //color: Colors.amber,
                   ),
                 ),
               ),
@@ -289,7 +264,7 @@ class FirstPage extends StatelessWidget {
                         children: [
                           TextLage(
                             hintText: 'Self-Service',
-                            textSize: screenHeight / 14,
+                            textSize: screenHeight / 16,
                           ),
                           TextLage(
                             hintText: 'Experience.',
@@ -405,21 +380,7 @@ class FirstPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(12),
                   child: InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        constraints:
-                            const BoxConstraints(maxWidth: double.infinity),
-                        builder: (context) {
-                          return const SafeArea(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(),
-                              child: BottomWidget(),
-                            ),
-                          );
-                        },
-                      );
-                    },
+                    onTap: () {},
                     child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Row(
@@ -461,45 +422,3 @@ class FirstPage extends StatelessWidget {
     );
   }
 }
-// Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: [
-//               Padding(
-//                 padding: const EdgeInsets.all(12),
-//                 child: InkWell(
-//                   onTap: () {
-//                     showModalBottomSheet(
-//                       context: context,
-//                       constraints:
-//                           const BoxConstraints(maxWidth: double.infinity),
-//                       builder: (context) {
-//                         return const SafeArea(
-//                           child: Padding(
-//                             padding: EdgeInsets.symmetric(),
-//                             child: BottomWidget(),
-//                           ),
-//                         );
-//                       },
-//                     );
-//                   },
-//                   child: Row(
-//                     children: [
-//                       Icon(
-//                         Icons.restaurant,
-//                         size: screenHeight / 40,
-//                         color: Colors.black54,
-//                       ),
-//                       Text(
-//                         'Soi Siam',
-//                         style: TextStyle(
-//                             fontSize: screenHeight / 40,
-//                             color: Colors.black54,
-//                             fontFamily: 'Roboto_Light'),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//               const ActionsFlagIcon(),
-//             ],
-//           ),

@@ -28,13 +28,14 @@ class CheckIn extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             child: Row(
               children: [
-                Expanded(
+                Padding(
+                  padding: const EdgeInsets.only(right: 16.0),
                   child: Container(
-                    child: const Text(
+                    child: Text(
                       'My Order',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 34,
+                          fontSize: screenWidth / 50,
                           fontStyle: FontStyle.normal,
                           overflow: TextOverflow.fade),
                     ),
@@ -43,23 +44,23 @@ class CheckIn extends StatelessWidget {
                 // SizedBox(
                 //   width: screenWidth / 30,
                 // ),
-                const Expanded(
+                Expanded(
                   child: FaIcon(
                     FontAwesomeIcons.penToSquare,
-                    size: 34,
+                    size: screenWidth / 50,
                   ),
                 )
               ],
             ),
           ),
           const Divider(),
-          const Expanded(
+          Expanded(
             child: Align(
               alignment: Alignment.topCenter,
               child: Text(
                 'No order selected',
                 style: TextStyle(
-                    fontSize: 24,
+                    fontSize: screenWidth / 40,
                     color: Color(0xff4f4f4f),
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w400,
@@ -74,7 +75,7 @@ class CheckIn extends StatelessWidget {
                 const Spacer(),
                 const Divider(),
                 Padding(
-                  padding: EdgeInsets.all(14),
+                  padding: EdgeInsets.all(8),
                   child: Flex(
                     direction: Axis
                         .horizontal, // Make sure it's horizontal for a row-like layout
@@ -85,7 +86,9 @@ class CheckIn extends StatelessWidget {
                           'Total',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: context.screenHeight / 20,
+                            fontSize: isLandscape
+                                ? context.screenHeight / 25
+                                : screenWidth / 20,
                             fontFamily: 'Roboto',
                           ),
                           overflow: TextOverflow.ellipsis,
@@ -99,7 +102,9 @@ class CheckIn extends StatelessWidget {
                             style: TextStyle(
                               color: Color(0xFF7B61FF),
                               fontFamily: 'Roboto',
-                              fontSize: context.screenHeight / 20,
+                              fontSize: isLandscape
+                                  ? context.screenHeight / 25
+                                  : screenWidth / 20,
                             ),
                           ),
                         ),
@@ -109,10 +114,10 @@ class CheckIn extends StatelessWidget {
                 ),
                 SizedBox(
                   height: isLandscape
-                      ? screenHeight / 14
+                      ? screenHeight / 15
                       : context.screenWidth / 12,
                   width:
-                      isLandscape ? screenHeight / 3 : context.screenWidth / 3,
+                      isLandscape ? screenWidth / 5 : context.screenWidth / 3,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ElevatedButton(
@@ -127,9 +132,7 @@ class CheckIn extends StatelessWidget {
                           Colors.black26,
                         ),
                       ),
-                      onPressed: () {
-                        print(context.screenWidth / 60);
-                      },
+                      onPressed: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [

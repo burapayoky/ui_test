@@ -151,9 +151,131 @@ Expanded(
           ),
         ),
       )
-* back button responsive
+----------------------------------------------home-------------------------------------------------------------------------------------------
+      // Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Padding(
+//                 padding: const EdgeInsets.all(12),
+//                 child: InkWell(
+//                   onTap: () {
+//                     showModalBottomSheet(
+//                       context: context,
+//                       constraints:
+//                           const BoxConstraints(maxWidth: double.infinity),
+//                       builder: (context) {
+//                         return const SafeArea(
+//                           child: Padding(
+//                             padding: EdgeInsets.symmetric(),
+//                             child: BottomWidget(),
+//                           ),
+//                         );
+//                       },
+//                     );
+//                   },
+//                   child: Row(
+//                     children: [
+//                       Icon(
+//                         Icons.restaurant,
+//                         size: screenHeight / 40,
+//                         color: Colors.black54,
+//                       ),
+//                       Text(
+//                         'Soi Siam',
+//                         style: TextStyle(
+//                             fontSize: screenHeight / 40,
+//                             color: Colors.black54,
+//                             fontFamily: 'Roboto_Light'),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//               const ActionsFlagIcon(),
+//             ],
+//           ),
+//  Positioned(
+//             child: Transform.rotate(
+//               angle: 28.3,
+//               child: Transform.translate(
+//                 offset: Offset(screenWidth / 3.4, -150),
+//                 child: Container(
+//                   height: context.screenWidth * 100,
+//                   decoration: const BoxDecoration(
+//                     image: DecorationImage(
+//                       image:
+//                           AssetImage('assets/images/bg/home_background1 1.png'),
+//                       fit: BoxFit.contain,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+---------------------------------------------------firstpage------------------------------------------------------------------------------------------------------------------
+// Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Padding(
+//                 padding: const EdgeInsets.all(12),
+//                 child: InkWell(
+//                   onTap: () {
+//                     showModalBottomSheet(
+//                       context: context,
+//                       constraints:
+//                           const BoxConstraints(maxWidth: double.infinity),
+//                       builder: (context) {
+//                         return const SafeArea(
+//                           child: Padding(
+//                             padding: EdgeInsets.symmetric(),
+//                             child: BottomWidget(),
+//                           ),
+//                         );
+//                       },
+//                     );
+//                   },
+//                   child: Row(
+//                     children: [
+//                       Icon(
+//                         Icons.restaurant,
+//                         size: screenHeight / 40,
+//                         color: Colors.black54,
+//                       ),
+//                       Text(
+//                         'Soi Siam',
+//                         style: TextStyle(
+//                             fontSize: screenHeight / 40,
+//                             color: Colors.black54,
+//                             fontFamily: 'Roboto_Light'),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//               const ActionsFlagIcon(),
+//             ],
+//           ),
+//  Positioned(
+//             child: Transform.rotate(
+//               angle: 28.3,
+//               child: Transform.translate(
+//                 offset: Offset(screenWidth / 3.4, -150),
+//                 child: Container(
+//                   height: context.screenWidth * 100,
+//                   decoration: const BoxDecoration(
+//                     image: DecorationImage(
+//                       image:
+//                           AssetImage('assets/images/bg/home_background1 1.png'),
+//                       fit: BoxFit.contain,
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ),
+* back button responsive ♂
 * search responsive
-* confirm Order responsive
-* bg home,firstpage,
+* confirm Order responsive ♂
+* bg home,firstpage,♂
 * buttonFlagIcons
 * mini category bug scrolling 

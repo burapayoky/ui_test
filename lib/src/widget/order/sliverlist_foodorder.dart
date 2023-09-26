@@ -67,7 +67,7 @@ class SliverListFoodOrder extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Flexible(
-                    flex: isLandscape ? 2 : 2,
+                    flex: isLandscape ? 1 : 1,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
@@ -90,17 +90,19 @@ class SliverListFoodOrder extends StatelessWidget {
                               ? 1
                               : 0, //,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8, top: 0),
+                            padding: const EdgeInsets.only(left: 8, top: 8),
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: SizedBox(
                                 // width: 500,
                                 child: Text(
                                   foods[index].foodName!,
-                                  style: const TextStyle(
-                                      fontSize: 16,
+                                  style: TextStyle(
+                                      fontSize: isLandscape
+                                          ? screenWidth / 90
+                                          : screenHeight / 68,
                                       overflow: TextOverflow.ellipsis,
-                                      fontFamily: 'Roboto'),
+                                      fontFamily: 'Roboto_Light'),
                                   maxLines: (isLandscape &&
                                               context.screenWidth < 999) ||
                                           isPortrait && screenWidth < 800
@@ -126,9 +128,11 @@ class SliverListFoodOrder extends StatelessWidget {
                                   (foods[index].foodDesc == null)
                                       ? ''
                                       : foods[index].foodDesc!,
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Roboto',
+                                  style: TextStyle(
+                                      fontSize: isLandscape
+                                          ? screenWidth / 130
+                                          : screenHeight / 100,
+                                      fontFamily: 'Roboto_Light',
                                       color: Colors.black54),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
@@ -141,6 +145,10 @@ class SliverListFoodOrder extends StatelessWidget {
                     ),
                   ),
                   Expanded(
+                    flex: isLandscape && screenWidth < 555 ||
+                            isPortrait && screenWidth < 400
+                        ? 1
+                        : 0,
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
