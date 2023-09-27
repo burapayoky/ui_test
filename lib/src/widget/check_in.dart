@@ -29,7 +29,7 @@ class CheckIn extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(2.0),
+                  padding: EdgeInsets.all(8.0),
                   child: ActionsFlagIcon(),
                 ),
               ],
@@ -82,7 +82,7 @@ class CheckIn extends StatelessWidget {
                   'No order selected',
                   style: TextStyle(
                       fontSize:
-                          isLandscape ? screenWidth / 60 : screenWidth / 40,
+                          isLandscape ? screenWidth / 80 : screenWidth / 50,
                       color: Color(0xff4f4f4f),
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w400,

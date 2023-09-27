@@ -25,7 +25,7 @@ class SliverListFoodOrder extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(
-              left: 10,
+              left: 20,
               top: 20,
               bottom: isLandscape ? screenWidth / 120 : screenWidth / 60),
           child: Align(

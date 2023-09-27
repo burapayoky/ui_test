@@ -346,17 +346,20 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       setState(() {});
                       scrollTo(index);
                     },
-                    child: Text(
-                      foodCategories[index].foodCatName ?? '',
-                      style: TextStyle(
-                        fontSize:
-                            isLandscape ? screenWidth / 80 : screenWidth / 50,
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Roboto_Light',
-                        color: selectCategory == index
-                            ? Colors.white
-                            : Color(0xff4F4F4F),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        foodCategories[index].foodCatName ?? '',
+                        style: TextStyle(
+                          fontSize:
+                              isLandscape ? screenWidth / 80 : screenWidth / 50,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Roboto_Light',
+                          color: selectCategory == index
+                              ? Colors.white
+                              : Color(0xff4F4F4F),
+                        ),
                       ),
                     ),
                   ),
