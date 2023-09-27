@@ -23,10 +23,11 @@ class NavigatePageOrderAndStay extends StatelessWidget {
     final isLandscape = screenWidth > screenHeight;
     return SizedBox(
       width: isLandscape ? screenWidth / 5 : screenHeight / 5,
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, route);
         },
+        // splashFactory: NoSplash.splashFactory,
         child: Column(
           children: [
             Container(

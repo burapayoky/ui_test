@@ -25,7 +25,7 @@ class CheckIn extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 3),
             child: Row(
               children: [
                 Padding(
@@ -36,6 +36,7 @@ class CheckIn extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: screenWidth / 50,
+                          fontFamily: 'Roboto_Light',
                           fontStyle: FontStyle.normal,
                           overflow: TextOverflow.fade),
                     ),

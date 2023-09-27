@@ -41,15 +41,19 @@ class _SelectedMenuState extends State<SelectedMenu> {
   void jumpTo(int index) => itemScrollController.jumpTo(index: index);
   listnerScrolling(Iterable<ItemPosition> positions) {
     int indexx = 0;
-    // List<int> cateIndex = [];
+
+    List<int> cateIndex = [];
 
     for (ItemPosition position in positions) {
       int index = position.index;
-
+      cateIndex.add(index);
       indexx = index;
     }
+
+    indexx = cateIndex.last;
+
     return indexx;
-    // indexx = cateIndex.first;
+
     //ตำเเหน่ง top last
   }
 
@@ -92,7 +96,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         },
                         child: Container(
                           width:
-                              isLandscape ? screenHeight / 7 : screenWidth / 9,
+                              isLandscape ? screenWidth / 13 : screenWidth / 12,
                           height: isLandscape
                               ? screenHeight / 18
                               : screenWidth / 20,
@@ -101,11 +105,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
                               borderRadius: BorderRadius.circular(8)),
                           child: Row(
                             children: [
-                              Expanded(
-                                child: Icon(
-                                  Icons.keyboard_arrow_left,
-                                  size: screenWidth / 50,
-                                ),
+                              Icon(
+                                Icons.keyboard_arrow_left,
+                                size: screenWidth / 40,
                               ),
                               Expanded(
                                 child: Text(
@@ -141,13 +143,15 @@ class _SelectedMenuState extends State<SelectedMenu> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Expanded(
+                              Expanded(
                                 child: Icon(
                                   Icons.search,
+                                  size: screenWidth / 80,
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(bottom: 13.5),
+                                padding: EdgeInsets.only(
+                                    bottom: screenWidth / 350), //6.5
                                 child: SizedBox(
                                   width: screenWidth / 6,
                                   child: TextField(
@@ -160,7 +164,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                                           );
                                     },
                                     decoration: const InputDecoration(
-                                        border: InputBorder.none),
+                                        border: InputBorder.none,
+                                        hintText: 'Search',
+                                        hintStyle: TextStyle(
+                                            fontFamily: "Roboto_Light")),
                                   ),
                                 ),
                               ),
@@ -379,8 +386,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 itemPositionsListener.itemPositions.addListener(() {
                   Iterable<ItemPosition> positions =
                       itemPositionsListener.itemPositions.value;
-                  int newIndex = listnerScrolling(positions);
                   final ScrollMetrics metrics = scrollinfo.metrics;
+                  int newIndex = listnerScrolling(positions);
 
                   if (metrics.atEdge) {
                     if (metrics.pixels == 0) {

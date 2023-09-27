@@ -279,3 +279,21 @@ Expanded(
 * bg home,firstpage,♂
 * buttonFlagIcons
 * mini category bug scrolling 
+
+
+final screenWidth = context.screenWidth;
+final screenHeight = context.screenHeight;
+
+ListView.builder(
+    itemBuilder: (BuildContext context, int index) {
+      return IntrinsicWidth(
+        child: Container(
+          width: isLandscape ? screenWidth / 9.5 : screenHeight / 8,
+          child: TextButton(
+            child: Text(ListText[index]),  // แก้ไขจาก .index เป็น [index]
+            onPressed: () {},
+          ),
+        ),
+      );
+    }
+)
