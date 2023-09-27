@@ -271,7 +271,8 @@ class _HomePageState extends State<HomePage> {
             child: Transform.rotate(
               angle: 28.28,
               child: Transform.translate(
-                offset: Offset(40, -120),
+                offset: Offset(
+                    screenWidth / 15, 3 - screenHeight / 10), //Offset(70, -120)
                 child: Container(
                   width: screenWidth / 2,
                   height: screenHeight / 0.1,
