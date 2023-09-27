@@ -49,8 +49,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
       cateIndex.add(index);
       indexx = index;
     }
+    cateIndex.sort();
 
-    indexx = cateIndex.last;
+    indexx = cateIndex.first;
 
     return indexx;
 
@@ -316,7 +317,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                width: isLandscape ? screenWidth / 9.5 : screenHeight / 8, //180
+                width:
+                    isLandscape ? screenWidth / 9.5 : screenHeight / 7.5, //180
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
@@ -467,7 +469,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       width: double.infinity,
                       height: isLandscape
                           ? context.screenHeight / 16
-                          : context.screenWidth / 15,
+                          : context.screenWidth / 16,
                       child: selectedFoodCategory(),
                     ),
                   ),

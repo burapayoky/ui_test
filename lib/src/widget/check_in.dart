@@ -15,15 +15,26 @@ class CheckIn extends StatelessWidget {
     //final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        actions: const [
-          ActionsFlagIcon(),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   automaticallyImplyLeading: false,
+      //   actions: const [
+      //     ActionsFlagIcon(),
+      //   ],
+      // ),
       body: Column(
         children: [
+          const SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(2.0),
+                  child: ActionsFlagIcon(),
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 3),
             child: Row(
@@ -157,7 +168,7 @@ class CheckIn extends StatelessWidget {
                               Icons.shopping_cart_outlined,
                               size: isLandscape
                                   ? screenWidth / 80
-                                  : screenHeight / 102,
+                                  : screenWidth / 70,
                               color: Colors.white,
                             ),
                           ),
@@ -166,8 +177,8 @@ class CheckIn extends StatelessWidget {
                               'confirm Order (0)',
                               style: TextStyle(
                                 fontSize: isLandscape
-                                    ? screenWidth / 80
-                                    : screenHeight / 102,
+                                    ? screenWidth / 90
+                                    : screenWidth / 70,
                                 color: Colors.white,
                                 fontFamily: 'Roboto_Light',
                               ),
