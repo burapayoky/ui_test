@@ -22,7 +22,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
     // final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
     return SizedBox(
-      width: isLandscape ? screenWidth / 5 : screenHeight / 5,
+      width: isLandscape ? screenHeight / 3 : screenHeight / 5,
       child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, route);
@@ -31,8 +31,8 @@ class NavigatePageOrderAndStay extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: isLandscape ? screenWidth / 5 : screenHeight / 5,
-              width: isLandscape ? screenWidth / 5 : screenHeight / 5,
+              height: isLandscape ? screenHeight / 3 : screenHeight / 5,
+              width: isLandscape ? screenHeight / 3 : screenHeight / 5,
               decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(image), //
@@ -46,7 +46,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                       topRight: Radius.circular(8))),
             ),
             SizedBox(
-              height: screenHeight < 640 && screenWidth < 1011
+              height: isLandscape //screenHeight < 640 && screenWidth < 1011
                   ? screenWidth / 28
                   : screenHeight / 18,
               child: Container(

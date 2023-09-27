@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     size: screenWidth / 40,
                     color: Colors.black38,
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(14.0),
                     child: Text(
                       'Soi Siam',
@@ -96,12 +96,12 @@ class _HomePageState extends State<HomePage> {
               children: [
                 TextLage(
                   hintText: 'Self-Service',
-                  textSize: isLandscape ? screenHeight / 50 : screenHeight / 16,
+                  textSize: isLandscape ? screenWidth / 50 : screenHeight / 16,
                 ),
                 TextLage(
-                  hintText: 'Experience.',
-                  textSize: screenHeight / 30,
-                ),
+                    hintText: 'Experience.',
+                    textSize:
+                        isLandscape ? screenWidth / 50 : screenHeight / 16),
               ],
             ),
           ),
@@ -501,8 +501,8 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    // print("W$screenWidth");
-    // print("H$screenHeight");
+    print("W$screenWidth");
+    print("H$screenHeight");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
   }
 }

@@ -18,18 +18,19 @@ class SelectedMenu extends StatefulWidget {
 }
 
 class _SelectedMenuState extends State<SelectedMenu> {
-//Scroll Controller
+//Controller
   final ItemScrollController itemScrollController = ItemScrollController();
   final ScrollOffsetController scrollOffsetController =
       ScrollOffsetController();
-
+  final ScrollController scrollController = ScrollController();
+  final fieldText = TextEditingController();
   //
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
-  final ScrollController scrollController = ScrollController();
 
   //
-  final fieldText = TextEditingController();
+  int selectCategory = 0;
+  int foodMenuscroll = 0;
   int listenerindex = 0;
   bool issearch = false;
 //Fuction Scroll to index
@@ -38,7 +39,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOutCubic,
       );
+//Fuction Jumpto Index
   void jumpTo(int index) => itemScrollController.jumpTo(index: index);
+//UserScrolling Category
   listnerScrolling(Iterable<ItemPosition> positions) {
     int indexx = 0;
 
@@ -68,8 +71,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
         );
   }
 
-  int selectCategory = 0;
-  int foodMenuscroll = 0;
   @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
@@ -400,7 +401,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
           return NotificationListener<ScrollNotification>(
             onNotification: (scrollinfo) {
               if (scrollinfo is ScrollUpdateNotification) {
-                //print("object: $positions");
                 itemPositionsListener.itemPositions.addListener(() {
                   Iterable<ItemPosition> positions =
                       itemPositionsListener.itemPositions.value;
@@ -428,7 +428,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
             child: ScrollablePositionedList.builder(
                 itemScrollController: itemScrollController,
                 itemCount: foodData.length,
-                // key: GlobalKey,
                 initialScrollIndex: initialindex,
                 itemPositionsListener: itemPositionsListener,
                 itemBuilder: (context, index) {
