@@ -100,8 +100,8 @@ class SliverListFoodOrder extends StatelessWidget {
                                   foods[index].foodName!,
                                   style: TextStyle(
                                       fontSize: isLandscape
-                                          ? screenWidth / 90
-                                          : screenHeight / 68,
+                                          ? screenWidth / 100
+                                          : screenHeight / 80,
                                       overflow: TextOverflow.ellipsis,
                                       fontFamily: 'Roboto_Light'),
                                   maxLines: (isLandscape &&
@@ -120,7 +120,7 @@ class SliverListFoodOrder extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                left: 8,
+                                left: 14,
                                 right: 8,
                               ),
                               child: SizedBox(
@@ -133,7 +133,7 @@ class SliverListFoodOrder extends StatelessWidget {
                                       fontSize: isLandscape
                                           ? screenWidth / 130
                                           : screenHeight / 100,
-                                      fontFamily: 'Roboto',
+                                      fontFamily: 'Roboto_Light',
                                       color: Colors.black54),
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
@@ -159,7 +159,7 @@ class SliverListFoodOrder extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 16,
-                            fontFamily: 'Roboto',
+                            fontFamily: 'Roboto_Light',
                           ),
                         ),
                       ),

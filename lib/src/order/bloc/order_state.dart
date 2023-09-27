@@ -31,6 +31,3 @@ class OrderUpdateColorsState extends OrderState {
 }
 
 //-----------------------------------------------------
-class Searchcontext extends OrderState {}
-
-// selectedCat: selectedCat,    // required int selectedCat,

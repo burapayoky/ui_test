@@ -74,7 +74,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
     Widget headding() {
       return Padding(
-        padding: const EdgeInsets.only(top: 20, bottom: 18),
+        padding: EdgeInsets.only(
+            top: isLandscape ? 20 : screenHeight / 30, bottom: 18),
         child: BlocBuilder<OrderBloc, OrderState>(
           builder: (context, state) {
             return Row(
@@ -94,7 +95,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                               isLandscape ? screenHeight / 7 : screenWidth / 9,
                           height: isLandscape
                               ? screenHeight / 18
-                              : screenWidth / 15,
+                              : screenWidth / 20,
                           decoration: BoxDecoration(
                               color: const Color(0xFFF6F6F6),
                               borderRadius: BorderRadius.circular(8)),
@@ -124,57 +125,80 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   ),
                 ),
                 issearch == true
-                    ? Container(
-                        height: 40,
-                        width: screenWidth / 4.2,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(104, 182, 180, 180),
-                          borderRadius: BorderRadius.circular(8),
+                    ? Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: Container(
+                          height: isLandscape
+                              ? screenWidth / 28
+                              : screenHeight / 35,
+                          width: screenWidth / 4.5,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffF6F6F6),
+                            borderRadius: BorderRadius.circular(8),
 
-                          //border: Border.all(color: Colors.black)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Icon(
-                              Icons.search,
-                            ),
-                            SizedBox(
-                              width: screenWidth / 6,
-                              child: TextField(
-                                controller: fieldText,
-                                onChanged: (value) {
-                                  context.read<OrderBloc>().add(
-                                        OrderSearchEvent(
-                                          text: value,
-                                        ),
-                                      );
-                                },
-                              ),
-                            ),
-                            Expanded(
-                              child: IconButton(
-                                onPressed: () {
-                                  issearch = false;
-                                  setState(() {});
-                                },
-                                icon: Icon(
-                                  Icons.close,
-                                  size: screenWidth / 80,
+                            //border: Border.all(color: Colors.black)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Expanded(
+                                child: Icon(
+                                  Icons.search,
                                 ),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 13.5),
+                                child: SizedBox(
+                                  width: screenWidth / 6,
+                                  child: TextField(
+                                    controller: fieldText,
+                                    onChanged: (value) {
+                                      context.read<OrderBloc>().add(
+                                            OrderSearchEvent(
+                                              text: value,
+                                            ),
+                                          );
+                                    },
+                                    decoration: const InputDecoration(
+                                        border: InputBorder.none),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: IconButton(
+                                  onPressed: () {
+                                    issearch = false;
+                                    context
+                                        .read<OrderBloc>()
+                                        .add(OrderSearchEvent(text: ''));
+                                    fieldText.clear();
+                                    setState(() {});
+                                  },
+                                  icon: Icon(
+                                    Icons.close,
+                                    size: screenWidth / 80,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     : Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
+                          width:
+                              isLandscape ? screenWidth / 35 : screenWidth / 22,
                           decoration: BoxDecoration(
                               color: const Color(0xFFF6F6F6),
                               borderRadius: BorderRadius.circular(6)),
                           child: IconButton(
-                            icon: const Icon(Icons.search),
+                            icon: Icon(
+                              Icons.search,
+                              size: isLandscape
+                                  ? screenWidth / 60
+                                  : screenWidth / 40,
+                            ),
                             onPressed: () {
                               issearch = true;
                               setState(() {});
@@ -203,7 +227,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       padding: const EdgeInsets.only(right: 12.0),
                       child: SizedBox(
                         width: isLandscape
-                            ? context.screenWidth / 7
+                            ? context.screenWidth / 8.2
                             : context.screenWidth / 4.8,
                         child: ElevatedButton(
                           onPressed: () {
@@ -285,7 +309,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                width: isLandscape ? screenWidth / 8 : screenHeight / 8, //180
+                width: isLandscape ? screenWidth / 9.5 : screenHeight / 8, //180
                 decoration: BoxDecoration(
                   color: selectCategory == index
                       ? const Color(0xFF02CCFE)
@@ -417,7 +441,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   child: Container(
                     width: double.infinity,
                     height: isLandscape
-                        ? screenHeight / 15
+                        ? screenHeight / 17
                         : screenWidth / 16, //context.screenHeight / 28,
                     child: selectedFoodSet(),
                   ),
@@ -426,7 +450,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 28.0, top: 14),
+            padding: const EdgeInsets.only(left: 28.0, top: 10),
             child: Row(
               children: [
                 Expanded(
@@ -436,7 +460,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       width: double.infinity,
                       height: isLandscape
                           ? context.screenHeight / 16
-                          : context.screenWidth / 14,
+                          : context.screenWidth / 15,
                       child: selectedFoodCategory(),
                     ),
                   ),

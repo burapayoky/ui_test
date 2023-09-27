@@ -29,7 +29,7 @@ class CheckIn extends StatelessWidget {
             child: Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(right: screenWidth / 80),
+                  padding: EdgeInsets.only(right: screenWidth / 180),
                   child: Container(
                     child: Text(
                       'My Order',
@@ -47,7 +47,7 @@ class CheckIn extends StatelessWidget {
                 Expanded(
                   child: FaIcon(
                     FontAwesomeIcons.penToSquare,
-                    size: screenWidth / 50,
+                    size: screenWidth / 60,
                   ),
                 )
               ],
@@ -67,7 +67,8 @@ class CheckIn extends StatelessWidget {
                 child: Text(
                   'No order selected',
                   style: TextStyle(
-                      fontSize: screenWidth / 70,
+                      fontSize:
+                          isLandscape ? screenWidth / 60 : screenWidth / 40,
                       color: Color(0xff4f4f4f),
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.w400,
@@ -88,8 +89,7 @@ class CheckIn extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(28),
                   child: Flex(
-                    direction: Axis
-                        .horizontal, // Make sure it's horizontal for a row-like layout
+                    direction: Axis.horizontal,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
@@ -98,8 +98,8 @@ class CheckIn extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: isLandscape
-                                ? context.screenHeight / 25
-                                : screenWidth / 20,
+                                ? context.screenWidth / 60
+                                : screenWidth / 40,
                             fontFamily: 'Roboto',
                           ),
                           overflow: TextOverflow.ellipsis,
@@ -114,8 +114,8 @@ class CheckIn extends StatelessWidget {
                               color: Color(0xFF7B61FF),
                               fontFamily: 'Roboto',
                               fontSize: isLandscape
-                                  ? context.screenHeight / 25
-                                  : screenWidth / 20,
+                                  ? context.screenWidth / 60
+                                  : screenWidth / 40,
                             ),
                           ),
                         ),
@@ -126,10 +126,10 @@ class CheckIn extends StatelessWidget {
                 SizedBox(
                   height: isLandscape
                       ? screenHeight / 13
-                      : context.screenWidth / 11,
+                      : context.screenWidth / 12,
                   width: isLandscape
-                      ? screenWidth / 5.8
-                      : context.screenWidth / 3.5,
+                      ? screenWidth / 6.5
+                      : context.screenWidth / 4.5,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ElevatedButton(
@@ -137,7 +137,8 @@ class CheckIn extends StatelessWidget {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius:
+                                BorderRadius.circular(screenWidth / 120),
                           ),
                         ),
                         backgroundColor: MaterialStateProperty.all(
@@ -146,15 +147,16 @@ class CheckIn extends StatelessWidget {
                       ),
                       onPressed: () {},
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 2),
+                            padding: EdgeInsets.only(right: screenWidth / 140),
                             child: Icon(
                               Icons.shopping_cart_outlined,
                               size: isLandscape
-                                  ? screenWidth / 50
-                                  : screenWidth / 38,
+                                  ? screenWidth / 80
+                                  : screenHeight / 102,
                               color: Colors.white,
                             ),
                           ),
@@ -163,10 +165,10 @@ class CheckIn extends StatelessWidget {
                               'confirm Order (0)',
                               style: TextStyle(
                                 fontSize: isLandscape
-                                    ? screenWidth / 66
-                                    : context.screenWidth / 40,
+                                    ? screenWidth / 80
+                                    : screenHeight / 102,
                                 color: Colors.white,
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Roboto_Light',
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),

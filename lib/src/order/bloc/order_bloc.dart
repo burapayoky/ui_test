@@ -37,11 +37,12 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
     on<OrderSearchEvent>(
       ((event, emit) {
+        //ไม่มีfood
         if (state.foodSetId == null) {
           return;
         }
         final List<FoodModel> filteredFoodSet;
-
+        //ไม่มีsearchtext
         if (event.text == null || event.text!.isEmpty) {
           filteredFoodSet = FoodData.getFoods().where((e) {
             return e.foodSetId == state.foodSetId;
