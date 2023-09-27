@@ -187,7 +187,7 @@ class CheckIn extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: isLandscape
                                       ? screenWidth / 80
-                                      : screenWidth / 40,
+                                      : screenWidth / 45,
                                   color: Colors.white,
                                   fontFamily: 'Roboto_Light',
                                 ),

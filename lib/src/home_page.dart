@@ -301,8 +301,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.only(top: 140, left: screenWidth / 28),
+                      padding: EdgeInsets.only(
+                          top: screenHeight / 6, left: screenWidth / 28),
                       child: const Row(
                         children: [
                           Padding(

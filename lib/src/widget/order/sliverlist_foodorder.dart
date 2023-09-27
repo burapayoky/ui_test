@@ -33,10 +33,10 @@ class SliverListFoodOrder extends StatelessWidget {
             child: Text(
               foodCategoryName,
               style: TextStyle(
-                fontSize: isLandscape ? screenWidth / 45 : screenWidth / 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54,
-              ),
+                  fontSize: isLandscape ? screenWidth / 45 : screenWidth / 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black54,
+                  fontFamily: 'Roboto_Light'),
             ),
           ),
         ),
@@ -46,7 +46,7 @@ class SliverListFoodOrder extends StatelessWidget {
               crossAxisSpacing:
                   isLandscape ? screenWidth / 120 : screenWidth / 65,
               mainAxisSpacing: 20,
-              childAspectRatio: isLandscape ? 0.92 : 0.92 //0.92 : 0.92
+              childAspectRatio: isLandscape ? 0.976 : 0.92 //0.92 : 0.92
               ),
           physics: const BouncingScrollPhysics(parent: ScrollPhysics()),
           shrinkWrap: true,
@@ -71,7 +71,7 @@ class SliverListFoodOrder extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Flexible(
-                    flex: isLandscape ? 2 : 1,
+                    flex: isLandscape ? 2 : 2,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
@@ -109,7 +109,7 @@ class SliverListFoodOrder extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: isLandscape
                                           ? screenWidth / 100
-                                          : screenHeight / 80,
+                                          : screenWidth / 60,
                                       overflow: TextOverflow.ellipsis,
                                       fontFamily: 'Roboto_Light'),
                                   maxLines: (isLandscape &&
@@ -131,22 +131,26 @@ class SliverListFoodOrder extends StatelessWidget {
                                 left: isLandscape
                                     ? screenWidth / 100
                                     : screenHeight / 120,
-                                right: 8,
+                                right: isLandscape
+                                    ? screenWidth / 100
+                                    : screenHeight / 40,
                               ),
-                              child: SizedBox(
-                                // width: isLandscape ? 400 : 300,
-                                child: Text(
-                                  (foods[index].foodDesc == null)
-                                      ? ''
-                                      : foods[index].foodDesc!,
-                                  style: TextStyle(
-                                      fontSize: isLandscape
-                                          ? screenWidth / 130
-                                          : screenHeight / 100,
-                                      fontFamily: 'Roboto_Light',
-                                      color: Colors.black54),
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
+                              child: IntrinsicWidth(
+                                child: SizedBox(
+                                  // width: isLandscape ? 400 : 300,
+                                  child: Text(
+                                    (foods[index].foodDesc == null)
+                                        ? ''
+                                        : foods[index].foodDesc!,
+                                    style: TextStyle(
+                                        fontSize: isLandscape
+                                            ? screenWidth / 150
+                                            : screenWidth / 78,
+                                        fontFamily: 'Roboto_Light',
+                                        color: Colors.black54),
+                                    maxLines: isLandscape ? 3 : 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                             ),

@@ -8,10 +8,14 @@ class ActionsFlagIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = context.screenWidth;
+    final screenHeight = context.screenHeight;
+    final isPortrait = screenHeight > screenWidth;
+    final isLandscape = screenWidth > screenHeight;
     return Padding(
       padding: const EdgeInsets.only(right: 2),
       child: Container(
-        height: context.screenHeight / 15,
+        height: isPortrait ? screenWidth / 15 : screenWidth / 30,
         width: 20,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
@@ -22,7 +26,7 @@ class ActionsFlagIcon extends StatelessWidget {
         ),
         child: PopupMenuButton(
           iconSize: 0,
-          offset: Offset(0, 60),
+          offset: Offset(0, isLandscape ? screenWidth / 45 : screenWidth / 20),
           itemBuilder: (BuildContext context) {
             return const [
               PopupMenuItem(value: 1, child: Text('English')),
