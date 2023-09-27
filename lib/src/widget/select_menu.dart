@@ -475,7 +475,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 28.0, top: 10),
+            padding: EdgeInsets.only(
+                left: 28.0,
+                top: isLandscape ? screenWidth / 180 : screenWidth / 80),
             child: Row(
               children: [
                 Expanded(

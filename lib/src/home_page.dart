@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                     size: screenWidth / 40,
                     color: Colors.black38,
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(14.0),
                     child: Text(
                       'Soi Siam',
