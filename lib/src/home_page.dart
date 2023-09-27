@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          top: screenHeight / 6, left: screenWidth / 28),
+                          top: screenHeight / 6, left: screenWidth / 20),
                       child: const Row(
                         children: [
                           Padding(
@@ -501,8 +501,8 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    print("W$screenWidth");
-    print("H$screenHeight");
+    // print("W$screenWidth");
+    // print("H$screenHeight");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
   }
 }

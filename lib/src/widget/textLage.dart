@@ -20,7 +20,7 @@ class TextLage extends StatelessWidget {
       child: Text(
         hintText,
         style: TextStyle(
-            fontSize: isPortrait ? screenHeight / 14 : screenHeight / 10, //124
+            fontSize: isPortrait ? screenHeight / 14 : screenWidth / 18, //124
             fontWeight: FontWeight.w600,
             fontFamily: 'Rasa',
             overflow: TextOverflow.clip),
