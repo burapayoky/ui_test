@@ -51,11 +51,11 @@ class FirstPage extends StatelessWidget {
         children: [
           Positioned(
             child: Transform.rotate(
-              angle: 6.3,
+              angle: 6.28,
               child: FractionalTranslation(
-                translation: Offset(screenWidth / 8000, 0),
+                translation: Offset(screenHeight / 15000, 0),
                 child: Container(
-                  width: screenHeight / 1.1,
+                  width: screenHeight / 0.1,
                   height: screenHeight / 1.4,
                   //width: screenWidth * 2,
                   decoration: const BoxDecoration(

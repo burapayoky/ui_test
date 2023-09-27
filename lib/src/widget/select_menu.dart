@@ -147,7 +147,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
                               Expanded(
                                 child: Icon(
                                   Icons.search,
-                                  size: screenWidth / 80,
+                                  size: isLandscape
+                                      ? screenWidth / 60
+                                      : screenWidth / 40,
                                 ),
                               ),
                               Padding(
@@ -195,8 +197,12 @@ class _SelectedMenuState extends State<SelectedMenu> {
                     : Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          width:
-                              isLandscape ? screenWidth / 35 : screenWidth / 22,
+                          width: isLandscape
+                              ? screenWidth / 35
+                              : screenHeight / 22,
+                          height: isLandscape
+                              ? screenWidth / 35
+                              : screenHeight / 30,
                           decoration: BoxDecoration(
                               color: const Color(0xFFF6F6F6),
                               borderRadius: BorderRadius.circular(6)),
@@ -233,49 +239,53 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   builder: (context, state) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 12.0),
-                      child: SizedBox(
-                        width: isLandscape
-                            ? context.screenWidth / 8.2
-                            : context.screenWidth / 4.8,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            context
-                                .read<OrderBloc>()
-                                .add(OrderFoodSetUpdateEvent(selectedItem: i));
+                      child: IntrinsicWidth(
+                        child: SizedBox(
+                          // width: isLandscape
+                          //     ? context.screenWidth / 8.2
+                          //     : context.screenWidth / 5,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.read<OrderBloc>().add(
+                                  OrderFoodSetUpdateEvent(selectedItem: i));
 
-                            context.read<OrderBloc>().add(
-                                  OrderUpdateEvent(foodSetId: e.foodSetId),
-                                );
-                            fieldText.clear();
-                            jumpTo(0);
-                            selectCategory = 0;
-                            // scrollTo(0);
-                          },
-                          //onpress
+                              context.read<OrderBloc>().add(
+                                    OrderUpdateEvent(foodSetId: e.foodSetId),
+                                  );
+                              fieldText.clear();
+                              jumpTo(0);
+                              selectCategory = 0;
+                              // scrollTo(0);
+                            },
+                            //onpress
 
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                side: BorderSide(
-                                    color: state.selectedId == i
-                                        ? Color(0xff636363)
-                                        : const Color(0xffF6F6F6))),
-                            backgroundColor: state.selectedId == i
-                                ? const Color(0xFF02CCFE)
-                                : const Color(0xFFF6F6F6),
-                          ),
-                          child: Text(
-                            e.foodSetName ?? '',
-                            style: TextStyle(
-                                fontSize: isLandscape
-                                    ? screenWidth / 90
-                                    : screenWidth / 55,
-                                fontWeight: FontWeight.w500,
-                                fontStyle: FontStyle.normal,
-                                fontFamily: 'Roboto_Light',
-                                color: state.selectedId == i
-                                    ? Colors.white
-                                    : Color(0xff4F4F4F)),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      isLandscape
+                                          ? screenWidth / 140
+                                          : screenWidth / 70),
+                                  side: BorderSide(
+                                      color: state.selectedId == i
+                                          ? Color(0xff636363)
+                                          : const Color(0xffF6F6F6))),
+                              backgroundColor: state.selectedId == i
+                                  ? const Color(0xFF02CCFE)
+                                  : const Color(0xFFF6F6F6),
+                            ),
+                            child: Text(
+                              e.foodSetName ?? '',
+                              style: TextStyle(
+                                  fontSize: isLandscape
+                                      ? screenWidth / 90
+                                      : screenWidth / 55,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.normal,
+                                  fontFamily: 'Roboto_Light',
+                                  color: state.selectedId == i
+                                      ? Colors.white
+                                      : Color(0xff4F4F4F)),
+                            ),
                           ),
                         ),
                       ),
@@ -316,35 +326,38 @@ class _SelectedMenuState extends State<SelectedMenu> {
             physics: const AlwaysScrollableScrollPhysics(),
             itemCount: foodCategories.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                width:
-                    isLandscape ? screenWidth / 9.5 : screenHeight / 7.5, //180
-                decoration: BoxDecoration(
-                  color: selectCategory == index
-                      ? const Color(0xFF02CCFE)
-                      : const Color(0xFFF6F6F6),
-                  borderRadius: selectCategory == index
-                      ? BorderRadius.circular(12)
-                      : BorderRadius.circular(4),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    selectCategory = index;
-                    //print(selectCategory);
-                    setState(() {});
-                    scrollTo(index);
-                  },
-                  child: Text(
-                    foodCategories[index].foodCatName ?? '',
-                    style: TextStyle(
-                      fontSize:
-                          isLandscape ? screenWidth / 80 : screenWidth / 50,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Roboto_Light',
-                      color: selectCategory == index
-                          ? Colors.white
-                          : Color(0xff4F4F4F),
+              return IntrinsicWidth(
+                child: Container(
+                  // width: isLandscape
+                  //     ? screenWidth / 9.5
+                  //     : screenHeight / 7.5, //180
+                  decoration: BoxDecoration(
+                    color: selectCategory == index
+                        ? const Color(0xFF02CCFE)
+                        : const Color(0xFFF6F6F6),
+                    borderRadius: selectCategory == index
+                        ? BorderRadius.circular(8)
+                        : BorderRadius.circular(4),
+                  ),
+                  child: TextButton(
+                    onPressed: () {
+                      selectCategory = index;
+                      //print(selectCategory);
+                      setState(() {});
+                      scrollTo(index);
+                    },
+                    child: Text(
+                      foodCategories[index].foodCatName ?? '',
+                      style: TextStyle(
+                        fontSize:
+                            isLandscape ? screenWidth / 80 : screenWidth / 50,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Roboto_Light',
+                        color: selectCategory == index
+                            ? Colors.white
+                            : Color(0xff4F4F4F),
+                      ),
                     ),
                   ),
                 ),
@@ -450,8 +463,8 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   child: Container(
                     width: double.infinity,
                     height: isLandscape
-                        ? screenHeight / 17
-                        : screenWidth / 16, //context.screenHeight / 28,
+                        ? context.screenWidth / 30
+                        : screenWidth / 18, //context.screenHeight / 28,
                     child: selectedFoodSet(),
                   ),
                 )
@@ -465,12 +478,14 @@ class _SelectedMenuState extends State<SelectedMenu> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: isLandscape
-                          ? context.screenHeight / 16
-                          : context.screenWidth / 16,
-                      child: selectedFoodCategory(),
+                    child: IntrinsicWidth(
+                      child: Container(
+                        //width: double.infinity,
+                        height: isLandscape
+                            ? context.screenWidth / 30
+                            : context.screenWidth / 18,
+                        child: selectedFoodCategory(),
+                      ),
                     ),
                   ),
                 )
@@ -479,7 +494,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(left: 28.0, right: 6),
+              padding: EdgeInsets.only(left: 28.0, right: screenWidth / 75),
               child: Container(child: foodMenu()),
             ),
           )

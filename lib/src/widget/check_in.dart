@@ -36,7 +36,8 @@ class CheckIn extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 3),
+            padding:
+                EdgeInsets.symmetric(horizontal: screenWidth / 40, vertical: 3),
             child: Row(
               children: [
                 Padding(
@@ -46,7 +47,8 @@ class CheckIn extends StatelessWidget {
                       'My Order',
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: screenWidth / 50,
+                          fontSize:
+                              isLandscape ? screenWidth / 60 : screenWidth / 40,
                           fontFamily: 'Roboto_Light',
                           fontStyle: FontStyle.normal,
                           overflow: TextOverflow.fade),
@@ -59,19 +61,19 @@ class CheckIn extends StatelessWidget {
                 Expanded(
                   child: FaIcon(
                     FontAwesomeIcons.penToSquare,
-                    size: screenWidth / 60,
+                    size: isLandscape ? screenWidth / 60 : screenWidth / 40,
                   ),
                 )
               ],
             ),
           ),
-          const Divider(
+          Divider(
             thickness: 1,
-            indent: 30,
-            endIndent: 30,
+            indent: screenWidth / 40,
+            endIndent: screenWidth / 40,
           ),
           Flexible(
-            flex: 0,
+            flex: 1,
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Align(
@@ -94,15 +96,20 @@ class CheckIn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Spacer(),
-                const Divider(
-                  indent: 30,
-                  endIndent: 30,
+                Divider(
+                  thickness: 1,
+                  indent: screenWidth / 40,
+                  endIndent: screenWidth / 40,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(28),
+                  padding: EdgeInsets.only(
+                      top: 24,
+                      left: screenWidth / 40,
+                      right: screenWidth / 40,
+                      bottom: 16),
                   child: Flex(
                     direction: Axis.horizontal,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Expanded(
                         child: Text(
@@ -135,57 +142,60 @@ class CheckIn extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: isLandscape
-                      ? screenHeight / 13
-                      : context.screenWidth / 12,
-                  width: isLandscape
-                      ? screenWidth / 6.5
-                      : context.screenWidth / 4.5,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(screenWidth / 120),
-                          ),
-                        ),
-                        backgroundColor: MaterialStateProperty.all(
-                          Colors.black26,
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: screenWidth / 140),
-                            child: Icon(
-                              Icons.shopping_cart_outlined,
-                              size: isLandscape
-                                  ? screenWidth / 80
-                                  : screenWidth / 70,
-                              color: Colors.white,
+                IntrinsicWidth(
+                  child: SizedBox(
+                    height: isLandscape
+                        ? screenHeight / 13
+                        : context.screenWidth / 12,
+                    // width: isLandscape
+                    //     ? screenWidth / 6.5
+                    //     : context.screenWidth / 4.5,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: screenHeight / 100),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(screenWidth / 120),
                             ),
                           ),
-                          Expanded(
-                            child: Text(
-                              'confirm Order (0)',
-                              style: TextStyle(
-                                fontSize: isLandscape
-                                    ? screenWidth / 90
-                                    : screenWidth / 70,
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.black26,
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Row(
+                          // mainAxisAlignment: MainAxisAlignment.center,
+                          // crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(right: screenWidth / 140),
+                              child: Icon(
+                                Icons.shopping_cart_outlined,
+                                size: isLandscape
+                                    ? screenWidth / 70
+                                    : screenWidth / 40,
                                 color: Colors.white,
-                                fontFamily: 'Roboto_Light',
                               ),
-                              overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              child: Text(
+                                'confirm Order (0)',
+                                style: TextStyle(
+                                  fontSize: isLandscape
+                                      ? screenWidth / 80
+                                      : screenWidth / 40,
+                                  color: Colors.white,
+                                  fontFamily: 'Roboto_Light',
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

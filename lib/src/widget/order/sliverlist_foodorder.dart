@@ -24,13 +24,16 @@ class SliverListFoodOrder extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 24, top: 20),
+          padding: EdgeInsets.only(
+              left: 10,
+              top: 20,
+              bottom: isLandscape ? screenWidth / 120 : screenWidth / 60),
           child: Align(
             alignment: Alignment.topLeft,
             child: Text(
               foodCategoryName,
               style: TextStyle(
-                fontSize: isLandscape ? screenWidth / 45 : screenWidth / 20,
+                fontSize: isLandscape ? screenWidth / 45 : screenWidth / 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
               ),
@@ -40,9 +43,10 @@ class SliverListFoodOrder extends StatelessWidget {
         GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: isLandscape ? 4 : 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 14,
-              childAspectRatio: isLandscape ? 0.92 : 0.85 //0.7.5 : 0.8
+              crossAxisSpacing:
+                  isLandscape ? screenWidth / 120 : screenWidth / 65,
+              mainAxisSpacing: 20,
+              childAspectRatio: isLandscape ? 0.92 : 0.92 //0.92 : 0.92
               ),
           physics: const BouncingScrollPhysics(parent: ScrollPhysics()),
           shrinkWrap: true,
@@ -51,7 +55,7 @@ class SliverListFoodOrder extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(screenWidth / 140),
                 border: Border.all(
                   color: Colors.black12,
                 ),
@@ -71,8 +75,8 @@ class SliverListFoodOrder extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10)),
+                            topLeft: Radius.circular(6),
+                            topRight: Radius.circular(6)),
                         //border: Border.all(color: Colors.red),
                         image: DecorationImage(
                           alignment: const Alignment(0, 0),
@@ -91,7 +95,11 @@ class SliverListFoodOrder extends StatelessWidget {
                               ? 1
                               : 0, //,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 14, top: 14),
+                            padding: EdgeInsets.only(
+                                left: isLandscape
+                                    ? screenWidth / 100
+                                    : screenHeight / 120,
+                                top: 4),
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: SizedBox(
@@ -119,8 +127,10 @@ class SliverListFoodOrder extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 14,
+                              padding: EdgeInsets.only(
+                                left: isLandscape
+                                    ? screenWidth / 100
+                                    : screenHeight / 120,
                                 right: 8,
                               ),
                               child: SizedBox(
@@ -153,12 +163,20 @@ class SliverListFoodOrder extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0, bottom: 12),
+                        padding: EdgeInsets.only(
+                            left: isLandscape
+                                ? screenWidth / 100
+                                : screenHeight / 120, //12.0
+                            bottom: isLandscape
+                                ? screenWidth / 100
+                                : screenHeight / 120),
                         child: Text(
                           '\$ ${foods[index].foodPrice}',
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 16,
+                          style: TextStyle(
+                            fontSize: isLandscape
+                                ? screenWidth / 100
+                                : screenHeight / 80,
                             fontFamily: 'Roboto_Light',
                           ),
                         ),
