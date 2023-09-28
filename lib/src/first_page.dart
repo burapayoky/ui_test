@@ -55,7 +55,7 @@ class FirstPage extends StatelessWidget {
               child: FractionalTranslation(
                 translation: Offset(screenHeight / 15000, 0),
                 child: Container(
-                  width: screenHeight / 0.1,
+                  width: screenHeight / 0.8,
                   height: screenHeight / 1.4,
                   //width: screenWidth * 2,
                   decoration: const BoxDecoration(
@@ -303,29 +303,33 @@ class FirstPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      width: screenHeight / 4,
-                      height: screenHeight / 12,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, 'order');
-                          },
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            )),
-                            backgroundColor: const MaterialStatePropertyAll(
-                              Color(0xFF496EE2),
+                    Padding(
+                      padding: EdgeInsets.only(top: screenHeight / 20),
+                      child: SizedBox(
+                        width: screenHeight / 4,
+                        height: screenHeight / 12,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, 'order');
+                            },
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              )),
+                              backgroundColor: const MaterialStatePropertyAll(
+                                Color(0xFF496EE2),
+                              ),
                             ),
-                          ),
-                          child: Text(
-                            'Tap to Order',
-                            style: TextStyle(
-                              fontSize: screenHeight / 50,
-                              color: Colors.white,
+                            child: Text(
+                              'Tap to Order',
+                              style: TextStyle(
+                                fontSize: screenHeight / 50,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

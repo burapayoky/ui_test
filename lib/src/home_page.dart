@@ -108,26 +108,30 @@ class _HomePageState extends State<HomePage> {
           Text(
             'Form self-order to self-checkout',
             style: TextStyle(
-                fontSize: isPortrait ? screenHeight / 50 : screenWidth / 60,
+                fontSize: isPortrait ? screenHeight / 50 : screenHeight / 40,
                 color: Colors.black38,
-                fontFamily: 'Roboto'),
+                fontFamily: 'Roboto_Light'),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 Icons.credit_card,
-                size: isPortrait ? screenHeight / 48 : screenWidth / 48,
+                size: isPortrait ? screenHeight / 48 : screenHeight / 48,
                 color: Colors.red,
               ),
-              Text(
-                ' Accept only Credit Card',
-                style: TextStyle(
-                  color: Colors.red,
-                  fontSize: isPortrait ? screenHeight / 50 : screenWidth / 58,
-                  fontFamily: 'Roboto',
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.red,
+              Padding(
+                padding: EdgeInsets.only(left: screenWidth / 200),
+                child: Text(
+                  ' Accept Credit Card only',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize:
+                        isPortrait ? screenHeight / 50 : screenHeight / 48,
+                    fontFamily: 'Roboto_Light',
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.red,
+                  ),
                 ),
               )
             ],
@@ -156,36 +160,39 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Flexible(
                         flex: 4,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Flexible(
-                              child: Text(
-                                'Contact Us',
-                                style: TextStyle(
-                                    fontFamily: "Roboto_Light",
-                                    fontSize: 18,
-                                    color: Colors.white),
-                              ),
-                            ),
-                            Flexible(
-                              flex: 2,
-                              child: Container(
-                                width: 400,
-                                child: const Text(
-                                  'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
-                                  //
+                        child: Padding(
+                          padding: EdgeInsets.only(left: screenWidth / 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  'Contact Us',
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontFamily: "Roboto_Light"),
-                                  softWrap: true,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
+                                      fontFamily: "Roboto_Light",
+                                      fontSize: screenWidth / 100,
+                                      color: Colors.white),
                                 ),
                               ),
-                            ),
-                          ],
+                              Flexible(
+                                flex: 2,
+                                child: Container(
+                                  width: isPortrait ? 400 : 450,
+                                  child: Text(
+                                    'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
+                                    //
+                                    style: TextStyle(
+                                        fontSize: screenWidth / 100,
+                                        color: Colors.white,
+                                        fontFamily: "Roboto_Light"),
+                                    softWrap: true,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Flexible(
@@ -421,7 +428,7 @@ class _HomePageState extends State<HomePage> {
               bodyText(),
               Padding(
                 padding: EdgeInsets.only(
-                    bottom: context.screenHeight / 12,
+                    bottom: context.screenHeight / 9.4,
                     top: context.screenHeight / 40),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -503,7 +510,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     // print("W$screenWidth");
-    // print("H$screenHeight");
+    print("size${context.screenSize}");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
   }
 }

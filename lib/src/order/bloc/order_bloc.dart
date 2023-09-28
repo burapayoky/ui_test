@@ -16,6 +16,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
       final List<FoodModel> filteredFoodSet = FoodData.getFoods().where((e) {
         return e.foodSetId == event.foodSetId;
       }).toList();
+
       // print(state.selectedCat);
       final Map<String, List<FoodModel>> foodData =
           filteredFoodSet.fold({}, (prev, cur) {

@@ -34,16 +34,19 @@ class NavigatePageOrderAndStay extends StatelessWidget {
               height: isLandscape ? screenWidth / 5 : screenHeight / 5,
               width: isLandscape ? screenWidth / 5 : screenHeight / 5,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(image), //
-                    fit: BoxFit.fill,
-                  ),
-                  border: Border.all(
-                      width: 0.25,
-                      color: const Color.fromARGB(255, 190, 190, 190)),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8))),
+                image: DecorationImage(
+                  image: AssetImage(image), //
+                  fit: BoxFit.fill,
+                ),
+                border: Border.all(
+                  width: 0.25,
+                  color: const Color.fromARGB(255, 190, 190, 190),
+                ),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
+              ),
             ),
             SizedBox(
               height: screenHeight < 640 && screenWidth < 1011
