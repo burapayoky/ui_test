@@ -91,7 +91,9 @@ class _HomePageState extends State<HomePage> {
       return Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: screenHeight / 6),
+            padding: EdgeInsets.only(
+              top: screenHeight / 6,
+            ),
             child: Column(
               children: [
                 TextLage(
@@ -108,9 +110,10 @@ class _HomePageState extends State<HomePage> {
           Text(
             'Form self-order to self-checkout',
             style: TextStyle(
-                fontSize: isPortrait ? screenHeight / 50 : screenHeight / 40,
-                color: Colors.black38,
-                fontFamily: 'Roboto_Light'),
+              fontSize: isPortrait ? screenHeight / 50 : screenHeight / 40,
+              color: Colors.black38,
+              fontFamily: 'Roboto_Light',
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -159,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Flexible(
-                        flex: 4,
+                        flex: 4, //4,
                         child: Padding(
                           padding: EdgeInsets.only(left: screenWidth / 20),
                           child: Column(
@@ -510,7 +513,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     // print("W$screenWidth");
-    print("size${context.screenSize}");
+    // print("size${context.screenSize}");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
   }
 }

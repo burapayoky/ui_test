@@ -21,6 +21,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
     final screenHeight = context.screenHeight;
     // final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
+
     return SizedBox(
       width: isLandscape ? screenWidth / 5 : screenHeight / 5,
       child: GestureDetector(
@@ -49,9 +50,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: screenHeight < 640 && screenWidth < 1011
-                  ? screenWidth / 28
-                  : screenHeight / 18,
+              height: isLandscape ? screenWidth / 28 : screenHeight / 22,
               child: Container(
                 decoration: BoxDecoration(
                   color: color,
