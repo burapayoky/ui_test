@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui_test/extensions/build_context.dart';
 
-class NavigatePageOrderAndStay extends StatelessWidget {
+class NavigatePageOrderAndStay extends StatefulWidget {
   final String image;
   final Color color;
   final String text;
@@ -16,37 +16,35 @@ class NavigatePageOrderAndStay extends StatelessWidget {
   });
 
   @override
+  State<NavigatePageOrderAndStay> createState() =>
+      _NavigatePageOrderAndStayState();
+}
+
+class _NavigatePageOrderAndStayState extends State<NavigatePageOrderAndStay> {
+  double? prescreenWidth;
+  double? prescreenHith;
+  @override
   Widget build(BuildContext context) {
     final screenWidth = context.screenWidth;
     final screenHeight = context.screenHeight;
     // final isPortrait = screenHeight > screenWidth;
     final isLandscape = screenWidth > screenHeight;
-    double prescreenWidth = screenWidth;
-    double prescreenHith = screenHeight;
-    double boxSize = screenWidth / 2;
-    if (prescreenWidth == screenWidth) {
-      boxSize = screenHeight / 3;
-    } else if (prescreenHith == screenHeight) {
-      boxSize = screenWidth / 6;
-    } else {
-      boxSize = screenWidth / 5;
-    }
 
     return SizedBox(
-      width: isLandscape ? boxSize : screenHeight / 5,
+      width: isLandscape ? double.infinity : double.infinity,
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, route);
+          Navigator.pushNamed(context, widget.route);
         },
         // splashFactory: NoSplash.splashFactory,
         child: Column(
           children: [
             Container(
-              height: isLandscape ? boxSize : screenHeight / 5,
-              width: isLandscape ? boxSize : screenHeight / 5,
+              height: isLandscape ? screenHeight / 3 : screenWidth / 3.2,
+              width: isLandscape ? double.infinity : double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(image), //
+                  image: AssetImage(widget.image), //
                   fit: BoxFit.fill,
                 ),
                 border: Border.all(
@@ -63,7 +61,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
               height: isLandscape ? screenHeight / 17 : screenHeight / 22,
               child: Container(
                 decoration: BoxDecoration(
-                  color: color,
+                  color: widget.color,
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(8),
                     bottomRight: Radius.circular(8),
@@ -71,7 +69,7 @@ class NavigatePageOrderAndStay extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    text, //
+                    widget.text, //
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

@@ -108,15 +108,13 @@ class FirstPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight / 8),
-                    child: Column(
+                    child: const Column(
                       children: [
                         TextLage(
                           hintText: 'Self-Service',
-                          textSize: screenHeight / 14,
                         ),
                         TextLage(
                           hintText: 'Experience.',
-                          textSize: screenHeight / 14,
                         ),
                       ],
                     ),
@@ -260,15 +258,13 @@ class FirstPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: screenHeight / 6),
-                      child: Column(
+                      child: const Column(
                         children: [
                           TextLage(
                             hintText: 'Self-Service',
-                            textSize: screenHeight / 16,
                           ),
                           TextLage(
                             hintText: 'Experience.',
-                            textSize: screenHeight / 14,
                           ),
                         ],
                       ),

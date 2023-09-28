@@ -3,12 +3,10 @@ import 'package:ui_test/extensions/build_context.dart';
 
 class TextLage extends StatelessWidget {
   final String hintText;
-  final double textSize;
 
   const TextLage({
     super.key,
     required this.hintText,
-    required this.textSize,
   });
 
   @override

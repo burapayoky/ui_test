@@ -28,65 +28,6 @@ class _HomePageState extends State<HomePage> {
     final isPortrait = screenHeight > screenWidth;
     bool isLandscape = screenWidth > screenHeight;
 
-    PreferredSizeWidget appBar() {
-      return AppBar(
-        backgroundColor: Colors.white,
-        title: Padding(
-          padding: const EdgeInsets.all(20),
-          child: InkWell(
-            onTap: () {
-              if (screenHeight > 900) {
-                null;
-              } else if (isPortrait) {
-                null;
-              }
-              showModalBottomSheet(
-                context: context,
-                constraints: const BoxConstraints(maxWidth: double.infinity),
-                builder: (context) {
-                  return const SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(),
-                      child: BottomWidget(),
-                    ),
-                  );
-                },
-              );
-            },
-            child: Padding(
-              padding: EdgeInsets.only(top: 25.0),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.restaurant,
-                    size: screenWidth / 40,
-                    color: Colors.black38,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(14.0),
-                    child: Text(
-                      'Soi Siam',
-                      style: TextStyle(
-                          fontSize: 36,
-                          color: Colors.black38,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'Roboto_Lights'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(top: 13.0, right: 8),
-            child: ActionsFlagIcon(),
-          ),
-        ],
-      );
-    }
-
     Widget bodyText() {
       return Column(
         children: [
@@ -94,15 +35,13 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.only(
               top: screenHeight / 6,
             ),
-            child: Column(
+            child: const Column(
               children: [
                 TextLage(
                   hintText: 'Self-Service',
-                  textSize: isLandscape ? screenHeight / 50 : screenHeight / 16,
                 ),
                 TextLage(
                   hintText: 'Experience.',
-                  textSize: screenHeight / 30,
                 ),
               ],
             ),
@@ -144,8 +83,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget bottomSheet() {
-      if (isLandscape && screenHeight < 450 ||
-          isPortrait && screenHeight < 731) {
+      if (isPortrait && screenHeight < 731) {
         return Container();
       }
       return Expanded(
@@ -173,19 +111,24 @@ class _HomePageState extends State<HomePage> {
                                   'Contact Us',
                                   style: TextStyle(
                                       fontFamily: "Roboto_Light",
-                                      fontSize: screenWidth / 100,
+                                      fontSize: isPortrait
+                                          ? screenHeight / 80
+                                          : screenWidth / 100,
                                       color: Colors.white),
                                 ),
                               ),
-                              Flexible(
-                                flex: 2,
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(top: screenHeight / 80),
                                 child: Container(
-                                  width: isPortrait ? 400 : 450,
+                                  width: isPortrait ? 480 : 450,
                                   child: Text(
                                     'Rattanathibech 28 Alley, Tambon Bang Kraso, Mueang Nonthaburi District, Nonthaburi 11000',
                                     //
                                     style: TextStyle(
-                                        fontSize: screenWidth / 100,
+                                        fontSize: isPortrait
+                                            ? screenHeight / 90
+                                            : screenWidth / 100,
                                         color: Colors.white,
                                         fontFamily: "Roboto_Light"),
                                     softWrap: true,
@@ -304,40 +247,41 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Align(
-                      child: Column(
-                        children: [
-                          bodyText(),
-                        ],
+                    Expanded(
+                      child: Align(
+                        child: Column(
+                          children: [
+                            bodyText(),
+                          ],
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: screenHeight / 6, left: screenWidth / 28),
-                      child: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                NavigatePageOrderAndStay(
-                                  image: 'assets/images/gif/gif2.gif',
-                                  color: Color(0xFF496EE2),
-                                  text: 'To Stay',
-                                  route: 'first-page',
-                                ),
-                                SizedBox(width: 20),
-                                NavigatePageOrderAndStay(
-                                  image: 'assets/images/gif/gif1.gif',
-                                  color: Color(0xFFFAA21c),
-                                  text: 'Togo',
-                                  route: 'order',
-                                ),
-                              ],
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: screenHeight / 6, right: screenWidth / 20),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: NavigatePageOrderAndStay(
+                                image: 'assets/images/gif/gif2.gif',
+                                color: Color(0xFF496EE2),
+                                text: 'To Stay',
+                                route: 'first-page',
+                              ),
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 20),
+                            Expanded(
+                              child: NavigatePageOrderAndStay(
+                                image: 'assets/images/gif/gif1.gif',
+                                color: Color(0xFFFAA21c),
+                                text: 'Togo',
+                                route: 'order',
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -432,22 +376,28 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.only(
                     bottom: context.screenHeight / 9.4,
-                    top: context.screenHeight / 40),
+                    top: context.screenHeight / 40,
+                    left: context.screenWidth / 20,
+                    right: screenWidth / 20),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    NavigatePageOrderAndStay(
-                      image: 'assets/images/gif/gif2.gif',
-                      color: Color(0xFF496EE2),
-                      text: 'To Stay',
-                      route: 'first-page',
+                    Expanded(
+                      child: NavigatePageOrderAndStay(
+                        image: 'assets/images/gif/gif2.gif',
+                        color: Color(0xFF496EE2),
+                        text: 'To Stay',
+                        route: 'first-page',
+                      ),
                     ),
                     SizedBox(width: 20),
-                    NavigatePageOrderAndStay(
-                      image: 'assets/images/gif/gif1.gif',
-                      color: Color(0xFFFFB300),
-                      text: 'Togo',
-                      route: 'order',
+                    Expanded(
+                      child: NavigatePageOrderAndStay(
+                        image: 'assets/images/gif/gif1.gif',
+                        color: Color(0xFFFFB300),
+                        text: 'Togo',
+                        route: 'order',
+                      ),
                     ),
                   ],
                 ),
