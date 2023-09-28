@@ -16,7 +16,7 @@ class ActionsFlagIcon extends StatelessWidget {
       padding: const EdgeInsets.only(right: 2),
       child: Container(
         height: isPortrait ? screenWidth / 15 : screenWidth / 30,
-        width: 20,
+        width: isLandscape ? screenWidth / 60 : screenHeight / 55,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(

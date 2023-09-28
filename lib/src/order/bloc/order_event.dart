@@ -28,8 +28,8 @@ class OrderFoodSetUpdateEvent extends OrderEvent {
 }
 
 ///-----------------------------------------------------\\
-class OrderisSearchEvent extends OrderEvent {
-  final bool isSearch;
+// class OrderisSearchEvent extends OrderEvent {
+//   final bool isSearch;
 
-  OrderisSearchEvent({required this.isSearch});
-}
+//   OrderisSearchEvent({required this.isSearch});
+// }

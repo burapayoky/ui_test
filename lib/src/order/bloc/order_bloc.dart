@@ -25,7 +25,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         } else {
           prev[cur.foodCatId!] = [cur];
         }
-
+        print([prev]);
         return prev;
       });
       // emit(OrderUpdateColorsState(selectedId: state.selectedId));
@@ -42,6 +42,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         if (state.foodSetId == null) {
           return;
         }
+        //final Map<String, List<FoodModel>> foodSetId = FoodData.getFoodSet().where((e) => FoodData());
         final List<FoodModel> filteredFoodSet;
         //ไม่มีsearchtext
         if (event.text == null || event.text!.isEmpty) {

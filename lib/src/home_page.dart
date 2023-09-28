@@ -86,9 +86,9 @@ class _HomePageState extends State<HomePage> {
     }
 
     Widget bottomSheet() {
-      if (isPortrait && screenHeight < 731) {
-        return Container();
-      }
+      // if (isPortrait && screenHeight < 731) {
+      //   return Container();
+      // }
       return Expanded(
         child: Container(
           color: Colors.black,
@@ -454,8 +454,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 4.0),
+                Padding(
+                  padding: EdgeInsets.only(right: screenHeight / 100),
                   child: ActionsFlagIcon(),
                 ),
               ],
