@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                     decorationColor: Colors.red,
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ],
@@ -513,7 +513,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     // print("W$screenWidth");
-    // print("size${context.screenSize}");
+    print("size${context.screenSize}");
     return Scaffold(body: isLandscape ? landscapeWidget() : portraitWidget());
   }
 }
