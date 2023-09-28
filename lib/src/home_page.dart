@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black38,
               fontFamily: 'Roboto_Light',
             ),
+            maxLines: 1,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -64,15 +65,17 @@ class _HomePageState extends State<HomePage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: screenWidth / 200),
-                child: Text(
-                  ' Accept Credit Card only',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize:
-                        isPortrait ? screenHeight / 50 : screenHeight / 48,
-                    fontFamily: 'Roboto_Light',
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.red,
+                child: SizedBox(
+                  child: Text(
+                    ' Accept Credit Card only',
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize:
+                            isPortrait ? screenHeight / 50 : screenHeight / 48,
+                        fontFamily: 'Roboto_Light',
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.red,
+                        overflow: TextOverflow.clip),
                   ),
                 ),
               ),

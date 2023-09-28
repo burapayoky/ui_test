@@ -22,6 +22,7 @@ class TextLage extends StatelessWidget {
             fontWeight: FontWeight.w600,
             fontFamily: 'Rasa',
             overflow: TextOverflow.clip),
+        maxLines: 1,
       ),
     );
   }

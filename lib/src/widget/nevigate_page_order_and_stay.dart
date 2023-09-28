@@ -40,7 +40,7 @@ class _NavigatePageOrderAndStayState extends State<NavigatePageOrderAndStay> {
         child: Column(
           children: [
             Container(
-              height: isLandscape ? screenHeight / 3 : screenWidth / 3.2,
+              height: isLandscape ? screenHeight / 3 : screenHeight / 5,
               width: isLandscape ? double.infinity : double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -58,7 +58,7 @@ class _NavigatePageOrderAndStayState extends State<NavigatePageOrderAndStay> {
               ),
             ),
             SizedBox(
-              height: isLandscape ? screenHeight / 17 : screenHeight / 22,
+              height: isLandscape ? screenHeight / 17 : screenHeight / 18,
               child: Container(
                 decoration: BoxDecoration(
                   color: widget.color,
