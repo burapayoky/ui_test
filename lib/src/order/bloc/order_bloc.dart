@@ -25,15 +25,16 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         } else {
           prev[cur.foodCatId!] = [cur];
         }
-        print([prev]);
+
         return prev;
       });
       // emit(OrderUpdateColorsState(selectedId: state.selectedId));
-      emit(OrderUpdateState(
-        foodData: foodData,
-        foodSetId: event.foodSetId,
-        selectedId: state.selectedId,
-      ));
+      emit(
+        OrderUpdateState(
+          foodData: foodData,
+          foodSetId: event.foodSetId,
+        ),
+      );
     });
 
     on<OrderSearchEvent>(
@@ -42,7 +43,17 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         if (state.foodSetId == null) {
           return;
         }
-        //final Map<String, List<FoodModel>> foodSetId = FoodData.getFoodSet().where((e) => FoodData());
+        ///////////
+        // ignore: unused_local_variable
+        List<FoodModel> filteredFoodSearch;
+        for (var item in FoodData.getFoodSet()) {
+          final List<FoodModel> food = FoodData.getFoods().where((e) {
+            return e.foodSetId == item.foodSetId;
+          }).toList();
+          //filteredFoodSearch.add(food);
+        }
+        //print(filteredFoodSearch);
+        //final Map<String, List<FoodModel>> foodSetId = FoodData.getFoodSet().where((e) => FoodData());/////
         final List<FoodModel> filteredFoodSet;
         //ไม่มีsearchtext
         if (event.text == null || event.text!.isEmpty) {
@@ -75,18 +86,12 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           return prev;
         });
 
-        emit(OrderUpdateState(
-          foodData: foodData,
-          foodSetId: state.foodSetId,
-          selectedId: state.selectedId,
-        ));
-      }),
-    );
-    on<OrderFoodSetUpdateEvent>(
-      ((event, emit) {
-        //print(state.selectedId);
-        emit(OrderUpdateColorsState(
-            selectedId: state.selectedId = event.selectedItem));
+        emit(
+          OrderUpdateState(
+            foodData: foodData,
+            foodSetId: state.foodSetId,
+          ),
+        );
       }),
     );
   }

@@ -20,16 +20,16 @@ class OrderSearchEvent extends OrderEvent {
   });
 }
 
-//------------------------------------------\\
-class OrderFoodSetUpdateEvent extends OrderEvent {
-  final int selectedItem;
+// //------------------------------------------\\
+// class OrderFoodSetUpdateEvent extends OrderEvent {
+//   final int selectedItem;
 
-  OrderFoodSetUpdateEvent({required this.selectedItem});
-}
-
-///-----------------------------------------------------\\
-// class OrderisSearchEvent extends OrderEvent {
-//   final bool isSearch;
-
-//   OrderisSearchEvent({required this.isSearch});
+//   OrderFoodSetUpdateEvent({required this.selectedItem});
 // }
+
+// ///-----------------------------------------------------\\
+// // class OrderisSearchEvent extends OrderEvent {
+// //   final bool isSearch;
+
+// //   OrderisSearchEvent({required this.isSearch});
+// // }

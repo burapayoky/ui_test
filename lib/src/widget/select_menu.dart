@@ -33,6 +33,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
   final fieldText = TextEditingController();
   int listenerindex = 0;
   bool issearch = false;
+  int selectedId = 0;
 //Fuction Scroll to index
   void scrollTo(int index) => itemScrollController.scrollTo(
         index: index,
@@ -53,7 +54,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
     cateIndex.sort();
 
     indexx = cateIndex.first;
-
     return indexx;
 
     //ตำเเหน่ง top last
@@ -96,9 +96,7 @@ class _SelectedMenuState extends State<SelectedMenu> {
                         height: isLandscape
                             ? screenWidth / 30
                             : screenWidth / 18, //context.screenHeight / 28,
-                        child: selectedFoodSet(
-                          state.selectedId,
-                        ),
+                        child: selectedFoodSet(),
                       ),
                     ),
                   ],
@@ -291,9 +289,9 @@ class _SelectedMenuState extends State<SelectedMenu> {
 
 // thai Menu,Japan Menu,FreeItem {foodSet}
   Widget selectedFoodSet(
-    // OrderState state,
-    int selectedId,
-  ) {
+      // OrderState state,
+      // int selectedId,
+      ) {
     return Builder(builder: (context) {
       context;
       return SizedBox(
@@ -311,10 +309,10 @@ class _SelectedMenuState extends State<SelectedMenu> {
                       //     : context.screenWidth / 5,
                       child: ElevatedButton(
                         onPressed: () {
-                          context
-                              .read<OrderBloc>()
-                              .add(OrderFoodSetUpdateEvent(selectedItem: i));
-
+                          // context
+                          //     .read<OrderBloc>()
+                          //     .add(OrderFoodSetUpdateEvent(selectedItem: i));
+                          selectedId = i;
                           context.read<OrderBloc>().add(
                                 OrderUpdateEvent(foodSetId: e.foodSetId),
                               );
