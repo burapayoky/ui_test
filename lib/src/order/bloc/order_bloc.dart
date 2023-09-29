@@ -43,17 +43,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         if (state.foodSetId == null) {
           return;
         }
-        ///////////
-        // ignore: unused_local_variable
-        List<FoodModel> filteredFoodSearch;
-        for (var item in FoodData.getFoodSet()) {
-          final List<FoodModel> food = FoodData.getFoods().where((e) {
-            return e.foodSetId == item.foodSetId;
-          }).toList();
-          //filteredFoodSearch.add(food);
-        }
-        //print(filteredFoodSearch);
-        //final Map<String, List<FoodModel>> foodSetId = FoodData.getFoodSet().where((e) => FoodData());/////
+        //////////
+
+        //////////
         final List<FoodModel> filteredFoodSet;
         //ไม่มีsearchtext
         if (event.text == null || event.text!.isEmpty) {

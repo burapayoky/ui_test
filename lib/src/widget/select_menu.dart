@@ -304,9 +304,6 @@ class _SelectedMenuState extends State<SelectedMenu> {
                   padding: const EdgeInsets.only(right: 12.0),
                   child: IntrinsicWidth(
                     child: SizedBox(
-                      // width: isLandscape
-                      //     ? context.screenWidth / 8.2
-                      //     : context.screenWidth / 5,
                       child: ElevatedButton(
                         onPressed: () {
                           // context
