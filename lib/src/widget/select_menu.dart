@@ -85,15 +85,13 @@ class _SelectedMenuState extends State<SelectedMenu> {
         builder: (context, state) {
           return Column(
             children: [
-              SafeArea(
-                child: headding(),
-              ),
+              SafeArea(child: headding()),
               Padding(
                 padding: const EdgeInsets.only(left: 28.0),
                 child: Row(
                   children: [
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         height: isLandscape
                             ? screenWidth / 30

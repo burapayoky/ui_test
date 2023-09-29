@@ -3,12 +3,10 @@ import 'package:ui_test/extensions/build_context.dart';
 
 class TextLage extends StatelessWidget {
   final String hintText;
-  final double textSize;
 
   const TextLage({
     super.key,
     required this.hintText,
-    required this.textSize,
   });
 
   @override
@@ -24,6 +22,7 @@ class TextLage extends StatelessWidget {
             fontWeight: FontWeight.w600,
             fontFamily: 'Rasa',
             overflow: TextOverflow.clip),
+        maxLines: 1,
       ),
     );
   }
